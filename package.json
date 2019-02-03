@@ -4,7 +4,10 @@
   "description": "COMP 4770 Project - The Knight Before",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "flow-remove-types src/ -d lib/",
+    "prepublish": "npm run build",
+    "flow": "flow"  
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/eeshangarg/COMP4770/issues"
   },
-  "homepage": "https://github.com/eeshangarg/COMP4770#readme"
+  "homepage": "https://github.com/eeshangarg/COMP4770#readme",
+  "devDependencies": {
+    "flow-bin": "^0.92.0",
+    "flow-remove-types": "^1.2.3"
+  }
 }
