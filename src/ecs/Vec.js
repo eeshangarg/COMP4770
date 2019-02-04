@@ -1,4 +1,5 @@
 // @flow
+/* global module */
 
 class Vec {
     x: number;
