@@ -9,6 +9,16 @@
     "prepublish": "npm run build",
     "flow": "flow"
   },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 0
+      }
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eeshangarg/COMP4770.git"
