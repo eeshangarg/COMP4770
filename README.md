@@ -3,6 +3,8 @@
 # COMP-4770
 COMP 4770 Team Project
 
+This project is okay.
+
 ## Setting up a development environment
 
 1. Make sure you have `node`, `npm`, and `git` installed.
