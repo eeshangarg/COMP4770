@@ -49,3 +49,8 @@ To run linting, use `npm run lint`.
 To run the tests and produce coverage stats, use `npm run test`.
 
 To run the Flow JS static type-checker, use `npm run flow`.
+
+## Relevant Documentation
+
+* [Flow Type Annotations](https://flow.org/en/docs/types/)
+* [JEST Getting Started](https://jestjs.io/docs/en/getting-started.html)
