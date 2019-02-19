@@ -10,6 +10,8 @@ const MAX_COMPONENTS = 32;
 class Component {}
 
 class CTransform extends Component {
+    static INDEX: number;
+
     pos: Vec;
     prevPos: Vec;
     scale: Vec;
@@ -25,8 +27,11 @@ class CTransform extends Component {
         this.angle = 0.0;
     }
 }
+CTransform.INDEX = 0;
 
 class CInput extends Component {
+    static INDEX: number;
+
     up: boolean;
     down: boolean;
     left: boolean;
@@ -44,8 +49,11 @@ class CInput extends Component {
         this.canShoot = true;
     }
 }
+CInput.INDEX = 1;
 
 class CBoundingBox extends Component {
+    static INDEX: number;
+
     size: Vec;
     halfSize: Vec;
     blockMove: boolean;
@@ -59,8 +67,11 @@ class CBoundingBox extends Component {
         this.blockVision = v;
     }
 }
+CBoundingBox.INDEX = 2;
 
 class CGravity extends Component {
+    static INDEX: number;
+
     gravity: number;
 
     constructor(g: number) {
@@ -68,8 +79,11 @@ class CGravity extends Component {
         this.gravity = g;
     }
 }
+CGravity.INDEX = 3;
 
 class CHealth extends Component {
+    static INDEX: number;
+
     health: number;
 
     constructor() {
@@ -77,8 +91,11 @@ class CHealth extends Component {
         this.health = 100;
     }
 }
+CHealth.INDEX = 4;
 
 class CState extends Component {
+    static INDEX: number;
+
     state: string;
 
     constructor(s: string) {
@@ -86,8 +103,11 @@ class CState extends Component {
         this.state = s;
     }
 }
+CState.INDEX = 5;
 
 class CDraggable extends Component {
+    static INDEX: number;
+
     isBeingDragged: boolean;
     animationIndex: number;
 
@@ -97,8 +117,11 @@ class CDraggable extends Component {
         this.animationIndex = 0;
     }
 }
+CDraggable.INDEX = 6;
 
 class CFollow extends Component {
+    static INDEX: number;
+
     home: Vec;
     speed: number;
 
@@ -108,8 +131,11 @@ class CFollow extends Component {
         this.speed = s;
     }
 }
+CFollow.INDEX = 7;
 
 class CPatrol extends Component {
+    static INDEX: number;
+
     positions: Array<number>;
     currentPosition: number;
     speed: number;
@@ -120,6 +146,7 @@ class CPatrol extends Component {
         this.speed = s;
     }
 }
+CPatrol.INDEX = 8;
 
 module.exports = {
     'CTransform': CTransform,
