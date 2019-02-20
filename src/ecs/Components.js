@@ -7,7 +7,11 @@ const Vec = require('./Vec.js');
 const MAX_COMPONENTS = 32;
 
 // Think of this as an abstract base class
-class Component {}
+class Component {
+    static INDEX: number;
+}
+// The value of INDEX is useless here.
+Component.INDEX = Infinity;
 
 class CTransform extends Component {
     static INDEX: number;
@@ -149,6 +153,7 @@ class CPatrol extends Component {
 CPatrol.INDEX = 8;
 
 module.exports = {
+    'Component': Component,
     'CTransform': CTransform,
     'CInput': CInput,
     'CBoundingBox': CBoundingBox,
