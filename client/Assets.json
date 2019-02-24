@@ -1,0 +1,29 @@
+[
+    {
+        "SpriteName":"playerAtkL",
+        "ImageSource":"/client/assets/images/player/Knight_attack_L.png",
+        "FrameCOunt": 13
+    },
+    {
+        "SpriteName":"playerDeathL",
+        "ImageSource":"/client/assets/images/player/Knight_death_L.png",
+        "FrameCOunt":15
+    },
+    {
+        "SpriteName":"egg",
+        "ImageSource":"/client/assets/images/items/egg.png",
+        "FrameCOunt": 1
+    },
+    {
+        "SpriteName":"apple",
+        "ImageSource":"/client/assets/images/items/apple.png",
+        "FrameCOunt":1
+    },
+    {
+        "SpriteName":"coin",
+        "ImageSource":"/client/assets/images/items/coin.png",
+        "FrameCOunt":1
+    }
+]
+
+

@@ -1,0 +1,42 @@
+[
+    {
+        "AnimationName": "egg",
+        "SpriteName": "egg",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "apple",
+        "SpriteName": "apple",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "coin",
+        "SpriteName": "coin",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "playerAtkL",
+        "SpriteName": "playerAtkL",
+        "frameCount": 13,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "AnimationName": "playerDeathL",
+        "SpriteName": "playerDeathL",
+        "frameCount": 15,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    }
+]
