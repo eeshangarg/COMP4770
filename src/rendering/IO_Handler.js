@@ -11,11 +11,12 @@ let renderQueue = [];
 /* global require */
 const {getAnimation, draw, update} = require('./Animator.js');
 
-// flowlint-next-line unclear-type:off
+
+// flowlint unclear-type:off 
+/* istanbul ignore next */
 function IO_init(server: Object){
     // flowlint-next-line untyped-import:off
     let io = require('socket.io')(server, {});
-    // flowlint-next-line unclear-type:off
     io.sockets.on('connection', function(socket: Object) {
         let x = getAnimation("playerAtkL");
         let x2 = getAnimation("playerAtkL");
@@ -33,12 +34,13 @@ function IO_init(server: Object){
     });
 }
 
-// flowlint-next-line unclear-type:off
+
+/* istanbul ignore next */
 function emitFrame(socket: Object){
     socket.emit('draw', renderQueue);
     renderQueue = []
 }
-
+// flowlint unclear-type:error
 
 module.exports = {
     'IO_init'  : IO_init,

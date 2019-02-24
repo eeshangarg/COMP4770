@@ -7,13 +7,12 @@ const fs = require("fs");
 
 const AnimationMap = new Map();
 
+/* istanbul ignore next */
 function loadAnimations(fileName: string) {
-    console.log(fileName);
     // flowlint-next-line unclear-type:off
     fs.readFileSync(fileName, function (file: Object) {
         let content = JSON.parse(file);
         for (let i = 0; i < content.length; i++) {
-            console.log("here");
             setAnimation(content[i].AnimationName, content[i].SpriteName, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
         }
     });

@@ -12,7 +12,6 @@ class Animation {
     XSize: number;
     YSize: number;
 
-
     constructor(animationName: string, spriteName: string, frameCount: number, fps: number, x: number, y: number) {
         this.AnimationName = animationName;
         this.SpriteName = spriteName;

@@ -1,12 +1,19 @@
 const Animation = require('../Animation.js');
 const {setAnimation, getAnimation, draw, update, loadAnimations} = require('../Animator.js');
-loadAnimations('./src/rendering/Animation.json');
+
 
 test('Animator', () => {
-    let anim = getAnimation("playerAtkLAnim");
+    setAnimation("dummy", "someSpirte", 2, 15, 64, 64);
+    setAnimation("frame", "someSpirte", 1, 15, 64, 64);
+    let anim = getAnimation("dummy");
+    let frame = getAnimation("frame");
+    update(frame);
     update(anim);
-    expect(anim).toBe("playerAtkLAnim");
+    update(anim);
+    update(anim);
+    update(anim);
+    expect(anim.AnimationName).toBe("dummy");
     draw(anim);
-    expect(anim.CurrentFrame).toBe(1);
+    expect(anim.CurrentFrame).toBe(0);
     expect(anim.AnimationFrame).toBe(0);
 });
