@@ -8,15 +8,17 @@ const fs = require("fs");
 const AnimationMap = new Map();
 
 function loadAnimations(fileName: string) {
+    console.log(fileName);
     // flowlint-next-line unclear-type:off
-    fs.readFile(fileName, 'utf8', function (err: Object, file: Object) {
-        if (err) throw err;
+    fs.readFileSync(fileName, function (file: Object) {
         let content = JSON.parse(file);
         for (let i = 0; i < content.length; i++) {
+            console.log("here");
             setAnimation(content[i].AnimationName, content[i].SpriteName, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
         }
     });
 }
+
 
 
 function update(anim: Animation) {
@@ -26,11 +28,14 @@ function update(anim: Animation) {
             anim.CurrentFrame = 0;
             anim.AnimationFrame++;
             if (anim.AnimationFrame > anim.FrameCount){
-            anim.AnimationFrame = 0;
+                anim.AnimationFrame = 0;
             }
         }
     }
 }
+
+
+
 
 function draw(anim: Animation, dx: number, dy: number) {
     queue_Animation(anim.SpriteName, anim.AnimationFrame, dx, dy);
@@ -50,9 +55,6 @@ function getAnimation(AnimationName: string): Animation {
         return y;
     }
 }
-
-
-
 
 
 function setAnimation(AnimationName: string, spriteName: string, frameCount: number, fps: number, x: number, y: number) {

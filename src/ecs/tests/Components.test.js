@@ -8,7 +8,9 @@ const CState = Components.CState;
 const CDraggable = Components.CDraggable;
 const CFollow = Components.CFollow;
 const CPatrol = Components.CPatrol;
+const CAnimation = Components.CAnimation;
 const Vec = require('../Vec.js');
+const Animation = require('../../rendering/Animation.js');
 
 test('Components', () => {
     var transform = new CTransform(new Vec(2.0, 3.0));
@@ -40,4 +42,7 @@ test('Components', () => {
 
     var patrol = new CPatrol([1.0, 2.0, 3.0, 4.0], 5.0);
     expect(CPatrol.INDEX).toBe(8);
+
+    var animation = new CAnimation("SomeAnimName", 0);
+    expect(CAnimation.INDEX).toBe(9);
 });
