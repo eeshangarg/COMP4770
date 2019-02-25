@@ -24,7 +24,7 @@
         "y": 16
     },
     {
-        "AnimationName": "playerAtkLAnim",
+        "AnimationName": "playerAtkL",
         "SpriteName": "playerAtkL",
         "frameCount": 13,
         "fps": 15,

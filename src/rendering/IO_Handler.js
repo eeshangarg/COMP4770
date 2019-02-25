@@ -5,6 +5,7 @@ function queue_Animation(SpriteName: string, frame: number, dx: number, dy: numb
     renderQueue.push({n:SpriteName,f:frame,x:dx,y:dy});
 }
 
+module.exports.queue_Animation = queue_Animation;
 
 let renderQueue = [];
 
@@ -42,8 +43,6 @@ function emitFrame(socket: Object){
 }
 // flowlint unclear-type:error
 
-module.exports = {
-    'IO_init'  : IO_init,
-    'emitFrame'  : emitFrame,
-    'queue_Animation' : queue_Animation
-}
+module.exports.IO_init = IO_init;
+module.exports.emitFrame = emitFrame;
+
