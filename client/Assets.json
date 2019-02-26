@@ -10,6 +10,11 @@
         "FrameCOunt":15
     },
     {
+        "SpriteName":"playerRunR",
+        "ImageSource":"/client/assets/images/player/Knight_run_R.png",
+        "FrameCOunt":6
+    },
+    {
         "SpriteName":"egg",
         "ImageSource":"/client/assets/images/items/egg.png",
         "FrameCOunt": 1

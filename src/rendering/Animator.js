@@ -16,6 +16,7 @@ function loadAnimations(fileName: string) {
 
 
 function update(anim: Animation) {
+    // If the Animation is more then 1 frame long.
     if (anim.FrameCount > 0) {
         anim.CurrentFrame++;
         if(anim.CurrentFrame >= anim.FrameRate) {
@@ -29,23 +30,20 @@ function update(anim: Animation) {
 }
 
 
-
 function draw(anim: Animation, dx: number, dy: number) {
     queue_Animation(anim.SpriteName, anim.AnimationFrame, dx, dy);
 }
 
 
 function getAnimation(AnimationName: string): Animation {
-    const x = AnimationMap.get(AnimationName);
-    if (typeof x !== 'undefined')
-    {
-        let y = new Animation(x.AnimationName, x.SpriteName, x.FrameCount+1, 30/x.FrameRate,x.XSize,x.YSize);
-        return y;
+    let x = AnimationMap.get(AnimationName);
+    if (typeof x !== 'undefined') {
+        let copy = new Animation(x.AnimationName, x.SpriteName, x.FrameCount+1, 30/x.FrameRate,x.XSize,x.YSize);
+        return copy;
     }
-    else
-    {
-        let y = new Animation("null", "null", 30, 30, 1, 1);
-        return y;
+    else {
+        let copy = new Animation('null', 'null', 30, 30, 1, 1);
+        return copy;
     }
 }
 

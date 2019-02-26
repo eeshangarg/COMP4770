@@ -39,7 +39,7 @@ export function all_Sprite_Loaded() {
 function loadJSON(callback) { 
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', filePath, false);
+    xobj.open('GET', filePath, true);
     xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {
             callback(xobj.responseText);
@@ -49,14 +49,13 @@ function loadJSON(callback) {
 }
 
 
-// var m_SoundCount = 0;
-// var m_SoundsLoaded = 0;
-// var m_SoundMap = new Map();
-
+// let m_SoundCount = 0;
+// let m_SoundsLoaded = 0;
+// let m_SoundMap = new Map();
 
 // export function all_Sounds_Loaded() {
 //     if (m_SoundsLoaded == m_SoundCount){return true;}
-//     return false;
+//     else {return false;}
 // }
 
 // export function get_Sound(sound_name) {
@@ -65,12 +64,11 @@ function loadJSON(callback) {
 
 // export function set_Sound(sound_name, sound_source) {
 //     m_SoundCount++;
-//     var sound = new Audio();
+//     let sound = new Audio();
 //     sound.onload = function() {
 //         console.log(sound_name + ' Loaded');
 //          m_SoundMap.set(sound_name, sound);
 //          m_SoundsLoaded++;
 //     }
 //     sound.src = sound_source;
-
 // }

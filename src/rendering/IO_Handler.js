@@ -19,19 +19,64 @@ function IO_init(server: Object){
     // flowlint-next-line untyped-import:off
     let io = require('socket.io')(server, {});
     io.sockets.on('connection', function(socket: Object) {
-        let x = getAnimation("playerAtkL");
-        let x2 = getAnimation("playerAtkL");
-        let z = getAnimation("playerDeathL");
+        // TODO: Remove these Abitary functions to test IO
+        let x = getAnimation("playerRunR");
+        let dx = 50;
+        let dy = 50;
+        let w = false;
+        let a = false;
+        let d = false;
+        let s = false;
+
+        socket.on('in', function(data: Object) {
+
+            if(data.k === 'w') {
+                    if(data.s) {
+                        w = true;
+                    }
+                    else {
+                        w = false;
+                    }
+            }
+            else if(data.k === 'a') {
+                    if(data.s){
+                        a = true;
+                    }
+                    else{
+                        a = false;
+                    }
+            }
+            else if(data.k === 's') {
+                    if(data.s){
+                        s = true;
+                    }
+                    else{
+                        s = false;
+                    }
+            }
+            else if(data.k === 'd') {
+                    if(data.s){
+                        d = true;
+                    }
+                    else{
+                        d = false;
+                    }
+            }
+
+        });
+
+        // Main 30 FPS rendering calls. 
         setInterval(function(){
-            draw(x,50,50);
+            // Draw the Abitary animations to test.
+            if (w){dy-=5;}
+            if (a){dx-=5;}
+            if (s){dy+=5;}
+            if (d){dx+=5;}
+            draw(x, dx, dy);
             update(x);
-            draw(x2, 250, 50);
-            update(x2);
-            update(x2);
-            draw(z, 100, 100);
-            update(z);
             emitFrame(socket);
         }, 33.333 );
+
     });
 }
 
