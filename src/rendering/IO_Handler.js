@@ -5,9 +5,9 @@ function queue_Animation(SpriteName: string, frame: number, dx: number, dy: numb
     renderQueue.push({n:SpriteName,f:frame,x:dx,y:dy});
 }
 
-module.exports.queue_Animation = queue_Animation;
 
 let renderQueue = [];
+module.exports.queue_Animation = queue_Animation;
 
 /* global require */
 const {getAnimation, draw, update} = require('./Animator.js');
@@ -21,6 +21,7 @@ function IO_init(server: Object){
     io.sockets.on('connection', function(socket: Object) {
         // TODO: Remove these Abitary functions to test IO
         let x = getAnimation("playerRunR");
+
         let dx = 50;
         let dy = 50;
         let w = false;
@@ -90,4 +91,3 @@ function emitFrame(socket: Object){
 
 module.exports.IO_init = IO_init;
 module.exports.emitFrame = emitFrame;
-

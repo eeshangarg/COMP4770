@@ -4,15 +4,21 @@
 const Animation = require('./Animation.js');
 const queue_Animation = require('./IO_Handler.js').queue_Animation;
 const fs = require("fs");
+const path = require("path");
+
 const AnimationMap = new Map();
 
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {
-    let content=JSON.parse(fs.readFileSync(fileName, "utf8"));
-    for (let i = 0; i < content.length; i++) {
-        setAnimation(content[i].AnimationName, content[i].SpriteName, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
-    }
+    // flowlint-next-line unclear-type:off
+    fs.readFile(path.resolve(fileName), function (error: Object, file: Object) {
+        let content = JSON.parse(file);
+        for (let i = 0; i < content.length; i++) {
+            setAnimation(content[i].AnimationName, content[i].SpriteName, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
+        }
+    });
 }
+
 
 
 function update(anim: Animation) {
@@ -28,6 +34,7 @@ function update(anim: Animation) {
         }
     }
 }
+
 
 
 function draw(anim: Animation, dx: number, dy: number) {

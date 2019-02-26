@@ -18,6 +18,6 @@ app.use('/client', express.static(__dirname + '/../../../client'));
 server.listen(port);
 
 console.log('Server Listening on port: ' + port);
-var file = "./../Animation.json";
+var file = __dirname + "/../../../cfg/Animation.json";
 loadAnimations(file);
 IO_init(server);

@@ -6,7 +6,7 @@ Assets.load_from_file('/client/Assets.json');
 
 socket.on('draw', function(data){
     if (Assets.all_Sprite_Loaded()){
-        ctx.clearRect(0,0,1280,720);
+        ctx.clearRect(0,0,1024,576);
         for (var i = 0; i < data.length; i++) {
             let sprite = Assets.get_Sprite(data[i].n);
             sprite.draw(data[i].x, data[i].y, data[i].f);
