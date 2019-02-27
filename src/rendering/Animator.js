@@ -38,18 +38,18 @@ function update(anim: Animation) {
 
 
 function draw(anim: Animation, dx: number, dy: number) {
-    queue_Animation(anim.SpriteName, anim.AnimationFrame, dx, dy);
+    queue_Animation(anim.SpriteName, anim.AnimationFrame,dx, dy);
 }
 
 
 function getAnimation(AnimationName: string): Animation {
     let x = AnimationMap.get(AnimationName);
     if (typeof x !== 'undefined') {
-        let copy = new Animation(x.AnimationName, x.SpriteName, x.FrameCount+1, 30/x.FrameRate,x.XSize,x.YSize);
+        let copy = new Animation(x.AnimationName, x.SpriteName, x.FrameCount+1, 60/x.FrameRate,x.XSize,x.YSize);
         return copy;
     }
     else {
-        let copy = new Animation('null', 'null', 30, 30, 1, 1);
+        let copy = new Animation('error', 'error', 1, 1, 1, 1);
         return copy;
     }
 }

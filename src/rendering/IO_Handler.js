@@ -1,7 +1,7 @@
 // @flow
 /* global module */
 
-function queue_Animation(SpriteName: string, frame: number, dx: number, dy: number){
+function queue_Animation(SpriteName: string, frame: number, dx: number, dy: number) {
     renderQueue.push({n:SpriteName,f:frame,x:dx,y:dy});
 }
 
@@ -21,6 +21,8 @@ function IO_init(server: Object){
     io.sockets.on('connection', function(socket: Object) {
         // TODO: Remove these Abitary functions to test IO
         let x = getAnimation("playerRunR");
+        let y = getAnimation("playerIdelR");
+
 
         let dx = 50;
         let dy = 50;
@@ -69,14 +71,18 @@ function IO_init(server: Object){
         // Main 30 FPS rendering calls. 
         setInterval(function(){
             // Draw the Abitary animations to test.
-            if (w){dy-=5;}
-            if (a){dx-=5;}
-            if (s){dy+=5;}
-            if (d){dx+=5;}
-            draw(x, dx, dy);
-            update(x);
+            if (w||a||s||d){
+                if (w){ dy-=5; update(x); draw(x, dx, dy);}
+                if (a){ dx-=5; update(x); draw(x, dx, dy);}
+                if (d){ dx+=5; update(x); draw(x, dx, dy);}
+                if (s){ dy+=5; update(x); draw(x, dx, dy);}
+            }
+            else {
+                update(y);
+                draw(y,dx,dy);
+            }
             emitFrame(socket);
-        }, 33.333 );
+        }, 16.6666 );
 
     });
 }

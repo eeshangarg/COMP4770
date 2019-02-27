@@ -15,6 +15,11 @@
         "FrameCOunt":6
     },
     {
+        "SpriteName":"playerIdelR",
+        "ImageSource":"/client/assets/images/player/knight_idel_R.png",
+        "FrameCOunt":6
+    },
+    {
         "SpriteName":"egg",
         "ImageSource":"/client/assets/images/items/egg.png",
         "FrameCOunt": 1
@@ -27,6 +32,11 @@
     {
         "SpriteName":"coin",
         "ImageSource":"/client/assets/images/items/coin.png",
+        "FrameCOunt":1
+    },
+    {
+        "SpriteName":"error",
+        "ImageSource":"/client/assets/images/msc/error.png",
         "FrameCOunt":1
     }
 ]

@@ -11,6 +11,8 @@ class Animation {
     FrameRate: number;
     XSize: number;
     YSize: number;
+    XScale: number;
+    YScale: number;
 
     constructor(animationName: string, spriteName: string, frameCount: number, fps: number, x: number, y: number) {
         this.AnimationName = animationName;
@@ -18,10 +20,11 @@ class Animation {
         this.FrameCount = frameCount - 1 ;
         this.CurrentFrame = 0;
         this.AnimationFrame = 0;
-        this.FrameRate = 30 / fps;
+        this.FrameRate = 60 / fps;
         this.XSize = x;
         this.YSize = y;
-
+        this.XScale = 1;
+        this.YScale = 1;
     }
 }
 

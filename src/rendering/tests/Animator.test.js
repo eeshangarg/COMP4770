@@ -3,8 +3,8 @@ const {setAnimation, getAnimation, draw, update, loadAnimations} = require('../A
 
 
 test('Animator', () => {
-    setAnimation("dummy", "someSpirte", 2, 15, 64, 64);
-    setAnimation("frame", "someSpirte", 1, 15, 64, 64);
+    setAnimation("dummy", "someSpirte", 2, 30, 64, 64);
+    setAnimation("frame", "someSpirte", 1, 30, 64, 64);
     let anim = getAnimation("dummy");
     let frame = getAnimation("frame");
     update(frame);
