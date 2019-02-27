@@ -13,13 +13,12 @@ class Sprite {
             console.log(spriteName + ' Loaded');
         }
         this.m_Image.src = imgSrc;
-
     }
 
-    draw(dx, dy, frame){
+    draw(dx, dy, frame) {
         ctx.drawImage(
-            this.m_Image, 
-            this.m_XSize*frame,
+            this.m_Image,
+            this.m_XSize * frame,
             0,
             this.m_XSize,
             this.m_YSize,

@@ -4,6 +4,10 @@ let m_SpriteCount = 0;
 let m_SpitresLoaded = 0;
 const m_SpriteMap = new Map();
 let filePath = "No File Path";
+// let m_SoundCount = 0;
+// let m_SoundsLoaded = 0;
+// let m_SoundMap = new Map();
+
 
 export function load_from_file(fileName) {
     filePath = fileName;
@@ -13,7 +17,6 @@ export function load_from_file(fileName) {
             set_Sprite(content[i].SpriteName, content[i].ImageSource, content[i].FrameCOunt);
         }
     });
-    
 }
 
 export function set_Sprite(spriteName, imgSrc, frameCount) {
@@ -48,10 +51,6 @@ function loadJSON(callback) {
     xobj.send(null);
 }
 
-
-// let m_SoundCount = 0;
-// let m_SoundsLoaded = 0;
-// let m_SoundMap = new Map();
 
 // export function all_Sounds_Loaded() {
 //     if (m_SoundsLoaded == m_SoundCount){return true;}
