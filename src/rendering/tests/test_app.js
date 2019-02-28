@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const port = 2000;
-const IO_init = require('./../IO_Handler.js').IO_init;
 const loadAnimations = require('./../Animator.js').loadAnimations;
+const IO_init = require('./../IO_Handler.js').IO_init;
 const path = require('path');
+const socketClusterServer = require('socketcluster-server');
+const scServer = socketClusterServer.attach(server);
 
 // Send the Index page to the user
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/../../../client/index.html'));
 });
 
@@ -18,6 +20,6 @@ app.use('/client', express.static(__dirname + '/../../../client'));
 server.listen(port);
 
 console.log('Server Listening on port: ' + port);
-var file = __dirname + "/../../../cfg/Animation.json";
-loadAnimations(file);
-IO_init(server);
+const fileName = __dirname + "/../../../cfg/Animation.json";
+loadAnimations(fileName);
+IO_init(scServer);

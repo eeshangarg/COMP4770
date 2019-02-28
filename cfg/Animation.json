@@ -43,7 +43,7 @@
         "AnimationName": "playerRunR",
         "SpriteName": "playerRunR",
         "frameCount": 6,
-        "fps": 10,
+        "fps": 15,
         "x": 64,
         "y": 64
     },
@@ -51,7 +51,7 @@
         "AnimationName": "playerIdelR",
         "SpriteName": "playerIdelR",
         "frameCount": 6,
-        "fps": 10,
+        "fps": 15,
         "x": 64,
         "y": 64
     },

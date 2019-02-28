@@ -8,6 +8,7 @@ const path = require("path");
 
 const AnimationMap = new Map();
 
+
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {
     // flowlint-next-line unclear-type:off
