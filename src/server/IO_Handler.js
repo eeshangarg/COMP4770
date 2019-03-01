@@ -1,9 +1,7 @@
-// @flow
-/* global module */
-
+/* istanbul ignore file */
 let renderQueue = [];
 
-function queue_Animation(SpriteName: string, frame: number, dx: number, dy: number) {
+function queueAnimation(SpriteName, frame, dx, dy) {
     renderQueue.push({
         n: SpriteName,
         f: frame,
@@ -12,23 +10,22 @@ function queue_Animation(SpriteName: string, frame: number, dx: number, dy: numb
     });
 }
 
-module.exports.queue_Animation = queue_Animation;
+module.exports.queueAnimation = queueAnimation;
 
+function IO_init(scServer) {
 
-
-// flowlint unclear-type:off
-/* istanbul ignore next */
-function IO_init(scServer: Object) {
-
-    /* global require */
     const {
-            getAnimation,
-            draw,
-            update
-    } = require('./Animator.js');
+        getAnimation,
+        draw,
+        update
+    } = require('./../rendering/Animator.js');
 
-    scServer.on('connection', function(socket: Object) {
+    scServer.on('connection', function(socket) {
+
         // TODO: Remove these Abitary functions to test IO
+        // This following code block acts to simulate a game state. This is 
+        // to be removed and replaced with game_state_init();
+
         let x = getAnimation("playerRunR");
         let y = getAnimation("playerIdelR");
 
@@ -39,7 +36,11 @@ function IO_init(scServer: Object) {
         let d = false;
         let s = false;
 
-        socket.on('i', function(data: Object) {
+        // 'i' -> Input. 
+        socket.on('i', function(inputData) {
+
+            let data = JSON.parse(inputData);
+
             for (var i = 0; i < data.length; i++) {
                 if (data[i].k === 'w') {
                     if (data[i].s) {
@@ -93,17 +94,15 @@ function IO_init(scServer: Object) {
                 draw(y, dx, dy);
             }
             emitFrame(socket);
-        }, 16.666 );
+        }, 16.666);
     });
 }
 
-
-/* istanbul ignore next */
-function emitFrame(socket: Object) {
-    socket.emit('d', renderQueue);
+function emitFrame(socket) {
+    // send draw call 'd' -> Draw. 
+    socket.emit('d', JSON.stringify(renderQueue));
     renderQueue = []
 }
-// flowlint unclear-type:error
 
 module.exports.IO_init = IO_init;
 module.exports.emitFrame = emitFrame;

@@ -2,10 +2,12 @@
 /* global module */
 /* global require */
 const Animation = require('./Animation.js');
-const queue_Animation = require('./IO_Handler.js').queue_Animation;
+// flowlint-next-line untyped-import:off
+const queueAnimation = require('./../server/IO_Handler.js').queueAnimation;
 const fs = require("fs");
 const path = require("path");
 
+// The map which holds all the Animations loaded in from the config. 
 const AnimationMap = new Map();
 
 
@@ -13,6 +15,7 @@ const AnimationMap = new Map();
 function loadAnimations(fileName: string) {
     // flowlint-next-line unclear-type:off
     fs.readFile(path.resolve(fileName), function(error: Object, file: Object) {
+        // Read in the Animations file as a JSON.
         let content = JSON.parse(file);
         for (let i = 0; i < content.length; i++) {
             setAnimation(content[i].AnimationName, content[i].SpriteName, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
@@ -40,7 +43,7 @@ function update(anim: Animation) {
 
 
 function draw(anim: Animation, dx: number, dy: number) {
-    queue_Animation(anim.SpriteName, anim.AnimationFrame, dx, dy);
+    queueAnimation(anim.SpriteName, anim.AnimationFrame, dx, dy);
 }
 
 
@@ -60,6 +63,7 @@ function setAnimation(AnimationName: string, spriteName: string, frameCount: num
     const anim = new Animation(AnimationName, spriteName, frameCount, fps, x, y);
     AnimationMap.set(AnimationName, anim);
 }
+
 
 module.exports = {
     'setAnimation': setAnimation,

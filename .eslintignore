@@ -2,4 +2,4 @@ lib/
 client/
 node_modules/
 src/*/tests/
-
+src/server
