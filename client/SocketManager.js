@@ -1,71 +1,99 @@
 import * as Assets from './Assets.js';
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
-const socket = socketCluster.create('2000');
-let input_Queue = [];
+const socket = new WebSocket('ws://localhost:3000');
+let inputQueue = [];
+let loadingInterval = null;
 
-Assets.load_from_file('/client/Assets.json');
 
-// 'd' -> Draw. parse the data and render the frame.
-socket.on('d', function(data) {
-    let renderFrame = JSON.parse(data);
-    if (Assets.all_Sprite_Loaded()) {
-        ctx.clearRect(0, 0, 1024, 576);
-        for (var i = 0; i < renderFrame.length; i++) {
-            let sprite = Assets.get_Sprite(renderFrame[i].n);
-            sprite.draw(renderFrame[i].x, renderFrame[i].y, renderFrame[i].f);
+window.onbeforeunload = function() {
+    socket.close();
+};
+
+socket.onopen = function() {
+    console.log('Socket Opened Sucessfully! Waiting for Assets...');
+
+    Assets.load_from_file('/client/Assets.json');
+
+    loadingInterval = setInterval(function() {
+        if (Assets.all_Sprite_Loaded()) {
+            socket.send('all assests loaded');
+            SocketHandler();
+            clearInterval(loadingInterval);
         }
+    }, 10);
+};
+
+function SocketHandler() {
+
+    socket.onmessage = function(message) {
+
+        let data = JSON.parse(message.data);
+        if (data.t === 'd'){
+            renderFrame(data.d);
+        }
+
+        // TODO add more message types here... Sounds, ect.
+
+        emitInput();
+
     }
-})
 
+}
 
-// 's' -> Sound.
-socket.on('s', function(data) {
-    // TODO
-});
+function renderFrame(data) {
+    // Clear the canvas.
+    ctx.clearRect(0, 0, 1024, 576);
 
-
-// Set the from emit 
-setInterval(function() {
-    emit_Input()
-}, 16.666);
-
-
-function emit_Input() {
-    if (input_Queue.length != 0) {
-        socket.emit('i', JSON.stringify(input_Queue));
-        input_Queue = [];
+    // Draw all stream animations.
+    for (var i = 0; i < data.length; i++) {
+        let sprite = Assets.get_Sprite(data[i].n);
+        sprite.draw(data[i].x, data[i].y, data[i].f);
     }
 }
 
-
-function queue_Input(key, state) {
-    input_Queue.push({
-        k: key,
-        s: state
-    });
-}
 
 // key up event.
 document.onkeydown = function(event) {
     if (event.keyCode === 87)
-        queue_Input('w', true);
+        queueInput('w', '1');
     else if (event.keyCode === 65)
-        queue_Input('a', true);
+        queueInput('a', '1');
     else if (event.keyCode === 83)
-        queue_Input('s', true);
+        queueInput('s', '1');
     else if (event.keyCode === 68)
-        queue_Input('d', true);
+        queueInput('d', '1');
 }
 
 // Key Down events. 
 document.onkeyup = function(event) {
     if (event.keyCode === 87)
-        queue_Input('w', false);
+        queueInput('w', '0');
     else if (event.keyCode === 65)
-        queue_Input('a', false);
+        queueInput('a', '0');
     else if (event.keyCode === 83)
-        queue_Input('s', false);
+        queueInput('s', '0');
     else if (event.keyCode === 68)
-        queue_Input('d', false);
+        queueInput('d', '0');
 }
+
+
+function emitInput() {
+    if (inputQueue.length != 0) {
+        let message = {
+            t: 'i',
+            d: inputQueue
+        };
+        socket.send(JSON.stringify(message));
+        inputQueue = [];
+    }
+}
+
+function queueInput(key, state) {
+    inputQueue.push({
+        k: key,
+        s: state
+    });
+}
+
+// TODO Frame buffering.

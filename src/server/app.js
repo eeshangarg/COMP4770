@@ -2,25 +2,37 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const port = 2000;
-const loadAnimations = require('./../rendering/Animator.js').loadAnimations;
-const IO_init = require('./IO_Handler.js').IO_init;
 const path = require('path');
-const socketClusterServer = require('socketcluster-server');
-const scServer = socketClusterServer.attach(server);
+const serverPort = 2000;
+const socketPort = 3000;
 
-// Send the Index page to the user
+// Send the Index page to the client via express.
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, '/../../client/index.html'));
+
 });
 
-// Set up a static express file server.
+// Sent the /client/ dir as a static express directory. 
 app.use('/client', express.static(__dirname + '/../../client'));
 
-// Start the server listening
-server.listen(port);
+// Listen the HTTP server.
+server.listen(serverPort);
 
-console.log('Server Listening on port: ' + port);
-const fileName = __dirname + "/../../cfg/Animation.json";
-loadAnimations(fileName);
-IO_init(scServer);
+// Create a WebSocketServer -> wws. Listen on port 3000.
+const WebSocketServer = require('ws').Server;
+const wss = new WebSocketServer({
+    port: socketPort
+});
+
+// Declare the require helper methods.
+const loadAnimations = require('./../rendering/Animator.js').loadAnimations;
+const IO_init = require('./IO_Handler.js').IO_init;
+
+console.log('Server Listening on port: ' + serverPort);
+console.log('Socketing Listening on port: ' + socketPort);
+
+// Load the Animation config file.
+loadAnimations(__dirname + "/../../cfg/Animation.json");
+
+// Intialize the Websocket server.
+IO_init(wss);

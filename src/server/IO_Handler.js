@@ -1,6 +1,15 @@
 /* istanbul ignore file */
-let renderQueue = [];
 
+// Global varriables.
+let renderQueue = [];
+let socketsMap = new Map();
+let id = 0;
+
+// Requires
+const fakeGameEngine = require('./fake_ECS.js').fakeGameEngine;
+const shortid = require('shortid');
+
+// The function to "Queue" an Animation. Only used by the Animator.
 function queueAnimation(SpriteName, frame, dx, dy) {
     renderQueue.push({
         n: SpriteName,
@@ -12,97 +21,66 @@ function queueAnimation(SpriteName, frame, dx, dy) {
 
 module.exports.queueAnimation = queueAnimation;
 
-function IO_init(scServer) {
+// Intialize the IO helpers.
+function IO_init(wss) {
+    // On a client socketing in :
+    wss.on('connection', (ws) => {
 
-    const {
-        getAnimation,
-        draw,
-        update
-    } = require('./../rendering/Animator.js');
+        // Generate a socket ID.
+        ws.id = shortid.generate();
+        socketsMap.set(ws.id, ws);
 
-    scServer.on('connection', function(socket) {
+        console.log('socket connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
 
-        // TODO: Remove these Abitary functions to test IO
-        // This following code block acts to simulate a game state. This is 
-        // to be removed and replaced with game_state_init();
-
-        let x = getAnimation("playerRunR");
-        let y = getAnimation("playerIdelR");
-
-        let dx = 50;
-        let dy = 50;
-        let w = false;
-        let a = false;
-        let d = false;
-        let s = false;
-
-        // 'i' -> Input. 
-        socket.on('i', function(inputData) {
-
-            let data = JSON.parse(inputData);
-
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].k === 'w') {
-                    if (data[i].s) {
-                        w = true;
-                    } else {
-                        w = false;
-                    }
-                } else if (data[i].k === 'a') {
-                    if (data[i].s) {
-                        a = true;
-                    } else {
-                        a = false;
-                    }
-                } else if (data[i].k === 's') {
-                    if (data[i].s) {
-                        s = true;
-                    } else {
-                        s = false;
-                    }
-                } else if (data[i].k === 'd') {
-                    if (data[i].s) {
-                        d = true;
-                    } else {
-                        d = false;
-                    }
-                }
+        ws.on('message', function incoming(data) {
+            if (data === 'all assests loaded') {
+                IO_Handler(ws);
             }
-
         });
 
-        // Main 30 FPS rendering calls. 
-        setInterval(function() {
-            // Draw the Abitary animations to test.
-            if (w || a || s || d) {
-                if (w) {
-                    dy -= 5;
-                }
-                if (a) {
-                    dx -= 5;
-                }
-                if (d) {
-                    dx += 5;
-                }
-                if (s) {
-                    dy += 5;
-                }
-                update(x);
-                draw(x, dx, dy);
-            } else {
-                update(y);
-                draw(y, dx, dy);
-            }
-            emitFrame(socket);
-        }, 16.666);
+        ws.on('close', function close() {
+            console.log('socket closed, ID: ', ws.id, " Client Count: ", wss.clients.size);
+            socketsMap.delete(ws.id);
+        });
+
+    });
+
+}
+
+function IO_Handler(ws) {
+    // Clear the file loading listener.
+    ws.removeAllListeners('message');
+    // Create a instance of a fakeGameEngine passed the socket.
+
+    fakeGameEngine(ws);
+
+    let updateInputData = require('./fake_ECS.js').updateInputData;
+
+    ws.on('message', function incoming(message) {
+        let data = JSON.parse(message);
+        if (data.t === 'i') {
+            updateInputData(data.d);
+        }
+
+        // TODO Add other message types here... Save, Load, ect.
+
     });
 }
 
-function emitFrame(socket) {
-    // send draw call 'd' -> Draw. 
-    socket.emit('d', JSON.stringify(renderQueue));
-    renderQueue = []
+
+
+function emitFrame(ws) {
+
+    //send draw call 'd' -> Draw.
+    let message = {
+        t: 'd',
+        d: renderQueue
+    };
+
+    ws.send(JSON.stringify(message));
+    renderQueue = [];
 }
+
 
 module.exports.IO_init = IO_init;
 module.exports.emitFrame = emitFrame;

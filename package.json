@@ -45,7 +45,11 @@
         "flow": "^0.2.3",
         "netcode": "^2.0.0",
         "npm": "^6.8.0",
-        "socketcluster": "^14.3.3",
-        "sc-uws": "^10.148.2"
+        "shortid": "^2.2.14",
+        "ws": "^6.1.4"
+    },
+    "optionalDependencies": {
+        "bufferutil": "^4.0.1",
+        "utf-8-validate": "^5.0.2"
     }
 }
