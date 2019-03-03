@@ -70,15 +70,17 @@ function IO_Handler(ws) {
 
 
 function emitFrame(ws) {
+    if (ws.readyState == 1) {
+        //send draw call 'd' -> Draw.
+        let message = {
+            t: 'd',
+            d: renderQueue
+        };
 
-    //send draw call 'd' -> Draw.
-    let message = {
-        t: 'd',
-        d: renderQueue
-    };
+        ws.send(JSON.stringify(message));
+        renderQueue = [];
+    }
 
-    ws.send(JSON.stringify(message));
-    renderQueue = [];
 }
 
 
