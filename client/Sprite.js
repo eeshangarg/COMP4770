@@ -1,7 +1,10 @@
 import * as Assets from './Assets.js';
-const ctx = document.getElementById('gameCanvas').getContext('2d');
+let ctx = document.getElementById('gameCanvas').getContext('2d');
+
+// The object class to handle sprites, which area a extension of images.
 class Sprite {
 
+    // Create a spirte based of Assets.json.
     constructor(spriteName, imgSrc, frameCount) {
         var self = this;
         this.m_Name = spriteName;
@@ -15,6 +18,7 @@ class Sprite {
         this.m_Image.src = imgSrc;
     }
 
+    // Draw a image at a frame.
     draw(dx, dy, frame) {
         ctx.drawImage(
             this.m_Image,

@@ -24,6 +24,14 @@
         "y": 16
     },
     {
+        "AnimationName": "cave-platform",
+        "SpriteName": "cave-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
         "AnimationName": "playerAtkLAnim",
         "SpriteName": "playerAtkL",
         "frameCount": 13,

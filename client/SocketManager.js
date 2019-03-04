@@ -1,16 +1,18 @@
 import * as Assets from './Assets.js';
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
-const socket = new WebSocket('ws://localhost:3000');
+// const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
+const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 let inputQueue = [];
 let loadingInterval = null;
 
-
+// Kill socket
 window.onbeforeunload = function() {
     socket.close();
 };
 
 socket.onopen = function() {
+
     console.log('Socket Opened Sucessfully! Waiting for Assets...');
 
     Assets.load_from_file('/client/Assets.json');
@@ -24,16 +26,22 @@ socket.onopen = function() {
     }, 10);
 };
 
+// This function handles sendinhg / receiving messages.
 function SocketHandler() {
 
     socket.onmessage = function(message) {
 
         let data = JSON.parse(message.data);
-        if (data.t === 'd'){
+        if (data.t === 'd') {
             renderFrame(data.d);
         }
 
-        // TODO add more message types here... Sounds, ect.
+        /* TODO add more message types here... Sounds, ect.
+           i.e: 
+            else if (data.t === 's') {
+                playSound(data.d);
+            }
+        */
 
         emitInput();
 
@@ -42,10 +50,11 @@ function SocketHandler() {
 }
 
 function renderFrame(data) {
+
     // Clear the canvas.
     ctx.clearRect(0, 0, 1024, 576);
 
-    // Draw all stream animations.
+    // Draw all streamed animations from server.
     for (var i = 0; i < data.length; i++) {
         let sprite = Assets.get_Sprite(data[i].n);
         sprite.draw(data[i].x, data[i].y, data[i].f);
@@ -56,25 +65,25 @@ function renderFrame(data) {
 // key up event.
 document.onkeydown = function(event) {
     if (event.keyCode === 87)
-        queueInput('w', '1');
+        queueInput('w', 1);
     else if (event.keyCode === 65)
-        queueInput('a', '1');
+        queueInput('a', 1);
     else if (event.keyCode === 83)
-        queueInput('s', '1');
+        queueInput('s', 1);
     else if (event.keyCode === 68)
-        queueInput('d', '1');
+        queueInput('d', 1);
 }
 
 // Key Down events. 
 document.onkeyup = function(event) {
     if (event.keyCode === 87)
-        queueInput('w', '0');
+        queueInput('w', 0);
     else if (event.keyCode === 65)
-        queueInput('a', '0');
+        queueInput('a', 0);
     else if (event.keyCode === 83)
-        queueInput('s', '0');
+        queueInput('s', 0);
     else if (event.keyCode === 68)
-        queueInput('d', '0');
+        queueInput('d', 0);
 }
 
 
@@ -96,4 +105,4 @@ function queueInput(key, state) {
     });
 }
 
-// TODO Frame buffering.
+// TODO Frame buffering?

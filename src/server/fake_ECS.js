@@ -18,13 +18,17 @@ function fakeGameEngine(socket) {
 
     let x = getAnimation("playerRunR");
     let y = getAnimation("playerIdelR");
-    let w = false;
-    let a = false;
-    let d = false;
-    let s = false;
+    let z = getAnimation("cave-platform");
     let dx = 50;
     let dy = 50;
-    running = true;
+    let inputMap = {
+        w: false,
+        a: false,
+        d: false,
+        s: false
+    };
+
+    let running = true;
 
     socket.on('close', function close() {
         running = false;
@@ -32,20 +36,29 @@ function fakeGameEngine(socket) {
 
     let gameInterval = setInterval(function() {
         if (running) {
+
+            
+            for (let w = 0; w < 1054; w += 16) {
+                for (let h = 0; h < 567; h += 16) {
+                    draw(z, w, h);
+                }
+            }
             // Draw the Abitary animations to test.
-            if (w || a || s || d) {
-                if (w) {
+            if (inputMap.w || inputMap.a || inputMap.s || inputMap.d) {
+
+                if (inputMap.w) {
                     dy -= 5;
                 }
-                if (a) {
+                if (inputMap.a) {
                     dx -= 5;
                 }
-                if (d) {
+                if (inputMap.d) {
                     dx += 5;
                 }
-                if (s) {
+                if (inputMap.s) {
                     dy += 5;
                 }
+
                 update(x);
                 draw(x, dx, dy);
             } else {
@@ -53,49 +66,22 @@ function fakeGameEngine(socket) {
                 draw(y, dx, dy);
             }
             emitFrame(socket);
+
         } else {
             clearInterval(gameInterval);
         }
     }, 16.666);
 
-
-    function updateInputData(data) {
-
-        for (var i = 0; i < data.length; i++) {
-            let state = true;
-            if (data[i].s === '0') {
-                state = false;
-            }
-
-            if (data[i].k === 'w') {
-                if (state) {
-                    w = true;
-                } else {
-                    w = false;
-                }
-            } else if (data[i].k === 'a') {
-                if (state) {
-                    a = true;
-                } else {
-                    a = false;
-                }
-            } else if (data[i].k === 's') {
-                if (state) {
-                    s = true;
-                } else {
-                    s = false;
-                }
-            } else if (data[i].k === 'd') {
-                if (state) {
-                    d = true;
-                } else {
-                    d = false;
-                }
-            }
-        }
+    function setInputMap(map) {
+        inputMap = map;
     }
 
-    module.exports.updateInputData = updateInputData;
+    function getInputMap() {
+        return inputMap;
+    }
+
+    module.exports.getInputMap = getInputMap;
+    module.exports.setInputMap = setInputMap;
 }
 
 
