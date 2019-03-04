@@ -3,6 +3,7 @@
 
 class Animation {
 
+    id: number;
     SpriteName: string;
     AnimationName: string;
     FrameCount: number;
@@ -12,7 +13,8 @@ class Animation {
     XSize: number;
     YSize: number;
 
-    constructor(animationName: string, spriteName: string, frameCount: number, fps: number, x: number, y: number) {
+    constructor(animationName: string, spriteName: string, ident: number, frameCount: number, fps: number, x: number, y: number) {
+        this.id = ident;
         this.AnimationName = animationName;
         this.SpriteName = spriteName;
         this.FrameCount = frameCount - 1;

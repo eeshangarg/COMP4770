@@ -1,10 +1,11 @@
 import * as Assets from './Assets.js';
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
-// const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
+//const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 let inputQueue = [];
 let loadingInterval = null;
+let animIdMap = new Map();
 
 // Kill socket
 window.onbeforeunload = function() {
@@ -32,8 +33,12 @@ function SocketHandler() {
     socket.onmessage = function(message) {
 
         let data = JSON.parse(message.data);
+
         if (data.t === 'd') {
             renderFrame(data.d);
+        }
+        else if (data.t === 'a') {
+            loadIdMap(data.d);
         }
 
         /* TODO add more message types here... Sounds, ect.
@@ -49,6 +54,12 @@ function SocketHandler() {
 
 }
 
+function loadIdMap(data) {
+    for (let i = 0; i < data.length; i++) {
+        animIdMap.set(data[i].id, data[i].name);
+    }
+}
+
 function renderFrame(data) {
 
     // Clear the canvas.
@@ -56,8 +67,14 @@ function renderFrame(data) {
 
     // Draw all streamed animations from server.
     for (var i = 0; i < data.length; i++) {
-        let sprite = Assets.get_Sprite(data[i].n);
-        sprite.draw(data[i].x, data[i].y, data[i].f);
+        let sprite = Assets.get_Sprite(animIdMap.get(data[i].n));
+        if (data[i].hasOwnProperty('f')){
+            sprite.draw(data[i].x, data[i].y, data[i].f);
+        }
+        else {
+           sprite.draw(data[i].x, data[i].y, 0);
+        }
+        
     }
 }
 

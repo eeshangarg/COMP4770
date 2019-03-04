@@ -1,5 +1,13 @@
 [
     {
+        "AnimationName": "error",
+        "SpriteName": "error",
+        "frameCount": 1,
+        "fps": 1,
+        "x": 1,
+        "y": 1
+    },
+    {
         "AnimationName": "egg",
         "SpriteName": "egg",
         "frameCount": 1,
@@ -62,13 +70,5 @@
         "fps": 15,
         "x": 64,
         "y": 64
-    },
-    {
-        "AnimationName": "error",
-        "SpriteName": "error",
-        "frameCount": 1,
-        "fps": 1,
-        "x": 1,
-        "y": 1
     }
 ]

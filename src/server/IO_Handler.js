@@ -10,19 +10,33 @@ const fakeGameEngine = require('./fake_ECS.js').fakeGameEngine;
 const shortid = require('shortid');
 
 // The function to "Queue" an Animation. Only used by the Animator.
-function queueAnimation(SpriteName, frame, dx, dy) {
-    renderQueue.push({
-        n: SpriteName,
-        f: frame,
-        x: dx,
-        y: dy
-    });
+function queueAnimation(id, frame, dx, dy) {
+    if (frame == -1){
+        renderQueue.push({
+            n: id,
+            x: dx,
+            y: dy
+        });
+    }
+    else {
+        renderQueue.push({
+            n: id,
+            f: frame,
+            x: dx,
+            y: dy
+        });
+    }
 }
+
+
 
 module.exports.queueAnimation = queueAnimation;
 
 // Intialize the IO helpers.
 function IO_init(wss) {
+
+    console.log('IO Initialzied'); 
+
     // On a client socketing in :
     wss.on('connection', (ws) => {
 
@@ -32,8 +46,12 @@ function IO_init(wss) {
 
         console.log('socket connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
 
-        ws.on('message', function incoming(data) {
+        let getAnimationIDMap = require('./../rendering/Animator.js').getAnimationIDMap;
+        let animIdMap = JSON.stringify({t:'a', d:getAnimationIDMap()});
+
+        ws.on('message', function incoming(data) { 
             if (data === 'all assests loaded') {
+                ws.send(animIdMap);
                 IO_Handler(ws);
             }
         });
@@ -80,6 +98,7 @@ function IO_Handler(ws) {
 
 // The function which emits a frame through a Websocket.
 function emitFrame(ws) {
+
     if (ws.readyState == 1) {
 
         //send draw call 'd' -> Draw.

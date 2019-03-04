@@ -10,8 +10,8 @@ const {
 
 test('Animator', () => {
     // Create some abitary animation objects.
-    setAnimation("dummy", "someSpirte", 2, 30, 64, 64);
-    setAnimation("frame", "someSpirte", 1, 30, 64, 64);
+    setAnimation("dummy", "someSpirte", 0, 2, 30, 64, 64);
+    setAnimation("frame", "someSpirte", 1, 1, 30, 64, 64);
     let anim = getAnimation("dummy");
     // Draw a 1 frame object.
     let frame = getAnimation("frame");

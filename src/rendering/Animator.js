@@ -9,7 +9,7 @@ const path = require("path");
 
 // The map which holds all the Animations loaded in from the config. 
 const AnimationMap = new Map();
-
+const idMap =  [];
 
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {
@@ -18,9 +18,11 @@ function loadAnimations(fileName: string) {
         // Read in the Animations file as a JSON.
         let content = JSON.parse(file);
         for (let i = 0; i < content.length; i++) {
-            setAnimation(content[i].AnimationName, content[i].SpriteName, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
+            setAnimation(content[i].AnimationName, content[i].SpriteName, i, content[i].frameCount, content[i].fps, content[i].x, content[i].y);
+            idMap.push({name: content[i].AnimationName, id: i});
         }
     });
+
 }
 
 
@@ -43,24 +45,33 @@ function update(anim: Animation) {
 
 
 function draw(anim: Animation, dx: number, dy: number) {
-    queueAnimation(anim.SpriteName, anim.AnimationFrame, dx, dy);
+    if (anim.FrameCount == 0){
+        queueAnimation(anim.id, -1, dx, dy);
+    }
+    else {
+        queueAnimation(anim.id, anim.AnimationFrame, dx, dy);
+    }
+    
 }
 
 
 function getAnimation(AnimationName: string): Animation {
     let x = AnimationMap.get(AnimationName);
     if (typeof x !== 'undefined') {
-        let copy = new Animation(x.AnimationName, x.SpriteName, x.FrameCount + 1, 60 / x.FrameRate, x.XSize, x.YSize);
+        let copy = new Animation(x.AnimationName, x.SpriteName, x.id, x.FrameCount + 1, 60 / x.FrameRate, x.XSize, x.YSize);
         return copy;
     } else {
-        let copy = new Animation('error', 'error', 1, 1, 1, 1);
+        let copy = new Animation('error', 'error', 0, 1, 1, 1, 1);
         return copy;
     }
 }
 
+function getAnimationIDMap() {
+    return idMap;
+}
 
-function setAnimation(AnimationName: string, spriteName: string, frameCount: number, fps: number, x: number, y: number) {
-    const anim = new Animation(AnimationName, spriteName, frameCount, fps, x, y);
+function setAnimation(AnimationName: string, spriteName: string, id: number, frameCount: number, fps: number, x: number, y: number) {
+    const anim = new Animation(AnimationName, spriteName, id, frameCount, fps, x, y);
     AnimationMap.set(AnimationName, anim);
 }
 
@@ -70,5 +81,6 @@ module.exports = {
     'getAnimation': getAnimation,
     'draw': draw,
     'update': update,
-    'loadAnimations': loadAnimations
+    'loadAnimations': loadAnimations,
+    'getAnimationIDMap': getAnimationIDMap
 }

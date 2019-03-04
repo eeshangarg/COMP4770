@@ -37,9 +37,8 @@ function fakeGameEngine(socket) {
     let gameInterval = setInterval(function() {
         if (running) {
 
-            
-            for (let w = 0; w < 1054; w += 16) {
-                for (let h = 0; h < 567; h += 16) {
+            for (let w = 0; w < 1038; w += 16) {
+                for (let h = 486; h < 576; h += 16) {
                     draw(z, w, h);
                 }
             }
