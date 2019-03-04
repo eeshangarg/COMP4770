@@ -26,7 +26,7 @@ const wss = new WebSocketServer({
         zlibDeflateOptions: {
             chunkSize: 1024,
             memLevel: 8,
-            level: 6
+            level: 5
         },
         zlibInflateOptions: {
             chunkSize: 10 * 1024

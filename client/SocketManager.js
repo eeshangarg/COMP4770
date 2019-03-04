@@ -1,6 +1,11 @@
 import * as Assets from './Assets.js';
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
+const grd = ctx.createLinearGradient(512, 0, 512, 576);
+grd.addColorStop(0, "DarkSlateGray");
+grd.addColorStop(1, "Black");
+ctx.fillStyle = grd;
+
 const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 let inputQueue = [];
@@ -63,7 +68,7 @@ function loadIdMap(data) {
 function renderFrame(data) {
 
     // Clear the canvas.
-    ctx.clearRect(0, 0, 1024, 576);
+    ctx.fillRect(0, 0, 1024, 576);
 
     // Draw all streamed animations from server.
     for (var i = 0; i < data.length; i++) {

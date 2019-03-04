@@ -21,6 +21,7 @@ function fakeGameEngine(socket) {
     let z = getAnimation("cave-platform");
     let dx = 50;
     let dy = 50;
+
     let inputMap = {
         w: false,
         a: false,
