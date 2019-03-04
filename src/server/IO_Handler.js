@@ -14,16 +14,14 @@ function queueAnimation(id, frame, dx, dy) {
     if (frame == -1){
         renderQueue.push({
             n: id,
-            x: dx,
-            y: dy
+            d: [dx,dy]
         });
     }
     else {
         renderQueue.push({
             n: id,
-            f: frame,
-            x: dx,
-            y: dy
+            d: [dx,dy],
+            f: frame
         });
     }
 }

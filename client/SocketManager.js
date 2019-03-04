@@ -69,10 +69,10 @@ function renderFrame(data) {
     for (var i = 0; i < data.length; i++) {
         let sprite = Assets.get_Sprite(animIdMap.get(data[i].n));
         if (data[i].hasOwnProperty('f')){
-            sprite.draw(data[i].x, data[i].y, data[i].f);
+            sprite.draw(data[i].d[0], data[i].d[1], data[i].f);
         }
         else {
-           sprite.draw(data[i].x, data[i].y, 0);
+           sprite.draw(data[i].d[0], data[i].d[1], 0);
         }
         
     }
