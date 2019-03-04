@@ -1,8 +1,9 @@
 // @flow
 /* global module */
 /* global require */
+// flowlint untyped-import:off
+// flowlint unclear-type:off
 const Animation = require('./Animation.js');
-// flowlint-next-line untyped-import:off
 const queueAnimation = require('./../server/IO_Handler.js').queueAnimation;
 const fs = require("fs");
 const path = require("path");
@@ -11,9 +12,10 @@ const path = require("path");
 const AnimationMap = new Map();
 const idMap =  [];
 
+
+
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {
-    // flowlint-next-line unclear-type:off
     fs.readFile(path.resolve(fileName), function(error: Object, file: Object) {
         // Read in the Animations file as a JSON.
         let content = JSON.parse(file);
@@ -45,7 +47,8 @@ function update(anim: Animation) {
 
 
 function draw(anim: Animation, dx: number, dy: number) {
-    if (anim.FrameCount == 0){
+    /* istanbul ignore next */
+    if (anim.FrameCount == 0) {
         queueAnimation(anim.id, -1, dx, dy);
     }
     else {
@@ -66,7 +69,9 @@ function getAnimation(AnimationName: string): Animation {
     }
 }
 
-function getAnimationIDMap() {
+/* istanbul ignore next */
+function getAnimationIDMap(): Object {
+    /* istanbul ignore next */
     return idMap;
 }
 

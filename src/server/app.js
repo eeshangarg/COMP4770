@@ -21,7 +21,24 @@ server.listen(serverPort);
 // Create a WebSocketServer -> wws. Listen on port 3000.
 const WebSocketServer = require('ws').Server;
 const wss = new WebSocketServer({
-    port: socketPort
+    port: socketPort,
+    perMessageDeflate: {
+        zlibDeflateOptions: {
+            chunkSize: 1024,
+            memLevel: 7,
+            level: 3
+        },
+        zlibInflateOptions: {
+            chunkSize: 10 * 1024
+        },
+        clientNoContextTakeover: true,
+        serverNoContextTakeover: true,
+        concurrencyLimit: 10,
+        threshold: 0
+    },
+    clientTracking: true,
+
+
 });
 
 // Declare the require helper methods.

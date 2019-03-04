@@ -1,8 +1,8 @@
 import * as Assets from './Assets.js';
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
-//const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
-const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
+const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
+//const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 let inputQueue = [];
 let loadingInterval = null;
 let animIdMap = new Map();
