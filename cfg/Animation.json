@@ -1,0 +1,74 @@
+[
+    {
+        "AnimationName": "error",
+        "SpriteName": "error",
+        "frameCount": 1,
+        "fps": 1,
+        "x": 1,
+        "y": 1
+    },
+    {
+        "AnimationName": "egg",
+        "SpriteName": "egg",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "apple",
+        "SpriteName": "apple",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "coin",
+        "SpriteName": "coin",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "cave-platform",
+        "SpriteName": "cave-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "AnimationName": "playerAtkLAnim",
+        "SpriteName": "playerAtkL",
+        "frameCount": 13,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "AnimationName": "playerDeathL",
+        "SpriteName": "playerDeathL",
+        "frameCount": 15,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "AnimationName": "playerRunR",
+        "SpriteName": "playerRunR",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "AnimationName": "playerIdelR",
+        "SpriteName": "playerIdelR",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    }
+]

@@ -3,6 +3,8 @@
 /* global require */
 
 const Vec = require('./Vec.js');
+const Animation = require('./../rendering/Animation.js');
+const {getAnimation} = require('./../rendering/Animator.js');
 
 const MAX_COMPONENTS = 32;
 
@@ -152,6 +154,20 @@ class CPatrol extends Component {
 }
 CPatrol.INDEX = 8;
 
+class CAnimation extends Component {
+    static INDEX: number;
+
+    animation: Animation;
+    repeated: boolean;
+
+    constructor(n: string, r: boolean) {
+        super();
+        this.animation = getAnimation(n);
+        this.repeated = r;
+    }
+}
+CAnimation.INDEX = 9;
+
 module.exports = {
     'Component': Component,
     'CTransform': CTransform,
@@ -163,5 +179,6 @@ module.exports = {
     'CDraggable': CDraggable,
     'CFollow': CFollow,
     'CPatrol': CPatrol,
+    'CAnimation': CAnimation,
     'MAX_COMPONENTS': MAX_COMPONENTS
 };

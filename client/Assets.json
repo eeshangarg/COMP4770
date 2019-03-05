@@ -1,0 +1,58 @@
+[
+    {
+        "Type":"Sprite",
+        "SpriteName":"playerAtkL",
+        "ImageSource":"/client/assets/images/player/Knight_attack_L.png",
+        "FrameCOunt": 13
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"playerDeathL",
+        "ImageSource":"/client/assets/images/player/Knight_death_L.png",
+        "FrameCOunt":15
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"playerRunR",
+        "ImageSource":"/client/assets/images/player/Knight_run_R.png",
+        "FrameCOunt":6
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"playerIdelR",
+        "ImageSource":"/client/assets/images/player/knight_idel_R.png",
+        "FrameCOunt":6
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"egg",
+        "ImageSource":"/client/assets/images/items/egg.png",
+        "FrameCOunt": 1
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"apple",
+        "ImageSource":"/client/assets/images/items/apple.png",
+        "FrameCOunt":1
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"coin",
+        "ImageSource":"/client/assets/images/items/coin.png",
+        "FrameCOunt":1
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"cave-platform",
+        "ImageSource":"/client/assets/images/tiles/cave-platform.png",
+        "FrameCOunt":1
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"error",
+        "ImageSource":"/client/assets/images/msc/error.png",
+        "FrameCOunt":1
+    }
+]
+
+
