@@ -49,7 +49,7 @@ console.log('Server Listening on port: ' + serverPort);
 console.log('Socketing Listening on port: ' + socketPort);
 
 // Load the Animation config file.
-loadAnimations(__dirname + "/../../cfg/Animation.json");
+loadAnimations(__dirname + "/../../config/Animation.json");
 
 
 // Intialize the Websocket server.
