@@ -8,7 +8,8 @@
         "build": "./tools/build",
         "prepublish": "npm run build",
         "flow": "flow",
-        "lint": "node_modules/eslint/bin/eslint.js ."
+        "lint": "node_modules/eslint/bin/eslint.js .",
+        "server": "./tools/run-dev"
     },
     "jest": {
         "coverageThreshold": {

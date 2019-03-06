@@ -42,6 +42,12 @@ COMP 4770 Team Project
 
     In the future, no changes that break `./tools/test-all` will be merged.
 
+1. You can start the test server by running:
+
+    `npm run server`
+
+    Navigate to `localhost:2000` to test the game.
+
 ### Running test processes separately
 
 To run linting, use `npm run lint`.
@@ -49,6 +55,11 @@ To run linting, use `npm run lint`.
 To run the tests and produce coverage stats, use `npm run test`.
 
 To run the Flow JS static type-checker, use `npm run flow`.
+
+To translate/build the Flow type-checked files, use `npm run build`. The
+translated files are exported under `lib/`.
+
+To run the main game server, use `npm run server`.
 
 ## Relevant Documentation
 
