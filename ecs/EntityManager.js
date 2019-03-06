@@ -60,7 +60,9 @@ class EntityManager {
 
         // clean up dead entities in all arrays
         this.removeDeadEntities(this.entities);
-        for (var tag in this.entityMap) {
+        let tags = Object.keys(this.entityMap);
+        for (let i = 0; i < tags.length; i++) {
+            let tag = tags[i];
             this.removeDeadEntities(this.entityMap[tag]);
         }
     }
