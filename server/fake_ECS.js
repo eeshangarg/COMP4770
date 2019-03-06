@@ -10,7 +10,7 @@ function fakeGameEngine(socket) {
         update
     } = require('./../rendering/Animator.js');
 
-    const emitFrame = require('./IO_Handler.js').emitFrame;
+    const emitFrame = require('./IOHandler.js').emitFrame;
 
     // TODO: Remove these Abitary functions to test IO
     // This following code block acts to simulate a game state. This is 

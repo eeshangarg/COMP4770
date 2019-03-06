@@ -23,7 +23,7 @@ test('Animator', () => {
     update(anim);    
     draw(anim);
     // Test expect.
-    expect(anim.AnimationName).toBe("dummy");
-    expect(anim.CurrentFrame).toBe(0);
-    expect(anim.AnimationFrame).toBe(0);
+    expect(anim.name).toBe("dummy");
+    expect(anim.currentFrame).toBe(0);
+    expect(anim.animationFrame).toBe(0);
 });

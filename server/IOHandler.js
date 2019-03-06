@@ -31,7 +31,7 @@ function queueAnimation(id, frame, dx, dy) {
 module.exports.queueAnimation = queueAnimation;
 
 // Intialize the IO helpers.
-function IO_init(wss) {
+function initIO(wss) {
 
     console.log('IO Initialzied'); 
 
@@ -50,7 +50,7 @@ function IO_init(wss) {
         ws.on('message', function incoming(data) { 
             if (data === 'all assests loaded') {
                 ws.send(animIdMap);
-                IO_Handler(ws);
+                IOHandler(ws);
             }
         });
 
@@ -63,7 +63,7 @@ function IO_init(wss) {
 
 }
 
-function IO_Handler(ws) {
+function IOHandler(ws) {
 
     // Clear the file loading listener.
     ws.removeAllListeners('message');
@@ -141,5 +141,5 @@ function updateInputData(data, map) {
 }
 
 
-module.exports.IO_init = IO_init;
+module.exports.initIO = initIO;
 module.exports.emitFrame = emitFrame;

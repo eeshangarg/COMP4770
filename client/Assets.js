@@ -1,16 +1,16 @@
 import Sprite from './Sprite.js';
 
 let filePath = "No File Path";
-let m_SpriteCount = 0;
-let m_SpitresLoaded = 0;
-const m_SpriteMap = new Map();
+let spriteCount = 0;
+let spitresLoaded = 0;
+const spriteMap = new Map();
 // let m_SoundCount = 0;
 // let m_SoundsLoaded = 0;
 // let m_SoundMap = new Map();
 
 
 // Load the asstets from a given file name. (Assets.json)
-export function load_from_file(fileName) {
+export function loadFromFile(fileName) {
     filePath = fileName;
 
     // Load a JSON then parse the content once it's loaded.
@@ -20,7 +20,7 @@ export function load_from_file(fileName) {
 
         for (let i = 0; i < content.length; i++) {
             if (content[i].Type === 'Sprite') {
-                set_Sprite(content[i].SpriteName, content[i].ImageSource, content[i].FrameCOunt);
+                setSprite(content[i].SpriteName, content[i].ImageSource, content[i].FrameCOunt);
             }
             else if (content[i].Type === 'Sound') {
                 // Set Sound.
@@ -37,25 +37,25 @@ export function load_from_file(fileName) {
 }
 
 // Set a sprtie object, added to the Spirte map. 
-export function set_Sprite(spriteName, imgSrc, frameCount) {
-    m_SpriteCount++;
+export function setSprite(spriteName, imgSrc, frameCount) {
+    spriteCount++;
     let sprite = new Sprite(spriteName, imgSrc, frameCount);
-    m_SpriteMap.set(spriteName, sprite);
+    spriteMap.set(spriteName, sprite);
 }
 
 // Call to get a copy of a sprite.
-export function get_Sprite(spriteName) {
-    return m_SpriteMap.get(spriteName);
+export function getSprite(spriteName) {
+    return spriteMap.get(spriteName);
 }
 
 // Call when the image for a spirte is fully loaded.
-export function sprite_Loaded() {
-    m_SpitresLoaded++;
+export function spriteLoaded() {
+    spitresLoaded++;
 }
 
 // The function which reports if all the sprites are currently loaded. 
-export function all_Sprite_Loaded() {
-    if (m_SpriteCount == m_SpitresLoaded && m_SpriteCount != 0) {
+export function allSpritesLoaded() {
+    if (spriteCount == spitresLoaded && spriteCount != 0) {
         return true;
     }
     return false;
@@ -63,7 +63,7 @@ export function all_Sprite_Loaded() {
 
 // LOAD the JSON through a XML request.
 function loadJSON(callback) {
-    var xobj = new XMLHttpRequest();
+    let xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', filePath, true);
     xobj.onreadystatechange = function() {

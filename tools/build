@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -ev
+
+flow-remove-types ecs/ -d lib/ecs/
+flow-remove-types rendering/ -d lib/rendering/
+cp -r server/ lib/server/

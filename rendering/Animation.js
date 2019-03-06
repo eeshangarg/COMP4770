@@ -2,27 +2,28 @@
 /* global module */
 
 class Animation {
-
     id: number;
-    SpriteName: string;
-    AnimationName: string;
-    FrameCount: number;
-    CurrentFrame: number;
-    AnimationFrame: number;
-    FrameRate: number;
-    XSize: number;
-    YSize: number;
+    name: string;
+    sprite: string;
+    frameCount: number;
+    currentFrame: number;
+    animationFrame: number;
+    fps: number;
+    width: number;
+    height: number;
 
-    constructor(animationName: string, spriteName: string, ident: number, frameCount: number, fps: number, x: number, y: number) {
-        this.id = ident;
-        this.AnimationName = animationName;
-        this.SpriteName = spriteName;
-        this.FrameCount = frameCount - 1;
-        this.CurrentFrame = 0;
-        this.AnimationFrame = 0;
-        this.FrameRate = 60 / fps;
-        this.XSize = x;
-        this.YSize = y;
+    constructor(name: string, sprite: string,
+                id: number, frameCount: number,
+                fps: number, width: number, height: number) {
+        this.id = id;
+        this.name = name;
+        this.sprite = sprite;
+        this.frameCount = frameCount - 1;
+        this.currentFrame = 0;
+        this.animationFrame = 0;
+        this.fps = 60 / fps;
+        this.width = width;
+        this.height = height;
     }
 }
 

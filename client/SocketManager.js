@@ -1,4 +1,4 @@
-import * as Assets from './Assets.js';
+import {loadFromFile, allSpritesLoaded, getSprite} from './Assets.js';
 
 const ctx = document.getElementById('gameCanvas').getContext('2d');
 const grd = ctx.createLinearGradient(512, 0, 512, 576);
@@ -21,10 +21,10 @@ socket.onopen = function() {
 
     console.log('Socket Opened Sucessfully! Waiting for Assets...');
 
-    Assets.load_from_file('/client/Assets.json');
+    loadFromFile('/client/Assets.json');
 
     loadingInterval = setInterval(function() {
-        if (Assets.all_Sprite_Loaded()) {
+        if (allSpritesLoaded()) {
             socket.send('all assests loaded');
             SocketHandler();
             clearInterval(loadingInterval);
@@ -71,8 +71,8 @@ function renderFrame(data) {
     ctx.fillRect(0, 0, 1024, 576);
 
     // Draw all streamed animations from server.
-    for (var i = 0; i < data.length; i++) {
-        let sprite = Assets.get_Sprite(animIdMap.get(data[i].n));
+    for (let i = 0; i < data.length; i++) {
+        let sprite = getSprite(animIdMap.get(data[i].n));
         if (data[i].hasOwnProperty('f')){
             sprite.draw(data[i].d[0], data[i].d[1], data[i].f);
         }

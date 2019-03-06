@@ -4,12 +4,12 @@
 // flowlint untyped-import:off
 // flowlint unclear-type:off
 const Animation = require('./Animation.js');
-const queueAnimation = require('./../server/IO_Handler.js').queueAnimation;
+const queueAnimation = require('./../server/IOHandler.js').queueAnimation;
 const fs = require("fs");
 const path = require("path");
 
 // The map which holds all the Animations loaded in from the config. 
-const AnimationMap = new Map();
+const animationMap = new Map();
 const idMap =  [];
 
 
@@ -30,16 +30,16 @@ function loadAnimations(fileName: string) {
 
 function update(anim: Animation) {
     // If the Animation is more then 1 frame long.
-    if (anim.FrameCount > 0) {
+    if (anim.frameCount > 0) {
         // Update the current frame.
-        anim.CurrentFrame++;
+        anim.currentFrame++;
         // If FPS dictates, Queue up the next frame.
-        if (anim.CurrentFrame >= anim.FrameRate) {
-            anim.CurrentFrame = 0;
-            anim.AnimationFrame++;
+        if (anim.currentFrame >= anim.fps) {
+            anim.currentFrame = 0;
+            anim.animationFrame++;
             // Reset animation if over.
-            if (anim.AnimationFrame > anim.FrameCount) {
-                anim.AnimationFrame = 0;
+            if (anim.animationFrame > anim.frameCount) {
+                anim.animationFrame = 0;
             }
         }
     }
@@ -48,20 +48,20 @@ function update(anim: Animation) {
 
 function draw(anim: Animation, dx: number, dy: number) {
     /* istanbul ignore next */
-    if (anim.FrameCount == 0) {
+    if (anim.frameCount == 0) {
         queueAnimation(anim.id, -1, dx, dy);
     }
     else {
-        queueAnimation(anim.id, anim.AnimationFrame, dx, dy);
+        queueAnimation(anim.id, anim.animationFrame, dx, dy);
     }
     
 }
 
 
 function getAnimation(AnimationName: string): Animation {
-    let x = AnimationMap.get(AnimationName);
+    let x = animationMap.get(AnimationName);
     if (typeof x !== 'undefined') {
-        let copy = new Animation(x.AnimationName, x.SpriteName, x.id, x.FrameCount + 1, 60 / x.FrameRate, x.XSize, x.YSize);
+        let copy = new Animation(x.name, x.sprite, x.id, x.frameCount + 1, 60 / x.fps, x.width, x.height);
         return copy;
     } else {
         let copy = new Animation('error', 'error', 0, 1, 1, 1, 1);
@@ -77,7 +77,7 @@ function getAnimationIDMap(): Object {
 
 function setAnimation(AnimationName: string, spriteName: string, id: number, frameCount: number, fps: number, x: number, y: number) {
     const anim = new Animation(AnimationName, spriteName, id, frameCount, fps, x, y);
-    AnimationMap.set(AnimationName, anim);
+    animationMap.set(AnimationName, anim);
 }
 
 

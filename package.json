@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "jest --collect-coverage",
-        "build": "flow-remove-types ecs/ -d lib/ecs/; flow-remove-types rendering/ -d lib/rendering/",
+        "build": "./tools/build",
         "prepublish": "npm run build",
         "flow": "flow",
         "lint": "node_modules/eslint/bin/eslint.js ."

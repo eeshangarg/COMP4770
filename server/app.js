@@ -20,6 +20,7 @@ server.listen(serverPort);
 
 // Create a WebSocketServer -> wws. Listen on port 3000.
 const WebSocketServer = require('ws').Server;
+
 const wss = new WebSocketServer({
     port: socketPort,
     perMessageDeflate: {
@@ -43,7 +44,7 @@ const wss = new WebSocketServer({
 
 // Declare the require helper methods.
 const loadAnimations = require('./../rendering/Animator.js').loadAnimations;
-const IO_init = require('./IO_Handler.js').IO_init;
+const initIO = require('./IOHandler.js').initIO;
 
 console.log('Server Listening on port: ' + serverPort);
 console.log('Socketing Listening on port: ' + socketPort);
@@ -53,4 +54,4 @@ loadAnimations(__dirname + "/../../config/Animation.json");
 
 
 // Intialize the Websocket server.
-IO_init(wss);
+initIO(wss);
