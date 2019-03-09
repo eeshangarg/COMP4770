@@ -8,7 +8,7 @@ function fakeGameEngine(socket) {
         getAnimation,
         draw,
         update
-    } = require('./../rendering/Animator.js');
+    } = require('./../rendering/Rendering.js');
 
     const emitFrame = require('./IOHandler.js').emitFrame;
 

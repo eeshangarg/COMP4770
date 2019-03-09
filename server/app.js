@@ -43,7 +43,7 @@ const wss = new WebSocketServer({
 });
 
 // Declare the require helper methods.
-const loadAnimations = require('./../rendering/Animator.js').loadAnimations;
+const loadAnimations = require('./../rendering/Rendering.js').loadAnimations;
 const initIO = require('./IOHandler.js').initIO;
 
 console.log('Server Listening on port: ' + serverPort);

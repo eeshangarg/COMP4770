@@ -44,7 +44,7 @@ function initIO(wss) {
 
         console.log('socket connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
 
-        let getAnimationIDMap = require('./../rendering/Animator.js').getAnimationIDMap;
+        let getAnimationIDMap = require('./../rendering/Rendering.js').getAnimationIDMap;
         let animIdMap = JSON.stringify({t:'a', d:getAnimationIDMap()});
 
         ws.on('message', function incoming(data) { 
