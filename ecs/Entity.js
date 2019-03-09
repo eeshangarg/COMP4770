@@ -1,6 +1,7 @@
 // @flow
 /* global module */
 /* global require */
+// flowlint unclear-type:off
 
 const Components = require('./Components.js');
 const Component = Components.Component;
@@ -31,7 +32,7 @@ class Entity {
         return this.componentArray[componentClass.INDEX] !== null;
     }
 
-    getComponent(componentClass: typeof Component): Component | null {
+    getComponent(componentClass: typeof Component): any {
         return this.componentArray[componentClass.INDEX];
     }
 
@@ -39,7 +40,7 @@ class Entity {
         this.componentArray[componentClass.INDEX] = null;
     }
 
-    addComponent(component: Component): Component {
+    addComponent(component: any): any {
         const index = component.constructor.INDEX;
         this.componentArray[index] = component;
         return component;
