@@ -9,7 +9,8 @@ let id = 0;
 const fakeGameEngine = require('./fake_ECS.js').fakeGameEngine;
 const shortid = require('shortid');
 
-// The function to "Queue" an Animation. Only used by the Animator.
+
+// The function to "Queue" an Animation. Only used by Rendering.
 function queueAnimation(id, frame, dx, dy) {
     if (frame == -1) {
         renderQueue.push({
@@ -26,10 +27,10 @@ function queueAnimation(id, frame, dx, dy) {
 }
 
 
-
 module.exports.queueAnimation = queueAnimation;
 
-// Intialize the IO helpers.
+
+// Intialize the IO helpers for websockets, is to be passed the WebSocekt-Server.
 function initIO(wss) {
 
     console.log('IO Initialzied');
@@ -49,7 +50,7 @@ function initIO(wss) {
             d: getAnimationIDMap()
         });
 
-        ws.on('message', function incoming(data) {
+        ws.on('message', (data) => {
             if (data === 'all assests loaded') {
                 ws.send(animIdMap);
                 IOHandler(ws);
@@ -66,6 +67,7 @@ function initIO(wss) {
 }
 
 
+// The function which handles IO for a given Web-socket. 
 function IOHandler(ws) {
 
     // Clear the file loading listener.
@@ -76,9 +78,10 @@ function IOHandler(ws) {
     let getInputMap = require('./fake_ECS.js').getInputMap;
     let setInputMap = require('./fake_ECS.js').setInputMap;
 
-    ws.on('message', function incoming(message) {
+    ws.on('message', (message) => {
 
         let data = JSON.parse(message);
+        // Data.t, Type: 'i' -> Input. 
         if (data.t === 'i') {
             let map = getInputMap();
             let inputMap = updateInputData(data.d, map);
@@ -97,13 +100,14 @@ function IOHandler(ws) {
 }
 
 // The function which handles setting text strings.
-function drawText(ws, textString, key, font, dx, dy) {
+function drawText(ws, textString, key, font, color, dx, dy) {
     if (ws.readyState == 1) {
         let message = {
             t: 't',
             k: key,
             s: textString,
             f: font,
+            c: color,
             p: [dx, dy]
         };
 
@@ -142,8 +146,8 @@ function emitFrame(ws, px, py) {
 
 }
 
-// The function that handles background changing.
 
+// The function that handles background changing.
 function setBackground(ws, c1, c2) {
     if (ws.readyState == 1) {
         let message = {
@@ -156,36 +160,36 @@ function setBackground(ws, c1, c2) {
     }
 }
 
-// The function to handle input data.
-// This is to be passed parsed data.
-function updateInputData(data, map) {
 
-    let inputMap = map;
+// The function to handle inputData, Sets inputs to Map then returns the map.
+function updateInputData(data, map) {
 
     for (var i = 0; i < data.length; i++) {
 
-        // Resolve the state of the input.
+        // Resolve the state of the input optmistically.
         let state = true;
         if (data[i].s === 0) {
             state = false;
         }
 
+        // Key state input block.
         if (data[i].k === 'w') {
-            inputMap.w = state;
+            map.w = state;
         } else if (data[i].k === 'a') {
-            inputMap.a = state;
+            map.a = state;
         } else if (data[i].k === 's') {
-            inputMap.s = state;
+            map.s = state;
         } else if (data[i].k === 'd') {
-            inputMap.d = state;
+            map.d = state;
         } else if (data[i].k === '_') {
-            inputMap.space = state;
+            map.space = state;
         }
     }
-
-    return inputMap;
+    return map;
 }
 
+
+// Declare Exports.
 module.exports = {
     'queueAnimation': queueAnimation,
     'initIO': initIO,
