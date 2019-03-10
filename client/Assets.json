@@ -7,6 +7,12 @@
     },
     {
         "Type":"Sprite",
+        "SpriteName":"playerDeathR",
+        "ImageSource":"/client/assets/images/player/Knight_death_R.png",
+        "FrameCOunt":15
+    },
+    {
+        "Type":"Sprite",
         "SpriteName":"playerDeathL",
         "ImageSource":"/client/assets/images/player/Knight_death_L.png",
         "FrameCOunt":15
@@ -19,8 +25,20 @@
     },
     {
         "Type":"Sprite",
+        "SpriteName":"playerRunL",
+        "ImageSource":"/client/assets/images/player/Knight_run_L.png",
+        "FrameCOunt":6
+    },
+    {
+        "Type":"Sprite",
         "SpriteName":"playerIdelR",
-        "ImageSource":"/client/assets/images/player/knight_idel_R.png",
+        "ImageSource":"/client/assets/images/player/Knight_idel_R.png",
+        "FrameCOunt":6
+    },
+    {
+        "Type":"Sprite",
+        "SpriteName":"playerIdelL",
+        "ImageSource":"/client/assets/images/player/Knight_idel_L.png",
         "FrameCOunt":6
     },
     {

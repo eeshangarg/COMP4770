@@ -10,14 +10,19 @@ function fakeGameEngine(socket) {
         update
     } = require('./../rendering/Rendering.js');
 
-    const emitFrame = require('./IOHandler.js').emitFrame;
+    const {
+        emitFrame, 
+        setBackground,
+        drawText,
+        clearText
+    } = require('./IOHandler.js');
 
     // TODO: Remove these Abitary functions to test IO
     // This following code block acts to simulate a game state. This is 
     // to be removed and replaced with game_state_init();
 
-    let x = getAnimation("playerRunR");
-    let y = getAnimation("playerIdelR");
+    let x = getAnimation("playerRun");
+    let y = getAnimation("playerIdel");
     let z = getAnimation("cave-platform");
     let dx = 50;
     let dy = 50;
@@ -26,21 +31,30 @@ function fakeGameEngine(socket) {
         w: false,
         a: false,
         d: false,
-        s: false
+        s: false,
+        space: false
     };
 
     let running = true;
+    let dir = 1;
 
     socket.on('close', function close() {
         running = false;
     });
 
+    setBackground(socket, "white", "cyan");
+    drawText(socket, "Font Demo", "pp", "20px pixeled", 750 , 50);
+
     let gameInterval = setInterval(function() {
         if (running) {
             for (let w = 0; w < 1038; w += 16) {
-                for (let h = 502; h < 576; h += 16) {
-                    draw(z, w, h);
+                for (let h = 300; h <= 332; h += 16) {
+                    draw(z, 1, w, h);
                 }
+            }
+            if (inputMap.space) {
+                clearText(socket, "pp");
+                setBackground(socket, "gray", "pink");
             }
             // Draw the Abitary animations to test.
             if (inputMap.w || inputMap.a || inputMap.s || inputMap.d) {
@@ -58,13 +72,23 @@ function fakeGameEngine(socket) {
                     dy += 5;
                 }
 
+                if (inputMap.d && !inputMap.a){
+                    dir = 1;
+                }
+
+                else if (!inputMap.d && inputMap.a){
+                    dir = -1;
+                }
+
                 update(x);
-                draw(x, dx, dy);
+                draw(x, dir, dx, dy);
             } else {
                 update(y);
-                draw(y, dx, dy);
+                draw(y, dir, dx, dy);
             }
-            emitFrame(socket);
+            let string = "Pos :" + dx + "," + dy;
+            drawText(socket, string, "pos", "15px PS2P", 20, 20);
+            emitFrame(socket, dx, dy);
 
         } else {
             clearInterval(gameInterval);

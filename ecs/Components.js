@@ -4,7 +4,7 @@
 
 const Vec = require('./Vec.js');
 const Animation = require('./../rendering/Animation.js');
-const {getAnimation} = require('./../rendering/Animator.js');
+const {getAnimation} = require('./../rendering/Rendering.js');
 
 const MAX_COMPONENTS = 32;
 

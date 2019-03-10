@@ -17,7 +17,7 @@ app.use('/client', express.static(__dirname + '/../../client'));
 
 // Listen the HTTP server.
 server.listen(serverPort);
-
+console.log("Server listening on localhost:2000")
 // Create a WebSocketServer -> wws. Listen on port 3000.
 const WebSocketServer = require('ws').Server;
 
