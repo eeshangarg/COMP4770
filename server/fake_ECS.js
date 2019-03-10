@@ -21,6 +21,11 @@ function fakeGameEngine(socket) {
     // This following code block acts to simulate a game state. This is 
     // to be removed and replaced with game_state_init();
 
+    let red = "#ff0000";
+    let black = "#000000"
+    let blue ="#000099";
+    let green = "#00ff00";
+
     let x = getAnimation("playerRun");
     let y = getAnimation("playerIdel");
     let z = getAnimation("cave-platform");
@@ -43,7 +48,7 @@ function fakeGameEngine(socket) {
     });
 
     setBackground(socket, "white", "cyan");
-    drawText(socket, "Font Demo", "pp", "20px pixeled", 750 , 50);
+    
 
     let gameInterval = setInterval(function() {
         if (running) {
@@ -81,16 +86,19 @@ function fakeGameEngine(socket) {
                 }
 
                 update(x);
+                drawText(socket, "Running", "status", "20px pixeled", green, 875, 35);
                 draw(x, dir, dx, dy);
             } else {
                 update(y);
+                drawText(socket, "Idel", "status", "20px pixeled", blue, 875, 35);
                 draw(y, dir, dx, dy);
             }
             let string = "Pos :" + dx + "," + dy;
-            drawText(socket, string, "pos", "15px PS2P", 20, 20);
+            drawText(socket, string, "pos", "15px PS2P",  red, 20, 20);
             emitFrame(socket, dx, dy);
 
         } else {
+            
             clearInterval(gameInterval);
         }
     }, 16.666);
