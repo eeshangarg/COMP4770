@@ -5,23 +5,21 @@ const {
     draw,
     update,
     loadAnimations
-} = require('../Animator.js');
+} = require('../Rendering.js');
 
 
-test('Animator', () => {
+test('Rendering', () => {
     // Create some abitary animation objects.
-    setAnimation("dummy", "someSpirte", 0, 2, 30, 64, 64);
-    setAnimation("frame", "someSpirte", 1, 1, 30, 64, 64);
+    setAnimation("dummy", "someSpirte", "someSpirte", 0, 0, 2, 30, 64, 64);
+    setAnimation("frame", "someSpirte", "someSpirte", 1, 1, 1, 30, 64, 64);
     let anim = getAnimation("dummy");
-    // Draw a 1 frame object.
     let frame = getAnimation("frame");
     update(frame);
     // Cycle through the frames. 
     update(anim);
     update(anim);
     update(anim);
-    update(anim);    
-    draw(anim);
+    update(anim);
     // Test expect.
     expect(anim.name).toBe("dummy");
     expect(anim.currentFrame).toBe(0);

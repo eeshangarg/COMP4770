@@ -11,16 +11,15 @@ const shortid = require('shortid');
 
 // The function to "Queue" an Animation. Only used by the Animator.
 function queueAnimation(id, frame, dx, dy) {
-    if (frame == -1){
+    if (frame == -1) {
         renderQueue.push({
             n: id,
-            d: [dx,dy]
+            d: [dx, dy]
         });
-    }
-    else {
+    } else {
         renderQueue.push({
             n: id,
-            d: [dx,dy],
+            d: [dx, dy],
             f: frame
         });
     }
@@ -33,7 +32,7 @@ module.exports.queueAnimation = queueAnimation;
 // Intialize the IO helpers.
 function initIO(wss) {
 
-    console.log('IO Initialzied'); 
+    console.log('IO Initialzied');
 
     // On a client socketing in :
     wss.on('connection', (ws) => {
@@ -42,12 +41,15 @@ function initIO(wss) {
         ws.id = shortid.generate();
         socketMap.set(ws.id, ws);
 
-        console.log('socket connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
+        console.log('socket $ connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
 
         let getAnimationIDMap = require('./../rendering/Rendering.js').getAnimationIDMap;
-        let animIdMap = JSON.stringify({t:'a', d:getAnimationIDMap()});
+        let animIdMap = JSON.stringify({
+            t: 'a',
+            d: getAnimationIDMap()
+        });
 
-        ws.on('message', function incoming(data) { 
+        ws.on('message', function incoming(data) {
             if (data === 'all assests loaded') {
                 ws.send(animIdMap);
                 IOHandler(ws);
@@ -62,6 +64,7 @@ function initIO(wss) {
     });
 
 }
+
 
 function IOHandler(ws) {
 
@@ -93,15 +96,43 @@ function IOHandler(ws) {
     });
 }
 
+// The function which handles setting text strings.
+function drawText(ws, textString, key, font, dx, dy) {
+    if (ws.readyState == 1) {
+        let message = {
+            t: 't',
+            k: key,
+            s: textString,
+            f: font,
+            p: [dx, dy]
+        };
 
+        ws.send(JSON.stringify(message));
+    }
+}
+
+
+// The function which handles clearing text Strings.
+function clearText(ws, key) {
+    if (ws.readyState == 1) {
+        let message = {
+            t: 'c',
+            k: key,
+        };
+
+        ws.send(JSON.stringify(message));
+    }
+
+}
 // The function which emits a frame through a Websocket.
-function emitFrame(ws) {
+function emitFrame(ws, px, py) {
 
     if (ws.readyState == 1) {
 
         //send draw call 'd' -> Draw.
         let message = {
             t: 'd',
+            p: [px, py],
             d: renderQueue
         };
 
@@ -111,12 +142,25 @@ function emitFrame(ws) {
 
 }
 
+// The function that handles background changing.
+
+function setBackground(ws, c1, c2) {
+    if (ws.readyState == 1) {
+        let message = {
+            t: 'b',
+            c1: c1,
+            c2: c2
+        }
+
+        ws.send(JSON.stringify(message));
+    }
+}
 
 // The function to handle input data.
 // This is to be passed parsed data.
 function updateInputData(data, map) {
 
-    let inputMap = map; 
+    let inputMap = map;
 
     for (var i = 0; i < data.length; i++) {
 
@@ -134,12 +178,19 @@ function updateInputData(data, map) {
             inputMap.s = state;
         } else if (data[i].k === 'd') {
             inputMap.d = state;
+        } else if (data[i].k === '_') {
+            inputMap.space = state;
         }
     }
 
     return inputMap;
 }
 
-
-module.exports.initIO = initIO;
-module.exports.emitFrame = emitFrame;
+module.exports = {
+    'queueAnimation': queueAnimation,
+    'initIO': initIO,
+    'emitFrame': emitFrame,
+    'setBackground': setBackground,
+    'drawText': drawText,
+    'clearText' : clearText
+};
