@@ -7,6 +7,12 @@
     },
     {
         "Type":"Sprite",
+        "SpriteName":"playerAtkR",
+        "ImageSource":"/client/assets/images/player/Knight_attack_R.png",
+        "FrameCOunt":13
+    },
+    {
+        "Type":"Sprite",
         "SpriteName":"playerDeathR",
         "ImageSource":"/client/assets/images/player/Knight_death_R.png",
         "FrameCOunt":15

@@ -1,17 +1,19 @@
 /* istanbul ignore file */
 
-// Global varriables.
+// The queue which holds animations to be rendered.
 let renderQueue = [];
+
+// The map which connected sockets tied to a ID.
 let socketMap = new Map();
-let id = 0;
 
 // Requires
-const fakeGameEngine = require('./fake_ECS.js').fakeGameEngine;
+const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
 
 
 // The function to "Queue" an Animation. Only used by Rendering.
 function queueAnimation(id, frame, dx, dy) {
+    // If queued with frame -1 push a static animation onto renderQueue.
     if (frame == -1) {
         renderQueue.push({
             n: id,
@@ -30,28 +32,29 @@ function queueAnimation(id, frame, dx, dy) {
 module.exports.queueAnimation = queueAnimation;
 
 
-// Intialize the IO helpers for websockets, is to be passed the WebSocekt-Server.
+// the function to intialize IO-helpers for websockets, should be passed the WebSocket-Server.
 function initIO(wss) {
 
-    console.log('IO Initialzied');
+    console.log('IO Initialzied for WebSocket-Server.');
 
-    // On a client socketing in :
+    // On a client socketing in, create handle for client websocket "ws".
     wss.on('connection', (ws) => {
 
-        // Generate a socket ID.
+        // Generate a socket ID to refer to the current socket connection.
         ws.id = shortid.generate();
+
+        // Push the given ID into the socket map.
         socketMap.set(ws.id, ws);
 
         console.log('socket $ connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
 
-        let getAnimationIDMap = require('./../rendering/Rendering.js').getAnimationIDMap;
-        let animIdMap = JSON.stringify({
-            t: 'a',
-            d: getAnimationIDMap()
-        });
-
         ws.on('message', (data) => {
             if (data === 'all assests loaded') {
+                const getAnimationIDMap = require('./../rendering/Rendering.js').getAnimationIDMap;
+                const animIdMap = JSON.stringify({
+                    t: 'a',
+                    d: getAnimationIDMap()
+                });
                 ws.send(animIdMap);
                 IOHandler(ws);
             }
@@ -59,6 +62,7 @@ function initIO(wss) {
 
         ws.on('close', function close() {
             console.log('socket closed, ID: ', ws.id, " Client Count: ", wss.clients.size);
+            ws.GameEngine.quit();
             socketMap.delete(ws.id);
         });
 
@@ -74,18 +78,19 @@ function IOHandler(ws) {
     ws.removeAllListeners('message');
     // Create a instance of a fakeGameEngine passed the socket.
 
-    let gameEngine = fakeGameEngine(ws);
-    let getInputMap = require('./fake_ECS.js').getInputMap;
-    let setInputMap = require('./fake_ECS.js').setInputMap;
+    let game = new GameEngine(ws);
+    game.init();
+
+    ws.GameEngine = game;
 
     ws.on('message', (message) => {
 
         let data = JSON.parse(message);
         // Data.t, Type: 'i' -> Input. 
         if (data.t === 'i') {
-            let map = getInputMap();
+            let map = ws.GameEngine.getInputMap();
             let inputMap = updateInputData(data.d, map);
-            setInputMap(inputMap);
+            ws.GameEngine.setInputMap(inputMap);
         }
 
         /* 
@@ -183,7 +188,10 @@ function updateInputData(data, map) {
             map.d = state;
         } else if (data[i].k === '_') {
             map.space = state;
+        } else if (data[i].k === '|') {
+            map.enter = state;
         }
+
     }
     return map;
 }
@@ -196,5 +204,5 @@ module.exports = {
     'emitFrame': emitFrame,
     'setBackground': setBackground,
     'drawText': drawText,
-    'clearText' : clearText
+    'clearText': clearText
 };
