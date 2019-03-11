@@ -46,11 +46,11 @@
     },
     {
         "type": "dynamic",
-        "AnimationName": "playerAtkLAnim",
+        "AnimationName": "playerAtk",
         "SpriteNameR": "playerAtkR",
         "SpriteNameL": "playerAtkL",
         "frameCount": 13,
-        "fps": 15,
+        "fps": 20,
         "x": 64,
         "y": 64
     },

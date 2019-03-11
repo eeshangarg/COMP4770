@@ -52,6 +52,7 @@ function SocketHandler() {
         // Type: 'd' -> Game canvas draw message.
         if (data.t === 'd') {
             renderFrame(data.d, data.p);
+            emitInput();
         }
         // Type: 't' -> Draw Text-string message.
         else if (data.t == 't') {
@@ -77,8 +78,6 @@ function SocketHandler() {
                 playSound(data.d);
             }
         */
-
-        emitInput();
 
     }
 
@@ -183,6 +182,8 @@ document.onkeydown = function(event) {
         queueInput('d', 1);
     else if (event.keyCode === 32)
         queueInput('_', 1);
+    else if (event.keyCode === 13)
+        queueInput('|', 1); // Enter
 }
 
 
@@ -198,6 +199,8 @@ document.onkeyup = function(event) {
         queueInput('d', 0);
     else if (event.keyCode === 32)
         queueInput('_', 0);
+    else if (event.keyCode === 13)
+        queueInput('|', 0); // Enter
 }
 
 

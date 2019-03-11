@@ -17,7 +17,9 @@ app.use('/client', express.static(__dirname + '/../../client'));
 
 // Listen the HTTP server.
 server.listen(serverPort);
-console.log("Server listening on localhost:2000")
+let log = 'Server Listening at: http://localhost:' + serverPort;
+console.log('\x1b[36m%s\x1b[0m', log);
+
 // Create a WebSocketServer -> wws. Listen on port 3000.
 const WebSocketServer = require('ws').Server;
 
@@ -36,22 +38,18 @@ const wss = new WebSocketServer({
         concurrencyLimit: 10,
         threshold: 1
     },
-
     clientTracking: true,
-
-
 });
+
+log = "Websocket-server Listening on port:"  + socketPort + "  (for the client-side Websocket.)";
+console.log('\x1b[33m%s\x1b[0m',log);
 
 // Declare the require helper methods.
 const loadAnimations = require('./../rendering/Rendering.js').loadAnimations;
 const initIO = require('./IOHandler.js').initIO;
 
-console.log('Server Listening on port: ' + serverPort);
-console.log('Socketing Listening on port: ' + socketPort);
-
 // Load the Animation config file.
-loadAnimations(__dirname + "/../../config/Animation.json");
-
+loadAnimations(__dirname + "/../../config/Animation.json")
 
 // Intialize the Websocket server.
 initIO(wss);

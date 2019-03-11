@@ -26,18 +26,17 @@ function fakeGameEngine(socket) {
     let blue ="#000099";
     let green = "#00ff00";
 
-    let x = getAnimation("playerRun");
-    let y = getAnimation("playerIdel");
-    let z = getAnimation("cave-platform");
-    let dx = 50;
-    let dy = 50;
+    
+
+
 
     let inputMap = {
         w: false,
         a: false,
         d: false,
         s: false,
-        space: false
+        space: false,
+        enter:false
     };
 
     let running = true;
@@ -48,19 +47,39 @@ function fakeGameEngine(socket) {
     });
 
     setBackground(socket, "white", "cyan");
-    
+    drawText(socket, "Hit enter for random BG colors!", "enterText", "15px PS2P", black, 300, 150);
 
     let gameInterval = setInterval(function() {
         if (running) {
+
+            count += 1;
+
             for (let w = 0; w < 1038; w += 16) {
                 for (let h = 300; h <= 332; h += 16) {
                     draw(z, 1, w, h);
                 }
             }
-            if (inputMap.space) {
-                clearText(socket, "pp");
-                setBackground(socket, "gray", "pink");
+            if (inputMap.enter && (count > 10)) {
+                count = 0;
+                clearText(socket, "enterText");
+                let color1 = colors[Math.floor(Math.random()*colors.length)];
+                let color2 = colors[Math.floor(Math.random()*colors.length)];
+                setBackground(socket, color1, color2);
             }
+
+            if (inputMap.space && primed) {
+                primed = false;
+                draw(atk, dir, dx, dy);
+            }
+            else if (!primed) {
+                update(atk);
+                draw(atk, dir, dx, dy);
+                if (atk.animationFrame == 12) { 
+                    atk.animationFrame = 0; 
+                    primed = true;
+                }
+            }
+
             // Draw the Abitary animations to test.
             if (inputMap.w || inputMap.a || inputMap.s || inputMap.d) {
 
@@ -85,13 +104,20 @@ function fakeGameEngine(socket) {
                     dir = -1;
                 }
 
-                update(x);
+                if(primed) {
+                    update(x);
+                    draw(x, dir, dx, dy);
+                }
+                
                 drawText(socket, "Running", "status", "20px pixeled", green, 875, 35);
-                draw(x, dir, dx, dy);
+
             } else {
-                update(y);
+
+                if(primed) {
+                    update(y);
+                    draw(y, dir, dx, dy);
+                }
                 drawText(socket, "Idel", "status", "20px pixeled", blue, 875, 35);
-                draw(y, dir, dx, dy);
             }
             let string = "Pos :" + dx + "," + dy;
             drawText(socket, string, "pos", "15px PS2P",  red, 20, 20);
