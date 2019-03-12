@@ -73,7 +73,13 @@ test('Vec abs', () => {
 test('Vec dist', () => {
     var v1 = new Vec(5, 6);
     var v2 = new Vec(-7, 11);
-    expect(v1.dist(v2)).toBe(169);
+    expect(v1.dist(v2)).toBe(13);
+});
+
+test('Vec fast-dist', () => {
+    var v1 = new Vec(5, 6);
+    var v2 = new Vec(-7, 11);
+    expect(v1.fastDist(v2)).toBe(169);
 });
 
 test('Vec cross', () => {
