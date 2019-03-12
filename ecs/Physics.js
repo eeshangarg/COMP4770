@@ -40,12 +40,12 @@ function getPreviousOverlap(a: Entity, b: Entity): Vec {
 }
 
 function lineIntersect(a: Vec, b: Vec, c: Vec, d: Vec): boolean {
-    var r: Vec = b.subtract(a);
-    var s: Vec = d.subtract(c);
-    var rxs: number = r.cross(s);
-    var cma: Vec = c.subtract(a);
-    var t: number = cma.cross(s) / rxs;
-    var u: number = cma.cross(r) / rxs;
+    let r: Vec = b.subtract(a);
+    let s: Vec = d.subtract(c);
+    let rxs: number = r.cross(s);
+    let cma: Vec = c.subtract(a);
+    let t: number = cma.cross(s) / rxs;
+    let u: number = cma.cross(r) / rxs;
 
     if (t >= 0.0 && t <= 1.0 && u >= 0.0 && u <= 1.0) {
         return true;
@@ -56,23 +56,23 @@ function lineIntersect(a: Vec, b: Vec, c: Vec, d: Vec): boolean {
 }
 
 function entityIntersect(a: Vec, b: Vec, e: Entity): boolean {
-    var halfSize: Vec = e.getComponent(CBoundingBox).halfSize;
-    var pos: Vec = e.getComponent(CTransform).pos;
+    let halfSize: Vec = e.getComponent(CBoundingBox).halfSize;
+    let pos: Vec = e.getComponent(CTransform).pos;
 
-    var c: Vec = pos.subtract(halfSize);
-    var d: Vec = new Vec(pos.x + halfSize.x, c.y);
-    var i1: boolean = lineIntersect(a, b, c, d);
+    let c: Vec = pos.subtract(halfSize);
+    let d: Vec = new Vec(pos.x + halfSize.x, c.y);
+    let i1: boolean = lineIntersect(a, b, c, d);
 
     d = new Vec(c.x, pos.y + halfSize.y);
-    var i2: boolean = lineIntersect(a, b, c, d);
+    let i2: boolean = lineIntersect(a, b, c, d);
 
     c = new Vec(pos.x + halfSize.x, pos.y - halfSize.y);
     d = new Vec(c.x, pos.y + halfSize.y);
-    var i3: boolean = lineIntersect(a, b, c, d);
+    let i3: boolean = lineIntersect(a, b, c, d);
 
     c = new Vec(pos.x - halfSize.x, pos.y + halfSize.y);
     d = new Vec(pos.x + halfSize.x, c.y);
-    var i4: boolean = lineIntersect(a, b, c, d);
+    let i4: boolean = lineIntersect(a, b, c, d);
 
     return i1 || i2 || i3|| i4;
 }

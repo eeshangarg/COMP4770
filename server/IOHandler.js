@@ -133,6 +133,7 @@ function clearText(ws, key) {
     }
 
 }
+
 // The function which emits a frame through a Websocket.
 function emitFrame(ws, px, py) {
 

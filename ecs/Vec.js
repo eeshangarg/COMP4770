@@ -65,6 +65,10 @@ class Vec {
     }
 
     dist(rhs: Vec): number {
+        return Math.sqrt((this.x - rhs.x) * (this.x - rhs.x) + (this.y - rhs.y) * (this.y - rhs.y));
+    }
+
+    fastDist(rhs: Vec): number {
         return (this.x - rhs.x) * (this.x - rhs.x) + (this.y - rhs.y) * (this.y - rhs.y);
     }
 }

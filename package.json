@@ -49,6 +49,7 @@
         "flow": "^0.2.3",
         "npm": "^6.9.0",
         "shortid": "^2.2.14",
+        "uglifyjs-folder": "^1.5.1",
         "ws": "^6.2.0"
     },
     "optionalDependencies": {

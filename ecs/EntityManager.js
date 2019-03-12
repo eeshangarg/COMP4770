@@ -32,7 +32,7 @@ class EntityManager {
     }
 
     removeDeadEntities(entityVec: Array<Entity>) {
-        for (var i = 0; i < entityVec.length; i++) {
+        for (let i = 0; i < entityVec.length; i++) {
             const entity = entityVec[i];
             if (!entity.isActive()) {
                 entityVec.splice(i, 1);
@@ -42,7 +42,7 @@ class EntityManager {
 
     update() {
         // add all entities that are pending
-        for (var i = 0; i < this.entitiesToAdd.length; i++) {
+        for (let i = 0; i < this.entitiesToAdd.length; i++) {
             const entity = this.entitiesToAdd[i];
             // add it to the vector of all entities
             this.entities.push(entity);

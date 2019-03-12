@@ -172,35 +172,35 @@ function renderFrame(data, playerPos) {
 
 // key up event, que a input with state and key.
 document.onkeydown = function(event) {
-    if (event.keyCode === 87)
+    if (event.keyCode === 87)       // 87 -> "W"
         queueInput('w', 1);
-    else if (event.keyCode === 65)
+    else if (event.keyCode === 65)  // 65 -> "A" 
         queueInput('a', 1);
-    else if (event.keyCode === 83)
+    else if (event.keyCode === 83)  // 83 -> "S"
         queueInput('s', 1);
-    else if (event.keyCode === 68)
+    else if (event.keyCode === 68)  // 68 -> "D"
         queueInput('d', 1);
-    else if (event.keyCode === 32)
+    else if (event.keyCode === 32)  // 68 -> "Space" 
         queueInput('_', 1);
-    else if (event.keyCode === 13)
-        queueInput('|', 1); // Enter
+    else if (event.keyCode === 13)  // 13 -> "Enter"
+        queueInput('|', 1);
 }
 
 
 // key down event, que a input with state and key.
 document.onkeyup = function(event) {
-    if (event.keyCode === 87)
+    if (event.keyCode === 87)       // 87 -> "W"
         queueInput('w', 0);
-    else if (event.keyCode === 65)
+    else if (event.keyCode === 65)  // 65 -> "A"
         queueInput('a', 0);
-    else if (event.keyCode === 83)
+    else if (event.keyCode === 83)  // 83 -> "S"
         queueInput('s', 0);
-    else if (event.keyCode === 68)
+    else if (event.keyCode === 68)  // 68 -> "D"
         queueInput('d', 0);
-    else if (event.keyCode === 32)
+    else if (event.keyCode === 32)  // 68 -> "Space"
         queueInput('_', 0);
-    else if (event.keyCode === 13)
-        queueInput('|', 0); // Enter
+    else if (event.keyCode === 13)  // 13 -> "Enter"
+        queueInput('|', 0);
 }
 
 
