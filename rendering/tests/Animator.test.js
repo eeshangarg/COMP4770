@@ -3,7 +3,6 @@ const {
     setAnimation,
     getAnimation,
     draw,
-    update,
     loadAnimations
 } = require('../Rendering.js');
 
@@ -14,12 +13,12 @@ test('Rendering', () => {
     setAnimation("frame", "someSpirte", "someSpirte", 1, 1, 1, 30, 64, 64);
     let anim = getAnimation("dummy");
     let frame = getAnimation("frame");
-    update(frame);
+    frame.update();
     // Cycle through the frames. 
-    update(anim);
-    update(anim);
-    update(anim);
-    update(anim);
+    anim.update();
+    anim.update();
+    anim.update();
+    anim.update();
     // Test expect.
     expect(anim.name).toBe("dummy");
     expect(anim.currentFrame).toBe(0);

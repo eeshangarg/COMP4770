@@ -45,11 +45,8 @@ log = "Websocket-server Listening on port:"  + socketPort + "  (for the client-s
 console.log('\x1b[33m%s\x1b[0m',log);
 
 // Declare the require helper methods.
-const loadAnimations = require('./../rendering/Rendering.js').loadAnimations;
 const initIO = require('./IOHandler.js').initIO;
 
-// Load the Animation config file.
-loadAnimations(__dirname + "/../../config/Animation.json")
 
 // Intialize the Websocket server.
 initIO(wss);

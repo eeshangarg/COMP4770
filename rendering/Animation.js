@@ -14,10 +14,11 @@ class Animation {
     fps: number;
     width: number;
     height: number;
+    update: void => void;
 
     constructor(name: string, spriteR: string, spriteL: string,
-                rid: number, lid: number, frameCount: number,
-                fps: number, width: number, height: number) {
+        rid: number, lid: number, frameCount: number,
+        fps: number, width: number, height: number) {
 
         this.rid = rid;
         this.lid = lid;
@@ -30,6 +31,22 @@ class Animation {
         this.fps = 60 / fps;
         this.width = width;
         this.height = height;
+        this.update = function() {
+            // If the Animation is more then 1 frame long.
+            if (this.frameCount > 0) {
+                // Update the current frame.
+                this.currentFrame++;
+                // If FPS dictates, Queue up the next frame.
+                if (this.currentFrame >= this.fps) {
+                    this.currentFrame = 0;
+                    this.animationFrame++;
+                    // Reset animation if over.
+                    if (this.animationFrame > this.frameCount) {
+                        this.animationFrame = 0;
+                    }
+                }
+            }
+        }
     }
 }
 

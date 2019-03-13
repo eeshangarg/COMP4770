@@ -4,12 +4,10 @@
 class Vec {
     x: number;
     y: number;
-    length: number;
 
     constructor(x: number, y: number) {
         this.x = x;
-        this.y = y;
-        this.length = Math.sqrt(this.x * this.x + this.y * this.y);
+        this.y = y; // TO DO, Remove me. Sqrt for all Vec. 
     }
 
     add(rhs: Vec): Vec {
@@ -29,11 +27,16 @@ class Vec {
     }
 
     norm(): Vec {
-        return new Vec(this.x / this.length, this.y / this.length);
+        let len: number = this.length();
+        return new Vec(this.x / len, this.y / len);
+    }
+
+    length(): number {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
     equals(rhs: Vec): boolean {
-        return this.x == rhs.x && this.y == rhs.y;
+        return this.x == rhs.x && this.y === rhs.y;
     }
 
     addi(rhs: Vec) {
@@ -68,7 +71,7 @@ class Vec {
         return Math.sqrt((this.x - rhs.x) * (this.x - rhs.x) + (this.y - rhs.y) * (this.y - rhs.y));
     }
 
-    fastDist(rhs: Vec): number {
+    distf(rhs: Vec): number {
         return (this.x - rhs.x) * (this.x - rhs.x) + (this.y - rhs.y) * (this.y - rhs.y);
     }
 }

@@ -5,7 +5,6 @@
 // flowlint unclear-type:off
 
 const Animation = require('./Animation.js');
-const queueAnimation = require('./../server/IOHandler.js').queueAnimation;
 const fs = require("fs");
 const path = require("path");
 
@@ -13,6 +12,8 @@ const path = require("path");
 const animationMap = new Map();
 const idMap =  [];
 
+// The queue which holds animations to be rendered.
+let renderQueue = [];
 
 
 /* istanbul ignore next */
@@ -40,43 +41,6 @@ function loadAnimations(fileName: string) {
 
 }
 
-function update(anim: Animation) {
-    // If the Animation is more then 1 frame long.
-    if (anim.frameCount > 0) {
-        // Update the current frame.
-        anim.currentFrame++;
-        // If FPS dictates, Queue up the next frame.
-        if (anim.currentFrame >= anim.fps) {
-            anim.currentFrame = 0;
-            anim.animationFrame++;
-            // Reset animation if over.
-            if (anim.animationFrame > anim.frameCount) {
-                anim.animationFrame = 0;
-            }
-        }
-    }
-}
-
-/* istanbul ignore next */
-function draw(anim: Animation, dir: number, dx: number, dy: number) {
-
-    let id = 0;
-
-    if (dir === -1) {
-        id = anim.lid;
-    }
-    else {
-        id = anim.rid;
-    }
-
-    if (anim.frameCount === 0) {
-        queueAnimation(id, -1, dx, dy);
-    }
-    else {
-        queueAnimation(id, anim.animationFrame, dx, dy);
-    }
-    
-}
 
 function getAnimation(AnimationName: string): Animation {
     let x = animationMap.get(AnimationName);
@@ -103,8 +67,6 @@ function setAnimation(AnimationName: string, spriteNameR: string, spriteNameL: s
 module.exports = {
     'setAnimation': setAnimation,
     'getAnimation': getAnimation,
-    'draw': draw,
-    'update': update,
     'loadAnimations': loadAnimations,
     'getAnimationIDMap': getAnimationIDMap
 }

@@ -4,9 +4,8 @@
 
 const Vec = require('./Vec.js');
 const Animation = require('./../rendering/Animation.js');
-const {getAnimation} = require('./../rendering/Rendering.js');
-
-const MAX_COMPONENTS = 32;
+const getAnimation = require('./../rendering/Rendering.js').getAnimation;
+const MAX_COMPONENTS = 20;
 
 // Think of this as an abstract base class
 class Component {
@@ -167,6 +166,9 @@ class CAnimation extends Component {
     }
 }
 CAnimation.INDEX = 9;
+
+
+
 
 module.exports = {
     'Component': Component,
