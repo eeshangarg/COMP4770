@@ -21,9 +21,9 @@ function getOverlap(a: Entity, b: Entity): Vec {
 }
 
 function getPreviousOverlap(a: Entity, b: Entity): Vec {
-    let aPos: Vec = a.getComponent(CTransform).pos;
+    let aPos: Vec = a.getComponent(CTransform).prevPos;
     let aHalfSize: Vec = a.getComponent(CBoundingBox).halfSize;
-    let bPos: Vec = b.getComponent(CTransform).pos;
+    let bPos: Vec = b.getComponent(CTransform).prevPos;
     let bHalfSize: Vec = b.getComponent(CBoundingBox).halfSize;
     let delta: Vec = new Vec(Math.abs(aPos.x - bPos.x), Math.abs(aPos.y - bPos.y));
     let sum: Vec = aHalfSize.add(bHalfSize);
