@@ -46,11 +46,11 @@ test('Vec division', () => {
 
 test('Vec length and norm', () => {
     var v = new Vec(0.0, 3.0);
-    expect(v.length).toBe(3.0);
     var norm = v.norm();
     expect(norm.x).toBe(0.0);
     expect(norm.y).toBe(1.0);
-    expect(norm.length).toBe(1.0);
+    var normLen = norm.length();
+    expect(normLen).toBe(1.0);
 });
 
 test('Vec abs', () => {

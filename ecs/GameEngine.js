@@ -7,12 +7,13 @@
 /* global require */
 const GameState = require("./GameState.js");
 const GameState_test = require("./GameState_test.js");
+const Animation = require('./../rendering/Animation.js');
 
 class GameEngine {
 
     socket: Object;
-    states: Array<GameState>;
-    statesToPush: Array<GameState>;
+    states: Array<GameState> ;
+    statesToPush: Array<GameState> ;
     popStates: number;
     running: boolean;
     inputMap: Object;
@@ -24,13 +25,17 @@ class GameEngine {
     popState: void => void;
     getInputMap: void => Object;
     setInputMap: Object => void;
+    draw: (anim: Animation,dir: number,dx: number,dy: number) => void;
+    queueAnimation: (id: number,frame: number,dx: number,dy: number) => void;
     self: GameEngine;
+    renderQueue: Array<Object> ;
 
     constructor(socket: Object) {
 
         let self = this;
         this.socket = socket;
         this.states = [];
+        this.renderQueue = [];
         this.statesToPush = [];
         this.popStates = 0;
         this.running = true;
@@ -47,7 +52,7 @@ class GameEngine {
 
         // An intializer function for the game enginge. 
         this.init = function() {
-            let state = new GameState_test(this);
+            let state: GameState_test = new GameState_test(this);
             state.init();
             this.pushState(state)
             this.run()
@@ -111,6 +116,42 @@ class GameEngine {
         this.getInputMap = function(): Object {
             return this.inputMap;
         }
+
+        // The function to "Queue" an Animation. Only used by Rendering.
+        this.queueAnimation = function(id: number, frame: number, dx: number, dy: number) {
+            // If queued with frame -1 push a static animation onto renderQueue.
+            if (frame == -1) {
+                this.renderQueue.push({
+                    n: id,
+                    d: [dx, dy]
+                });
+            } else {
+                this.renderQueue.push({
+                    n: id,
+                    d: [dx, dy],
+                    f: frame
+                });
+            }
+        }
+
+        this.draw = function(anim: Animation, dir: number, dx: number, dy: number) {
+
+            let id = 0;
+
+            if (dir === -1) {
+                id = anim.lid;
+            } else {
+                id = anim.rid;
+            }
+
+            if (anim.frameCount === 0) {
+                this.queueAnimation(id, -1, dx, dy);
+            } else {
+                this.queueAnimation(id, anim.animationFrame, dx, dy);
+            }
+
+        }
+
 
     }
 

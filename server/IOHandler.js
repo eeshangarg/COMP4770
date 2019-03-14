@@ -1,7 +1,5 @@
 /* istanbul ignore file */
 
-// The queue which holds animations to be rendered.
-let renderQueue = [];
 
 // The map which connected sockets tied to a ID.
 let socketMap = new Map();
@@ -9,31 +7,17 @@ let socketMap = new Map();
 // Requires
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
-
-
-// The function to "Queue" an Animation. Only used by Rendering.
-function queueAnimation(id, frame, dx, dy) {
-    // If queued with frame -1 push a static animation onto renderQueue.
-    if (frame == -1) {
-        renderQueue.push({
-            n: id,
-            d: [dx, dy]
-        });
-    } else {
-        renderQueue.push({
-            n: id,
-            d: [dx, dy],
-            f: frame
-        });
-    }
-}
-
-
-module.exports.queueAnimation = queueAnimation;
+const {
+    loadAnimations,
+    getRenderQueue
+} = require('./../rendering/Rendering.js');
 
 
 // the function to intialize IO-helpers for websockets, should be passed the WebSocket-Server.
 function initIO(wss) {
+
+    // Load the Animation config file.
+    loadAnimations(__dirname + "/../../config/Animation.json");
 
     console.log('IO Initialzied for WebSocket-Server.');
 
@@ -135,7 +119,7 @@ function clearText(ws, key) {
 }
 
 // The function which emits a frame through a Websocket.
-function emitFrame(ws, px, py) {
+function emitFrame(ws, renderQueue, px, py) {
 
     if (ws.readyState == 1) {
 
@@ -147,7 +131,6 @@ function emitFrame(ws, px, py) {
         };
 
         ws.send(JSON.stringify(message));
-        renderQueue = [];
     }
 
 }
@@ -200,7 +183,6 @@ function updateInputData(data, map) {
 
 // Declare Exports.
 module.exports = {
-    'queueAnimation': queueAnimation,
     'initIO': initIO,
     'emitFrame': emitFrame,
     'setBackground': setBackground,

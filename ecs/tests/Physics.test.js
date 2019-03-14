@@ -38,12 +38,16 @@ test('getPreviousOverlap', () => {
 test('lineIntersect and entityIntersect', () => {
     var playerPos = new Vec(2.0, 3.0);
     var npcPos = new Vec(200.0, 3.0);
+    var npcPos2 = new Vec(200.0, 60.0);
+
     var tile = new Entity(0, 'tile');
     tile.addComponent(new CTransform(new Vec(100.0, 3.0)));
     tile.addComponent(new CBoundingBox(new Vec(40, 40), true, true));
 
     var result = Physics.entityIntersect(playerPos, npcPos, tile);
     expect(result).toBeTruthy();
+    result = Physics.entityIntersect(playerPos, npcPos2, tile);
+    expect(result).toBeFalsy();
 
     playerPos = new Vec(2.0, 3.0);
     npcPos = new Vec(2.0, 300.0);
