@@ -1,6 +1,5 @@
 /* istanbul ignore file */
 
-
 // The map which connected sockets tied to a ID.
 let socketMap = new Map();
 
@@ -8,10 +7,8 @@ let socketMap = new Map();
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
 const {
-    loadAnimations,
-    getRenderQueue
+    loadAnimations
 } = require('./../rendering/Rendering.js');
-
 
 // the function to intialize IO-helpers for websockets, should be passed the WebSocket-Server.
 function initIO(wss) {
@@ -64,9 +61,7 @@ function IOHandler(ws) {
 
     let game = new GameEngine(ws);
     game.init();
-
     ws.GameEngine = game;
-
     ws.on('message', (message) => {
 
         let data = JSON.parse(message);

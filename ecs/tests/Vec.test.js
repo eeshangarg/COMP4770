@@ -76,6 +76,7 @@ test('Vec dist', () => {
     expect(v1.dist(v2)).toBe(13);
 });
 
+
 test('Vec distf', () => {
     var v1 = new Vec(5, 6);
     var v2 = new Vec(-7, 11);

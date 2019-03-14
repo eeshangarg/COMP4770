@@ -2,10 +2,11 @@
 /* global module */
 /* global require */
 
+const MAX_COMPONENTS = 20;
 const Vec = require('./Vec.js');
 const Animation = require('./../rendering/Animation.js');
 const getAnimation = require('./../rendering/Rendering.js').getAnimation;
-const MAX_COMPONENTS = 20;
+
 
 // Think of this as an abstract base class
 class Component {

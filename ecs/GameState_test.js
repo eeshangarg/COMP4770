@@ -19,7 +19,6 @@ class GameState_test extends GameState {
     testSystem: void => void;
     entityManager: EntityManager;
 
-
     constructor(game: GameEngine) {
 
         super();
@@ -62,8 +61,6 @@ class GameState_test extends GameState {
                 this.GameEngine.draw(entities[i].getComponent(CAnimation).animation, pos.x, pos.y, 1) ;
             }
         }
-
-
     }
 }
 

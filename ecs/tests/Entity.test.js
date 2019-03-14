@@ -1,6 +1,6 @@
+const Entity = require('../Entity.js');
 const Components = require('../Components.js');
 const CInput = Components.CInput;
-const Entity = require('../Entity.js');
 
 test('Entity', () => {
     var entity = new Entity(0, 'tile');

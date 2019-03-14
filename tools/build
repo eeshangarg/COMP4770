@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+
 echo -e "\033[44m    Running Flow-type removal: ./src/rendering -> ./lib/rendering    \033[m \n"
 flow-remove-types ecs/ -d lib/ecs/
 echo -e "\n\033[44m    Running Flow-type removal: ./src/rendering -> ./lib/rendering    \033[m \n"

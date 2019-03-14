@@ -47,6 +47,5 @@ console.log('\x1b[33m%s\x1b[0m',log);
 // Declare the require helper methods.
 const initIO = require('./IOHandler.js').initIO;
 
-
 // Intialize the Websocket server.
 initIO(wss);

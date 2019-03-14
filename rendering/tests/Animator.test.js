@@ -19,6 +19,7 @@ test('Rendering', () => {
     anim.update();
     anim.update();
     anim.update();
+
     // Test expect.
     expect(anim.name).toBe("dummy");
     expect(anim.currentFrame).toBe(0);

@@ -62,7 +62,6 @@ function entityIntersect(a: Vec, b: Vec, e: Entity): boolean {
     } else {
         return false;
     }
-
 }
 
 module.exports = {

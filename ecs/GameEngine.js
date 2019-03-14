@@ -7,13 +7,15 @@
 /* global require */
 const GameState = require("./GameState.js");
 const GameState_test = require("./GameState_test.js");
-const Animation = require('./../rendering/Animation.js');
+const Animation = require("./../rendering/Animation.js");
+
 
 class GameEngine {
 
+    self: GameEngine;
     socket: Object;
-    states: Array<GameState> ;
-    statesToPush: Array<GameState> ;
+    states: Array<GameState>;
+    statesToPush: Array<GameState>;
     popStates: number;
     running: boolean;
     inputMap: Object;
@@ -27,8 +29,7 @@ class GameEngine {
     setInputMap: Object => void;
     draw: (anim: Animation,dir: number,dx: number,dy: number) => void;
     queueAnimation: (id: number,frame: number,dx: number,dy: number) => void;
-    self: GameEngine;
-    renderQueue: Array<Object> ;
+    renderQueue: Array<Object>;
 
     constructor(socket: Object) {
 
@@ -134,25 +135,20 @@ class GameEngine {
             }
         }
 
+
         this.draw = function(anim: Animation, dir: number, dx: number, dy: number) {
-
             let id = 0;
-
             if (dir === -1) {
                 id = anim.lid;
             } else {
                 id = anim.rid;
             }
-
             if (anim.frameCount === 0) {
                 this.queueAnimation(id, -1, dx, dy);
             } else {
                 this.queueAnimation(id, anim.animationFrame, dx, dy);
             }
-
         }
-
-
     }
 
 }

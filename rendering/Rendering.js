@@ -13,6 +13,7 @@ const animationMap = new Map();
 const idMap =  [];
 
 
+
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {
     fs.readFile(path.resolve(fileName), function(error: Object, file: Object) {
@@ -37,7 +38,6 @@ function loadAnimations(fileName: string) {
     });
 
 }
-
 
 function getAnimation(AnimationName: string): Animation {
     let x = animationMap.get(AnimationName);
