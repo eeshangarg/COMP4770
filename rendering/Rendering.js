@@ -12,9 +12,6 @@ const path = require("path");
 const animationMap = new Map();
 const idMap =  [];
 
-// The queue which holds animations to be rendered.
-let renderQueue = [];
-
 
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {

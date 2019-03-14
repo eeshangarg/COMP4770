@@ -7,7 +7,7 @@ class Vec {
 
     constructor(x: number, y: number) {
         this.x = x;
-        this.y = y; // TO DO, Remove me. Sqrt for all Vec. 
+        this.y = y;
     }
 
     add(rhs: Vec): Vec {

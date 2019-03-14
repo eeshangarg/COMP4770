@@ -25,10 +25,7 @@ class GameState_test extends GameState {
         super();
 
         const {
-            emitFrame,
-            setBackground,
-            drawText,
-            clearText
+            emitFrame
         } = require('./../server/IOHandler.js');
 
 
@@ -49,15 +46,17 @@ class GameState_test extends GameState {
         this.update = function() {
             this.entityManager.update();
             this.testSystem();
-            emitFrame(this.GameEngine.socket, this.GameEngine.renderQueue, 0, 0); // EMIT frame to Viewport pos.
+            emitFrame(this.GameEngine.socket, this.GameEngine.renderQueue, 0, 0);
             this.GameEngine.renderQueue = [];
         }
 
         this.testSystem = function() {
             let entities = this.entityManager.getAllEntities();
             for (let i = 0; i < entities.length; i++) {
-                entities[i].getComponent(CTransform).pos.x += 0.1;
-                entities[i].getComponent(CTransform).pos.y += 0.1;
+                if (inputMap.w) {
+                    entities[i].getComponent(CTransform).pos.y += 1;
+                }
+
                 let pos = entities[i].getComponent(CTransform).pos;
                 entities[i].getComponent(CAnimation).animation.update();
                 this.GameEngine.draw(entities[i].getComponent(CAnimation).animation, pos.x, pos.y, 1) ;
