@@ -1,87 +1,87 @@
 [
-  {
-    "AnimationName": "error",
-    "SpriteName": "error",
-    "fps": 1,
-    "frameCount": 1,
-    "type": "static",
-    "x": 1,
-    "y": 1
-  },
-  {
-    "AnimationName": "egg",
-    "SpriteName": "egg",
-    "fps": 30,
-    "frameCount": 1,
-    "type": "static",
-    "x": 16,
-    "y": 16
-  },
-  {
-    "AnimationName": "apple",
-    "SpriteName": "apple",
-    "fps": 30,
-    "frameCount": 1,
-    "type": "static",
-    "x": 16,
-    "y": 16
-  },
-  {
-    "AnimationName": "coin",
-    "SpriteName": "coin",
-    "fps": 30,
-    "frameCount": 1,
-    "type": "static",
-    "x": 16,
-    "y": 16
-  },
-  {
-    "AnimationName": "cave-platform",
-    "SpriteName": "cave-platform",
-    "fps": 30,
-    "frameCount": 1,
-    "type": "static",
-    "x": 16,
-    "y": 16
-  },
-  {
-    "AnimationName": "playerAtk",
-    "SpriteNameL": "playerAtkL",
-    "SpriteNameR": "playerAtkR",
-    "fps": 20,
-    "frameCount": 13,
-    "type": "dynamic",
-    "x": 64,
-    "y": 64
-  },
-  {
-    "AnimationName": "playerDeath",
-    "SpriteNameL": "playerDeathL",
-    "SpriteNameR": "playerDeathR",
-    "fps": 15,
-    "frameCount": 15,
-    "type": "dynamic",
-    "x": 64,
-    "y": 64
-  },
-  {
-    "AnimationName": "playerRun",
-    "SpriteNameL": "playerRunL",
-    "SpriteNameR": "playerRunR",
-    "fps": 15,
-    "frameCount": 6,
-    "type": "dynamic",
-    "x": 64,
-    "y": 64
-  },
-  {
-    "AnimationName": "playerIdel",
-    "SpriteNameL": "playerIdelL",
-    "SpriteNameR": "playerIdelR",
-    "fps": 15,
-    "frameCount": 6,
-    "type": "dynamic",
-    "x": 64,
-    "y": 64
-  }
+    {
+        "type": "static",
+        "AnimationName": "error",
+        "SpriteName": "error",
+        "frameCount": 1,
+        "fps": 1,
+        "x": 1,
+        "y": 1
+    },
+    {
+        "type": "static",
+        "AnimationName": "egg",
+        "SpriteName": "egg",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "apple",
+        "SpriteName": "apple",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "coin",
+        "SpriteName": "coin",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "cave-platform",
+        "SpriteName": "cave-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerAtk",
+        "SpriteNameR": "playerAtkR",
+        "SpriteNameL": "playerAtkL",
+        "frameCount": 13,
+        "fps": 20,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerDeath",
+        "SpriteNameR": "playerDeathR",
+        "SpriteNameL": "playerDeathL",
+        "frameCount": 15,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerRun",
+        "SpriteNameR": "playerRunR",
+        "SpriteNameL": "playerRunL",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerIdel",
+        "SpriteNameR": "playerIdelR",
+        "SpriteNameL": "playerIdelL",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    }
 ]
