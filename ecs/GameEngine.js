@@ -6,7 +6,7 @@
 
 /* global require */
 const GameState = require("./GameState.js");
-const GameState_test = require("./GameState_test.js");
+const GameState_Play = require("./GameState_Play.js");
 const Animation = require('./../rendering/Animation.js');
 
 class GameEngine {
@@ -52,8 +52,7 @@ class GameEngine {
 
         // An intializer function for the game enginge. 
         this.init = function() {
-            let state: GameState_test = new GameState_test(this);
-            state.init();
+            let state: GameState_Play = new GameState_Play(this, 'sample/levelPath.json');
             this.pushState(state)
             this.run()
         }
@@ -151,10 +150,7 @@ class GameEngine {
             }
 
         }
-
-
     }
-
 }
 
 module.exports = GameEngine;
