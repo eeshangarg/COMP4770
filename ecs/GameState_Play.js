@@ -99,7 +99,7 @@ class GameState_Play extends GameState {
         for (let i = 0; i < entities.length; i++) {
             let pos = entities[i].getComponent(CTransform).pos;
             let anim = entities[i].getComponent(CAnimation).animation;
-            this.gameEngine.draw(anim, pos.x, pos.y, 1);
+            this.gameEngine.draw(anim, 1, pos.x, pos.y);
         }
 
         const {
