@@ -18,6 +18,7 @@ class GameState_LevelEditor extends GameState {
     gameEngine: GameEngine;
     entityManager: EntityManager;
     player: Entity;
+    update: void => void;
 
     constructor(game: GameEngine) {
         super();

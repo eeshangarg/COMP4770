@@ -6,10 +6,9 @@ const GameEngine  = require('./GameEngine.js');
 
 
 class GameState {
-
     GameEngine: GameEngine;
     paused: boolean;
-
+    update(){}
 }
 
 

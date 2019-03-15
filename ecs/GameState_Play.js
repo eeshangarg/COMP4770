@@ -20,6 +20,7 @@ class GameState_Play extends GameState {
     paused: boolean;
     player: Entity;
     levelPath: string;
+    update: void => void;
 
     constructor(game: GameEngine, levelPath: string) {
         super();
