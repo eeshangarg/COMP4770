@@ -67,7 +67,7 @@ class GameState_Play extends GameState {
     }
 
     sUserInput() {
-        // TODO: Process all user input here and s
+        // TODO: Process all user input here
         let inputMap = this.gameEngine.getInputMap();
         let playerInput = this.player.getComponent(CInput);
         if (inputMap.w) {
