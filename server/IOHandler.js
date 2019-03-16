@@ -8,7 +8,6 @@ let socketMap = new Map();
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
 const flatstr = require('flatstr');
-const stringify = require('fast-json-stable-stringify');
 const {
     getAnimationIDMap,
     loadAnimations,
@@ -41,7 +40,7 @@ function initIO(wss) {
                     t: 'a',
                     d: getAnimationIDMap()
                 };
-                let flatJson = flatstr(stringify(message));
+                let flatJson = flatstr(JSON.stringify(message));
                 ws.send(flatJson);
                 IOHandler(ws);
             }
@@ -102,7 +101,7 @@ function drawText(ws, textString, key, font, color, dx, dy) {
             c: color,
             p: [dx, dy]
         };
-        let flatJson = flatstr(stringify(message));
+        let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
 }
@@ -116,7 +115,7 @@ function clearText(ws, key) {
             k: key,
         };
 
-        let flatJson = flatstr(stringify(message));
+        let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
 
@@ -134,7 +133,7 @@ function emitFrame(ws, renderQueue, px, py) {
             d: renderQueue
         };
 
-        let flatJson = flatstr(stringify(message));
+        let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
 
@@ -149,7 +148,7 @@ function setBackground(ws, bgName) {
             i: bgName
         }
 
-        let flatJson = flatstr(stringify(message));
+        let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
 }
@@ -164,7 +163,7 @@ function setBackgroundGradient(ws, c1, c2) {
             c2: c2
         }
 
-            let flatJson = flatstr(stringify(message));
+            let flatJson = flatstr(JSON.stringify(message));
             ws.send(flatJson);
     }
 }
