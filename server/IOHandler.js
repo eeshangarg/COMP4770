@@ -70,6 +70,7 @@ function IOHandler(ws) {
     ws.on('message', (message) => {
 
         let data = JSON.parse(message);
+
         // Data.t, Type: 'i' -> Input. 
         if (data.t === 'i') {
             let map = ws.GameEngine.getInputMap();
@@ -136,11 +137,24 @@ function emitFrame(ws, renderQueue, px, py) {
 }
 
 
-// The function that handles background changing.
-function setBackground(ws, c1, c2) {
+// The function that handles background-image changing.
+function setBackground(ws, bgName) {
     if (ws.readyState == 1) {
         let message = {
             t: 'b',
+            i: bgName
+        }
+
+        ws.send(JSON.stringify(message));
+    }
+}
+
+
+// The function that handles background-Gradient changing.
+function setBackgroundGradient(ws, c1, c2) {
+    if (ws.readyState == 1) {
+        let message = {
+            t: 'g',
             c1: c1,
             c2: c2
         }
@@ -162,7 +176,10 @@ function updateInputData(data, map) {
         }
 
         // Key state input block.
-        if (data[i].k === 'w') {
+        if  (data[i].k === 'mp') {
+            map.mousePos = data[i].s;
+        }
+        else if (data[i].k === 'w') {
             map.w = state;
         } else if (data[i].k === 'a') {
             map.a = state;
@@ -186,6 +203,7 @@ module.exports = {
     'initIO': initIO,
     'emitFrame': emitFrame,
     'setBackground': setBackground,
+    'setBackgroundGradient': setBackgroundGradient,
     'drawText': drawText,
     'clearText': clearText
 };

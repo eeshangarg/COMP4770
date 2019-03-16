@@ -15,7 +15,7 @@ const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 
 class GameState_Play extends GameState {
-    gameEngine: GameEngine;
+    game: GameEngine;
     entityManager: EntityManager;
     paused: boolean;
     player: Entity;
@@ -24,8 +24,7 @@ class GameState_Play extends GameState {
 
     constructor(game: GameEngine, levelPath: string) {
         super();
-
-        this.gameEngine = game;
+        this.game = game;
         this.entityManager = new EntityManager();
         this.paused = false;
         this.player = this.entityManager.addEntity("player");
@@ -35,8 +34,8 @@ class GameState_Play extends GameState {
     }
 
     init() {
+        this.game.setBackground('bg_cave');
         this.loadLevel();
-
         this.spawnPlayer();
     }
 
@@ -64,16 +63,17 @@ class GameState_Play extends GameState {
         this.sUserInput();
         this.sRender();
 
-        this.gameEngine.renderQueue = [];
     }
 
     sUserInput() {
         // TODO: Process all user input here
-        let inputMap = this.gameEngine.getInputMap();
+        let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
-        if (inputMap.w) {
-            playerInput.up = true;
-        }
+        playerInput.up = inputMap.w;
+        playerInput.down = inputMap.s;
+        playerInput.left = inputMap.a;
+        playerInput.right = inputMap.d;
+        playerInput.mousePos = new Vec(inputMap.mousePos[0], inputMap.mousePos[1])
     }
 
     sMovement() {
@@ -98,16 +98,9 @@ class GameState_Play extends GameState {
         // TODO: Handle all rendering here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            let pos = entities[i].getComponent(CTransform).pos;
-            let anim = entities[i].getComponent(CAnimation).animation;
-            this.gameEngine.draw(anim, 1, pos.x, pos.y);
+            // let pos = entities[i].getComponent(CTransform).pos;
+            // let anim = entities[i].getComponent(CAnimation).animation;
         }
-
-        const {
-            emitFrame
-        } = require('./../server/IOHandler.js');
-
-        emitFrame(this.gameEngine.socket, this.gameEngine.renderQueue, 0, 0);
     }
 
     sAI() {

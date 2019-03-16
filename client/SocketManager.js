@@ -7,7 +7,7 @@ import {
 const bgCanvas = document.getElementById('bgCanvas').getContext('2d')
 const gameCanvas = document.getElementById('gameCanvas').getContext('2d');
 const textCanvas = document.getElementById('textCanvas').getContext('2d');
-
+const rect = document.getElementById('gameCanvas').getBoundingClientRect();
 const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 
@@ -15,9 +15,11 @@ let inputQueue = [];
 let loadingInterval = null;
 let animIdMap = new Map();
 let textStrings = {};
+let mousePos = {x:Infinity,y:Infinity};
 
 document.fonts.load('10pt "PS2P"');
 document.fonts.load('10pt "pixeled"');
+document.fonts.load('10pt "Seagram"');
 
 // Kill socket if the page is reloaded. 
 window.onbeforeunload = function() {
@@ -35,6 +37,7 @@ socket.onopen = function() {
     loadingInterval = setInterval(function() {
         if (allSpritesLoaded()) {
             socket.send('all assests loaded');
+            window.addEventListener('mousemove', updateMousePos, false);
             SocketHandler();
             clearInterval(loadingInterval);
         }
@@ -46,7 +49,6 @@ function SocketHandler() {
 
     socket.onmessage = function(message) {
         let data = JSON.parse(message.data);
-
         // The value of Data.t denotes the type of message.
 
         // Type: 'd' -> Game canvas draw message.
@@ -62,8 +64,12 @@ function SocketHandler() {
         else if (data.t == 'c') {
             clearText(data.k);
         }
-        // Type: 'b' -> Background gradient message. 
+        // Type: 'b' -> Background Image message. 
         else if (data.t == 'b') {
+            setBackground(data.i);
+        }
+        // Type: 'g' -> Background gradient message. 
+        else if (data.t == 'g') {
             setGradient(data.c1, data.c2);
         }
         // Type: 'a' -> ID-Map message.
@@ -71,16 +77,15 @@ function SocketHandler() {
             loadIdMap(data.d);
         }
 
-
-        /* TODO add more message types here... Sounds, ect.
+    /*
+        TODO add more message types here... Sounds, ect.
            i.e: 
             else if (data.t === 's') {
                 playSound(data.d);
             }
-        */
+    */
 
     }
-
 }
 
 // The function which handles clearing textStrings.
@@ -89,7 +94,6 @@ function clearText(key) {
     // If the text strings has the key, remove it.
     if (textStrings.hasOwnProperty(key)) {
         delete textStrings[key];
-
         // Redraw all text strings.
         textCanvas.clearRect(0, 0, 1024, 576);
         let keys = Object.keys(textStrings);
@@ -98,7 +102,11 @@ function clearText(key) {
             textCanvas.font = textString.font;
             textCanvas.fillText(textString.string, textString.dx, textString.dy);
         }
-    } else {
+    } else if (key === 'all') {
+        textCanvas.clearRect(0, 0, 1024, 576);
+        textStrings = {};
+    } 
+    else {
         console.log("No textString to delete at key : " + key);
     }
 }
@@ -125,6 +133,14 @@ function drawText(textString, font, key, color, dx, dy) {
         textCanvas.fillText(textString.string, textString.dx, textString.dy);
     }
 }
+
+// the function to handle background image setting:
+function setBackground(spriteName) {
+    bgCanvas.clearRect(0, 0, 1024, 576);
+    let sprite = getSprite(spriteName);
+    bgCanvas.drawImage(sprite.image, 0, 0, 1024, 576, 0, 0, 1024, 576);
+}
+
 
 
 // The function which handles setting the background-gradient colors passed via message.
@@ -165,14 +181,13 @@ function renderFrame(data, playerPos) {
             // Draw all static-sprites corrected against the players Pos.
             sprite.draw(data[i].d[0] - playerPos[0], data[i].d[1] - playerPos[1], 0);
         }
-
     }
 }
 
 
 // key up event, que a input with state and key.
 document.onkeydown = function(event) {
-    if (event.keyCode === 87)       // 87 -> "W"
+    if (event.keyCode === 87)        // 87 -> "W"
         queueInput('w', 1);
     else if (event.keyCode === 65)  // 65 -> "A" 
         queueInput('a', 1);
@@ -189,18 +204,39 @@ document.onkeydown = function(event) {
 
 // key down event, que a input with state and key.
 document.onkeyup = function(event) {
-    if (event.keyCode === 87)       // 87 -> "W"
+    if (event.keyCode === 87)        // 87 -> "W"
         queueInput('w', 0);
-    else if (event.keyCode === 65)  // 65 -> "A"
+    else if (event.keyCode === 65)   // 65 -> "A"
         queueInput('a', 0);
-    else if (event.keyCode === 83)  // 83 -> "S"
+    else if (event.keyCode === 83)   // 83 -> "S"
         queueInput('s', 0);
-    else if (event.keyCode === 68)  // 68 -> "D"
+    else if (event.keyCode === 68)   // 68 -> "D"
         queueInput('d', 0);
-    else if (event.keyCode === 32)  // 68 -> "Space"
+    else if (event.keyCode === 32)   // 68 -> "Space"
         queueInput('_', 0);
-    else if (event.keyCode === 13)  // 13 -> "Enter"
+    else if (event.keyCode === 13)   // 13 -> "Enter"
         queueInput('|', 0);
+}
+
+
+// A function to handle Updating the mouse pos.
+function updateMousePos(evt) {
+    let pos = getMousePos(evt);
+    if (pos != mousePos) {
+        mousePos = pos;
+        queueInput('mp', [Math.round(pos.x), Math.round(pos.y)]);
+    }
+}
+
+
+// A function to handle getting mouse pos.
+function getMousePos(evt) {
+    let x = Math.min(1024, Math.max(0, (evt.clientX - rect.left))); 
+    let y = Math.min(576, Math.max(0, (evt.clientY - rect.top))); 
+    return {
+      x:x,
+      y:y
+    };
 }
 
 

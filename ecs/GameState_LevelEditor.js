@@ -15,22 +15,21 @@ const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 
 class GameState_LevelEditor extends GameState {
-    gameEngine: GameEngine;
+    game: GameEngine;
     entityManager: EntityManager;
     player: Entity;
     update: void => void;
 
     constructor(game: GameEngine) {
         super();
-
-        this.gameEngine = game;
+        this.game = game;
         this.entityManager = new EntityManager();
         this.player = this.entityManager.addEntity("player");
-
         this.init();
     }
 
     init() {
+        this.game.setBackground('bg_green');
         this.spawnAllEntities();
     }
 
@@ -51,12 +50,11 @@ class GameState_LevelEditor extends GameState {
         this.sDrag();
         this.sRender();
 
-        this.gameEngine.renderQueue = [];
     }
 
     sUserInput() {
         // TODO: Process all user input here
-        let inputMap = this.gameEngine.getInputMap();
+        let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
         if (inputMap.w) {
             playerInput.up = true;
@@ -87,16 +85,9 @@ class GameState_LevelEditor extends GameState {
         // TODO: Handle all rendering here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            let pos = entities[i].getComponent(CTransform).pos;
-            let anim = entities[i].getComponent(CAnimation).animation;
-            this.gameEngine.draw(anim, pos.x, pos.y, 1);
+            // let pos = entities[i].getComponent(CTransform).pos;
+            // let anim = entities[i].getComponent(CAnimation).animation;
         }
-
-        const {
-            emitFrame
-        } = require('./../server/IOHandler.js');
-
-        emitFrame(this.gameEngine.socket, this.gameEngine.renderQueue, 0, 0);
     }
 
     sDrag() {

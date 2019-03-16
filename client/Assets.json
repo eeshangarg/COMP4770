@@ -73,6 +73,36 @@
   },
   {
     "FrameCOunt": 1,
+    "ImageSource": "/client/assets/images/background/bg_menu.png",
+    "SpriteName": "bg_menu",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCOunt": 1,
+    "ImageSource": "/client/assets/images/background/bg_cave.png",
+    "SpriteName": "bg_cave",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCOunt": 1,
+    "ImageSource": "/client/assets/images/background/bg_desert.png",
+    "SpriteName": "bg_desrt",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCOunt": 1,
+    "ImageSource": "/client/assets/images/background/bg_green.png",
+    "SpriteName": "bg_green",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCOunt": 1,
+    "ImageSource": "/client/assets/images/background/bg_snow.png",
+    "SpriteName": "bg_snow",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCOunt": 1,
     "ImageSource": "/client/assets/images/msc/error.png",
     "SpriteName": "error",
     "Type": "Sprite"

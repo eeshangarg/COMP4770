@@ -12,6 +12,8 @@ class Sprite {
         this.image.onload = function() {
             self.width = this.width / frameCount;
             self.height = this.height;
+            self.halfWidth = self.width/2;
+            self.halfHeight = self.height/2;
             spriteLoaded();
             console.log(spriteName + ' Loaded');
         }
@@ -26,8 +28,8 @@ class Sprite {
             0,
             this.width,
             this.height,
-            dx,
-            dy,
+            dx+this.halfWidth,
+            dy-this.halfHeight,
             this.width,
             this.height);
     }

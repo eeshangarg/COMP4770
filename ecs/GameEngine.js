@@ -6,8 +6,10 @@
 
 /* global require */
 const GameState = require("./GameState.js");
-const GameState_Play = require("./GameState_Play.js");
+const GameState_Menu = require("./GameState_Menu.js");
 const Animation = require('./../rendering/Animation.js');
+const Vec = require('./Vec.js');
+let io = require('./../server/IOHandler.js');
 
 class GameEngine {
 
@@ -25,12 +27,16 @@ class GameEngine {
     popState: void => void;
     getInputMap: void => Object;
     setInputMap: Object => void;
-    draw: (anim: Animation, dir: number, dx: number, dy: number) => void;
+    draw: (anim: Animation, dir: number, pos: Vec) => void;
+    drawFrame: Vec => void;
     queueAnimation: (id: number, frame: number, dx: number, dy: number) => void;
-    self: GameEngine;
     renderQueue: Array<Object>;
+    self: GameEngine;
     runInterval: Object;
     inputMap: Object;
+    setBackground: string => void;
+    drawText: (textString: string, key: string, font: string, color: string, dx: number, dy: number) => void;
+    clearText: string => void;
 
     constructor(socket: Object) {
             this.self = this;
@@ -40,20 +46,21 @@ class GameEngine {
             this.statesToPush = [];
             this.popStates = 0;
             this.running = true;
-
             this.inputMap = {
                 w: false,
                 a: false,
                 d: false,
                 s: false,
                 space: false,
-                enter: false
+                enter: false,
+                mousePos:[0,0]
             };
+            io = require('./../server/IOHandler.js');
         }
 
-    // An intializer function for the game enginge. 
+    // An intializer function for the game Enginge.
     init() {
-        let state: GameState_Play = new GameState_Play(this, 'sample/levelPath.json');
+        let state: GameState_Menu = new GameState_Menu(this);
         this.pushState(state)
         this.run()
     }
@@ -134,10 +141,8 @@ class GameEngine {
         }
     }
 
-    draw(anim: Animation, dir: number, dx: number, dy: number) {
-
+    draw(anim: Animation, dir: number, pos: Vec) {
         let id = 0;
-
         if (dir === -1) {
             id = anim.lid;
         } else {
@@ -145,11 +150,27 @@ class GameEngine {
         }
 
         if (anim.frameCount === 0) {
-            this.queueAnimation(id, -1, dx, dy);
+            this.queueAnimation(id, -1, pos.x, pos.y);
         } else {
-            this.queueAnimation(id, anim.animationFrame, dx, dy);
+            this.queueAnimation(id, anim.animationFrame, pos.x, pos.y);
         }
+    }
 
+    drawFrame(pPos: Vec){
+        io.emitFrame(this.socket, this.renderQueue, pPos.x, pPos.y);
+        this.renderQueue = [];
+    }
+
+    setBackground(bgName: string){
+        io.setBackground(this.socket, bgName);
+    }
+
+    drawText(textString: string, key: string, font: string, color: string, dx: number, dy: number) {
+        io.drawText(this.socket, textString, key, font, color, dx, dy);
+    }
+
+    clearText(key: string){
+        io.clearText(this.socket, key);
     }
 }
 
