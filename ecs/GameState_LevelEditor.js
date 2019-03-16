@@ -17,14 +17,14 @@ const Vec = require('./Vec.js');
 class GameState_LevelEditor extends GameState {
     game: GameEngine;
     entityManager: EntityManager;
-    player: Entity;
+    editor: Entity;
     update: void => void;
 
     constructor(game: GameEngine) {
         super();
         this.game = game;
         this.entityManager = new EntityManager();
-        this.player = this.entityManager.addEntity("player");
+        this.editor = this.entityManager.addEntity("editor");
         this.init();
     }
 
@@ -36,9 +36,12 @@ class GameState_LevelEditor extends GameState {
     spawnAllEntities() {
         // TODO: Spawn one entity of each type so that the user
         // can play around with them
-        this.player.addComponent(new CTransform(new Vec(0, 0)));
-        this.player.addComponent(new CAnimation("playerRun", true));
-        this.player.addComponent(new CInput());
+        let tile = this.entityManager.addEntity("tile");
+        tile.addComponent(new CTransform(new Vec(0, 0)));
+        tile.addComponent(new CAnimation("cave-platform", true));
+        this.editor.addComponent(new CTransform(new Vec(0, 0)));
+        this.editor.addComponent(new CAnimation("playerRun", true));
+        this.editor.addComponent(new CInput());
     }
 
     update() {
@@ -47,6 +50,7 @@ class GameState_LevelEditor extends GameState {
         this.sMovement();
         this.sAnimation();
         this.sUserInput();
+        this.sEdit();
         this.sDrag();
         this.sRender();
 
@@ -55,21 +59,43 @@ class GameState_LevelEditor extends GameState {
     sUserInput() {
         // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
-        let playerInput = this.player.getComponent(CInput);
-        if (inputMap.w) {
-            playerInput.up = true;
+        let playerInput = this.editor.getComponent(CInput);
+        if (inputMap.escape){
+            this.game.popState();
         }
+
+        let playerPos = this.editor.getComponent(CTransform).pos;
+        let px = playerPos.x - 512;
+        let py = playerPos.y - 288;
+
+        playerInput.up = inputMap.w;
+        playerInput.down = inputMap.s;
+        playerInput.left = inputMap.a;
+        playerInput.placeTile = inputMap.space;
+        playerInput.right = inputMap.d;
+        playerInput.mousePos = new Vec (inputMap.mousePos[0] + px, inputMap.mousePos[1] + py);
     }
 
     sMovement() {
         // TODO: Process the player's movement here.
         // Note that the player should still be able to move around
         // so that the user can navigate the level canvas.
-        let playerInput = this.player.getComponent(CInput);
+        let playerInput = this.editor.getComponent(CInput);
 
         // Example
         if (playerInput.up) {
-            this.player.getComponent(CTransform).pos.y += 1;
+            this.editor.getComponent(CTransform).pos.y += 3;
+        }
+        else if (playerInput.down) {
+            this.editor.getComponent(CTransform).pos.y -= 3;
+        }
+
+        if (playerInput.left) {
+            this.editor.getComponent(CTransform).pos.x -= 3;
+            this.editor.getComponent(CTransform).facing = -1;
+        } else if (playerInput.right) {
+            this.editor.getComponent(CTransform).pos.x += 3;
+            this.editor.getComponent(CTransform).facing = 1;
         }
     }
 
@@ -77,7 +103,9 @@ class GameState_LevelEditor extends GameState {
         // TODO: Handle all animation here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            entities[i].getComponent(CAnimation).animation.update();
+            if (entities[i].hasComponent(CAnimation)){
+                entities[i].getComponent(CAnimation).animation.update();
+            }
         }
     }
 
@@ -85,8 +113,21 @@ class GameState_LevelEditor extends GameState {
         // TODO: Handle all rendering here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            // let pos = entities[i].getComponent(CTransform).pos;
-            // let anim = entities[i].getComponent(CAnimation).animation;
+            let pos = entities[i].getComponent(CTransform).pos;
+            let dir = entities[i].getComponent(CTransform).facing;
+            let anim = entities[i].getComponent(CAnimation).animation;
+            this.game.draw(anim, dir, pos);
+        }
+        this.game.drawFrame(this.editor.getComponent(CTransform).pos);
+    }
+
+    // A helper system to call other editors sub-systems off.
+    sEdit() {
+        let playerInput = this.editor.getComponent(CInput);
+        if (playerInput.placeTile){
+            let tile = this.entityManager.addEntity("tile");
+            tile.addComponent(new CTransform(playerInput.mousePos));
+            tile.addComponent(new CAnimation("egg", true));
         }
     }
 

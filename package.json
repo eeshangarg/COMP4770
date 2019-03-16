@@ -46,6 +46,8 @@
     },
     "dependencies": {
         "express": "^4.16.4",
+        "fast-json-stable-stringify": "^2.0.0",
+        "flatstr": "^1.0.9",
         "flow": "^0.2.3",
         "npm": "^6.9.0",
         "shortid": "^2.2.14",

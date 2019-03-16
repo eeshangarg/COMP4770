@@ -1,12 +1,13 @@
+// Import the required helper functions from Assets.js
 import {
     loadFromFile,
     allSpritesLoaded,
     getSprite
 } from './Assets.js';
 
-const bgCanvas = document.getElementById('bgCanvas').getContext('2d')
-const gameCanvas = document.getElementById('gameCanvas').getContext('2d');
-const textCanvas = document.getElementById('textCanvas').getContext('2d');
+const bgCanvas = document.getElementById('bgCanvas').getContext('2d')       // The background Canvas.
+const gameCanvas = document.getElementById('gameCanvas').getContext('2d');  // The Game Canvas.
+const textCanvas = document.getElementById('textCanvas').getContext('2d');  // The Text Canvas.
 const rect = document.getElementById('gameCanvas').getBoundingClientRect();
 const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
@@ -17,38 +18,51 @@ let animIdMap = new Map();
 let textStrings = {};
 let mousePos = {x:Infinity,y:Infinity};
 
+
+loadFromFile('/client/Assets.json');
 document.fonts.load('10pt "PS2P"');
 document.fonts.load('10pt "pixeled"');
 document.fonts.load('10pt "Seagram"');
 
-// Kill socket if the page is reloaded. 
+/*
+    Close socket if the page is reloaded. This is only required for some versions of
+    browsers, however it is best practice to keep it in.
+*/
 window.onbeforeunload = function() {
     socket.close();
 };
 
 
-//
+// When the socket is connected, report asset status to server. 
 socket.onopen = function() {
 
     console.log('Socket Opened Sucessfully! Waiting for Assets...');
 
-    loadFromFile('/client/Assets.json');
-
     loadingInterval = setInterval(function() {
         if (allSpritesLoaded()) {
+            // Message the server informing that all assets have been loaded.
             socket.send('all assests loaded');
+            // Add the event handler for mouse , movement. 
             window.addEventListener('mousemove', updateMousePos, false);
+            // Create the socketHandler.
             SocketHandler();
+            // Clear the asset listening interval.
             clearInterval(loadingInterval);
         }
-    }, 10);
+    }, 25);
 };
 
-// This function handles sendinhg / receiving messages.
+socket.onclose = function() {
+    console.log('Socket Closing.');
+}
+
+// This function handles sending / receiving messages.
 function SocketHandler() {
 
     socket.onmessage = function(message) {
+
         let data = JSON.parse(message.data);
+
         // The value of Data.t denotes the type of message.
 
         // Type: 'd' -> Game canvas draw message.
@@ -168,18 +182,18 @@ function renderFrame(data, playerPos) {
     gameCanvas.clearRect(0, 0, 1024, 576);
 
     // Correct the players position to the center of canvas. 
-    playerPos[0] -= 487;
-    playerPos[1] -= 263;
+    let px = playerPos[0] - 512;
+    let py = playerPos[1] - 288;
 
     // Draw all streamed animations from server.
     for (let i = 0; i < data.length; i++) {
         let sprite = getSprite(animIdMap.get(data[i].n));
         if (data[i].hasOwnProperty('f')) {
             // Draw all Dynamic-sprites corrected against the players Pos.
-            sprite.draw(data[i].d[0] - playerPos[0], data[i].d[1] - playerPos[1], data[i].f);
+            sprite.draw(data[i].d[0]-px, 576-data[i].d[1]+py, data[i].f);
         } else {
             // Draw all static-sprites corrected against the players Pos.
-            sprite.draw(data[i].d[0] - playerPos[0], data[i].d[1] - playerPos[1], 0);
+            sprite.draw(data[i].d[0]-px, 576-data[i].d[1]+py, 0);
         }
     }
 }
@@ -199,6 +213,8 @@ document.onkeydown = function(event) {
         queueInput('_', 1);
     else if (event.keyCode === 13)  // 13 -> "Enter"
         queueInput('|', 1);
+    else if (event.keyCode === 27)   // 13 -> "Escape"
+        queueInput('esc', 1);
 }
 
 
@@ -216,6 +232,9 @@ document.onkeyup = function(event) {
         queueInput('_', 0);
     else if (event.keyCode === 13)   // 13 -> "Enter"
         queueInput('|', 0);
+    else if (event.keyCode === 27)   // 13 -> "Escape"
+        queueInput('esc', 0);
+
 }
 
 
@@ -224,7 +243,7 @@ function updateMousePos(evt) {
     let pos = getMousePos(evt);
     if (pos != mousePos) {
         mousePos = pos;
-        queueInput('mp', [Math.round(pos.x), Math.round(pos.y)]);
+        queueInput('mp', [Math.round(pos.x), 576 - Math.round(pos.y)]);
     }
 }
 

@@ -9,6 +9,7 @@ class GameState {
     GameEngine: GameEngine;
     paused: boolean;
     update(){}
+    init(){}
 }
 
 

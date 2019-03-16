@@ -4,8 +4,6 @@
 /* global require */
 
 const GameState = require('./GameState.js');
-const GameState_Play = require("./GameState_Play.js");
-const GameState_LevelEditor = require("./GameState_LevelEditor.js");
 const GameEngine = require('./GameEngine.js');
 const Vec = require('./Vec.js');
 
@@ -30,6 +28,7 @@ class GameState_Menu extends GameState {
     }
 
     init() {
+        this.menuStrings = [];
         this.menuStrings.push('Single Player');
         this.menuStrings.push('Level Editor');
         this.menuStrings.push('Items');
@@ -75,16 +74,12 @@ class GameState_Menu extends GameState {
             }
 
             if (inputMap.enter && this.selectedMenuIndex === 0) {
-                this.primed = false;
                 this.game.clearText('all');
-                let state: GameState_Play = new GameState_Play(this.game, 'SomeLevel');
-                this.game.pushState(state);
+                this.game.pushState('single player');
             }
             else if (inputMap.enter && this.selectedMenuIndex === 1) {
-                this.primed = false;
                 this.game.clearText('all');
-                let state: GameState_LevelEditor = new GameState_LevelEditor(this.game);
-                this.game.pushState(state);
+                this.game.pushState('level editor');
             }
         }
         else if (this.countDown >= 10) {

@@ -29,7 +29,6 @@ class GameState_Play extends GameState {
         this.paused = false;
         this.player = this.entityManager.addEntity("player");
         this.levelPath = levelPath;
-
         this.init();
     }
 
@@ -37,6 +36,10 @@ class GameState_Play extends GameState {
         this.game.setBackground('bg_cave');
         this.loadLevel();
         this.spawnPlayer();
+        // remove :
+        let tile = this.entityManager.addEntity("tile");
+        tile.addComponent(new CTransform(new Vec(10, -10)));
+        tile.addComponent(new CAnimation("cave-platform", true));
     }
 
     loadLevel() {
@@ -69,20 +72,38 @@ class GameState_Play extends GameState {
         // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
+        if (inputMap.escape){
+            this.game.popState();
+        }
+
+        let playerPos = this.player.getComponent(CTransform).pos;
+        let px = playerPos.x - 512;
+        let py = playerPos.y - 288;
+
         playerInput.up = inputMap.w;
         playerInput.down = inputMap.s;
         playerInput.left = inputMap.a;
         playerInput.right = inputMap.d;
-        playerInput.mousePos = new Vec(inputMap.mousePos[0], inputMap.mousePos[1])
+        playerInput.mousePos = new Vec (inputMap.mousePos[0] + px, inputMap.mousePos[1] + py);
     }
 
     sMovement() {
-        // TODO: Process all movement here.
         let playerInput = this.player.getComponent(CInput);
 
         // Example
         if (playerInput.up) {
-            this.player.getComponent(CTransform).pos.y += 1;
+            this.player.getComponent(CTransform).pos.y += 3;
+        }
+        else if (playerInput.down) {
+            this.player.getComponent(CTransform).pos.y -= 3;
+        }
+
+        if (playerInput.left) {
+            this.player.getComponent(CTransform).pos.x -= 3;
+            this.player.getComponent(CTransform).facing = -1;
+        } else if (playerInput.right) {
+            this.player.getComponent(CTransform).pos.x += 3;
+            this.player.getComponent(CTransform).facing = 1;
         }
     }
 
@@ -90,7 +111,9 @@ class GameState_Play extends GameState {
         // TODO: Handle all animation here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            entities[i].getComponent(CAnimation).animation.update();
+            if (entities[i].hasComponent(CAnimation)){
+                entities[i].getComponent(CAnimation).animation.update();
+            }
         }
     }
 
@@ -98,9 +121,12 @@ class GameState_Play extends GameState {
         // TODO: Handle all rendering here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            // let pos = entities[i].getComponent(CTransform).pos;
-            // let anim = entities[i].getComponent(CAnimation).animation;
+            let pos = entities[i].getComponent(CTransform).pos;
+            let dir = entities[i].getComponent(CTransform).facing;
+            let anim = entities[i].getComponent(CAnimation).animation;
+            this.game.draw(anim, dir, pos);
         }
+        this.game.drawFrame(this.player.getComponent(CTransform).pos);
     }
 
     sAI() {

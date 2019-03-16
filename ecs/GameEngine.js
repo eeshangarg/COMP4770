@@ -7,6 +7,8 @@
 /* global require */
 const GameState = require("./GameState.js");
 const GameState_Menu = require("./GameState_Menu.js");
+const GameState_Play = require("./GameState_Play.js");
+const GameState_LevelEditor = require("./GameState_LevelEditor.js");
 const Animation = require('./../rendering/Animation.js');
 const Vec = require('./Vec.js');
 let io = require('./../server/IOHandler.js');
@@ -23,7 +25,7 @@ class GameEngine {
     run: void => void;
     init: void => void;
     update: void => void;
-    pushState: GameState => void;
+    pushState: string => void;
     popState: void => void;
     getInputMap: void => Object;
     setInputMap: Object => void;
@@ -53,6 +55,7 @@ class GameEngine {
                 s: false,
                 space: false,
                 enter: false,
+                escape: false,
                 mousePos:[0,0]
             };
             io = require('./../server/IOHandler.js');
@@ -60,8 +63,7 @@ class GameEngine {
 
     // An intializer function for the game Enginge.
     init() {
-        let state: GameState_Menu = new GameState_Menu(this);
-        this.pushState(state)
+        this.pushState('menu')
         this.run()
     }
 
@@ -83,6 +85,7 @@ class GameEngine {
         for (let i = 0; i < this.popStates; i++) {
             if (this.states.length > 0) {
                 this.states.pop();
+                this.states[this.states.length - 1].init();
             }
         }
         // Reset the pop-state counter.
@@ -92,16 +95,29 @@ class GameEngine {
         for (let i = 0; i < this.statesToPush.length; i++) {
             this.states.push(this.statesToPush[i]);
         }
+        this.statesToPush = [];
 
         // Update the top of the state stack. 
         this.states[this.states.length - 1].update();
 
-
     }
 
     // Push a state onto the "States to be pushed" stack.
-    pushState(state: GameState) {
-        this.statesToPush.push(state);
+    pushState(name: string) {
+        if(name === 'menu'){
+            let state: GameState_Menu = new GameState_Menu(this);
+            this.statesToPush.push(state);
+        }
+        else if(name === 'single player'){
+            let state: GameState_Play = new GameState_Play(this, 'SomeLevel');
+            this.statesToPush.push(state);
+        }
+        else if(name === 'level editor'){
+            let state: GameState_LevelEditor = new GameState_LevelEditor(this);
+            this.statesToPush.push(state);
+        }
+
+        
     }
 
     // Queue up a state to be popped. (always top state.)

@@ -7,7 +7,10 @@ let socketMap = new Map();
 // Requires
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
+const flatstr = require('flatstr');
+const stringify = require('fast-json-stable-stringify');
 const {
+    getAnimationIDMap,
     loadAnimations,
     getRenderQueue
 } = require('./../rendering/Rendering.js');
@@ -34,12 +37,12 @@ function initIO(wss) {
 
         ws.on('message', (data) => {
             if (data === 'all assests loaded') {
-                const getAnimationIDMap = require('./../rendering/Rendering.js').getAnimationIDMap;
-                const animIdMap = JSON.stringify({
+                let message = {
                     t: 'a',
                     d: getAnimationIDMap()
-                });
-                ws.send(animIdMap);
+                };
+                let flatJson = flatstr(stringify(message));
+                ws.send(flatJson);
                 IOHandler(ws);
             }
         });
@@ -70,7 +73,6 @@ function IOHandler(ws) {
     ws.on('message', (message) => {
 
         let data = JSON.parse(message);
-
         // Data.t, Type: 'i' -> Input. 
         if (data.t === 'i') {
             let map = ws.GameEngine.getInputMap();
@@ -100,8 +102,8 @@ function drawText(ws, textString, key, font, color, dx, dy) {
             c: color,
             p: [dx, dy]
         };
-
-        ws.send(JSON.stringify(message));
+        let flatJson = flatstr(stringify(message));
+        ws.send(flatJson);
     }
 }
 
@@ -114,7 +116,8 @@ function clearText(ws, key) {
             k: key,
         };
 
-        ws.send(JSON.stringify(message));
+        let flatJson = flatstr(stringify(message));
+        ws.send(flatJson);
     }
 
 }
@@ -131,7 +134,8 @@ function emitFrame(ws, renderQueue, px, py) {
             d: renderQueue
         };
 
-        ws.send(JSON.stringify(message));
+        let flatJson = flatstr(stringify(message));
+        ws.send(flatJson);
     }
 
 }
@@ -145,7 +149,8 @@ function setBackground(ws, bgName) {
             i: bgName
         }
 
-        ws.send(JSON.stringify(message));
+        let flatJson = flatstr(stringify(message));
+        ws.send(flatJson);
     }
 }
 
@@ -159,7 +164,8 @@ function setBackgroundGradient(ws, c1, c2) {
             c2: c2
         }
 
-        ws.send(JSON.stringify(message));
+            let flatJson = flatstr(stringify(message));
+            ws.send(flatJson);
     }
 }
 
@@ -168,7 +174,6 @@ function setBackgroundGradient(ws, c1, c2) {
 function updateInputData(data, map) {
 
     for (var i = 0; i < data.length; i++) {
-
         // Resolve the state of the input optmistically.
         let state = true;
         if (data[i].s === 0) {
@@ -191,9 +196,12 @@ function updateInputData(data, map) {
             map.space = state;
         } else if (data[i].k === '|') {
             map.enter = state;
+        } else if (data[i].k === 'esc') {
+            map.escape = state;
         }
 
     }
+
     return map;
 }
 

@@ -19,7 +19,7 @@ class CTransform extends Component {
 
     pos: Vec;
     prevPos: Vec;
-    scale: Vec;
+    facing: number;
     speed: Vec;
     angle: number;
 
@@ -27,7 +27,7 @@ class CTransform extends Component {
         super();
         this.pos = p;
         this.prevPos = new Vec(0.0, 0.0);
-        this.scale = new Vec(1.0, 1.0);
+        this.facing = 1;
         this.speed = new Vec(0.0, 0.0);
         this.angle = 0.0;
     }
@@ -43,6 +43,7 @@ class CInput extends Component {
     right: boolean;
     shoot: boolean;
     canShoot: boolean;
+    placeTile: boolean;
     mousePos: Vec;
 
     constructor() {
@@ -52,6 +53,7 @@ class CInput extends Component {
         this.left = false;
         this.right = false;
         this.shoot = false;
+        this.placeTile = false;
         this.canShoot = true;
         this.mousePos = new Vec(0,0);
     }

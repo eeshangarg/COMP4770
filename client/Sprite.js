@@ -28,7 +28,7 @@ class Sprite {
             0,
             this.width,
             this.height,
-            dx+this.halfWidth,
+            dx-this.halfWidth,
             dy-this.halfHeight,
             this.width,
             this.height);
