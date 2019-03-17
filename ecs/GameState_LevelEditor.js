@@ -46,14 +46,12 @@ class GameState_LevelEditor extends GameState {
 
     update() {
         this.entityManager.update();
-
         this.sMovement();
         this.sAnimation();
         this.sUserInput();
         this.sEdit();
         this.sDrag();
         this.sRender();
-
     }
 
     sUserInput() {
@@ -111,14 +109,21 @@ class GameState_LevelEditor extends GameState {
 
     sRender() {
         // TODO: Handle all rendering here.
+        let editorPos = this.editor.getComponent(CTransform).pos;
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            let pos = entities[i].getComponent(CTransform).pos;
-            let dir = entities[i].getComponent(CTransform).facing;
-            let anim = entities[i].getComponent(CAnimation).animation;
-            this.game.draw(anim, dir, pos);
+            // Only draw entities with Animations.
+            if (entities[i].hasComponent(CAnimation)){
+                let pos = entities[i].getComponent(CTransform).pos;
+                // Use culling to rapidly remove non-onscreen entites.
+                if (editorPos.distf(pos) < 360000) {
+                    let dir = entities[i].getComponent(CTransform).facing;
+                    let anim = entities[i].getComponent(CAnimation).animation;
+                    this.game.draw(anim, dir, pos);
+                }
+            }
         }
-        this.game.drawFrame(this.editor.getComponent(CTransform).pos);
+        this.game.drawFrame(editorPos);
     }
 
     // A helper system to call other editors sub-systems off.

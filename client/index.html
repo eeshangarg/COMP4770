@@ -43,7 +43,7 @@
         z-index: 15;
         top: 50%;
         left: 50%;
-        margin: -120px 0 0 -200px;
+        margin: -200px 0 0 -200px;
         }
         @font-face {
         font-family: 'PS2P';
@@ -63,6 +63,7 @@
         </style>
     </head>
     <body>
+        <title>The Knight Before.</title>
         <div id="div_login">
             <h1>The Knight Before.</h1>
             <form class="div_login_fields">
@@ -79,21 +80,21 @@
             </div>
         </div>
         <div id="div_new_acc" style="visibility:hidden">
+            <h1>Registration:</h1>
             <form class="new_acc_form">
                 <label for="new_email"><b>Email:</b></label>
-                <input type="text" placeholder="Enter email...">
+                <input type="text" placeholder="Enter email..." id="new_email">
                 <label for="new_username"><b>Username:</b></label>
-                <input type="text" placeholder="Enter Username...">
+                <input type="text" placeholder="Enter Username..." id="new_username">
                 <label for="new_password"><b>Password:</b></label>
-                <input type="text" placeholder="Enter Password...">
-                <label for="new_password2"><b>Confirm:</b></label>
-                <input type="text" placeholder="Confirm Password...">
-                <button id="newCancelBtn">Cancel</button>
-                <button id="newAcceptBtn">Accept</button>
+                <input type="text" placeholder="Enter Password..." id="new_password">
+                <label for="new_passwordConf"><b>Confirm:</b></label>
+                <input type="text" placeholder="Confirm Password..." id="new_passwordConf">
             </form>
+            <button id="newCancelBtn">Cancel</button>
+            <button id="newAcceptBtn">Accept</button>
         </div>
         <div id="div_game_div" style="visibility:hidden">
-            <title>The Knight Before.</title>
             <canvas id="bgCanvas" width="1024" height="576" style="position: absolute; left: 100px; top: 15px; z-index: 0; border:2px solid #000000;"></canvas>
             <canvas id="gameCanvas" width="1024" height="576" style="position: absolute; left: 100px; top: 15px; z-index: 1; border:2px solid #000000;"></canvas>
             <canvas id="textCanvas" width="1024" height="576" style="position: absolute; left: 100px; top: 15px; z-index: 2; border:2px solid #000000;"></canvas>

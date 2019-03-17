@@ -14,10 +14,10 @@ const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 
 let inputQueue = [];
 let loadingInterval = null;
+let loginInterval = null;
 let animIdMap = new Map();
 let textStrings = {};
 let mousePos = {x:Infinity,y:Infinity};
-let loggedIn = false;
 
 loadFromFile('/client/Assets.json');
 document.fonts.load('10pt "PS2P"');
@@ -28,10 +28,9 @@ document.fonts.load('10pt "Seagram"');
 document.getElementById("loginBtn").addEventListener("click", loginHandler);
 document.getElementById("cancelBtn").addEventListener("click", cancleHandler);
 document.getElementById("forgotPwdBtn").addEventListener("click", forgotMyPwdHanlder);
-document.getElementById("newCancelBtn").addEventListener("click", newCancleHandler);
 document.getElementById("createAccountBtn").addEventListener("click", newAccHandler);
 document.getElementById("newAcceptBtn").addEventListener("click", newAcceptHandler);
-
+document.getElementById("newCancelBtn").addEventListener("click", newCancleHandler);
 
 /*
     Close socket if the page is reloaded. This is only required for some versions of
@@ -47,25 +46,91 @@ socket.onopen = function() {
     console.log('Socket Opened Sucessfully! Waiting for Assets...');
 
     loadingInterval = setInterval(function() {
-        if (allSpritesLoaded() && loggedIn) {
+        if (allSpritesLoaded()) {
+            let message = {
+                t:'load'
+            };
             // Message the server informing that all assets have been loaded.
-            socket.send('all assests loaded');
-            // Add the event handler for mouse , movement. 
-            window.addEventListener('mousemove', updateMousePos, false);
-            // Create the socketHandler.
-            SocketHandler();
+            socket.send(JSON.stringify(message));
             // Clear the asset listening interval.
             clearInterval(loadingInterval);
+            loginInterval = setInterval(loginListner(), 100);
         }
-    }, 25);
+    }, 100);
 };
 
 socket.onclose = function() {
     console.log('Socket Closing.');
 }
 
+// This function handles login-listening
+function loginListner() {
+    socket.onmessage = function(message) {
+        let data = JSON.parse(message.data);
+        // Type: 'l' -> Animation login-validation message.
+        if (data.t === 'login') {
+            if(data.valid == 1){
+                // Valid login create the socketHandler.
+                document.getElementById('div_login').style.visibility='hidden';
+                document.getElementById('div_game_div').style.visibility='visible';
+                SocketHandler()
+            }
+            else {
+                alert("Invalid Username / Password.");
+            }
+        }
+        // Type: 'a' -> Animation ID-Map message.   
+        else if (data.t === 'animMap') {
+            loadIdMap(data.d);
+        }
+        else if (data === 'newAcc'){
+            console.log('newAcc', data.d);
+        }
+    }
+}
+
 // This function handles sending / receiving messages.
 function SocketHandler() {
+    // Add the event handler for mouse , movement.
+    window.addEventListener('mousemove', updateMousePos, false);
+    // key up event, que a input with state and key.
+
+    document.onkeydown = function(event) {
+        if (event.keyCode === 87)        // 87 -> "W"
+            queueInput('w', 1);
+        else if (event.keyCode === 65)  // 65 -> "A" 
+            queueInput('a', 1);
+        else if (event.keyCode === 83)  // 83 -> "S"
+            queueInput('s', 1);
+        else if (event.keyCode === 68)  // 68 -> "D"
+            queueInput('d', 1);
+        else if (event.keyCode === 32)  // 68 -> "Space" 
+            queueInput('_', 1);
+        else if (event.keyCode === 13)  // 13 -> "Enter"
+            queueInput('|', 1);
+        else if (event.keyCode === 27)   // 13 -> "Escape"
+            queueInput('esc', 1);
+    }
+
+
+    // key down event, que a input with state and key.
+    document.onkeyup = function(event) {
+        if (event.keyCode === 87)        // 87 -> "W"
+            queueInput('w', 0);
+        else if (event.keyCode === 65)   // 65 -> "A"
+            queueInput('a', 0);
+        else if (event.keyCode === 83)   // 83 -> "S"
+            queueInput('s', 0);
+        else if (event.keyCode === 68)   // 68 -> "D"
+            queueInput('d', 0);
+        else if (event.keyCode === 32)   // 68 -> "Space"
+            queueInput('_', 0);
+        else if (event.keyCode === 13)   // 13 -> "Enter"
+            queueInput('|', 0);
+        else if (event.keyCode === 27)   // 13 -> "Escape"
+            queueInput('esc', 0);
+
+    }
 
     socket.onmessage = function(message) {
 
@@ -93,10 +158,6 @@ function SocketHandler() {
         // Type: 'g' -> Background gradient message. 
         else if (data.t == 'g') {
             setGradient(data.c1, data.c2);
-        }
-        // Type: 'a' -> Animation ID-Map message.
-        else if (data.t === 'a') {
-            loadIdMap(data.d);
         }
 
     /*
@@ -206,46 +267,6 @@ function renderFrame(data, playerPos) {
     }
 }
 
-
-// key up event, que a input with state and key.
-document.onkeydown = function(event) {
-    if (event.keyCode === 87)        // 87 -> "W"
-        queueInput('w', 1);
-    else if (event.keyCode === 65)  // 65 -> "A" 
-        queueInput('a', 1);
-    else if (event.keyCode === 83)  // 83 -> "S"
-        queueInput('s', 1);
-    else if (event.keyCode === 68)  // 68 -> "D"
-        queueInput('d', 1);
-    else if (event.keyCode === 32)  // 68 -> "Space" 
-        queueInput('_', 1);
-    else if (event.keyCode === 13)  // 13 -> "Enter"
-        queueInput('|', 1);
-    else if (event.keyCode === 27)   // 13 -> "Escape"
-        queueInput('esc', 1);
-}
-
-
-// key down event, que a input with state and key.
-document.onkeyup = function(event) {
-    if (event.keyCode === 87)        // 87 -> "W"
-        queueInput('w', 0);
-    else if (event.keyCode === 65)   // 65 -> "A"
-        queueInput('a', 0);
-    else if (event.keyCode === 83)   // 83 -> "S"
-        queueInput('s', 0);
-    else if (event.keyCode === 68)   // 68 -> "D"
-        queueInput('d', 0);
-    else if (event.keyCode === 32)   // 68 -> "Space"
-        queueInput('_', 0);
-    else if (event.keyCode === 13)   // 13 -> "Enter"
-        queueInput('|', 0);
-    else if (event.keyCode === 27)   // 13 -> "Escape"
-        queueInput('esc', 0);
-
-}
-
-
 // A function to handle Updating the mouse pos.
 function updateMousePos(evt) {
     let pos = getMousePos(evt);
@@ -291,22 +312,25 @@ function queueInput(key, state) {
 
 // The function which handles 'login' button clicks.
 function loginHandler() {
-    loggedIn = true;
-    console.log(document.getElementById('usernameField').value);
-    console.log(document.getElementById('passwordField').value);
-    document.getElementById('div_login').style.visibility='hidden';
-    document.getElementById('div_game_div').style.visibility='visible';
-
+    let message = {
+        t:'login',
+        username:document.getElementById('usernameField').value,
+        password:document.getElementById('passwordField').value
+    };
+    socket.send(JSON.stringify(message));
+    document.getElementById('usernameField').value = '';
+    document.getElementById('passwordField').value = '';
 }
 
 // The function which handles 'login cancle' button clicks.
 function cancleHandler() {
-
+    document.getElementById('usernameField').value = '';
+    document.getElementById('passwordField').value = '';
 }
 
 // The function which handles 'forgot my password' button clicks.
 function forgotMyPwdHanlder() {
-
+    console.log(document.getElementById('usernameField').value);
 }
 
 // The function which handles 'Create new account' button clicks.
@@ -317,11 +341,41 @@ function newAccHandler() {
 
 // The function which handles 'cancle-creating new account' button clicks.
 function newCancleHandler() {
+    console.log('deet');
+    document.getElementById('new_email').value = '';
+    document.getElementById('new_username').value = '';
+    document.getElementById('new_password').value = '';
+    document.getElementById('new_passwordConf').value = '';
     document.getElementById('div_login').style.visibility='visible';
     document.getElementById('div_new_acc').style.visibility='hidden';
 }
 
 // The function which handles 'submit new account' button clicks.
 function newAcceptHandler() {
-
+    let password = document.getElementById('new_password').value;
+    let passwordConf = document.getElementById('new_passwordConf').value;
+    let email = document.getElementById('new_email').value;
+    let username = document.getElementById('new_username').value;
+    if (password === '' || username === '' || email === '') {
+        alert("Please fill in all fields.");
+    }
+    else if (password != passwordConf){
+        document.getElementById('new_password').value = '';
+        document.getElementById('new_passwordConf').value = '';
+        alert("Passwords do not match.");
+    }
+    else {
+        let message = {
+            t:'newAcc',
+            username:username,
+            password:password,
+            email:email
+        };
+        socket.send(JSON.stringify(message));
+        document.getElementById('new_password').value = '';
+        document.getElementById('new_passwordConf').value = '';
+        document.getElementById('new_email').value = '';
+        document.getElementById('new_username').value = '';
+        
+    }
 }

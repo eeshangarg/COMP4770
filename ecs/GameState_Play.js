@@ -118,15 +118,21 @@ class GameState_Play extends GameState {
     }
 
     sRender() {
-        // TODO: Handle all rendering here.
+        let playerPos = this.player.getComponent(CTransform).pos;
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
-            let pos = entities[i].getComponent(CTransform).pos;
-            let dir = entities[i].getComponent(CTransform).facing;
-            let anim = entities[i].getComponent(CAnimation).animation;
-            this.game.draw(anim, dir, pos);
+            // Only draw entities with Animations.
+            if (entities[i].hasComponent(CAnimation)){
+                let pos = entities[i].getComponent(CTransform).pos;
+                // Use culling to rapidly remove non-onscreen entites.
+                if (playerPos.distf(pos) < 360000) {
+                    let dir = entities[i].getComponent(CTransform).facing;
+                    let anim = entities[i].getComponent(CAnimation).animation;
+                    this.game.draw(anim, dir, pos);
+                }
+            }
         }
-        this.game.drawFrame(this.player.getComponent(CTransform).pos);
+        this.game.drawFrame(playerPos);
     }
 
     sAI() {

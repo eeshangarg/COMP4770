@@ -23,6 +23,8 @@ function initIO(wss) {
 
     console.log('IO Initialzied for WebSocket-Server.');
 
+    // Create a blank serverList.
+    wss.serverList = [];
     // On a client socketing in, create handle for client websocket "ws".
     wss.on('connection', (ws) => {
 
@@ -34,15 +36,19 @@ function initIO(wss) {
 
         console.log('socket $ connected, ID: ', ws.id, " Client Count: ", wss.clients.size);
 
-        ws.on('message', (data) => {
-            if (data === 'all assests loaded') {
+        ws.on('message', (message) => {
+            let data = JSON.parse(message);
+            if (data.t === 'load') {
                 let message = {
-                    t: 'a',
+                    t: 'animMap',
                     d: getAnimationIDMap()
                 };
                 let flatJson = flatstr(JSON.stringify(message));
                 ws.send(flatJson);
-                IOHandler(ws);
+            } else if (data.t === 'login') {
+                processLogin(ws, data);
+            } else if (data.t === 'newAcc') {
+                newAccHanlder(ws, data);
             }
         });
 
@@ -55,10 +61,35 @@ function initIO(wss) {
 
 }
 
+// The function which handles processing login data.
+function processLogin(ws, data) {
+    if (data.username === 'test', data.password === '1234'){
+        let message = {
+            t: 'login',
+            valid: 1
+        };
+        let flatJson = flatstr(JSON.stringify(message));
+        ws.send(flatJson);
+        ws.userName = data.username;
+        IOHandler(ws);
+    } else {
+        let message = {
+            t: 'login',
+            valid: 0
+        };
+        let flatJson = flatstr(JSON.stringify(message));
+        ws.send(flatJson);
+    }
+}
+
+
+// The function to attempt to registar new accounts.
+function newAccHanlder(ws, data) {
+    console.log('newAcc', data); // TO-DO make new acc.
+}
 
 // The function which handles IO for a given Web-socket. 
 function IOHandler(ws) {
-
     // Clear the file loading listener.
     ws.removeAllListeners('message');
     // Create a instance of a fakeGameEngine passed the socket.
@@ -77,7 +108,6 @@ function IOHandler(ws) {
             let inputMap = updateInputData(data.d, map);
             ws.GameEngine.setInputMap(inputMap);
         }
-
         /* 
         TODO add more message types here... Sounds, ect.
             i.e: 
@@ -113,7 +143,6 @@ function clearText(ws, key) {
             t: 'c',
             k: key,
         };
-
         let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
@@ -122,16 +151,13 @@ function clearText(ws, key) {
 
 // The function which emits a frame through a Websocket.
 function emitFrame(ws, renderQueue, px, py) {
-
     if (ws.readyState == 1) {
-
         //send draw call 'd' -> Draw.
         let message = {
             t: 'd',
             p: [px, py],
             d: renderQueue
         };
-
         let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
@@ -146,7 +172,6 @@ function setBackground(ws, bgName) {
             t: 'b',
             i: bgName
         }
-
         let flatJson = flatstr(JSON.stringify(message));
         ws.send(flatJson);
     }
@@ -162,15 +187,14 @@ function setBackgroundGradient(ws, c1, c2) {
             c2: c2
         }
 
-            let flatJson = flatstr(JSON.stringify(message));
-            ws.send(flatJson);
+        let flatJson = flatstr(JSON.stringify(message));
+        ws.send(flatJson);
     }
 }
 
 
 // The function to handle inputData, Sets inputs to Map then returns the map.
 function updateInputData(data, map) {
-
     for (var i = 0; i < data.length; i++) {
         // Resolve the state of the input optmistically.
         let state = true;
