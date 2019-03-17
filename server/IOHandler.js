@@ -48,7 +48,6 @@ function initIO(wss) {
 
         ws.on('close', function close() {
             console.log('socket closed, ID: ', ws.id, " Client Count: ", wss.clients.size);
-            ws.GameEngine.quit();
             socketMap.delete(ws.id);
         });
 

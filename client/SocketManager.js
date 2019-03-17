@@ -17,12 +17,21 @@ let loadingInterval = null;
 let animIdMap = new Map();
 let textStrings = {};
 let mousePos = {x:Infinity,y:Infinity};
-
+let loggedIn = false;
 
 loadFromFile('/client/Assets.json');
 document.fonts.load('10pt "PS2P"');
 document.fonts.load('10pt "pixeled"');
 document.fonts.load('10pt "Seagram"');
+
+// Set all the button on-click listners.
+document.getElementById("loginBtn").addEventListener("click", loginHandler);
+document.getElementById("cancelBtn").addEventListener("click", cancleHandler);
+document.getElementById("forgotPwdBtn").addEventListener("click", forgotMyPwdHanlder);
+document.getElementById("newCancelBtn").addEventListener("click", newCancleHandler);
+document.getElementById("createAccountBtn").addEventListener("click", newAccHandler);
+document.getElementById("newAcceptBtn").addEventListener("click", newAcceptHandler);
+
 
 /*
     Close socket if the page is reloaded. This is only required for some versions of
@@ -32,14 +41,13 @@ window.onbeforeunload = function() {
     socket.close();
 };
 
-
 // When the socket is connected, report asset status to server. 
 socket.onopen = function() {
 
     console.log('Socket Opened Sucessfully! Waiting for Assets...');
 
     loadingInterval = setInterval(function() {
-        if (allSpritesLoaded()) {
+        if (allSpritesLoaded() && loggedIn) {
             // Message the server informing that all assets have been loaded.
             socket.send('all assests loaded');
             // Add the event handler for mouse , movement. 
@@ -86,7 +94,7 @@ function SocketHandler() {
         else if (data.t == 'g') {
             setGradient(data.c1, data.c2);
         }
-        // Type: 'a' -> ID-Map message.
+        // Type: 'a' -> Animation ID-Map message.
         else if (data.t === 'a') {
             loadIdMap(data.d);
         }
@@ -278,4 +286,42 @@ function queueInput(key, state) {
         k: key,
         s: state
     });
+}
+
+
+// The function which handles 'login' button clicks.
+function loginHandler() {
+    loggedIn = true;
+    console.log(document.getElementById('usernameField').value);
+    console.log(document.getElementById('passwordField').value);
+    document.getElementById('div_login').style.visibility='hidden';
+    document.getElementById('div_game_div').style.visibility='visible';
+
+}
+
+// The function which handles 'login cancle' button clicks.
+function cancleHandler() {
+
+}
+
+// The function which handles 'forgot my password' button clicks.
+function forgotMyPwdHanlder() {
+
+}
+
+// The function which handles 'Create new account' button clicks.
+function newAccHandler() {
+    document.getElementById('div_login').style.visibility='hidden';
+    document.getElementById('div_new_acc').style.visibility='visible';
+}
+
+// The function which handles 'cancle-creating new account' button clicks.
+function newCancleHandler() {
+    document.getElementById('div_login').style.visibility='visible';
+    document.getElementById('div_new_acc').style.visibility='hidden';
+}
+
+// The function which handles 'submit new account' button clicks.
+function newAcceptHandler() {
+
 }

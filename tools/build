@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
 set -e
-echo -e "\033[44m    Running Flow-type removal: ./src/rendering -> ./lib/rendering    \033[m \n"
+echo -e "\\e[34mRunning Flow-type removal: ./src/rendering -> ./lib/rendering \n\e[0m"
 flow-remove-types ecs/ -d lib/ecs/
-echo -e "\n\033[44m    Running Flow-type removal: ./src/rendering -> ./lib/rendering    \033[m \n"
+echo "\nRemoving lib/ecs/tests..."
+rm -r lib/ecs/tests
+echo -e "\n\\e[34mRunning Flow-type removal: ./src/rendering -> ./lib/rendering \n\e[0m"
 flow-remove-types rendering/ -d lib/rendering/
-echo -e "\n\033[45m    Copying ./server/ -> ./lib/server/    \033[m \n"
+echo "\nRemoving lib/rendering/tests..."
+rm -r lib/rendering/tests
+echo -e "\n\e[35mCopying ./server/ -> ./lib/server/ \n\e[0m"
 cp -rf server/ lib/
 echo "./server sucessfully coppied to ./lib/server/ !"
-echo -e "\n\033[42m    Minimizing ./lib/ecs/    \033[m\n"
+echo -e "\n\e[32mMinimizing ./lib/ecs/ \n\e[0m"
 uglifyjs-folder lib/ecs/ -x .js -eyo lib/ecs/
-echo -e "\n\033[42m    Minimizing ./lib/rendering/    \033[m\n"
+echo -e "\n\e[32mMinimizing ./lib/rendering/ \n\e[0m"
 uglifyjs-folder lib/rendering/ -x .js -eyo lib/rendering/
-echo -e "\n\033[42m    Minimizing ./lib/server/    \033[m\n"
+echo -e "\n\e[32mMinimizing ./lib/server/ \n\e[0m"
 uglifyjs-folder lib/server/ -x .js -eyo lib/server/
-echo -e "\n\033[43m    Build Sucessful!    \033[m\n"
+echo -e "\n\e[33mBuild Sucessful! \n\e[0m"

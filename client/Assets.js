@@ -20,7 +20,7 @@ export function loadFromFile(fileName) {
 
         for (let i = 0; i < content.length; i++) {
             if (content[i].Type === 'Sprite') {
-                setSprite(content[i].SpriteName, content[i].ImageSource, content[i].FrameCOunt);
+                setSprite(content[i].SpriteName, content[i].ImageSource, content[i].FrameCount);
             }
             else if (content[i].Type === 'Sound') {
                 // Set Sound.

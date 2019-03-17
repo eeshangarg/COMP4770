@@ -127,7 +127,7 @@ class GameState_LevelEditor extends GameState {
         if (playerInput.placeTile){
             let tile = this.entityManager.addEntity("tile");
             tile.addComponent(new CTransform(playerInput.mousePos));
-            tile.addComponent(new CAnimation("egg", true));
+            tile.addComponent(new CAnimation("playerDeath", true));
         }
     }
 

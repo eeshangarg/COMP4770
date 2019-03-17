@@ -1,108 +1,108 @@
 [
   {
-    "FrameCOunt": 13,
+    "FrameCount": 13,
     "ImageSource": "/client/assets/images/player/Knight_attack_L.png",
     "SpriteName": "playerAtkL",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 13,
+    "FrameCount": 13,
     "ImageSource": "/client/assets/images/player/Knight_attack_R.png",
     "SpriteName": "playerAtkR",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 15,
+    "FrameCount": 15,
     "ImageSource": "/client/assets/images/player/Knight_death_R.png",
     "SpriteName": "playerDeathR",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 15,
+    "FrameCount": 15,
     "ImageSource": "/client/assets/images/player/Knight_death_L.png",
     "SpriteName": "playerDeathL",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 6,
+    "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_run_R.png",
     "SpriteName": "playerRunR",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 6,
+    "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_run_L.png",
     "SpriteName": "playerRunL",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 6,
+    "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_idel_R.png",
     "SpriteName": "playerIdelR",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 6,
+    "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_idel_L.png",
     "SpriteName": "playerIdelL",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/egg.png",
     "SpriteName": "egg",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/apple.png",
     "SpriteName": "apple",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/coin.png",
     "SpriteName": "coin",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/tiles/cave-platform.png",
     "SpriteName": "cave-platform",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_menu.png",
     "SpriteName": "bg_menu",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_cave.png",
     "SpriteName": "bg_cave",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_desert.png",
     "SpriteName": "bg_desrt",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_green.png",
     "SpriteName": "bg_green",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_snow.png",
     "SpriteName": "bg_snow",
     "Type": "Sprite"
   },
   {
-    "FrameCOunt": 1,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/msc/error.png",
     "SpriteName": "error",
     "Type": "Sprite"
