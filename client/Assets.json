@@ -90,7 +90,7 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 10,
+    "FrameCount": 9,
     "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk1_R.png",
     "SpriteName": "cowmanAtk1R",
     "Type": "Sprite"
@@ -102,7 +102,7 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 9,
+    "FrameCount": 10,
     "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk2_R.png",
     "SpriteName": "cowmanAtk2R",
     "Type": "Sprite"
