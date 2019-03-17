@@ -48,6 +48,318 @@
     "Type": "Sprite"
   },
   {
+    "FrameCount": 8,
+    "ImageSource": "/client/assets/images/player/Knight_defense_L.png",
+    "SpriteName": "playerDefenseL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 7,
+    "ImageSource": "/client/assets/images/player/Knight_defense_R.png",
+    "SpriteName": "playerDefenseR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/player/Knight_jump_L.png",
+    "SpriteName": "playerJumpL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/player/Knight_jump_R.png",
+    "SpriteName": "playerJumpR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/player/Knight_reaction_L.png",
+    "SpriteName": "playerReactionL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/player/Knight_reaction_R.png",
+    "SpriteName": "playerReactionR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk1_L.png",
+    "SpriteName": "cowmanAtk1L",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk1_R.png",
+    "SpriteName": "cowmanAtk1R",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk2_L.png",
+    "SpriteName": "cowmanAtk2L",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk2_R.png",
+    "SpriteName": "cowmanAtk2R",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 8,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_die_L.png",
+    "SpriteName": "cowmanDeathL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 8,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_die_R.png",
+    "SpriteName": "cowmanDeathR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_fall_L.png",
+    "SpriteName": "cowmanFallL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_fall_R.png",
+    "SpriteName": "cowmanFallR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_hurt_L.png",
+    "SpriteName": "cowmanHurtL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_hurt_R.png",
+    "SpriteName": "cowmanHurtR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_idle_L.png",
+    "SpriteName": "cowmanIdleL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_idel_R.png",
+    "SpriteName": "cowmanIdleR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_L.png",
+    "SpriteName": "cowmanJumpL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_R.png",
+    "SpriteName": "cowmanJumpR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_rdy_L.png",
+    "SpriteName": "cowmanJumpRdyL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_rdy_R.png",
+    "SpriteName": "cowmanJumpRdyR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_run_L.png",
+    "SpriteName": "cowmanRunL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_run_R.png",
+    "SpriteName": "cowmanRunR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_atk_L.png",
+    "SpriteName": "goblinAtkL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_atk_R.png",
+    "SpriteName": "goblinAtkR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_die_L.png",
+    "SpriteName": "goblinDeathL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_die_R.png",
+    "SpriteName": "goblinDeathR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_fall_L.png",
+    "SpriteName": "goblinFallL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_fall_R.png",
+    "SpriteName": "goblinFallR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_hurt_L.png",
+    "SpriteName": "goblinHurtL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_hurt_R.png",
+    "SpriteName": "goblinHurtR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_idle_L.png",
+    "SpriteName": "goblinIdleL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_idel_R.png",
+    "SpriteName": "goblinIdleR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_L.png",
+    "SpriteName": "goblinJumpL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_R.png",
+    "SpriteName": "goblinJumpR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_rdy_L.png",
+    "SpriteName": "goblinJumpRdyL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_rdy_R.png",
+    "SpriteName": "goblinJumpRdyR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_run_L.png",
+    "SpriteName": "goblinRunL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_run_R.png",
+    "SpriteName": "goblinRunR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/npc/imp/imp_atk_L.png",
+    "SpriteName": "impAtkL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/npc/imp/imp_atk_R.png",
+    "SpriteName": "impAtkR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/npc/imp/imp_die_L.png",
+    "SpriteName": "impDeathL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/npc/imp/imp_die_R.png",
+    "SpriteName": "impDeathR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/imp/imp_hurt_L.png",
+    "SpriteName": "impHurtL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/imp/imp_hurt_R.png",
+    "SpriteName": "impHurtR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/imp/imp_idle_L.png",
+    "SpriteName": "impIdleL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/imp/imp_idle_L.png",
+    "SpriteName": "impIdleR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/imp/imp_move_L.png",
+    "SpriteName": "impMoveL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/imp/imp_move_R.png",
+    "SpriteName": "impMoveR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/imp/imp_projectile_L.png",
+    "SpriteName": "impProjectileL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/imp/imp_projectile_R.png",
+    "SpriteName": "impProjectileR",
+    "Type": "Sprite"
+  },
+  {
     "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/egg.png",
     "SpriteName": "egg",
@@ -63,6 +375,84 @@
     "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/coin.png",
     "SpriteName": "coin",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/blue_potion.png",
+    "SpriteName": "blue_potion",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/cheese.png",
+    "SpriteName": "cheese",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/chest.png",
+    "SpriteName": "chest",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/green_potion.png",
+    "SpriteName": "green_potion",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/heart.png",
+    "SpriteName": "heart",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/key_gold.png",
+    "SpriteName": "key_gold",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/key.png",
+    "SpriteName": "key",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/pie.png",
+    "SpriteName": "pie",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/purple_potion.png",
+    "SpriteName": "purple_potion",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/red_potion.png",
+    "SpriteName": "red_potion",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/spell_blue.png",
+    "SpriteName": "spell_blue",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/spell_red.png",
+    "SpriteName": "spell_red",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/items/yellow_potion.png",
+    "SpriteName": "yellow_potion",
     "Type": "Sprite"
   },
   {
@@ -99,6 +489,360 @@
     "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_snow.png",
     "SpriteName": "bg_snow",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/bush1.png",
+    "SpriteName": "bush1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/bush2.png",
+    "SpriteName": "bush2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/bush3.png",
+    "SpriteName": "bush3",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/bush4.png",
+    "SpriteName": "bush4",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/bush5.png",
+    "SpriteName": "bush5",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/cactus.png",
+    "SpriteName": "cactus",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/crate.png",
+    "SpriteName": "crate",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/crystal.png",
+    "SpriteName": "crystal",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/dead-plant.png",
+    "SpriteName": "dead-plant",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/desert-grass1.png",
+    "SpriteName": "desert-grass1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/desert-grass2.png",
+    "SpriteName": "desert-grass2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/desert-stone1.png",
+    "SpriteName": "desert-stone1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/desert-stone2.png",
+    "SpriteName": "desert-stone2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/desert-stone3.png",
+    "SpriteName": "desert-stone3",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/fence.png",
+    "SpriteName": "fence",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/flower-red.png",
+    "SpriteName": "flower-red",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/flower-yellow.png",
+    "SpriteName": "flower-yellow",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/frozen-plant.png",
+    "SpriteName": "frozen-plant",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/frozen-tree1.png",
+    "SpriteName": "frozen-tree1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/frozen-tree2.png",
+    "SpriteName": "frozen-tree2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/grass1.png",
+    "SpriteName": "grass1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/grass2.png",
+    "SpriteName": "grass2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/ice-stone.png",
+    "SpriteName": "ice-stone",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/ladder.png",
+    "SpriteName": "ladder",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/mushroom1.png",
+    "SpriteName": "mushroom1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/mushroom2.png",
+    "SpriteName": "mushroom2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/pine-snow.png",
+    "SpriteName": "pine-snow",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/sign-left.png",
+    "SpriteName": "sign-left",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/sign-right.png",
+    "SpriteName": "sign-right",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/skeleton.png",
+    "SpriteName": "skeleton",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/snow-pile.png",
+    "SpriteName": "snow-pile",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/stalactite1.png",
+    "SpriteName": "stalactite1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/stalactite2.png",
+    "SpriteName": "stalactite2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/stone1.png",
+    "SpriteName": "stone1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/stone2.png",
+    "SpriteName": "stone2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/stump.png",
+    "SpriteName": "stump",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/sun.png",
+    "SpriteName": "sun",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/torch.png",
+    "SpriteName": "torch",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/tree1.png",
+    "SpriteName": "tree1",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/decs/tree2.png",
+    "SpriteName": "tree2",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/cave-platform-corner-L.png",
+    "SpriteName": "cave-platform-corner-L",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/cave-platform-corner-R.png",
+    "SpriteName": "cave-platform-corner-R",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/cave-platform.png",
+    "SpriteName": "cave-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/cave-single-platform.png",
+    "SpriteName": "cave-single-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/desert-platform-corner-L.png",
+    "SpriteName": "desert-platform-corner-L",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/desert-platform-corner-R.png",
+    "SpriteName": "desert-platform-corner-R",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/desert-platform.png",
+    "SpriteName": "desert-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/desert-single-platform.png",
+    "SpriteName": "desert-single-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/grass-platform-corner-L.png",
+    "SpriteName": "grass-platform-corner-L",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/grass-platform-corner-R.png",
+    "SpriteName": "grass-platform-corner-R",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/grass-platform.png",
+    "SpriteName": "grass-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/grass-single-platform.png",
+    "SpriteName": "grass-single-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/soil-platform.png",
+    "SpriteName": "soil-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/soil-platorm-corner-L.png",
+    "SpriteName": "soil-platorm-corner-L",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/soil-platorm-corner-R.png",
+    "SpriteName": "soil-platorm-corner-R",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/soil-single-platform.png",
+    "SpriteName": "soil-single-platform",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
+    "ImageSource": "/client/assets/images/tiles/water.png",
+    "SpriteName": "water",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 15,
+    "ImageSource": "/client/assets/images/effects/blood_big.png",
+    "SpriteName": "blood_big",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 13,
+    "ImageSource": "/client/assets/images/effects/blood_small.png",
+    "SpriteName": "blood_small",
     "Type": "Sprite"
   },
   {

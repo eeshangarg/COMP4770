@@ -37,8 +37,692 @@
     },
     {
         "type": "static",
+        "AnimationName": "blue_potion",
+        "SpriteName": "blue_potion",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "cheese",
+        "SpriteName": "cheese",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "chest",
+        "SpriteName": "chest",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "green_potion",
+        "SpriteName": "green_potion",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "heart",
+        "SpriteName": "heart",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "key_gold",
+        "SpriteName": "key_gold",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "key",
+        "SpriteName": "key",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "pie",
+        "SpriteName": "pie",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "purple_potion",
+        "SpriteName": "purple_potion",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "red_potion",
+        "SpriteName": "red_potion",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "spell_blue",
+        "SpriteName": "spell_blue",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "spell_red",
+        "SpriteName": "spell_red",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "yellow_potion",
+        "SpriteName": "yellow_potion",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bg_menu",
+        "SpriteName": "bg_menu",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bg_cave",
+        "SpriteName": "bg_cave",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bg_desrt",
+        "SpriteName": "bg_desrt",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bg_green",
+        "SpriteName": "bg_green",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bg_snow",
+        "SpriteName": "bg_snow",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bush1",
+        "SpriteName": "bush1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bush2",
+        "SpriteName": "bush2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bush3",
+        "SpriteName": "bush3",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bush4",
+        "SpriteName": "bush4",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "bush5",
+        "SpriteName": "bush5",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "cactus",
+        "SpriteName": "cactus",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "crate",
+        "SpriteName": "crate",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "crystal",
+        "SpriteName": "crystal",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "dead-plant",
+        "SpriteName": "dead-plant",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-grass1",
+        "SpriteName": "desert-grass1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-grass2",
+        "SpriteName": "desert-grass2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-stone1",
+        "SpriteName": "desert-stone1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-stone2",
+        "SpriteName": "desert-stone2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-stone3",
+        "SpriteName": "desert-stone3",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "fence",
+        "SpriteName": "fence",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "flower-red",
+        "SpriteName": "flower-red",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "flower-yellow",
+        "SpriteName": "flower-yellow",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "flower-red",
+        "SpriteName": "flower-red",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "frozen-plant",
+        "SpriteName": "frozen-plant",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "frozen-tree1",
+        "SpriteName": "frozen-tree1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "frozen-tree2",
+        "SpriteName": "frozen-tree2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "grass1",
+        "SpriteName": "grass1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "grass2",
+        "SpriteName": "grass2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "ice-stone",
+        "SpriteName": "ice-stone",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "ladder",
+        "SpriteName": "ladder",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "mushroom1",
+        "SpriteName": "mushroom1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "mushroom2",
+        "SpriteName": "mushroom2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "pine-snow",
+        "SpriteName": "pine-snow",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "sign-left",
+        "SpriteName": "sign-left",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "sign-right",
+        "SpriteName": "sign-right",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "skeleton",
+        "SpriteName": "skeleton",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "snow-pile",
+        "SpriteName": "snow-pile",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "stalactite1",
+        "SpriteName": "stalactite1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "stalactite2",
+        "SpriteName": "stalactite2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "stone1",
+        "SpriteName": "stone1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "stone2",
+        "SpriteName": "stone2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "stump",
+        "SpriteName": "stump",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "sun",
+        "SpriteName": "sun",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "torch",
+        "SpriteName": "torch",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "tree1",
+        "SpriteName": "tree1",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "tree2",
+        "SpriteName": "tree2",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "cave-platform-corner-L",
+        "SpriteName": "cave-platform-corner-L",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "cave-platform-corner-R",
+        "SpriteName": "cave-platform-corner-R",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
         "AnimationName": "cave-platform",
         "SpriteName": "cave-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "cave-single-platform",
+        "SpriteName": "cave-single-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-platform-corner-L",
+        "SpriteName": "desert-platform-corner-L",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-platform-corner-R",
+        "SpriteName": "desert-platform-corner-R",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-single-platform",
+        "SpriteName": "desert-single-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "desert-platform",
+        "SpriteName": "desert-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "grass-platform-corner-L",
+        "SpriteName": "grass-platform-corner-L",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "grass-platform-corner-R",
+        "SpriteName": "grass-platform-corner-R",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "grass-platform",
+        "SpriteName": "grass-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "grass-single-platform",
+        "SpriteName": "grass-single-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "soil-platform",
+        "SpriteName": "soil-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "soil-platorm-corner-L",
+        "SpriteName": "soil-platorm-corner-L",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "soil-platorm-corner-R",
+        "SpriteName": "soil-platorm-corner-R",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "soil-platorm-corner-R",
+        "SpriteName": "soil-platorm-corner-R",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "soil-single-platform",
+        "SpriteName": "soil-single-platform",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "type": "static",
+        "AnimationName": "water",
+        "SpriteName": "water",
         "frameCount": 1,
         "fps": 30,
         "x": 16,
@@ -76,10 +760,290 @@
     },
     {
         "type": "dynamic",
-        "AnimationName": "playerIdel",
+        "AnimationName": "playerDefense",
+        "SpriteNameR": "playerDefenseR",
+        "SpriteNameL": "playerDefenseL",
+        "frameCount": 8,
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerJump",
+        "SpriteNameR": "playerJumpR",
+        "SpriteNameL": "playerJumpL",
+        "frameCount": 6, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerReaction",
+        "SpriteNameR": "playerReactionR",
+        "SpriteNameL": "playerReactionL",
+        "frameCount": 5, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "playerIdel", 
         "SpriteNameR": "playerIdelR",
         "SpriteNameL": "playerIdelL",
-        "frameCount": 6,
+        "frameCount": 6, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanAtk1",
+        "SpriteNameR": "cowmanAtk1R",
+        "SpriteNameL": "cowmanAtk1L",
+        "frameCount": 9, 
+        "fps": 20,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanAtk2",
+        "SpriteNameR": "cowmanAtk2R",
+        "SpriteNameL": "cowmanAtk2L",
+        "frameCount": 10, 
+        "fps": 20,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanDeath",
+        "SpriteNameR": "cowmanDeathR",
+        "SpriteNameL": "cowmanDeathL",
+        "frameCount": 8, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanFall",
+        "SpriteNameR": "cowmanFallR",
+        "SpriteNameL": "cowmanFallL",
+        "frameCount": 2, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanHurt",
+        "SpriteNameR": "cowmanHurtR",
+        "SpriteNameL": "cowmanHurtL",
+        "frameCount": 4, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanIdle",
+        "SpriteNameR": "cowmanIdleR",
+        "SpriteNameL": "cowmanIdleL",
+        "frameCount": 5, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanJump",
+        "SpriteNameR": "cowmanJumpR",
+        "SpriteNameL": "cowmanJumpL",
+        "frameCount": 2, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanJumpRdy",
+        "SpriteNameR": "cowmanJumpRdyR",
+        "SpriteNameL": "cowmanJumpRdyL",
+        "frameCount": 2, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "cowmanRun",
+        "SpriteNameR": "cowmanRunR",
+        "SpriteNameL": "cowmanRunL",
+        "frameCount": 6, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinAtk",
+        "SpriteNameR": "goblinAtkR",
+        "SpriteNameL": "goblinAtkL",
+        "frameCount": 5, 
+        "fps": 20,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinDeath",
+        "SpriteNameR": "goblinDeathR",
+        "SpriteNameL": "goblinDeathL",
+        "frameCount": 9, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinFall",
+        "SpriteNameR": "goblinFallR",
+        "SpriteNameL": "goblinFallL",
+        "frameCount": 2, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinHurt",
+        "SpriteNameR": "goblinHurtR",
+        "SpriteNameL": "goblinHurtL",
+        "frameCount": 4, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinIdle",
+        "SpriteNameR": "goblinIdleR",
+        "SpriteNameL": "goblinIdleL",
+        "frameCount": 4, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinJump",
+        "SpriteNameR": "goblinJumpR",
+        "SpriteNameL": "goblinJumpL",
+        "frameCount": 2, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinJumpRdy",
+        "SpriteNameR": "goblinJumpRdyR",
+        "SpriteNameL": "goblinJumpRdyL",
+        "frameCount": 2, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "goblinRun",
+        "SpriteNameR": "goblinRunR",
+        "SpriteNameL": "goblinRunL",
+        "frameCount": 6, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "impAtk",
+        "SpriteNameR": "impAtkR",
+        "SpriteNameL": "impAtkL",
+        "frameCount": 10, 
+        "fps": 20,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "impDeath",
+        "SpriteNameR": "impDeathR",
+        "SpriteNameL": "impDeathL",
+        "frameCount": 10, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "impHurt",
+        "SpriteNameR": "impHurtR",
+        "SpriteNameL": "impHurtL",
+        "frameCount": 3, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "impIdle",
+        "SpriteNameR": "impIdleR",
+        "SpriteNameL": "impIdleL",
+        "frameCount": 5, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "impMove",
+        "SpriteNameR": "impMoveR",
+        "SpriteNameL": "impMoveL",
+        "frameCount": 3, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "impProjectile",
+        "SpriteNameR": "impProjectileR",
+        "SpriteNameL": "impProjectileL",
+        "frameCount": 3, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "blood_big",
+        "SpriteNameR": "blood_big",
+        "SpriteNameL": "blood_big",
+        "frameCount": 15, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "type": "dynamic",
+        "AnimationName": "blood_small",
+        "SpriteNameR": "blood_small",
+        "SpriteNameL": "blood_small",
+        "frameCount": 13, 
         "fps": 15,
         "x": 64,
         "y": 64
