@@ -763,7 +763,7 @@
         "AnimationName": "playerDefense",
         "SpriteNameR": "playerDefenseR",
         "SpriteNameL": "playerDefenseL",
-        "frameCount": 8, //its 7 for R and 8 for L
+        "frameCount": 8,
         "fps": 15,
         "x": 64,
         "y": 64
@@ -790,7 +790,7 @@
     },
     {
         "type": "dynamic",
-        "AnimationName": "playerIdel", //spelling of idle
+        "AnimationName": "playerIdel", 
         "SpriteNameR": "playerIdelR",
         "SpriteNameL": "playerIdelL",
         "frameCount": 6, 
@@ -803,7 +803,7 @@
         "AnimationName": "cowmanAtk1",
         "SpriteNameR": "cowmanAtk1R",
         "SpriteNameL": "cowmanAtk1L",
-        "frameCount": 9, //9 for L, 10 for R
+        "frameCount": 9, 
         "fps": 20,
         "x": 64,
         "y": 64
@@ -813,7 +813,7 @@
         "AnimationName": "cowmanAtk2",
         "SpriteNameR": "cowmanAtk2R",
         "SpriteNameL": "cowmanAtk2L",
-        "frameCount": 9, //10 for L, 9 for R
+        "frameCount": 9, 
         "fps": 20,
         "x": 64,
         "y": 64
