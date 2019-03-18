@@ -177,7 +177,6 @@ function setBackground(ws, bgName) {
     }
 }
 
-
 // The function that handles background-Gradient changing.
 function setBackgroundGradient(ws, c1, c2) {
     if (ws.readyState == 1) {

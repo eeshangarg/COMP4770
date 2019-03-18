@@ -35,7 +35,7 @@ class GameState_Menu extends GameState {
         this.menuStrings.push('Settings');
         this.game.setBackground('bg_menu');
         this.menuItems = this.menuStrings.length;
-        this.game.drawText(this.title, 'title', '35px PS2P', '#FFFF00', 250, 125);
+        this.game.drawText(this.title, 'title', '60px Seagram', '#F5F5F5', 305, 135);
         this.drawStrings();
     }
 
@@ -47,10 +47,10 @@ class GameState_Menu extends GameState {
 
     drawStrings() {
             for (let i = 0; i < this.menuStrings.length; i++) {
-                this.game.drawText(this.menuStrings[i], this.menuStrings[i], '30px Seagram', '#FDFEFE', 450, 225 + i*60);
+                this.game.drawText(this.menuStrings[i], this.menuStrings[i], '20px PS2P', '#FDFEFE', 400, 235 + i*48);
             }
             let i = this.selectedMenuIndex;
-            this.game.drawText(this.menuStrings[i], this.menuStrings[i], '30px Seagram', '#FF0C00', 450, 225 + i*60);
+            this.game.drawText(this.menuStrings[i], this.menuStrings[i], '20px PS2P', '#FFFF00', 400, 235 + i*48);
     }
 
     sUserInput() {

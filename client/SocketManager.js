@@ -310,6 +310,13 @@ function queueInput(key, state) {
 }
 
 
+// A helper function to validate email addresses.
+function validateEmail(email) {
+    let pattern = /^[a-zA-Z0-9\-_]+(\.[a-zA-Z0-9\-_]+)*@[a-z0-9]+(\-[a-z0-9]+)*(\.[a-z0-9]+(\-[a-z0-9]+)*)*\.[a-z]{2,4}$/;
+    return pattern.test(email);
+}
+
+
 // The function which handles 'login' button clicks.
 function loginHandler() {
     let message = {
@@ -363,6 +370,9 @@ function newAcceptHandler() {
         document.getElementById('new_password').value = '';
         document.getElementById('new_passwordConf').value = '';
         alert("Passwords do not match.");
+    }
+    else if (!validateEmail(email)){
+        alert("Email invalid.");
     }
     else {
         let message = {

@@ -3,73 +3,16 @@
     <head>
         <link rel="icon" type="image/png" href="/client/icon_16.png" sizes="16x16">
         <link rel="icon" type="image/png" href="/client/icon_16.png" sizes="16x16">
-        <style type="text/css">
-        input[type=text], input[type=password] {
-        width: 80%;
-        padding: 8px 18px;
-        margin: 6px 0;
-        display: block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-        }
-        button {
-        background-color: #3366ff;
-        color: white;
-        padding: 8px 12px;
-        margin: 6px 0;
-        border: none;
-        cursor: pointer;
-        width: 26%;
-        }
-        button:hover {
-        opacity: 0.8;
-        }
-        #createAccountBtn {
-        background-color: #66ff33;
-        }
-        #div_login {
-        position: absolute;
-        width: 500px;
-        height: 300px;
-        z-index: 15;
-        top: 50%;
-        left: 50%;
-        margin: -150px 0 0 -200px;
-        }
-        #div_new_acc {
-        position: absolute;
-        width: 600px;
-        height: 500px;
-        z-index: 15;
-        top: 50%;
-        left: 50%;
-        margin: -200px 0 0 -200px;
-        }
-        @font-face {
-        font-family: 'PS2P';
-        font-style: normal;
-        src: url('/client/assets/fonts/PressStart2P.ttf');
-        }
-        @font-face {
-        font-family: 'pixeled';
-        font-style: normal;
-        src: url('/client/assets/fonts/Pixeled.ttf');
-        }
-        @font-face {
-        font-family: 'Seagram';
-        font-style: normal;
-        src: url('/client/assets/fonts/Seagram.ttf');
-        }
-        </style>
+        <link rel="stylesheet" type="text/css" href="/client/stylesheet.css">
     </head>
     <body>
         <title>The Knight Before.</title>
         <div id="div_login">
-            <h1>The Knight Before.</h1>
+            <font face="PS2P" size="6" color="#F4D03F">The Knight Before</font>
             <form class="div_login_fields">
-                <label for="username"><b>Username:</b></label>
+                <label for="username" class="labelText"><b>Username:</b></label>
                 <input type="text" placeholder="Enter Username..." id="usernameField" autocomplete="username" >
-                <label for="password"><b>Password:</b></label>
+                <label for="password" class="labelText"><b>Password:</b></label>
                 <input type="password" placeholder="Enter Password..." id="passwordField" autocomplete="current-password">
             </form>
             <div class="div_login_buttons">
@@ -80,24 +23,24 @@
             </div>
         </div>
         <div id="div_new_acc" style="visibility:hidden">
-            <h1>Registration:</h1>
+            <font face="PS2P" size="6">Registration:</font>
             <form class="new_acc_form">
-                <label for="new_email"><b>Email:</b></label>
+                <label for="new_email" class="labelText"><b>Email:</b></label>
                 <input type="text" placeholder="Enter email..." id="new_email">
-                <label for="new_username"><b>Username:</b></label>
+                <label for="new_username" class="labelText"><b>Username:</b></label>
                 <input type="text" placeholder="Enter Username..." id="new_username">
-                <label for="new_password"><b>Password:</b></label>
+                <label for="new_password" class="labelText"><b>Password:</b></label>
                 <input type="text" placeholder="Enter Password..." id="new_password">
-                <label for="new_passwordConf"><b>Confirm:</b></label>
+                <label for="new_passwordConf" class="labelText"><b>Confirm:</b></label>
                 <input type="text" placeholder="Confirm Password..." id="new_passwordConf">
             </form>
             <button id="newCancelBtn">Cancel</button>
             <button id="newAcceptBtn">Accept</button>
         </div>
         <div id="div_game_div" style="visibility:hidden">
-            <canvas id="bgCanvas" width="1024" height="576" style="position: absolute; left: 100px; top: 15px; z-index: 0; border:2px solid #000000;"></canvas>
-            <canvas id="gameCanvas" width="1024" height="576" style="position: absolute; left: 100px; top: 15px; z-index: 1; border:2px solid #000000;"></canvas>
-            <canvas id="textCanvas" width="1024" height="576" style="position: absolute; left: 100px; top: 15px; z-index: 2; border:2px solid #000000;"></canvas>
+            <canvas id="bgCanvas" width="1024" height="576" style="position: absolute; left: 150px; top: 25px; z-index: 0; border:2px solid #000000;"></canvas>
+            <canvas id="gameCanvas" width="1024" height="576" style="position: absolute; left: 150px; top: 25px; z-index: 1; border:2px solid #000000;"></canvas>
+            <canvas id="textCanvas" width="1024" height="576" style="position: absolute; left: 150px; top: 25px; z-index: 2; border:2px solid #000000;"></canvas>
             <script type="module" src="/client/Sprite.js"></script>
             <script type="module" src="/client/Assets.js"></script>
             <script type="module" src="/client/SocketManager.js"></script>

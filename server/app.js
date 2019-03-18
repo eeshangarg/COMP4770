@@ -28,15 +28,15 @@ const wss = new WebSocketServer({
     perMessageDeflate: {
         zlibDeflateOptions: {
             chunkSize: 1024,
-            memLevel: 7,
+            memLevel: 6,
             level: 3
         },
         zlibInflateOptions: {
             chunkSize: 10 * 1024
         },
-        serverMaxWindowBits: 15,
+        serverMaxWindowBits: 11,
         concurrencyLimit: 10,
-        threshold: 100
+        threshold: 1024
     },
     clientTracking: true,
 });

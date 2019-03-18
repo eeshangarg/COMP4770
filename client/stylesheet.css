@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'PS2P';
+    font-style: normal;
+    src: url('/client/assets/fonts/PressStart2P.ttf');
+}
+
+@font-face {
+    font-family: 'pixeled';
+    font-style: normal;
+    src: url('/client/assets/fonts/Pixeled.ttf');
+}
+
+@font-face {
+    font-family: 'Seagram';
+    font-style: normal;
+    src: url('/client/assets/fonts/Seagram.ttf');
+}
+
+body {
+    background-color: #EDE7F6;
+}
+
+input[type=text], input[type=password] {
+    font-family: sans-serif;
+    width: 80%;
+    padding: 10px 16px;
+    margin: 8px 5px;
+    display: block;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    background-color: #3366ff;
+    color: white;
+    padding: 14px 14px;
+    margin: 4px 2px;
+    border: none;
+    cursor: pointer;
+    width: 26%;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#createAccountBtn {
+    background-color: #66ff33;
+}
+
+#div_login {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -200px 0 0 -200px;
+}
+
+#div_new_acc {
+    position: absolute;
+    width: 600px;
+    height: 450px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+}
+
+.labelText {
+    font-size: 12px;
+    font-family: pixeled;
+    margin: 5px 5px 10px 10px;
+}
