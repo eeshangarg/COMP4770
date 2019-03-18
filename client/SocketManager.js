@@ -250,19 +250,15 @@ function renderFrame(data, playerPos) {
     // Clear the gameCanvas canvas.
     gameCanvas.clearRect(0, 0, 1024, 576);
 
-    // Correct the players position to the center of canvas. 
-    let px = playerPos[0] - 512;
-    let py = playerPos[1] - 288;
-
     // Draw all streamed animations from server.
     for (let i = 0; i < data.length; i++) {
-        let sprite = getSprite(animIdMap.get(data[i].n));
-        if (data[i].hasOwnProperty('f')) {
+        let sprite = getSprite(animIdMap.get(data[i][0]));
+        if (data[i].length == 4) {
             // Draw all Dynamic-sprites corrected against the players Pos.
-            sprite.draw(data[i].d[0]-px, 576-data[i].d[1]+py, data[i].f);
+            sprite.draw(data[i][1]-playerPos[0], data[i][2]+playerPos[1], data[i][3]);
         } else {
             // Draw all static-sprites corrected against the players Pos.
-            sprite.draw(data[i].d[0]-px, 576-data[i].d[1]+py, 0);
+            sprite.draw(data[i][1]-playerPos[0], data[i][2]+playerPos[1], 0);
         }
     }
 }

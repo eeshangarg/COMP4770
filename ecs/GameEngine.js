@@ -146,16 +146,13 @@ class GameEngine {
     queueAnimation(id: number, frame: number, dx: number, dy: number) {
         // If queued with frame -1 push a static animation onto renderQueue.
         if (frame == -1) {
-            this.renderQueue.push({
-                n: id,
-                d: [dx, dy]
-            });
+            this.renderQueue.push(
+                [id, dx, 576-dy]
+            );
         } else {
-            this.renderQueue.push({
-                n: id,
-                d: [dx, dy],
-                f: frame
-            });
+            this.renderQueue.push(
+                [id, dx, 576-dy, frame]
+            );
         }
     }
 

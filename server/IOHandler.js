@@ -155,7 +155,7 @@ function emitFrame(ws, renderQueue, px, py) {
         //send draw call 'd' -> Draw.
         let message = {
             t: 'd',
-            p: [px, py],
+            p: [px-512, py-288],
             d: renderQueue
         };
         let flatJson = flatstr(JSON.stringify(message));
