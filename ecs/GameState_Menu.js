@@ -29,6 +29,7 @@ class GameState_Menu extends GameState {
 
     init() {
         this.menuStrings = [];
+        this.game.drawFrame(new Vec(0,0));
         this.menuStrings.push('Single Player');
         this.menuStrings.push('Level Editor');
         this.menuStrings.push('Items');
@@ -93,7 +94,6 @@ class GameState_Menu extends GameState {
     }
 
     sRender() {
-        this.game.drawFrame(new Vec(20, 20));
     }
 }
 

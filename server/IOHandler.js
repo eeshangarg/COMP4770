@@ -3,7 +3,7 @@
 
 // The map which connected sockets tied to a ID.
 let socketMap = new Map();
-
+let db = null;
 // Requires
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
@@ -16,8 +16,8 @@ const {
 
 
 // the function to intialize IO-helpers for websockets, should be passed the WebSocket-Server.
-function initIO(wss) {
-
+function initIO(wss, db) {
+    db = db;
     // Load the Animation config file.
     loadAnimations(__dirname + "/../../config/Animation.json");
 

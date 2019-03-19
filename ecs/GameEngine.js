@@ -78,7 +78,7 @@ class GameEngine {
             } else {
                 clearInterval(this)
             }
-        }, 16.666, self);
+        }, 16, self);
     }
 
     // The key-update loop of the engine. 

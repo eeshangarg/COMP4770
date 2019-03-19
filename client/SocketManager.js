@@ -108,7 +108,7 @@ function SocketHandler() {
     window.addEventListener('mousemove', updateMousePos, false);
     // key up event, que a input with state and key.
     
-    inputEmitInterval = setInterval(emitInput, 16.666);
+    inputEmitInterval = setInterval(emitInput, 16);
 
     document.onkeydown = function(event) {
         if (event.keyCode === 87) // 87 -> "W"

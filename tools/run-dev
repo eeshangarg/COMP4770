@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -ev
+set -e
 
 npm run build
+echo -e "\n\e[36mStarting MongoDB daemon\n\e[0m"
+mongod  --logpath data/db_log.txt --dbpath=data &
+sleep 2s
+echo -e "\n\e[36mStarting Node.js Server\n\e[0m"
 node lib/server/app.js
