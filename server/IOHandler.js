@@ -131,7 +131,8 @@ function drawText(ws, textString, key, font, color, dx, dy) {
             p: [dx, dy]
         };
         let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
     }
 }
 
@@ -144,7 +145,8 @@ function clearText(ws, key) {
             k: key,
         };
         let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
     }
 
 }
@@ -159,7 +161,8 @@ function emitFrame(ws, renderQueue, px, py) {
             d: renderQueue
         };
         let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
     }
 
 }
@@ -173,7 +176,8 @@ function setBackground(ws, bgName) {
             i: bgName
         }
         let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
     }
 }
 
@@ -187,7 +191,8 @@ function setBackgroundGradient(ws, c1, c2) {
         }
 
         let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
     }
 }
 

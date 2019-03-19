@@ -5,19 +5,24 @@ import {
     getSprite
 } from './Assets.js';
 
-const bgCanvas = document.getElementById('bgCanvas').getContext('2d')       // The background Canvas.
-const gameCanvas = document.getElementById('gameCanvas').getContext('2d');  // The Game Canvas.
-const textCanvas = document.getElementById('textCanvas').getContext('2d');  // The Text Canvas.
+const bgCanvas = document.getElementById('bgCanvas').getContext('2d') // The background Canvas.
+const gameCanvas = document.getElementById('gameCanvas').getContext('2d'); // The Game Canvas.
+const textCanvas = document.getElementById('textCanvas').getContext('2d'); // The Text Canvas.
 const rect = document.getElementById('gameCanvas').getBoundingClientRect();
 const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
+socket.binaryType = "arraybuffer";
 
 let inputQueue = [];
+let inputEmitInterval = null;
 let loadingInterval = null;
 let loginInterval = null;
 let animIdMap = new Map();
 let textStrings = {};
-let mousePos = {x:Infinity,y:Infinity};
+let mousePos = {
+    x: Infinity,
+    y: Infinity
+};
 
 loadFromFile('/client/Assets.json');
 document.fonts.load('10pt "PS2P"');
@@ -48,7 +53,7 @@ socket.onopen = function() {
     loadingInterval = setInterval(function() {
         if (allSpritesLoaded()) {
             let message = {
-                t:'load'
+                t: 'load'
             };
             // Message the server informing that all assets have been loaded.
             socket.send(JSON.stringify(message));
@@ -61,29 +66,37 @@ socket.onopen = function() {
 
 socket.onclose = function() {
     console.log('Socket Closing.');
+    if (inputEmitInterval != null){
+        clearInterval(inputEmitInterval);
+    }
+    if (loadingInterval != null){
+        clearInterval(loadingInterval);
+    }
+    if (loginInterval != null){
+        clearInterval(loginInterval);
+    }
 }
 
 // This function handles login-listening
 function loginListner() {
     socket.onmessage = function(message) {
+
         let data = JSON.parse(message.data);
         // Type: 'l' -> Animation login-validation message.
         if (data.t === 'login') {
-            if(data.valid == 1){
+            if (data.valid == 1) {
                 // Valid login create the socketHandler.
-                document.getElementById('div_login').style.visibility='hidden';
-                document.getElementById('div_game_div').style.visibility='visible';
+                document.getElementById('div_login').style.visibility = 'hidden';
+                document.getElementById('div_game_div').style.visibility = 'visible';
                 SocketHandler()
-            }
-            else {
+            } else {
                 alert("Invalid Username / Password.");
             }
         }
         // Type: 'a' -> Animation ID-Map message.   
         else if (data.t === 'animMap') {
             loadIdMap(data.d);
-        }
-        else if (data === 'newAcc'){
+        } else if (data === 'newAcc') {
             console.log('newAcc', data.d);
         }
     }
@@ -94,54 +107,55 @@ function SocketHandler() {
     // Add the event handler for mouse , movement.
     window.addEventListener('mousemove', updateMousePos, false);
     // key up event, que a input with state and key.
+    
+    inputEmitInterval = setInterval(emitInput, 16.666);
 
     document.onkeydown = function(event) {
-        if (event.keyCode === 87)        // 87 -> "W"
+        if (event.keyCode === 87) // 87 -> "W"
             queueInput('w', 1);
-        else if (event.keyCode === 65)  // 65 -> "A" 
+        else if (event.keyCode === 65) // 65 -> "A" 
             queueInput('a', 1);
-        else if (event.keyCode === 83)  // 83 -> "S"
+        else if (event.keyCode === 83) // 83 -> "S"
             queueInput('s', 1);
-        else if (event.keyCode === 68)  // 68 -> "D"
+        else if (event.keyCode === 68) // 68 -> "D"
             queueInput('d', 1);
-        else if (event.keyCode === 32)  // 68 -> "Space" 
+        else if (event.keyCode === 32) // 68 -> "Space" 
             queueInput('_', 1);
-        else if (event.keyCode === 13)  // 13 -> "Enter"
+        else if (event.keyCode === 13) // 13 -> "Enter"
             queueInput('|', 1);
-        else if (event.keyCode === 27)   // 13 -> "Escape"
+        else if (event.keyCode === 27) // 13 -> "Escape"
             queueInput('esc', 1);
     }
 
 
     // key down event, que a input with state and key.
     document.onkeyup = function(event) {
-        if (event.keyCode === 87)        // 87 -> "W"
+        if (event.keyCode === 87) // 87 -> "W"
             queueInput('w', 0);
-        else if (event.keyCode === 65)   // 65 -> "A"
+        else if (event.keyCode === 65) // 65 -> "A"
             queueInput('a', 0);
-        else if (event.keyCode === 83)   // 83 -> "S"
+        else if (event.keyCode === 83) // 83 -> "S"
             queueInput('s', 0);
-        else if (event.keyCode === 68)   // 68 -> "D"
+        else if (event.keyCode === 68) // 68 -> "D"
             queueInput('d', 0);
-        else if (event.keyCode === 32)   // 68 -> "Space"
+        else if (event.keyCode === 32) // 68 -> "Space"
             queueInput('_', 0);
-        else if (event.keyCode === 13)   // 13 -> "Enter"
+        else if (event.keyCode === 13) // 13 -> "Enter"
             queueInput('|', 0);
-        else if (event.keyCode === 27)   // 13 -> "Escape"
+        else if (event.keyCode === 27) // 13 -> "Escape"
             queueInput('esc', 0);
 
     }
 
     socket.onmessage = function(message) {
-
-        let data = JSON.parse(message.data);
+        let str = new TextDecoder('utf-8').decode(message.data);
+        let data = JSON.parse(str);
 
         // The value of Data.t denotes the type of message.
 
         // Type: 'd' -> Game canvas draw message.
         if (data.t === 'd') {
             renderFrame(data.d, data.p);
-            emitInput();
         }
         // Type: 't' -> Draw Text-string message.
         else if (data.t == 't') {
@@ -159,14 +173,13 @@ function SocketHandler() {
         else if (data.t == 'g') {
             setGradient(data.c1, data.c2);
         }
-
-    /*
-        TODO add more message types here... Sounds, ect.
-           i.e: 
-            else if (data.t === 's') {
-                playSound(data.d);
-            }
-    */
+        /*
+            TODO add more message types here... Sounds, ect.
+               i.e: 
+                else if (data.t === 's') {
+                    playSound(data.d);
+                }
+        */
 
     }
 }
@@ -188,8 +201,7 @@ function clearText(key) {
     } else if (key === 'all') {
         textCanvas.clearRect(0, 0, 1024, 576);
         textStrings = {};
-    } 
-    else {
+    } else {
         console.log("No textString to delete at key : " + key);
     }
 }
@@ -246,7 +258,6 @@ function loadIdMap(data) {
 
 // The function which renders frame-data passed via message. Playerpos acts as the viewport.
 function renderFrame(data, playerPos) {
-
     // Clear the gameCanvas canvas.
     gameCanvas.clearRect(0, 0, 1024, 576);
 
@@ -255,10 +266,10 @@ function renderFrame(data, playerPos) {
         let sprite = getSprite(animIdMap.get(data[i][0]));
         if (data[i].length == 4) {
             // Draw all Dynamic-sprites corrected against the players Pos.
-            sprite.draw(data[i][1]-playerPos[0], data[i][2]+playerPos[1], data[i][3]);
+            sprite.draw(data[i][1] - playerPos[0], data[i][2] + playerPos[1], data[i][3]);
         } else {
             // Draw all static-sprites corrected against the players Pos.
-            sprite.draw(data[i][1]-playerPos[0], data[i][2]+playerPos[1], 0);
+            sprite.draw(data[i][1] - playerPos[0], data[i][2] + playerPos[1], 0);
         }
     }
 }
@@ -275,11 +286,11 @@ function updateMousePos(evt) {
 
 // A function to handle getting mouse pos.
 function getMousePos(evt) {
-    let x = Math.min(1024, Math.max(0, (evt.clientX - rect.left))); 
-    let y = Math.min(576, Math.max(0, (evt.clientY - rect.top))); 
+    let x = Math.min(1024, Math.max(0, (evt.clientX - rect.left)));
+    let y = Math.min(576, Math.max(0, (evt.clientY - rect.top)));
     return {
-      x:x,
-      y:y
+        x: x,
+        y: y
     };
 }
 
@@ -316,9 +327,9 @@ function validateEmail(email) {
 // The function which handles 'login' button clicks.
 function loginHandler() {
     let message = {
-        t:'login',
-        username:document.getElementById('usernameField').value,
-        password:document.getElementById('passwordField').value
+        t: 'login',
+        username: document.getElementById('usernameField').value,
+        password: document.getElementById('passwordField').value
     };
     socket.send(JSON.stringify(message));
     document.getElementById('usernameField').value = '';
@@ -338,8 +349,8 @@ function forgotMyPwdHanlder() {
 
 // The function which handles 'Create new account' button clicks.
 function newAccHandler() {
-    document.getElementById('div_login').style.visibility='hidden';
-    document.getElementById('div_new_acc').style.visibility='visible';
+    document.getElementById('div_login').style.visibility = 'hidden';
+    document.getElementById('div_new_acc').style.visibility = 'visible';
 }
 
 // The function which handles 'cancle-creating new account' button clicks.
@@ -349,8 +360,8 @@ function newCancleHandler() {
     document.getElementById('new_username').value = '';
     document.getElementById('new_password').value = '';
     document.getElementById('new_passwordConf').value = '';
-    document.getElementById('div_login').style.visibility='visible';
-    document.getElementById('div_new_acc').style.visibility='hidden';
+    document.getElementById('div_login').style.visibility = 'visible';
+    document.getElementById('div_new_acc').style.visibility = 'hidden';
 }
 
 // The function which handles 'submit new account' button clicks.
@@ -361,27 +372,24 @@ function newAcceptHandler() {
     let username = document.getElementById('new_username').value;
     if (password === '' || username === '' || email === '') {
         alert("Please fill in all fields.");
-    }
-    else if (password != passwordConf){
+    } else if (password != passwordConf) {
         document.getElementById('new_password').value = '';
         document.getElementById('new_passwordConf').value = '';
         alert("Passwords do not match.");
-    }
-    else if (!validateEmail(email)){
+    } else if (!validateEmail(email)) {
         alert("Email invalid.");
-    }
-    else {
+    } else {
         let message = {
-            t:'newAcc',
-            username:username,
-            password:password,
-            email:email
+            t: 'newAcc',
+            username: username,
+            password: password,
+            email: email
         };
         socket.send(JSON.stringify(message));
         document.getElementById('new_password').value = '';
         document.getElementById('new_passwordConf').value = '';
         document.getElementById('new_email').value = '';
         document.getElementById('new_username').value = '';
-        
+
     }
 }

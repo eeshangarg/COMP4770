@@ -25,19 +25,7 @@ const WebSocketServer = require('ws').Server;
 
 const wss = new WebSocketServer({
     port: socketPort,
-    perMessageDeflate: {
-        zlibDeflateOptions: {
-            chunkSize: 1024,
-            memLevel: 7,
-            level: 3
-        },
-        zlibInflateOptions: {
-            chunkSize: 10 * 1024
-        },
-        serverMaxWindowBits: 11,
-        concurrencyLimit: 10,
-        threshold: 1024
-    },
+    perMessageDeflate: true,
     clientTracking: true,
 });
 
