@@ -12,12 +12,15 @@ const socketPort = 3000;
 const url = 'mongodb://localhost:27017';
 
 // Database Name
-const dbName = 'myproject';
+const dbName = 'gameDatabase';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, {useNewUrlParser: true}, function(err, client) {
     assert.equal(null, err);
-    console.log("Successfully connected Node.js server to server MongoDB");
+
+    console.log("Successfull connection of Node.js server to server Mongod.");
+
+    // Load "dbname" as the data base.
     const db = client.db(dbName);
 
     // Send the Index page to the client via express.

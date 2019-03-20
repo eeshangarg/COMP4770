@@ -96,8 +96,8 @@ function loginListner() {
         // Type: 'a' -> Animation ID-Map message.   
         else if (data.t === 'animMap') {
             loadIdMap(data.d);
-        } else if (data === 'newAcc') {
-            console.log('newAcc', data.d);
+        } else if (data.t === 'taken') {
+            alert("Username already taken.");
         }
     }
 }

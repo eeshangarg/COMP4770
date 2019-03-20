@@ -3,10 +3,11 @@
 
 // The map which connected sockets tied to a ID.
 let socketMap = new Map();
-let db = null;
+
 // Requires
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
+const bcrypt = require('bcryptjs');
 const flatstr = require('flatstr');
 const {
     getAnimationIDMap,
@@ -17,7 +18,7 @@ const {
 
 // the function to intialize IO-helpers for websockets, should be passed the WebSocket-Server.
 function initIO(wss, db) {
-    db = db;
+
     // Load the Animation config file.
     loadAnimations(__dirname + "/../../config/Animation.json");
 
@@ -46,9 +47,9 @@ function initIO(wss, db) {
                 let flatJson = flatstr(JSON.stringify(message));
                 ws.send(flatJson);
             } else if (data.t === 'login') {
-                processLogin(ws, data);
+                processLogin(ws, data, db);
             } else if (data.t === 'newAcc') {
-                newAccHanlder(ws, data);
+                newAccHanlder(ws, data, db);
             }
         });
 
@@ -62,30 +63,64 @@ function initIO(wss, db) {
 }
 
 // The function which handles processing login data.
-function processLogin(ws, data) {
-    if (data.username === 'test', data.password === '1234'){
-        let message = {
-            t: 'login',
-            valid: 1
-        };
-        let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
-        ws.userName = data.username;
-        IOHandler(ws);
-    } else {
-        let message = {
-            t: 'login',
-            valid: 0
-        };
-        let flatJson = flatstr(JSON.stringify(message));
-        ws.send(flatJson);
-    }
+function processLogin(ws, data, db) {
+
+    db.collection('accounts').findOne({
+        username: data.username
+    }, function(err, result) {
+        if (err) throw err;
+        if (result != null && bcrypt.compareSync(data.password, result.password)) {
+            let message = {
+                t: 'login',
+                valid: 1
+            };
+            let flatJson = flatstr(JSON.stringify(message));
+            ws.send(flatJson);
+            ws.userName = data.username;
+            IOHandler(ws);
+        } else {
+            let message = {
+                t: 'login',
+                valid: 0
+            };
+            let flatJson = flatstr(JSON.stringify(message));
+            ws.send(flatJson);
+        }
+
+    });
 }
 
 
 // The function to attempt to registar new accounts.
-function newAccHanlder(ws, data) {
-    console.log('newAcc', data); // TO-DO make new acc.
+function newAccHanlder(ws, data, db) {
+
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(data.password, salt);
+    let user = {
+        username: data.username,
+        password: hash,
+        email: data.email
+    };
+
+    db.collection('accounts').findOne({username: data.username}, function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        if (result == null){
+            db.collection('accounts').insertOne(user, function(err, result) {
+            if (err) throw err;
+                console.log(user);
+                console.log("1 document inserted");
+            });
+        } else {
+            let message = {
+                t: 'taken'
+            };
+            let flatJson = flatstr(JSON.stringify(message));
+            ws.send(flatJson);
+        }
+    });
+
+
 }
 
 // The function which handles IO for a given Web-socket. 
@@ -157,7 +192,7 @@ function emitFrame(ws, renderQueue, px, py) {
         //send draw call 'd' -> Draw.
         let message = {
             t: 'd',
-            p: [px-512, py-288],
+            p: [px - 512, py - 288],
             d: renderQueue
         };
         let flatJson = flatstr(JSON.stringify(message));
@@ -207,10 +242,9 @@ function updateInputData(data, map) {
         }
 
         // Key state input block.
-        if  (data[i].k === 'mp') {
+        if (data[i].k === 'mp') {
             map.mousePos = data[i].s;
-        }
-        else if (data[i].k === 'w') {
+        } else if (data[i].k === 'w') {
             map.w = state;
         } else if (data[i].k === 'a') {
             map.a = state;
