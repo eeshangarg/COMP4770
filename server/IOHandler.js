@@ -104,12 +104,17 @@ function newAccHanlder(ws, data, db) {
 
     db.collection('accounts').findOne({username: data.username}, function(err, result) {
         if (err) throw err;
-        console.log(result);
         if (result == null){
             db.collection('accounts').insertOne(user, function(err, result) {
-            if (err) throw err;
-                console.log(user);
-                console.log("1 document inserted");
+                if (err) throw err;
+                let message = {
+                    t: 'login',
+                    valid: 1
+                };
+                let flatJson = flatstr(JSON.stringify(message));
+                ws.send(flatJson);
+                ws.userName = data.username;
+                IOHandler(ws);
             });
         } else {
             let message = {

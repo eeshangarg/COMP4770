@@ -87,6 +87,7 @@ function loginListner() {
             if (data.valid == 1) {
                 // Valid login create the socketHandler.
                 document.getElementById('div_login').style.visibility = 'hidden';
+                document.getElementById('div_new_acc').style.visibility = 'hidden';
                 document.getElementById('div_game_div').style.visibility = 'visible';
                 SocketHandler()
             } else {
@@ -390,6 +391,7 @@ function newAcceptHandler() {
         document.getElementById('new_passwordConf').value = '';
         document.getElementById('new_email').value = '';
         document.getElementById('new_username').value = '';
-
+        document.getElementById('div_login').style.visibility = 'visible';
+        document.getElementById('div_new_acc').style.visibility = 'hidden';
     }
 }
