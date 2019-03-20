@@ -5,6 +5,7 @@ import {
     getSprite
 } from './Assets.js';
 
+
 const bgCanvas = document.getElementById('bgCanvas').getContext('2d') // The background Canvas.
 const gameCanvas = document.getElementById('gameCanvas').getContext('2d'); // The Game Canvas.
 const textCanvas = document.getElementById('textCanvas').getContext('2d'); // The Text Canvas.
@@ -12,6 +13,8 @@ const rect = document.getElementById('gameCanvas').getBoundingClientRect();
 const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 socket.binaryType = "arraybuffer";
+
+
 
 let inputQueue = [];
 let inputEmitInterval = null;
@@ -345,7 +348,19 @@ function cancleHandler() {
 
 // The function which handles 'forgot my password' button clicks.
 function forgotMyPwdHanlder() {
-    console.log(document.getElementById('usernameField').value);
+    let username = document.getElementById('usernameField').value;
+    if (username.length > 0) {
+        let message = {
+            t: 'forgot',
+            username: username
+        };
+        socket.send(JSON.stringify(message));
+        document.getElementById('usernameField').value = '';
+        alert('Request sent.');
+    } else {
+        alert('Please enter username.');
+    }
+
 }
 
 // The function which handles 'Create new account' button clicks.

@@ -16,6 +16,17 @@ const {
 } = require('./../rendering/Rendering.js');
 
 
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'theknightbefore4770@gmail.com',
+    pass: 'coat.area'
+  }
+});
+
+
+
 // the function to intialize IO-helpers for websockets, should be passed the WebSocket-Server.
 function initIO(wss, db) {
 
@@ -50,6 +61,8 @@ function initIO(wss, db) {
                 processLogin(ws, data, db);
             } else if (data.t === 'newAcc') {
                 newAccHanlder(ws, data, db);
+            } else if (data.t === 'forgot') {
+                forgotPassword(ws, data, db);
             }
         });
 
@@ -60,6 +73,42 @@ function initIO(wss, db) {
 
     });
 
+}
+
+function forgotPassword(ws, data, db) {
+    let newPass = shortid.generate();
+    console.log('passrest', newPass);
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(newPass, salt);
+    let query = {username: data.username};
+    let newvalues = { $set: {password:hash } };
+    let email = null;
+
+    db.collection('accounts').findOne(query,  function(err, result) {
+        if (result != null) {
+            email = result.email;
+        }
+    });
+
+    db.collection('accounts').updateOne(query, newvalues, function(err, res) {
+        if (err) throw err;
+        console.log(email);
+        let mailOptions = {
+            from: 'theknightbefore4770@gmail.com',
+            to: email,
+            subject: 'Password Reset',
+            text: newPass
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+
+    });
 }
 
 // The function which handles processing login data.
@@ -240,6 +289,7 @@ function setBackgroundGradient(ws, c1, c2) {
 // The function to handle inputData, Sets inputs to Map then returns the map.
 function updateInputData(data, map) {
     for (var i = 0; i < data.length; i++) {
+
         // Resolve the state of the input optmistically.
         let state = true;
         if (data[i].s === 0) {
