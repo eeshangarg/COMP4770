@@ -3,8 +3,13 @@
 set -e
 
 npm run build
+echo -e "\n\e[31mStopping MongoDB daemon\n\e[0m"
+killall mongod && echo "Mongod Stopped." || echo "Process was not running, continue."
+mkdir -p data
+sleep 2s
 echo -e "\n\e[36mStarting MongoDB daemon\n\e[0m"
-mongod --logpath data/db_log.txt --dbpath=data &
+mongod --logpath data/db_log.txt --dbpath=data --fork
 sleep 3s
 echo -e "\n\e[36mStarting Node.js Server\n\e[0m"
 node lib/server/app.js
+mongod --dbpath=data --shutdown
