@@ -1,5 +1,6 @@
 [
     {
+        "tag": "misc",
         "type": "static",
         "AnimationName": "error",
         "SpriteName": "error",
@@ -9,6 +10,7 @@
         "y": 1
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "egg",
         "SpriteName": "egg",
@@ -18,6 +20,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "apple",
         "SpriteName": "apple",
@@ -27,6 +30,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "coin",
         "SpriteName": "coin",
@@ -36,6 +40,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "blue_potion",
         "SpriteName": "blue_potion",
@@ -45,6 +50,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "cheese",
         "SpriteName": "cheese",
@@ -54,6 +60,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "chest",
         "SpriteName": "chest",
@@ -63,6 +70,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "green_potion",
         "SpriteName": "green_potion",
@@ -72,6 +80,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "heart",
         "SpriteName": "heart",
@@ -81,6 +90,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "key_gold",
         "SpriteName": "key_gold",
@@ -90,6 +100,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "key",
         "SpriteName": "key",
@@ -99,6 +110,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "pie",
         "SpriteName": "pie",
@@ -108,6 +120,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "purple_potion",
         "SpriteName": "purple_potion",
@@ -117,6 +130,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "red_potion",
         "SpriteName": "red_potion",
@@ -126,6 +140,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "spell_blue",
         "SpriteName": "spell_blue",
@@ -135,6 +150,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "spell_red",
         "SpriteName": "spell_red",
@@ -144,6 +160,7 @@
         "y": 16
     },
     {
+        "tag": "item",
         "type": "static",
         "AnimationName": "yellow_potion",
         "SpriteName": "yellow_potion",
@@ -153,6 +170,7 @@
         "y": 16
     },
     {
+        "tag": "background",
         "type": "static",
         "AnimationName": "bg_menu",
         "SpriteName": "bg_menu",
@@ -162,6 +180,7 @@
         "y": 16
     },
     {
+        "tag": "background",
         "type": "static",
         "AnimationName": "bg_cave",
         "SpriteName": "bg_cave",
@@ -171,6 +190,7 @@
         "y": 16
     },
     {
+        "tag": "background",
         "type": "static",
         "AnimationName": "bg_desrt",
         "SpriteName": "bg_desrt",
@@ -180,6 +200,7 @@
         "y": 16
     },
     {
+        "tag": "background",
         "type": "static",
         "AnimationName": "bg_green",
         "SpriteName": "bg_green",
@@ -189,6 +210,7 @@
         "y": 16
     },
     {
+        "tag": "background",
         "type": "static",
         "AnimationName": "bg_snow",
         "SpriteName": "bg_snow",
@@ -198,6 +220,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "bush1",
         "SpriteName": "bush1",
@@ -207,6 +230,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "bush2",
         "SpriteName": "bush2",
@@ -216,6 +240,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "bush3",
         "SpriteName": "bush3",
@@ -225,6 +250,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "bush4",
         "SpriteName": "bush4",
@@ -234,6 +260,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "bush5",
         "SpriteName": "bush5",
@@ -243,6 +270,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "cactus",
         "SpriteName": "cactus",
@@ -252,6 +280,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "crate",
         "SpriteName": "crate",
@@ -261,6 +290,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "crystal",
         "SpriteName": "crystal",
@@ -270,6 +300,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "dead-plant",
         "SpriteName": "dead-plant",
@@ -279,6 +310,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "desert-grass1",
         "SpriteName": "desert-grass1",
@@ -288,6 +320,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "desert-grass2",
         "SpriteName": "desert-grass2",
@@ -297,6 +330,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "desert-stone1",
         "SpriteName": "desert-stone1",
@@ -306,6 +340,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "desert-stone2",
         "SpriteName": "desert-stone2",
@@ -315,6 +350,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "desert-stone3",
         "SpriteName": "desert-stone3",
@@ -324,6 +360,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "fence",
         "SpriteName": "fence",
@@ -333,6 +370,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "flower-red",
         "SpriteName": "flower-red",
@@ -342,6 +380,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "flower-yellow",
         "SpriteName": "flower-yellow",
@@ -351,6 +390,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "flower-red",
         "SpriteName": "flower-red",
@@ -360,6 +400,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "frozen-plant",
         "SpriteName": "frozen-plant",
@@ -369,6 +410,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "frozen-tree1",
         "SpriteName": "frozen-tree1",
@@ -378,6 +420,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "frozen-tree2",
         "SpriteName": "frozen-tree2",
@@ -387,6 +430,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "grass1",
         "SpriteName": "grass1",
@@ -396,6 +440,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "grass2",
         "SpriteName": "grass2",
@@ -405,6 +450,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "ice-stone",
         "SpriteName": "ice-stone",
@@ -414,6 +460,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "ladder",
         "SpriteName": "ladder",
@@ -423,6 +470,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "mushroom1",
         "SpriteName": "mushroom1",
@@ -432,6 +480,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "mushroom2",
         "SpriteName": "mushroom2",
@@ -441,6 +490,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "pine-snow",
         "SpriteName": "pine-snow",
@@ -450,6 +500,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "sign-left",
         "SpriteName": "sign-left",
@@ -459,6 +510,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "sign-right",
         "SpriteName": "sign-right",
@@ -468,6 +520,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "skeleton",
         "SpriteName": "skeleton",
@@ -477,6 +530,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "snow-pile",
         "SpriteName": "snow-pile",
@@ -486,6 +540,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "stalactite1",
         "SpriteName": "stalactite1",
@@ -495,6 +550,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "stalactite2",
         "SpriteName": "stalactite2",
@@ -504,6 +560,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "stone1",
         "SpriteName": "stone1",
@@ -513,6 +570,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "stone2",
         "SpriteName": "stone2",
@@ -522,6 +580,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "stump",
         "SpriteName": "stump",
@@ -531,6 +590,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "sun",
         "SpriteName": "sun",
@@ -540,6 +600,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "torch",
         "SpriteName": "torch",
@@ -549,6 +610,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "tree1",
         "SpriteName": "tree1",
@@ -558,6 +620,7 @@
         "y": 16
     },
     {
+        "tag": "decoration",
         "type": "static",
         "AnimationName": "tree2",
         "SpriteName": "tree2",
@@ -567,6 +630,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "cave-platform-corner-L",
         "SpriteName": "cave-platform-corner-L",
@@ -576,6 +640,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "cave-platform-corner-R",
         "SpriteName": "cave-platform-corner-R",
@@ -585,6 +650,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "cave-platform",
         "SpriteName": "cave-platform",
@@ -594,6 +660,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "cave-single-platform",
         "SpriteName": "cave-single-platform",
@@ -603,6 +670,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "desert-platform-corner-L",
         "SpriteName": "desert-platform-corner-L",
@@ -612,6 +680,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "desert-platform-corner-R",
         "SpriteName": "desert-platform-corner-R",
@@ -621,6 +690,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "desert-single-platform",
         "SpriteName": "desert-single-platform",
@@ -630,6 +700,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "desert-platform",
         "SpriteName": "desert-platform",
@@ -639,6 +710,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "grass-platform-corner-L",
         "SpriteName": "grass-platform-corner-L",
@@ -648,6 +720,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "grass-platform-corner-R",
         "SpriteName": "grass-platform-corner-R",
@@ -657,6 +730,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "grass-platform",
         "SpriteName": "grass-platform",
@@ -666,6 +740,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "grass-single-platform",
         "SpriteName": "grass-single-platform",
@@ -675,6 +750,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "soil-platform",
         "SpriteName": "soil-platform",
@@ -684,6 +760,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "soil-platorm-corner-L",
         "SpriteName": "soil-platorm-corner-L",
@@ -693,6 +770,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "soil-platorm-corner-R",
         "SpriteName": "soil-platorm-corner-R",
@@ -702,6 +780,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "soil-platorm-corner-R",
         "SpriteName": "soil-platorm-corner-R",
@@ -711,6 +790,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "soil-single-platform",
         "SpriteName": "soil-single-platform",
@@ -720,6 +800,7 @@
         "y": 16
     },
     {
+        "tag": "tile",
         "type": "static",
         "AnimationName": "water",
         "SpriteName": "water",
@@ -729,6 +810,7 @@
         "y": 16
     },
     {
+        "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerAtk",
         "SpriteNameR": "playerAtkR",
@@ -739,6 +821,7 @@
         "y": 64
     },
     {
+        "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerDeath",
         "SpriteNameR": "playerDeathR",
@@ -749,6 +832,7 @@
         "y": 64
     },
     {
+        "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerRun",
         "SpriteNameR": "playerRunR",
@@ -759,6 +843,7 @@
         "y": 64
     },
     {
+        "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerDefense",
         "SpriteNameR": "playerDefenseR",
@@ -769,6 +854,7 @@
         "y": 64
     },
     {
+        "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerJump",
         "SpriteNameR": "playerJumpR",
@@ -779,6 +865,7 @@
         "y": 64
     },
     {
+        "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerReaction",
         "SpriteNameR": "playerReactionR",
@@ -789,16 +876,18 @@
         "y": 64
     },
     {
+        "tag": "player",
         "type": "dynamic",
-        "AnimationName": "playerIdel", 
-        "SpriteNameR": "playerIdelR",
-        "SpriteNameL": "playerIdelL",
+        "AnimationName": "playerIdle",
+        "SpriteNameR": "playerIdleR",
+        "SpriteNameL": "playerIdleL",
         "frameCount": 6, 
         "fps": 15,
         "x": 64,
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanAtk1",
         "SpriteNameR": "cowmanAtk1R",
@@ -809,6 +898,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanAtk2",
         "SpriteNameR": "cowmanAtk2R",
@@ -819,6 +909,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanDeath",
         "SpriteNameR": "cowmanDeathR",
@@ -829,6 +920,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanFall",
         "SpriteNameR": "cowmanFallR",
@@ -839,6 +931,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanHurt",
         "SpriteNameR": "cowmanHurtR",
@@ -849,6 +942,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanIdle",
         "SpriteNameR": "cowmanIdleR",
@@ -859,6 +953,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanJump",
         "SpriteNameR": "cowmanJumpR",
@@ -869,6 +964,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanJumpRdy",
         "SpriteNameR": "cowmanJumpRdyR",
@@ -879,6 +975,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "cowmanRun",
         "SpriteNameR": "cowmanRunR",
@@ -889,6 +986,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinAtk",
         "SpriteNameR": "goblinAtkR",
@@ -899,6 +997,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinDeath",
         "SpriteNameR": "goblinDeathR",
@@ -909,6 +1008,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinFall",
         "SpriteNameR": "goblinFallR",
@@ -919,6 +1019,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinHurt",
         "SpriteNameR": "goblinHurtR",
@@ -929,6 +1030,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinIdle",
         "SpriteNameR": "goblinIdleR",
@@ -939,6 +1041,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinJump",
         "SpriteNameR": "goblinJumpR",
@@ -949,6 +1052,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinJumpRdy",
         "SpriteNameR": "goblinJumpRdyR",
@@ -959,6 +1063,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "goblinRun",
         "SpriteNameR": "goblinRunR",
@@ -969,6 +1074,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "impAtk",
         "SpriteNameR": "impAtkR",
@@ -979,6 +1085,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "impDeath",
         "SpriteNameR": "impDeathR",
@@ -989,6 +1096,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "impHurt",
         "SpriteNameR": "impHurtR",
@@ -999,6 +1107,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "impIdle",
         "SpriteNameR": "impIdleR",
@@ -1009,6 +1118,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "impMove",
         "SpriteNameR": "impMoveR",
@@ -1019,6 +1129,7 @@
         "y": 64
     },
     {
+        "tag": "npc",
         "type": "dynamic",
         "AnimationName": "impProjectile",
         "SpriteNameR": "impProjectileR",
@@ -1029,6 +1140,7 @@
         "y": 64
     },
     {
+        "tag": "effect",
         "type": "dynamic",
         "AnimationName": "blood_big",
         "SpriteNameR": "blood_big",
@@ -1039,6 +1151,7 @@
         "y": 64
     },
     {
+        "tag": "effect",
         "type": "dynamic",
         "AnimationName": "blood_small",
         "SpriteNameR": "blood_small",

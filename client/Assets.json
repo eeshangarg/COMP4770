@@ -38,13 +38,13 @@
   {
     "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_idel_R.png",
-    "SpriteName": "playerIdelR",
+    "SpriteName": "playerIdleR",
     "Type": "Sprite"
   },
   {
     "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_idel_L.png",
-    "SpriteName": "playerIdelL",
+    "SpriteName": "playerIdleL",
     "Type": "Sprite"
   },
   {
