@@ -131,6 +131,10 @@ function SocketHandler() {
             queueInput('esc', 1);
         else if (event.keyCode === 84) // 84 -> "T"
             queueInput('t', 1);
+        else if (event.keyCode === 37) // 37 -> "<-"
+            queueInput('arrowLeft', 1);
+        else if (event.keyCode === 39) // 39 -> "->"
+            queueInput('arrowRight', 1);
     }
 
 
@@ -152,6 +156,10 @@ function SocketHandler() {
             queueInput('esc', 0);
         else if (event.keyCode === 84) // 84 -> "T"
             queueInput('t', 0);
+        else if (event.keyCode === 37) // 37 -> "<-"
+            queueInput('arrowLeft', 0);
+        else if (event.keyCode === 39) // 39 -> "->"
+            queueInput('arrowRight', 0);
     }
 
     // mouse click event

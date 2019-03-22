@@ -317,6 +317,10 @@ function updateInputData(data, map) {
             map.t = state;
         } else if (data[i].k === 'click') {
             map.click = state;
+        } else if (data[i].k === 'arrowLeft') {
+            map.arrowLeft = state;
+        } else if (data[i].k === 'arrowRight') {
+            map.arrowRight = state;
         }
     }
     return map;
