@@ -137,6 +137,8 @@ function SocketHandler() {
             queueInput('arrowRight', 1);
         else if (event.keyCode === 71) // 71 -> "G"
             queueInput('g', 1);
+        else if (event.keyCode === 46) // 46 -> "Delete"
+            queueInput('del', 1);
     }
 
 
@@ -164,6 +166,8 @@ function SocketHandler() {
             queueInput('arrowRight', 0);
         else if (event.keyCode === 71) // 71 -> "G"
             queueInput('g', 0);
+        else if (event.keyCode === 46) // 46 -> "Delete"
+            queueInput('del', 0);
     }
 
     // mouse click event

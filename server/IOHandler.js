@@ -323,6 +323,8 @@ function updateInputData(data, map) {
             map.arrowRight = state;
         } else if (data[i].k === 'g') {
             map.g = state;
+        } else if (data[i].k === 'del') {
+            map.del = state;
         }
     }
     return map;

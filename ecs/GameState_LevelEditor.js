@@ -92,6 +92,10 @@ class GameState_LevelEditor extends GameState {
         if (inputMap.g) {
             this.gridMode = !this.gridMode;
         }
+
+        if (inputMap.del) {
+            this.deleteSelectedEntity();
+        }
     }
 
     sMovement() {
@@ -283,6 +287,17 @@ class GameState_LevelEditor extends GameState {
         // TODO: Delete the entity that is currently being dragged around/is selected.
 
         // KEY: The Delete key.
+        let entities = this.entityManager.getAllEntities();
+        for (let i = 0; i < entities.length; i++) {
+            let entity = entities[i];
+            if (!entity.hasComponent(CDraggable)) {
+                continue;
+            }
+
+            if (entity.getComponent(CDraggable).isBeingDragged) {
+                entity.destroy();
+            }
+        }
     }
 
     saveLevel() {
