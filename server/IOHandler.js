@@ -313,10 +313,10 @@ function updateInputData(data, map) {
             map.enter = state;
         } else if (data[i].k === 'esc') {
             map.escape = state;
+        } else if (data[i].k === 't') {
+            map.t = state;
         }
-
     }
-
     return map;
 }
 

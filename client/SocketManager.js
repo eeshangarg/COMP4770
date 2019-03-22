@@ -123,12 +123,14 @@ function SocketHandler() {
             queueInput('s', 1);
         else if (event.keyCode === 68) // 68 -> "D"
             queueInput('d', 1);
-        else if (event.keyCode === 32) // 68 -> "Space" 
+        else if (event.keyCode === 32) // 32 -> "Space"
             queueInput('_', 1);
         else if (event.keyCode === 13) // 13 -> "Enter"
             queueInput('|', 1);
-        else if (event.keyCode === 27) // 13 -> "Escape"
+        else if (event.keyCode === 27) // 27 -> "Escape"
             queueInput('esc', 1);
+        else if (event.keyCode === 84) // 84 -> "T"
+            queueInput('t', 1);
     }
 
 
@@ -142,13 +144,14 @@ function SocketHandler() {
             queueInput('s', 0);
         else if (event.keyCode === 68) // 68 -> "D"
             queueInput('d', 0);
-        else if (event.keyCode === 32) // 68 -> "Space"
+        else if (event.keyCode === 32) // 32 -> "Space"
             queueInput('_', 0);
         else if (event.keyCode === 13) // 13 -> "Enter"
             queueInput('|', 0);
-        else if (event.keyCode === 27) // 13 -> "Escape"
+        else if (event.keyCode === 27) // 27 -> "Escape"
             queueInput('esc', 0);
-
+        else if (event.keyCode === 84) // 84 -> "T"
+            queueInput('t', 0);
     }
 
     socket.onmessage = function(message) {

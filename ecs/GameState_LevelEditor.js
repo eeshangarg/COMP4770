@@ -11,20 +11,22 @@ const Entity = require('./Entity.js');
 const Components = require('./Components.js');
 const CTransform = Components.CTransform;
 const CAnimation = Components.CAnimation;
+const CBoundingBox = Components.CBoundingBox;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
+const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
 
 class GameState_LevelEditor extends GameState {
     game: GameEngine;
     entityManager: EntityManager;
-    editor: Entity;
+    player: Entity;
     update: void => void;
 
     constructor(game: GameEngine) {
         super();
         this.game = game;
         this.entityManager = new EntityManager();
-        this.editor = this.entityManager.addEntity("editor");
+        this.player = this.entityManager.addEntity("player");
         this.init();
     }
 
@@ -39,9 +41,9 @@ class GameState_LevelEditor extends GameState {
         let tile = this.entityManager.addEntity("tile");
         tile.addComponent(new CTransform(new Vec(0, 0)));
         tile.addComponent(new CAnimation("cave-platform", true));
-        this.editor.addComponent(new CTransform(new Vec(0, 0)));
-        this.editor.addComponent(new CAnimation("playerRun", true));
-        this.editor.addComponent(new CInput());
+        this.player.addComponent(new CTransform(new Vec(0, 0)));
+        this.player.addComponent(new CAnimation("playerRun", true));
+        this.player.addComponent(new CInput());
     }
 
     update() {
@@ -49,7 +51,6 @@ class GameState_LevelEditor extends GameState {
         this.sMovement();
         this.sAnimation();
         this.sUserInput();
-        this.sEdit();
         this.sDrag();
         this.sRender();
     }
@@ -57,43 +58,42 @@ class GameState_LevelEditor extends GameState {
     sUserInput() {
         // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
-        let playerInput = this.editor.getComponent(CInput);
+        let playerInput = this.player.getComponent(CInput);
+
         if (inputMap.escape){
             this.game.popState();
         }
 
-        let playerPos = this.editor.getComponent(CTransform).pos;
-        let px = playerPos.x - 512;
-        let py = playerPos.y - 288;
-
         playerInput.up = inputMap.w;
-        playerInput.down = inputMap.s;
         playerInput.left = inputMap.a;
-        playerInput.placeTile = inputMap.space;
+        playerInput.down = inputMap.s;
         playerInput.right = inputMap.d;
-        playerInput.mousePos = new Vec (inputMap.mousePos[0] + px, inputMap.mousePos[1] + py);
+
+        if (inputMap.t) {
+            this.insertTile();
+        }
     }
 
     sMovement() {
         // TODO: Process the player's movement here.
         // Note that the player should still be able to move around
         // so that the user can navigate the level canvas.
-        let playerInput = this.editor.getComponent(CInput);
+        let playerInput = this.player.getComponent(CInput);
 
         // Example
         if (playerInput.up) {
-            this.editor.getComponent(CTransform).pos.y += 3;
+            this.player.getComponent(CTransform).pos.y += 3;
         }
         else if (playerInput.down) {
-            this.editor.getComponent(CTransform).pos.y -= 3;
+            this.player.getComponent(CTransform).pos.y -= 3;
         }
 
         if (playerInput.left) {
-            this.editor.getComponent(CTransform).pos.x -= 3;
-            this.editor.getComponent(CTransform).facing = -1;
+            this.player.getComponent(CTransform).pos.x -= 3;
+            this.player.getComponent(CTransform).facing = -1;
         } else if (playerInput.right) {
-            this.editor.getComponent(CTransform).pos.x += 3;
-            this.editor.getComponent(CTransform).facing = 1;
+            this.player.getComponent(CTransform).pos.x += 3;
+            this.player.getComponent(CTransform).facing = 1;
         }
     }
 
@@ -109,7 +109,7 @@ class GameState_LevelEditor extends GameState {
 
     sRender() {
         // TODO: Handle all rendering here.
-        let editorPos = this.editor.getComponent(CTransform).pos;
+        let editorPos = this.player.getComponent(CTransform).pos;
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             // Only draw entities with Animations.
@@ -124,16 +124,6 @@ class GameState_LevelEditor extends GameState {
             }
         }
         this.game.drawFrame(editorPos);
-    }
-
-    // A helper system to call other editors sub-systems off.
-    sEdit() {
-        let playerInput = this.editor.getComponent(CInput);
-        if (playerInput.placeTile){
-            let tile = this.entityManager.addEntity("tile");
-            tile.addComponent(new CTransform(playerInput.mousePos));
-            tile.addComponent(new CAnimation("playerDeath", true));
-        }
     }
 
     sDrag() {
@@ -153,6 +143,12 @@ class GameState_LevelEditor extends GameState {
         // TODO: Insert a tile entity at the current cursor position.
 
         // KEY: called when the user presses T.
+        let tile = this.entityManager.addEntity("tile");
+        tile.addComponent(new CTransform(this.getMousePosition()));
+        // $FlowFixMe
+        let animation = getAnimationsByTag('tile')[0];
+        tile.addComponent(new CAnimation(animation, true));
+        tile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
     }
 
     insertDecoration() {
@@ -200,12 +196,13 @@ class GameState_LevelEditor extends GameState {
         // KEY: Ctrl + S ??
     }
 
-    getCursorPosition(): Vec {
-        // TODO: Return a Vec of the current position of the cursor.
-        // A lot of the functionality of the level editor depends on this.
-
-        // Example
-        return new Vec(0.0, 2.0);
+    getMousePosition(): Vec {
+        let inputMap = this.game.getInputMap();
+        let playerPos = this.player.getComponent(CTransform).pos;
+        let px = playerPos.x - 512;
+        let py = playerPos.y - 288;
+        return new Vec(inputMap.mousePos[0] + px,
+                       inputMap.mousePos[1] + py);
     }
 }
 

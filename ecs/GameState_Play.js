@@ -76,15 +76,10 @@ class GameState_Play extends GameState {
             this.game.popState();
         }
 
-        let playerPos = this.player.getComponent(CTransform).pos;
-        let px = playerPos.x - 512;
-        let py = playerPos.y - 288;
-
         playerInput.up = inputMap.w;
         playerInput.down = inputMap.s;
         playerInput.left = inputMap.a;
         playerInput.right = inputMap.d;
-        playerInput.mousePos = new Vec (inputMap.mousePos[0] + px, inputMap.mousePos[1] + py);
     }
 
     sMovement() {

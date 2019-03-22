@@ -43,8 +43,6 @@ class CInput extends Component {
     right: boolean;
     shoot: boolean;
     canShoot: boolean;
-    placeTile: boolean;
-    mousePos: Vec;
 
     constructor() {
         super();
@@ -53,9 +51,7 @@ class CInput extends Component {
         this.left = false;
         this.right = false;
         this.shoot = false;
-        this.placeTile = false;
         this.canShoot = true;
-        this.mousePos = new Vec(0,0);
     }
 }
 CInput.INDEX = 1;

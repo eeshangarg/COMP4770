@@ -21,7 +21,7 @@ class GameEngine {
     statesToPush: Array<GameState>;        // The Gamestates to be pushed into the stack.
     popStates: number;                     // The number of states to-be popped off the stack.
     running: boolean;                      // The running bool.
-    inputMaup: Object;                     // The socket-driven inputMap.
+    inputMap: Object;                      // The socket-driven inputMap.
     renderQueue: Array<Object>;            // The queue which holds all elements to-be rendered next frame.
     quit: void => void;                    // The helper function to quit the game engine.
     run: void => void;                     // The handler for stopping/running the update loop.
@@ -43,25 +43,25 @@ class GameEngine {
     clearText: string => void;
 
     constructor(socket: Object) {
-            this.self = this;
-            this.socket = socket;
-            this.states = [];
-            this.renderQueue = [];
-            this.statesToPush = [];
-            this.popStates = 0;
-            this.running = true;
-            this.inputMap = {
-                w: false,
-                a: false,
-                d: false,
-                s: false,
-                space: false,
-                enter: false,
-                escape: false,
-                mousePos:[0,0]
-            };
-            io = require('./../server/IOHandler.js');
-        }
+        this.self = this;
+        this.socket = socket;
+        this.states = [];
+        this.renderQueue = [];
+        this.statesToPush = [];
+        this.popStates = 0;
+        this.running = true;
+        this.inputMap = {
+            w: false,
+            a: false,
+            d: false,
+            s: false,
+            space: false,
+            enter: false,
+            escape: false,
+            mousePos: [0,0]
+        };
+        io = require('./../server/IOHandler.js');
+    }
 
     // An intializer function for the game Enginge.
     init() {
