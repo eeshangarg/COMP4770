@@ -12,6 +12,7 @@ const Components = require('./Components.js');
 const CTransform = Components.CTransform;
 const CAnimation = Components.CAnimation;
 const CBoundingBox = Components.CBoundingBox;
+const CDraggable = Components.CDraggable;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
@@ -72,6 +73,11 @@ class GameState_LevelEditor extends GameState {
         if (inputMap.t) {
             this.insertTile();
         }
+
+        if (inputMap.click) {
+            this.dragOrDropEntity();
+            inputMap.click = false;
+        }
     }
 
     sMovement() {
@@ -128,6 +134,17 @@ class GameState_LevelEditor extends GameState {
 
     sDrag() {
         // TODO: Support dragging existing entities on the canvas
+        let entities = this.entityManager.getAllEntities();
+        for (let i = 0; i < entities.length; i++) {
+            let entity = entities[i];
+            if (!entity.hasComponent(CDraggable)) {
+                continue;
+            }
+
+            if (entity.getComponent(CDraggable).isBeingDragged) {
+                entity.getComponent(CTransform).pos = this.getMousePosition();
+            }
+        }
     }
 
     insertNPC() {
@@ -145,9 +162,9 @@ class GameState_LevelEditor extends GameState {
         // KEY: called when the user presses T.
         let tile = this.entityManager.addEntity("tile");
         tile.addComponent(new CTransform(this.getMousePosition()));
+        tile.addComponent(new CDraggable());
         // $FlowFixMe
-        let animation = getAnimationsByTag('tile')[0];
-        tile.addComponent(new CAnimation(animation, true));
+        tile.addComponent(new CAnimation(getAnimationsByTag('tile')[0], true));
         tile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
     }
 
@@ -170,6 +187,28 @@ class GameState_LevelEditor extends GameState {
         // take into account whether Snap To Grid mode is on.
 
         // NOTE: This function may take in additional arguments.
+        let mousePos = this.getMousePosition();
+        let entities = this.entityManager.getAllEntities();
+        for (let i = 0; i < entities.length; i++) {
+            let entity = entities[i];
+            if (!entity.hasComponent(CDraggable)) {
+                continue;
+            }
+
+            let position = entity.getComponent(CTransform).pos;
+            let halfSize = entity.getComponent(CBoundingBox).halfSize;
+            let draggable = entity.getComponent(CDraggable);
+            let x_high = position.x + halfSize.x;
+            let x_low = position.x - halfSize.x;
+            let y_high = position.y + halfSize.y;
+            let y_low = position.y - halfSize.y;
+
+            if ((mousePos.x > x_low && mousePos.x < x_high) &&
+                (mousePos.y > y_low && mousePos.y < y_high))
+            {
+                draggable.isBeingDragged = !draggable.isBeingDragged;
+            }
+        }
     }
 
     displayNextAnimationForSelectedEntity() {

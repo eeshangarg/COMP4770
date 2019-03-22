@@ -154,6 +154,11 @@ function SocketHandler() {
             queueInput('t', 0);
     }
 
+    // mouse click event
+    document.onclick = function(event) {
+        queueInput('click', 1);
+    }
+
     socket.onmessage = function(message) {
         let str = new TextDecoder('utf-8').decode(message.data);
         let data = JSON.parse(str);

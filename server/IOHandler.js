@@ -315,6 +315,8 @@ function updateInputData(data, map) {
             map.escape = state;
         } else if (data[i].k === 't') {
             map.t = state;
+        } else if (data[i].k === 'click') {
+            map.click = state;
         }
     }
     return map;
