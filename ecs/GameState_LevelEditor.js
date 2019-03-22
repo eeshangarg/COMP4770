@@ -22,12 +22,14 @@ class GameState_LevelEditor extends GameState {
     entityManager: EntityManager;
     player: Entity;
     update: void => void;
+    gridMode: boolean;
 
     constructor(game: GameEngine) {
         super();
         this.game = game;
         this.entityManager = new EntityManager();
         this.player = this.entityManager.addEntity("player");
+        this.gridMode = false;
         this.init();
     }
 
@@ -85,6 +87,10 @@ class GameState_LevelEditor extends GameState {
 
         if (inputMap.arrowRight) {
             this.displayNextAnimationForSelectedEntity('right');
+        }
+
+        if (inputMap.g) {
+            this.gridMode = !this.gridMode;
         }
     }
 
@@ -150,7 +156,16 @@ class GameState_LevelEditor extends GameState {
             }
 
             if (entity.getComponent(CDraggable).isBeingDragged) {
-                entity.getComponent(CTransform).pos = this.getMousePosition();
+                if (this.gridMode) {
+                    let halfSize = entity.getComponent(CBoundingBox).halfSize;
+                    let mousePos = this.getMousePosition();
+                    let snappedPos = new Vec(16 * Math.floor(mousePos.x / 16) + halfSize.x,
+                                             16 * Math.floor(mousePos.y / 16) + halfSize.y);
+                    entity.getComponent(CTransform).pos = snappedPos;
+                }
+                else {
+                    entity.getComponent(CTransform).pos = this.getMousePosition();
+                }
             }
         }
     }

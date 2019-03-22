@@ -321,6 +321,8 @@ function updateInputData(data, map) {
             map.arrowLeft = state;
         } else if (data[i].k === 'arrowRight') {
             map.arrowRight = state;
+        } else if (data[i].k === 'g') {
+            map.g = state;
         }
     }
     return map;
