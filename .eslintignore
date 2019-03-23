@@ -3,3 +3,5 @@ client/
 node_modules/
 */tests/
 server/
+/ecs/GameEngine.js
+/ecs/GameState_Menu.js

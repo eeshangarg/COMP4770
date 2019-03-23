@@ -3,8 +3,11 @@
 
 // The map which connected sockets tied to a ID.
 let socketMap = new Map();
+let spLevels = [];
+
 
 // Requires
+const fs = require("fs");
 const GameEngine = require('./../ecs/GameEngine.js');
 const shortid = require('shortid');
 const bcrypt = require('bcryptjs');
@@ -34,6 +37,16 @@ function initIO(wss, db) {
     loadAnimations(__dirname + "/../../config/Animation.json");
 
     console.log('IO Initialzied for WebSocket-Server.');
+    let level1 = fs.readFileSync(__dirname + "/../../config/levels/level_1.json");
+    spLevels.push(JSON.parse(level1));
+    let level2 = fs.readFileSync(__dirname + "/../../config/levels/level_2.json");
+    spLevels.push(JSON.parse(level2));
+    let level3 = fs.readFileSync(__dirname + "/../../config/levels/level_3.json");
+    spLevels.push(JSON.parse(level3));
+    let level4 = fs.readFileSync(__dirname + "/../../config/levels/level_4.json");
+    spLevels.push(JSON.parse(level4));
+    let level5 = fs.readFileSync(__dirname + "/../../config/levels/level_5.json");
+    spLevels.push(JSON.parse(level5));
 
     // Create a blank serverList.
     wss.serverList = [];
@@ -132,7 +145,7 @@ function processLogin(ws, data, db) {
             let flatJson = flatstr(JSON.stringify(message));
             ws.send(flatJson);
             ws.userName = data.username;
-            IOHandler(ws);
+            IOHandler(ws, db);
         } else {
             let message = {
                 t: 'login',
@@ -164,14 +177,36 @@ function newAccHanlder(ws, data, db) {
         if (result == null) {
             db.collection('accounts').insertOne(user, function(err, result) {
                 if (err) throw err;
-                let message = {
-                    t: 'login',
-                    valid: 1
-                };
-                let flatJson = flatstr(JSON.stringify(message));
-                ws.send(flatJson);
-                ws.userName = data.username;
-                IOHandler(ws);
+
+                db.createCollection(data.username +'_progress', function(err, result) {
+                    if (err) throw err;
+                });
+
+                db.createCollection(data.username + '_levels', function(err, result) {
+                    if (err) throw err;
+                    // Create a blank level array and assign it to the player Account.
+                    levels = []
+                    let levelBlank = JSON.parse(fs.readFileSync(__dirname + "/../../config/levels/level_blank.json"));
+                    for(let i = 1; i <= 5; i++) {
+                        levelBlank.name = "My level " + i;
+                        levelBlank.username = data.username;
+                        levels.push( Object.assign({}, levelBlank));
+                    }
+
+                    db.collection(data.username + '_levels').insertMany(levels, function(err, res) {
+                            if (err) throw err;
+                    });
+
+                    let message = {
+                        t: 'login',
+                        valid: 1
+                    };
+                    let flatJson = flatstr(JSON.stringify(message));
+                    ws.send(flatJson);
+                    ws.userName = data.username;
+                    IOHandler(ws, db);
+
+                });
             });
         } else {
             let message = {
@@ -186,12 +221,12 @@ function newAccHanlder(ws, data, db) {
 }
 
 // The function which handles IO for a given Web-socket. 
-function IOHandler(ws) {
+function IOHandler(ws, db) {
     // Clear the file loading listener.
     ws.removeAllListeners('message');
     // Create a instance of a fakeGameEngine passed the socket.
 
-    let game = new GameEngine(ws);
+    let game = new GameEngine(ws, db, spLevels);
     game.init();
 
     ws.GameEngine = game;
