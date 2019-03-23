@@ -16,7 +16,9 @@ let io = require('./../server/IOHandler.js');
 class GameEngine {
 
     self: GameEngine;
-    screenSize: Vec;
+    spLevels: Array<Object>                // The single-player levels array.
+    db: Object;                            // The data-base object.
+    screenSize: Vec;                       // The screen size.
     socket: Object;                        // The GameEngine's main socket.
     states: Array<GameState>;              // The current game state-stack.
     statesToPush: Array<GameState>;        // The Gamestates to be pushed into the stack.
@@ -29,12 +31,15 @@ class GameEngine {
     runInterval: Object;                   // The main run interval of the GameEngine.
     init: void => void;                    // The initilzer function, to-be called on creation.
     update: void => void;                  // The maind update-loop function.
-    pushState: string => void;             // Push a state via string onto the stack.
     popState: void => void;                // Call a state to be popped off the stack.
     inputMap: Object;                      // The map which holds all player inputs.
     getInputMap: void => Object;           // Get the games input-map.
     setInputMap: Object => void;           // Set the games input-map.
     drawFrame: Vec => void;                // The function which handles drawing a frame at a given pos.
+    getCustomLevels: void => Array<Object>;// This function returns all of the current-user's custom levels.
+    saveLevel: Object => void;             // This function saves the given level to the DB.
+    getProgress: void => Object;           // The function to hanlde getting the users progress.
+    pushState: (state: string, level: Object) => void;
     draw: (anim: Animation, dir: number, pos: Vec) => void;
     queueAnimation: (id: number, frame: number, dx: number, dy: number) => void;
     drawText: (textString: string, key: string, font: string, color: string, dx: number, dy: number) => void;
@@ -43,9 +48,11 @@ class GameEngine {
     
     clearText: string => void;
 
-    constructor(socket: Object) {
+    constructor(socket: Object, database: Object, levels: Object) {
         this.self = this;
         this.socket = socket;
+        this.db = database;
+        this.spLevels = levels;
         this.states = [];
         this.renderQueue = [];
         this.statesToPush = [];
@@ -123,21 +130,38 @@ class GameEngine {
     }
 
     // Push a state onto the "States to be pushed" stack.
-    pushState(name: string) {
+    pushState(name: string, level: Object) {
         if(name === 'menu'){
             let state: GameState_Menu = new GameState_Menu(this);
             this.statesToPush.push(state);
         }
         else if(name === 'single player'){
-            let state: GameState_Play = new GameState_Play(this, 'SomeLevel');
+            let state: GameState_Play = new GameState_Play(this, level);
             this.statesToPush.push(state);
         }
         else if(name === 'level editor'){
-            let state: GameState_LevelEditor = new GameState_LevelEditor(this);
+            let state: GameState_LevelEditor = new GameState_LevelEditor(this, level);
             this.statesToPush.push(state);
         }
+    }
 
-        
+    // The function to handle getting the users progress.
+    getProgress(): Object {
+        // this.db.collection(ws.userName + '_progress');
+    }
+
+
+    // $FlowFixMe
+    getCustomLevels(callback) {
+        this.db.collection(this.socket.userName + '_levels').find({}).toArray(function(err, docs) {
+            callback(docs);
+        });
+    }
+
+    // The function to handle saving a level.
+    saveLevel(level: Object) {
+        console.log(level);
+        // TO-DO
     }
 
     // Queue up a state to be popped. (always top state.)
@@ -212,6 +236,7 @@ class GameEngine {
             dx -> The x position.
             dy -> The Y posistion. 
     */
+
     drawText(textString: string, key: string, font: string, color: string, dx: number, dy: number) {
         io.drawText(this.socket, textString, key, font, color, dx, dy);
     }

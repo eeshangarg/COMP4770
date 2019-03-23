@@ -3,6 +3,7 @@
 /* global module */
 /* global require */
 // flowlint untyped-import:off
+// flowlint unclear-type:off
 
 const GameEngine = require('./GameEngine.js');
 const GameState = require('./GameState.js');
@@ -21,19 +22,20 @@ class GameState_Play extends GameState {
     player: Entity;
     levelPath: string;
     update: void => void;
+    level: Object;
 
-    constructor(game: GameEngine, levelPath: string) {
+    constructor(game: GameEngine, level: Object) {
         super();
+        this.level = level;
         this.game = game;
         this.entityManager = new EntityManager();
         this.paused = false;
         this.player = this.entityManager.addEntity("player");
-        this.levelPath = levelPath;
         this.init();
     }
 
     init() {
-        this.game.setBackground('bg_cave');
+        this.game.setBackground(this.level.background);
         this.loadLevel();
         this.spawnPlayer();
         // remove :
