@@ -6,6 +6,7 @@ import {
 } from './Assets.js';
 
 
+const keys = [-2,-1,71,67,87,65,83,46,68,89,85,84,61,69,13,32,27,37,39,38,49,50,51,52,53,16,17,187,189]; // Keys.
 const bgCanvas = document.getElementById('bgCanvas').getContext('2d') // The background Canvas.
 const gameCanvas = document.getElementById('gameCanvas').getContext('2d'); // The Game Canvas.
 const textCanvas = document.getElementById('textCanvas').getContext('2d'); // The Text Canvas.
@@ -115,65 +116,22 @@ function SocketHandler() {
     inputEmitInterval = setInterval(emitInput, 16);
 
     document.onkeydown = function(event) {
-        if (event.keyCode === 87) // 87 -> "W"
-            queueInput('w', 1);
-        else if (event.keyCode === 65) // 65 -> "A" 
-            queueInput('a', 1);
-        else if (event.keyCode === 83) // 83 -> "S"
-            queueInput('s', 1);
-        else if (event.keyCode === 68) // 68 -> "D"
-            queueInput('d', 1);
-        else if (event.keyCode === 32) // 32 -> "Space"
-            queueInput('_', 1);
-        else if (event.keyCode === 13) // 13 -> "Enter"
-            queueInput('|', 1);
-        else if (event.keyCode === 27) // 27 -> "Escape"
-            queueInput('esc', 1);
-        else if (event.keyCode === 84) // 84 -> "T"
-            queueInput('t', 1);
-        else if (event.keyCode === 37) // 37 -> "<-"
-            queueInput('arrowLeft', 1);
-        else if (event.keyCode === 39) // 39 -> "->"
-            queueInput('arrowRight', 1);
-        else if (event.keyCode === 71) // 71 -> "G"
-            queueInput('g', 1);
-        else if (event.keyCode === 46) // 46 -> "Delete"
-            queueInput('del', 1);
+        queueInput(event.keyCode, 1);
     }
-
 
     // key down event, que a input with state and key.
     document.onkeyup = function(event) {
-        if (event.keyCode === 87) // 87 -> "W"
-            queueInput('w', 0);
-        else if (event.keyCode === 65) // 65 -> "A"
-            queueInput('a', 0);
-        else if (event.keyCode === 83) // 83 -> "S"
-            queueInput('s', 0);
-        else if (event.keyCode === 68) // 68 -> "D"
-            queueInput('d', 0);
-        else if (event.keyCode === 32) // 32 -> "Space"
-            queueInput('_', 0);
-        else if (event.keyCode === 13) // 13 -> "Enter"
-            queueInput('|', 0);
-        else if (event.keyCode === 27) // 27 -> "Escape"
-            queueInput('esc', 0);
-        else if (event.keyCode === 84) // 84 -> "T"
-            queueInput('t', 0);
-        else if (event.keyCode === 37) // 37 -> "<-"
-            queueInput('arrowLeft', 0);
-        else if (event.keyCode === 39) // 39 -> "->"
-            queueInput('arrowRight', 0);
-        else if (event.keyCode === 71) // 71 -> "G"
-            queueInput('g', 0);
-        else if (event.keyCode === 46) // 46 -> "Delete"
-            queueInput('del', 0);
+        queueInput(event.keyCode, 0);
     }
 
-    // mouse click event
-    document.onclick = function(event) {
-        queueInput('click', 1);
+    document.onmouseup = function(event) {
+        queueInput(-2, 0);
     }
+
+    document.onmousedown = function(event) {
+        queueInput(-2, 1);
+    }
+
 
     socket.onmessage = function(message) {
         let str = new TextDecoder('utf-8').decode(message.data);
@@ -307,7 +265,7 @@ function updateMousePos(evt) {
     let pos = getMousePos(evt);
     if (pos != mousePos) {
         mousePos = pos;
-        queueInput('mp', [Math.round(pos.x), 576 - Math.round(pos.y)]);
+        queueInput(-1, [Math.round(pos.x), 576 - Math.round(pos.y)]);
     }
 }
 
@@ -338,10 +296,12 @@ function emitInput() {
 
 // Push a input message into the queue.
 function queueInput(key, state) {
-    inputQueue.push({
-        k: key,
-        s: state
-    });
+    if (keys.includes(key)){
+        inputQueue.push({
+            k: key,
+            s: state
+        });
+    }
 }
 
 

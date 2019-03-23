@@ -18,11 +18,11 @@ const {
 
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'theknightbefore4770@gmail.com',
-    pass: 'coat.area'
-  }
+    service: 'gmail',
+    auth: {
+        user: 'theknightbefore4770@gmail.com',
+        pass: 'coat.area'
+    }
 });
 
 
@@ -80,11 +80,17 @@ function forgotPassword(ws, data, db) {
     console.log('passrest', newPass);
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(newPass, salt);
-    let query = {username: data.username};
-    let newvalues = { $set: {password:hash } };
+    let query = {
+        username: data.username
+    };
+    let newvalues = {
+        $set: {
+            password: hash
+        }
+    };
     let email = null;
 
-    db.collection('accounts').findOne(query,  function(err, result) {
+    db.collection('accounts').findOne(query, function(err, result) {
         if (result != null) {
             email = result.email;
         }
@@ -100,7 +106,7 @@ function forgotPassword(ws, data, db) {
             text: newPass
         };
 
-        transporter.sendMail(mailOptions, function(error, info){
+        transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
                 console.log(error);
             } else {
@@ -151,9 +157,11 @@ function newAccHanlder(ws, data, db) {
         email: data.email
     };
 
-    db.collection('accounts').findOne({username: data.username}, function(err, result) {
+    db.collection('accounts').findOne({
+        username: data.username
+    }, function(err, result) {
         if (err) throw err;
-        if (result == null){
+        if (result == null) {
             db.collection('accounts').insertOne(user, function(err, result) {
                 if (err) throw err;
                 let message = {
@@ -288,48 +296,101 @@ function setBackgroundGradient(ws, c1, c2) {
 
 // The function to handle inputData, Sets inputs to Map then returns the map.
 function updateInputData(data, map) {
-    for (var i = 0; i < data.length; i++) {
-
-        // Resolve the state of the input optmistically.
-        let state = true;
-        if (data[i].s === 0) {
-            state = false;
+    let len = data.length;
+    for (let i = 0; i < len; i++) {
+        let key = data[i].k;
+        switch (key) {
+            case -2: // -1 -> click
+                map.click = data[i].s;
+                break;
+            case -1: // 0 -> MousePos
+                map.mousePos = data[i].s;
+                break;
+            case 87: // 87 -> "W"
+                map.w = data[i].s;
+                break;
+            case 65: // 65 -> "A"
+                map.a = data[i].s;
+                break;
+            case 83: // 83 -> "S"
+                map.s = data[i].s;
+                break;
+            case 68: // 68 -> "D"
+                map.d = data[i].s;
+                break;
+            case 71: // 71 -> "G"
+                map.g = data[i].s;
+                break;
+            case 84: // 84 -> "T"
+                map.t = data[i].s;
+                break;
+            case 81: // 81 -> "Q"
+                map.q = data[i].s;
+                break;
+            case 69: // 69 -> "E"
+                map.e = data[i].s;
+                break;
+            case 89: // 89 -> "Y"
+                map.y = data[i].s;
+                break;
+            case 85: // 85 -> "U"
+                map.u = data[i].s;
+            case 13: // 13 -> "Enter"
+                map.enter = data[i].s;
+                break;
+            case 32: // 32 -> "Space"
+                map.space = data[i].s;
+                break;
+            case 27: // 27 -> "Escape"
+                map.escape = data[i].s;
+                break;
+            case 37: // 37 -> ArrowKeyLeft
+                map.arrowLeft = data[i].s;
+                break;
+            case 38: // 38 -> ArrowKeyUp
+                map.arrowUp = data[i].s;
+                break;
+            case 39: // 39 -> ArrowKeyRight
+                map.arrowRight = data[i].s;
+                break;
+            case 40: // 39 -> ArrowKeyRight
+                map.arrowDown = data[i].s;
+                break;
+            case 46: // 46 -> ArrowKeyRight
+                map.del = data[i].s;
+                break;
+            case 49: // 49 -> 1
+                map.one = data[i].s;
+                break;
+            case 50: // 50 -> 2
+                map.two = data[i].s;
+                break;
+            case 51: // 51 -> 3
+                map.three = data[i].s;
+                break;
+            case 52: // 52 -> 4
+                map.four = data[i].s;
+                break;
+            case 53: // 53 -> 5
+                map.five = data[i].s;
+                break;
+            case 16: // 16 -> shift
+                map.shift = data[i].s;
+                break;
+            case 17: // 17 -> control
+                map.ctrl = data[i].s;
+                break;
+            case 187: // 187 -> +
+                map.olus = data[i].s;
+                break;
+            case 189: // 189 -> -
+                map.minus = data[i].s;
+                break;
         }
+        return map;
 
-        // Key state input block.
-        if (data[i].k === 'mp') {
-            map.mousePos = data[i].s;
-        } else if (data[i].k === 'w') {
-            map.w = state;
-        } else if (data[i].k === 'a') {
-            map.a = state;
-        } else if (data[i].k === 's') {
-            map.s = state;
-        } else if (data[i].k === 'd') {
-            map.d = state;
-        } else if (data[i].k === '_') {
-            map.space = state;
-        } else if (data[i].k === '|') {
-            map.enter = state;
-        } else if (data[i].k === 'esc') {
-            map.escape = state;
-        } else if (data[i].k === 't') {
-            map.t = state;
-        } else if (data[i].k === 'click') {
-            map.click = state;
-        } else if (data[i].k === 'arrowLeft') {
-            map.arrowLeft = state;
-        } else if (data[i].k === 'arrowRight') {
-            map.arrowRight = state;
-        } else if (data[i].k === 'g') {
-            map.g = state;
-        } else if (data[i].k === 'del') {
-            map.del = state;
-        }
     }
-    return map;
 }
-
 
 // Declare Exports.
 module.exports = {

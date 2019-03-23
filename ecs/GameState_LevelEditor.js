@@ -16,6 +16,7 @@ const CDraggable = Components.CDraggable;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
+const { isOnScreen } = require('./Physics.js');
 
 class GameState_LevelEditor extends GameState {
     game: GameEngine;
@@ -41,9 +42,6 @@ class GameState_LevelEditor extends GameState {
     spawnAllEntities() {
         // TODO: Spawn one entity of each type so that the user
         // can play around with them
-        let tile = this.entityManager.addEntity("tile");
-        tile.addComponent(new CTransform(new Vec(0, 0)));
-        tile.addComponent(new CAnimation("cave-platform", true));
         this.player.addComponent(new CTransform(new Vec(0, 0)));
         this.player.addComponent(new CAnimation("playerRun", true));
         this.player.addComponent(new CInput());
@@ -59,6 +57,7 @@ class GameState_LevelEditor extends GameState {
     }
 
     sUserInput() {
+
         // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
@@ -78,7 +77,7 @@ class GameState_LevelEditor extends GameState {
 
         if (inputMap.click) {
             this.dragOrDropEntity();
-            inputMap.click = false;
+            inputMap.click = 0;
         }
 
         if (inputMap.arrowLeft) {
@@ -135,12 +134,13 @@ class GameState_LevelEditor extends GameState {
         // TODO: Handle all rendering here.
         let editorPos = this.player.getComponent(CTransform).pos;
         let entities = this.entityManager.getAllEntities();
-        for (let i = 0; i < entities.length; i++) {
+        let len = entities.length;
+        for (let i = 0; i < len; i++) {
             // Only draw entities with Animations.
             if (entities[i].hasComponent(CAnimation)){
                 let pos = entities[i].getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (editorPos.distf(pos) < 360000) {
+                if (isOnScreen(entities[i],editorPos,this.game.screenSize)) {
                     let dir = entities[i].getComponent(CTransform).facing;
                     let anim = entities[i].getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
@@ -222,6 +222,7 @@ class GameState_LevelEditor extends GameState {
                 continue;
             }
 
+
             let position = entity.getComponent(CTransform).pos;
             let halfSize = entity.getComponent(CBoundingBox).halfSize;
             let draggable = entity.getComponent(CDraggable);
@@ -229,6 +230,7 @@ class GameState_LevelEditor extends GameState {
             let x_low = position.x - halfSize.x;
             let y_high = position.y + halfSize.y;
             let y_low = position.y - halfSize.y;
+
 
             if ((mousePos.x > x_low && mousePos.x < x_high) &&
                 (mousePos.y > y_low && mousePos.y < y_high))

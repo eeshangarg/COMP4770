@@ -16,6 +16,7 @@ let io = require('./../server/IOHandler.js');
 class GameEngine {
 
     self: GameEngine;
+    screenSize: Vec;
     socket: Object;                        // The GameEngine's main socket.
     states: Array<GameState>;              // The current game state-stack.
     statesToPush: Array<GameState>;        // The Gamestates to be pushed into the stack.
@@ -50,14 +51,31 @@ class GameEngine {
         this.statesToPush = [];
         this.popStates = 0;
         this.running = true;
+        this.screenSize = new Vec(512,288);
         this.inputMap = {
-            w: false,
-            a: false,
-            d: false,
-            s: false,
-            space: false,
-            enter: false,
-            escape: false,
+            w: 0,
+            a: 0,
+            d: 0,
+            s: 0,
+            q: 0,
+            e: 0,
+            t: 0,
+            u: 0,
+            y: 9,
+            del: 0,
+            ctrl: 0,
+            shift: 0,
+            space: 0,
+            enter: 0,
+            escape: 0,
+            click: 0,
+            plus: 0,
+            minus: 0,
+            one: 0,
+            two: 0,
+            three: 0,
+            four: 0,
+            five: 0,
             mousePos: [0,0]
         };
         io = require('./../server/IOHandler.js');
