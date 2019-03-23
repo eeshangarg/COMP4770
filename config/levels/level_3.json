@@ -2,7 +2,7 @@
 {
     "username": "default",
     "name": "level 3",
-    "background": "bg_cave",
+    "background": "bg_desrt",
     "music": "someTrack",
     "playerSpawn": [50, 50],
     "levelObjective": [0, 0],

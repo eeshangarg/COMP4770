@@ -14,6 +14,7 @@ const CTransform = Components.CTransform;
 const CAnimation = Components.CAnimation;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
+const { isOnScreen } = require('./Physics.js');
 
 class GameState_Play extends GameState {
     game: GameEngine;
@@ -35,21 +36,18 @@ class GameState_Play extends GameState {
     }
 
     init() {
-        this.game.setBackground(this.level.background);
         this.loadLevel();
-        this.spawnPlayer();
-        // remove :
-        let tile = this.entityManager.addEntity("tile");
-        tile.addComponent(new CTransform(new Vec(10, -10)));
-        tile.addComponent(new CAnimation("cave-platform", true));
     }
 
     loadLevel() {
-        // TODO: load the level here (if necessary)
+        this.game.setBackground(this.level.background);
+        let spawn = this.level.playerSpawn;
+        this.spawnPlayer(new Vec(spawn[0],spawn[1]));
     }
 
-    spawnPlayer() {
-        this.player.addComponent(new CTransform(new Vec(0, 0)));
+
+    spawnPlayer(pos: Vec) {
+        this.player.addComponent(new CTransform(pos));
         this.player.addComponent(new CAnimation("playerRun", true));
         this.player.addComponent(new CInput());
     }
@@ -118,13 +116,14 @@ class GameState_Play extends GameState {
         let playerPos = this.player.getComponent(CTransform).pos;
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
+            let entity = entities[i];
             // Only draw entities with Animations.
-            if (entities[i].hasComponent(CAnimation)){
-                let pos = entities[i].getComponent(CTransform).pos;
+            if (entity.hasComponent(CAnimation)){
+                let pos = entity.getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (playerPos.distf(pos) < 360000) {
-                    let dir = entities[i].getComponent(CTransform).facing;
-                    let anim = entities[i].getComponent(CAnimation).animation;
+                if (isOnScreen(entity,playerPos,this.game.screenSize)) {
+                    let dir = entity.getComponent(CTransform).facing;
+                    let anim = entity.getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
                 }
             }
