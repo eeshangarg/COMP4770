@@ -39,7 +39,7 @@ class GameEngine {
     getCustomLevels: void => Array<Object>;// This function returns all of the current-user's custom levels.
     saveLevel: Object => void;             // This function saves the given level to the DB.
     getProgress: void => Object;           // The function to hanlde getting the users progress.
-    pushState: (state: string, level: Object) => void;
+    pushState: (state: string, key: number) => void;
     draw: (anim: Animation, dir: number, pos: Vec) => void;
     queueAnimation: (id: number, frame: number, dx: number, dy: number) => void;
     drawText: (textString: string, key: string, font: string, color: string, dx: number, dy: number) => void;
@@ -90,7 +90,7 @@ class GameEngine {
 
     // An intializer function for the game Enginge.
     init() {
-        this.pushState('menu')
+        this.pushState('menu', 0)
         this.run()
     }
 
@@ -130,18 +130,22 @@ class GameEngine {
     }
 
     // Push a state onto the "States to be pushed" stack.
-    pushState(name: string, level: Object) {
+    pushState(name: string, key: number) {
         if(name === 'menu'){
             let state: GameState_Menu = new GameState_Menu(this);
             this.statesToPush.push(state);
         }
         else if(name === 'single player'){
-            let state: GameState_Play = new GameState_Play(this, level);
+            let state: GameState_Play = new GameState_Play(this, this.spLevels[key]);
             this.statesToPush.push(state);
         }
         else if(name === 'level editor'){
-            let state: GameState_LevelEditor = new GameState_LevelEditor(this, level);
-            this.statesToPush.push(state);
+            let self = this;
+            // $FlowFixMe
+            this.getCustomLevels(function(customLevels) {
+                let state: GameState_LevelEditor = new GameState_LevelEditor(self, customLevels[key]);
+                self.statesToPush.push(state);
+            });
         }
     }
 

@@ -129,7 +129,7 @@ class GameState_Menu extends GameState {
             inputMap.enter = 0;
             this.spLevelMode = false;
             this.mainMenuMode = true;
-            this.game.pushState('single player', this.spLevels[this.selectedSPIndex]);
+            this.game.pushState('single player', this.selectedSPIndex);
             this.game.clearText('all');
         }
         if (inputMap.s && !inputMap.w) {
@@ -159,7 +159,9 @@ class GameState_Menu extends GameState {
                 this.drawMenuStrings();
             }
             if (inputMap.enter) {
-
+                inputMap.enter = 0;
+                this.game.pushState('level editor', this.selectedLEIndex);
+                this.game.clearText('all');
             }
             if (inputMap.s && !inputMap.w) {
                 inputMap.s = 0;
@@ -186,6 +188,12 @@ class GameState_Menu extends GameState {
             this.mainMenuMode = true;
             this.drawMenuStrings();
         }
+
+        if (inputMap.enter) {
+
+
+        }
+
         if (inputMap.s && !inputMap.w) {
             inputMap.s = 0;
             this.selectedCLIndex++;

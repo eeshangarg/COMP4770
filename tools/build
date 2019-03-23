@@ -13,6 +13,7 @@ echo -e "\n\e[35mCopying ./server/ -> ./lib/server/ \n\e[0m"
 cp -rf server/ lib/
 echo "./server sucessfully coppied to ./lib/server/ !"
 echo -e "\n\e[32mMinimizing ./lib/ecs/ \n\e[0m"
+uglifyjs-folder lib/ecs/ -x .js -eyo lib/ecs/
 echo -e "\n\e[32mMinimizing ./lib/rendering/ \n\e[0m"
 uglifyjs-folder lib/rendering/ -x .js -eyo lib/rendering/
 echo -e "\n\e[32mMinimizing ./lib/server/ \n\e[0m"
