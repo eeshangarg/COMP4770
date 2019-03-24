@@ -1,33 +1,44 @@
-
 {
     "username": "default",
+    "index": 1,
     "name": "level 1",
     "background": "bg_cave",
     "music": "someTrack",
     "playerSpawn": [50, 50],
     "levelObjective": [0, 0],
-  "entites": {
-    "tiles": [
-      {
-        "sprite": "grass-platform-corner-L",
-        "pos": [-16,0]
-      },
-      {
-        "sprite": "grass-platform",
-        "pos": [0,0]
-      },
-      {
-        "sprite": "grass-platform",
-        "pos": [16,0]
-      },
-      {
-        "sprite": "grass-platform",
-        "pos": [32,0]
-      },
-      {
-        "sprite": "grass-platform-corner-R",
-        "pos": [48,0]
-      }
-    ]
-  }
+    "entites": {
+        "tiles": [{
+                "sprite": "grass-platform-corner-L",
+                "pos": [-16, 0]
+            },
+            {
+                "sprite": "grass-platform",
+                "pos": [0, 0]
+            },
+            {
+                "sprite": "grass-platform",
+                "pos": [16, 0]
+            },
+            {
+                "sprite": "grass-platform",
+                "pos": [32, 0]
+            },
+            {
+                "sprite": "grass-platform",
+                "pos": [48, 0]
+            },
+            {
+                "sprite": "grass-platform",
+                "pos": [60, 0]
+            },
+            {
+                "sprite": "grass-platform-corner-R",
+                "pos": [72, 0]
+            }
+        ],
+        "npcs": [
+        ],
+        "items": [
+        ]
+    }
 }

@@ -6,5 +6,12 @@
     "music": "someTrack",
     "playerSpawn": [50, 50],
     "levelObjective": [0, 0],
-    "entites": []
+    "entites": {
+        "tiles": [
+        ],
+        "npcs": [
+        ],
+        "items": [
+        ]
+    }
 }

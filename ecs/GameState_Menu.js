@@ -215,42 +215,42 @@ class GameState_Menu extends GameState {
     // $FlowFixMe
     drawLevelEditor() {
         let self = this;
-        this.game.drawText(this.title, 'title', '60px Seagram', '#F5F5F5', 305, 135);
+        this.game.drawText(this.title, 'title', '68px Seagram', '#FDFEFE', 255, 135);
         // $FlowFixMe
         let callback = this.game.getCustomLevels(function(customLevels, game) {
             for (let i = 0; i < customLevels.length; i++) {
                 self.game.drawText(customLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
             }
             let i = self.selectedLEIndex;
-            self.game.drawText('Edit: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 400, 235 + i * 48);
+            self.game.drawText('Edit: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
         });
     }
 
     // $FlowFixMe
     drawCustomLevels() {
         let self = this;
-        this.game.drawText(this.title, 'title', '60px Seagram', '#F5F5F5', 305, 135);
+        this.game.drawText(this.title, 'title', '68px Seagram', '#FDFEFE', 255, 135);
         // $FlowFixMe
         let callback = this.game.getCustomLevels(function(customLevels, game) {
             for (let i = 0; i < customLevels.length; i++) {
                 self.game.drawText(customLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
             }
             let i = self.selectedCLIndex;
-            self.game.drawText('Play: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 400, 235 + i * 48);
+            self.game.drawText('Play: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
         });
     }
 
     drawSPlevels() {
-        this.game.drawText(this.title, 'title', '60px Seagram', '#F5F5F5', 305, 135);
+        this.game.drawText(this.title, 'title', '68px Seagram', '#FDFEFE', 255, 135);
         for (let i = 0; i < this.spLevels.length; i++) {
             this.game.drawText(this.spLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
         }
         let i = this.selectedSPIndex;
-        this.game.drawText('Play: ' + this.spLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 400, 235 + i * 48);
+        this.game.drawText('Play: ' + this.spLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
     }
 
     drawMenuStrings() {
-        this.game.drawText(this.title, 'title', '60px Seagram', '#F5F5F5', 305, 135);
+        this.game.drawText(this.title, 'title', '68px Seagram', '#FDFEFE', 255, 135);
         for (let i = 0; i < this.menuStrings.length; i++) {
             this.game.drawText(this.menuStrings[i], i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
         }
