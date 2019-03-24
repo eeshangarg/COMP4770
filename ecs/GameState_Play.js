@@ -12,6 +12,7 @@ const Entity = require('./Entity.js');
 const Components = require('./Components.js');
 const CTransform = Components.CTransform;
 const CAnimation = Components.CAnimation;
+const CBoundingBox = Components.CBoundingBox;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 const { isOnScreen } = require('./Physics.js');
@@ -43,6 +44,14 @@ class GameState_Play extends GameState {
         this.game.setBackground(this.level.background);
         let spawn = this.level.playerSpawn;
         this.spawnPlayer(new Vec(spawn[0],spawn[1]));
+        let tiles = this.level.entites.tiles;
+        for (let i = 0; i < tiles.length; i++) {
+            let tile = tiles[i];
+            let newTile = this.entityManager.addEntity("tile");
+            newTile.addComponent(new CTransform(new Vec(tile.pos[0],tile.pos[1])));
+            newTile.addComponent(new CAnimation(tile.sprite, true));
+            newTile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
     }
 
 
