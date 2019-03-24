@@ -38,7 +38,6 @@ class GameEngine {
     drawFrame: Vec => void;                // The function which handles drawing a frame at a given pos.
     getCustomLevels: void => Array<Object>;// This function returns all of the current-user's custom levels.
     saveLevel: Object => void;             // This function saves the given level to the DB.
-    getProgress: void => Object;           // The function to hanlde getting the users progress.
     pushState: (state: string, key: number) => void;
     draw: (anim: Animation, dir: number, pos: Vec) => void;
     queueAnimation: (id: number, frame: number, dx: number, dy: number) => void;
@@ -139,6 +138,14 @@ class GameEngine {
             let state: GameState_Play = new GameState_Play(this, this.spLevels[key]);
             this.statesToPush.push(state);
         }
+        else if(name === 'custom level'){
+            let self = this;
+            // $FlowFixMe
+            this.getCustomLevels(function(customLevels) {
+                let state: GameState_Play = new GameState_Play(self, customLevels[key]);
+                self.statesToPush.push(state);
+            });
+        }
         else if(name === 'level editor'){
             let self = this;
             // $FlowFixMe
@@ -149,23 +156,50 @@ class GameEngine {
         }
     }
 
-    // The function to handle getting the users progress.
-    getProgress(): Object {
-        // this.db.collection(ws.userName + '_progress');
+
+    // The function to handle setting the users leve-progress.
+    setNextLevel() {
+        let self = this;
+        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+            if(progress.levelCompleted < 4){
+                let data = {levelCompleted:progress.levelCompleted+1};
+                self.db.collection(self.socket.userName + 'Progress').updateOne({}, { $set:data }, { upsert: true } );
+            }
+        });
+
     }
 
+    // The function to handle updating the users coins.
+    // $FlowFixMe
+    setCoinProgress(coinCount: number){
+        let self = this;
+        // $FlowFixMe
+        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+            let data = {levelCompleted:progress.coins+coinCount};
+            self.db.collection(self.socket.userName + 'Progress').updateOne({}, { $set:data }, { upsert: true } );
+        });
+    }
+    // The function to handle getting the users progress.
+    // $FlowFixMe
+    getProgress(callback): Object {
+        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+            callback(progress);
+        });
+    }
 
+    // The function to hanlding getting a user's custom levels.
     // $FlowFixMe
     getCustomLevels(callback) {
-        this.db.collection(this.socket.userName + '_levels').find({}).toArray(function(err, docs) {
-            callback(docs);
+        // $FlowFixMe
+        this.db.collection(this.socket.userName + 'Levels').find({}).toArray(function(err, levels) {
+            callback(levels);
         });
     }
 
     // The function to handle saving a level.
     saveLevel(level: Object) {
-        console.log(level);
-        // TO-DO
+        let levelQuery = {username:this.socket.userName, name:level.name};
+        this.db.collection(this.socket.userName + 'Levels').updateOne(levelQuery, { $set:level }, { upsert: true } );
     }
 
     // Queue up a state to be popped. (always top state.)

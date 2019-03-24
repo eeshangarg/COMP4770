@@ -170,7 +170,6 @@ function newAccHanlder(ws, data, db) {
         password: hash,
         email: data.email
     };
-
     db.collection('accounts').findOne({
         username: data.username
     }, function(err, result) {
@@ -178,36 +177,45 @@ function newAccHanlder(ws, data, db) {
         if (result == null) {
             db.collection('accounts').insertOne(user, function(err, result) {
                 if (err) throw err;
-
-                db.createCollection(data.username +'_progress', function(err, result) {
+                db.createCollection(data.username + 'Progress', function(err, result) {
                     if (err) throw err;
+                    let blankProgress = {
+                        levelCompleted: 0,
+                        coins: 0
+                    };
+                    db.collection(data.username + 'Progress').insertOne(blankProgress, function(err, result) {
+                        if (err) throw err;
+                    });
                 });
 
-                db.createCollection(data.username + '_levels', function(err, result) {
+
+
+                db.createCollection(data.username + 'Levels', function(err, result) {
                     if (err) throw err;
                     // Create a blank level array and assign it to the player Account.
                     levels = []
                     let levelBlank = JSON.parse(fs.readFileSync(__dirname + "/../../config/levels/level_blank.json"));
-                    for(let i = 1; i <= 5; i++) {
+                    for (let i = 1; i <= 5; i++) {
                         levelBlank.name = "My level " + i;
                         levelBlank.username = data.username;
-                        levels.push( Object.assign({}, levelBlank));
+                        levels.push(Object.assign({}, levelBlank));
                     }
 
-                    db.collection(data.username + '_levels').insertMany(levels, function(err, res) {
-                            if (err) throw err;
+                    db.collection(data.username + 'Levels').insertMany(levels, function(err, result) {
+                        if (err) throw err;
                     });
-
-                    let message = {
-                        t: 'login',
-                        valid: 1
-                    };
-                    let flatJson = flatstr(JSON.stringify(message));
-                    ws.send(flatJson);
-                    ws.userName = data.username;
-                    IOHandler(ws, db);
-
                 });
+
+
+                let message = {
+                    t: 'login',
+                    valid: 1
+                };
+
+                let flatJson = flatstr(JSON.stringify(message));
+                ws.send(flatJson);
+                ws.userName = data.username;
+                IOHandler(ws, db);
             });
         } else {
             let message = {
@@ -220,7 +228,6 @@ function newAccHanlder(ws, data, db) {
 
 
 }
-
 // The function which handles IO for a given Web-socket. 
 function IOHandler(ws, db) {
     // Clear the file loading listener.
@@ -416,7 +423,7 @@ function updateInputData(data, map) {
                 map.ctrl = data[i].s;
                 break;
             case 187: // 187 -> +
-                map.olus = data[i].s;
+                map.plus = data[i].s;
                 break;
             case 189: // 189 -> -
                 map.minus = data[i].s;
