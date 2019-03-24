@@ -15,6 +15,7 @@ class GameState_Menu extends GameState {
     selectedSPIndex: number;
     selectedLEIndex: number;
     selectedCLIndex: number;
+    levelsCompleted: number;
     menuItems: number;
     menuStrings: Array<string>;
     spLevels: Array<Object>;
@@ -55,6 +56,7 @@ class GameState_Menu extends GameState {
         this.selectedLEIndex = 0;
         this.selectedSPIndex = 0;
         this.selectedCLIndex = 0;
+        this.levelsCompleted = 1;
         this.spLevelMode = false;
         this.levelEditorMode = false;
         this.customLevelMode = false;
@@ -115,6 +117,7 @@ class GameState_Menu extends GameState {
             this.mainMenuMode = false;
             this.drawCustomLevels();
         }
+        /* TO DO, Settings, items. */
     }
 
     singlePlayer() {
@@ -135,7 +138,7 @@ class GameState_Menu extends GameState {
         if (inputMap.s && !inputMap.w) {
             inputMap.s = 0;
             this.selectedSPIndex++;
-            if (this.selectedSPIndex >= 5) {
+            if (this.selectedSPIndex > this.levelsCompleted) {
                 this.selectedSPIndex = 0;
             }
             this.drawSPlevels();
@@ -143,7 +146,7 @@ class GameState_Menu extends GameState {
             inputMap.w = 0;
             this.selectedSPIndex--;
             if (this.selectedSPIndex < 0) {
-                this.selectedSPIndex = 4;
+                this.selectedSPIndex = this.levelsCompleted;
             }
             this.drawSPlevels();
         }
@@ -181,6 +184,7 @@ class GameState_Menu extends GameState {
     }
 
     customLevel() {
+
         let inputMap = this.game.getInputMap();
         if (inputMap.escape) {
             inputMap.escape = 0;
@@ -190,8 +194,9 @@ class GameState_Menu extends GameState {
         }
 
         if (inputMap.enter) {
-
-
+                inputMap.enter = 0;
+                this.game.pushState('custom level', this.selectedLEIndex);
+                this.game.clearText('all');
         }
 
         if (inputMap.s && !inputMap.w) {
@@ -241,12 +246,26 @@ class GameState_Menu extends GameState {
     }
 
     drawSPlevels() {
-        this.game.drawText(this.title, 'title', '68px Seagram', '#FDFEFE', 255, 135);
-        for (let i = 0; i < this.spLevels.length; i++) {
-            this.game.drawText(this.spLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
-        }
-        let i = this.selectedSPIndex;
-        this.game.drawText('Play: ' + this.spLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
+        let self = this;
+        this.game.drawText(self.title, 'title', '68px Seagram', '#FDFEFE', 255, 135);
+        let callback = this.game.getProgress(function(progress) {
+            self.levelsCompleted = progress.levelCompleted;
+            
+            for (let i = 0; i < self.spLevels.length; i++) {
+                if (i <= progress.levelCompleted){
+                    self.game.drawText(self.spLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
+                }
+                else {
+                    self.game.drawText('Locked: ' + self.spLevels[i].name, i.toString(), '20px PS2P', '#AFAFAF', 400, 235 + i * 48);
+                }
+                
+            }
+
+            let i = self.selectedSPIndex;
+            self.game.drawText('Play: ' + self.spLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
+
+        });
+
     }
 
     drawMenuStrings() {

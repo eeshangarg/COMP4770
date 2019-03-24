@@ -26,9 +26,19 @@ class GameState_LevelEditor extends GameState {
     update: void => void;
     gridMode: boolean;
     level: Object;
+    background: string;
+    playerSpawn: Vec;
+    levelObjective: Vec;
+    music: String; //eslint-disable-line
+
 
     constructor(game: GameEngine, level: Object) {
         super();
+        this.level = level;
+        this.background = level.background;
+        this.music = level.music;
+        this.playerSpawn = new Vec(level.playerSpawn[0], level.playerSpawn[1]);
+        this.levelObjective = new Vec(level.levelObjective[0], level.levelObjective[1]);
         this.game = game;
         this.level = level;
         this.entityManager = new EntityManager();
@@ -38,15 +48,100 @@ class GameState_LevelEditor extends GameState {
     }
 
     init() {
-        this.game.setBackground(this.level.background);
-        this.spawnAllEntities();
+        this.loadLevel();
     }
 
-    spawnAllEntities() {
-        // TODO: Spawn one entity of each type so that the user
-        // can play around with them
-        this.player.addComponent(new CTransform(new Vec(0, 0)));
-        this.player.addComponent(new CAnimation("playerRun", true));
+
+    loadLevel() {
+        this.game.setBackground(this.background);
+        this.spawnEditor(this.playerSpawn);
+        let tiles = this.level.entites.tiles;
+        for (let i = 0; i < tiles.length; i++) {
+            let tile = tiles[i];
+            let newTile = this.entityManager.addEntity("tile");
+            newTile.addComponent(new CTransform(new Vec(tile.pos[0],tile.pos[1])));
+            newTile.addComponent(new CAnimation(tile.sprite, true));
+            newTile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
+
+        // TO-DO adjust for NPC implementation. Boiler-plate.
+        let npcs = this.level.entites.npcs;
+        for (let i = 0; i < npcs.length; i++) {
+            let npc = npcs[i];
+            let newNpc = this.entityManager.addEntity("npc");
+            newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+            newNpc.addComponent(new CAnimation(npc.sprite, true));
+            newNpc.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
+
+        // TO-DO adjust for item implementation. Boiler-plate.
+        let items = this.level.entites.items;
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i];
+            let newItem = this.entityManager.addEntity("item");
+            newItem.addComponent(new CTransform(new Vec(item.pos[0],item.pos[1])));
+            newItem.addComponent(new CAnimation(item.sprite, true));
+            newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
+    }
+
+    parseLevel() {
+
+        let tileParse = []
+        let tiles = this.entityManager.getEntitiesByTag("tile");
+        if (tiles != null) {
+            for (let i = 0; i < tiles.length; i++) {
+                let tile = tiles[i];
+                let pos = tile.getComponent(CTransform).pos;
+                let name = tile.getComponent(CAnimation).animation.spriteR;
+                tileParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+
+        // TO-DO adjust for NPC implementation. Boiler-plate.
+        let npcParse = [];
+        let npcs = this.entityManager.getEntitiesByTag("npc");
+        if (npcs != null) {
+            for (let i = 0; i < npcs.length; i++) {
+                let npc = npcs[i];
+                let pos = npc.getComponent(CTransform).pos;
+                let name = npc.getComponent(CAnimation).animation.spriteR;
+                npcParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+
+        // TO-DO adjust for Item implementation. Boiler-plate.
+        let itemParse = [];
+        let items = this.entityManager.getEntitiesByTag("items");
+        if (items != null) {
+            for (let i = 0; i < items.length; i++) {
+                let item = npcs[i];
+                let pos = item.getComponent(CTransform).pos;
+                let name = item.getComponent(CAnimation).animation.spriteR;
+                itemParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+
+        let levelParse = {
+            username: this.level.username,
+            name: this.level.name,
+            background:  this.background,
+            music: this.music,
+            playerSpawn: [this.playerSpawn.x, this.playerSpawn.y],
+            levelObjective: [this.levelObjective.x, this.levelObjective.y],
+            entites: {
+                tiles: tileParse,
+                npcs: npcParse,
+                items: itemParse
+            }
+        }
+
+        this.game.saveLevel(levelParse);
+
+    }
+
+    spawnEditor(pos: Vec) {
+        this.player.addComponent(new CTransform(pos));
         this.player.addComponent(new CInput());
     }
 
@@ -66,6 +161,11 @@ class GameState_LevelEditor extends GameState {
         let playerInput = this.player.getComponent(CInput);
 
         if (inputMap.escape){
+            this.game.popState();
+        }
+
+        if (inputMap.ctrl && inputMap.enter) {
+            this.parseLevel();
             this.game.popState();
         }
 
