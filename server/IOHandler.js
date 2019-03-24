@@ -101,6 +101,7 @@ function forgotPassword(ws, data, db) {
             password: hash
         }
     };
+
     let email = null;
 
     db.collection('accounts').findOne(query, function(err, result) {
@@ -331,10 +332,7 @@ function setBackgroundGradient(ws, c1, c2) {
 
 // The function to handle inputData, Sets inputs to Map then returns the map.
 function updateInputData(data, map) {
-    let len = data.length;
-    console.log('len',len);
-    for (let i = 0; i < len; i++) {
-        console.log('i',i);
+    for (let i = 0; i < data.length; i++) {
         let key = data[i].k;
         switch (key) {
             case -2: // -1 -> click

@@ -52,8 +52,65 @@ class GameState_Play extends GameState {
             newTile.addComponent(new CAnimation(tile.sprite, true));
             newTile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
         }
+
+        // TO-DO adjust for NPC implementation. Boiler-plate.
+        let npcs = this.level.entites.npcs;
+        for (let i = 0; i < npcs.length; i++) {
+            let npc = npcs[i];
+            let newNpc = this.entityManager.addEntity("npc");
+            newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+            newNpc.addComponent(new CAnimation(npc.sprite, true));
+            newNpc.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
+
+        // TO-DO adjust for item implementation. Boiler-plate.
+        let items = this.level.entites.items;
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i];
+            let newItem = this.entityManager.addEntity("item");
+            newItem.addComponent(new CTransform(new Vec(item.pos[0],item.pos[1])));
+            newItem.addComponent(new CAnimation(item.sprite, true));
+            newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
     }
 
+    parseLevel() {
+
+        let tileParse = []
+        let tiles = this.entityManager.getEntitiesByTag("tile");
+        if (tiles != null) {
+            for (let i = 0; i < tiles.length; i++) {
+                let tile = tiles[i];
+                let pos = tile.getComponent(CTransform).pos;
+                let name = tile.getComponent(CAnimation).animation.spriteR;
+                tileParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+
+        // TO-DO adjust for NPC implementation. Boiler-plate.
+        let npcParse = [];
+        let npcs = this.entityManager.getEntitiesByTag("npc");
+        if (npcs != null) {
+            for (let i = 0; i < npcs.length; i++) {
+                let npc = npcs[i];
+                let pos = npc.getComponent(CTransform).pos;
+                let name = npc.getComponent(CAnimation).animation.spriteR;
+                npcParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+
+        // TO-DO adjust for Item implementation. Boiler-plate.
+        let itemParse = [];
+        let items = this.entityManager.getEntitiesByTag("items");
+        if (items != null) {
+            for (let i = 0; i < items.length; i++) {
+                let item = npcs[i];
+                let pos = item.getComponent(CTransform).pos;
+                let name = item.getComponent(CAnimation).animation.spriteR;
+                itemParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+    }
 
     spawnPlayer(pos: Vec) {
         this.player.addComponent(new CTransform(pos));
@@ -63,7 +120,7 @@ class GameState_Play extends GameState {
 
     update() {
         this.entityManager.update();
-
+        this.parseLevel();
         if (!this.paused) {
             this.sAI();
             this.sMovement();
@@ -92,6 +149,7 @@ class GameState_Play extends GameState {
     }
 
     sMovement() {
+
         let playerInput = this.player.getComponent(CInput);
 
         // Example
