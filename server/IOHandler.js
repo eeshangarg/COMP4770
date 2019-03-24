@@ -332,7 +332,9 @@ function setBackgroundGradient(ws, c1, c2) {
 // The function to handle inputData, Sets inputs to Map then returns the map.
 function updateInputData(data, map) {
     let len = data.length;
+    console.log('len',len);
     for (let i = 0; i < len; i++) {
+        console.log('i',i);
         let key = data[i].k;
         switch (key) {
             case -2: // -1 -> click
@@ -422,9 +424,8 @@ function updateInputData(data, map) {
                 map.minus = data[i].s;
                 break;
         }
-        return map;
-
     }
+    return map;
 }
 
 // Declare Exports.

@@ -1,10 +1,30 @@
-
 {
-    "username": "default",
-    "name": "level-blank",
-    "background": "bg_cave",
-    "music": "someTrack",
-    "playerSpawn": [50, 50],
-    "levelObjective": [0, 0],
-    "entites": []
+  "username": "default",
+  "name": "level-blank",
+  "background": "bg_cave",
+  "music": "someTrack",
+  "playerSpawn": [
+    50,
+    50
+  ],
+  "levelObjective": [
+    0,
+    0
+  ],
+  "entites": {
+    "tiles": [
+      {
+        "sprite": "grass-platform",
+        "pos": [0,0]
+      },
+      {
+        "sprite": "grass-platform",
+        "pos": [0,16]
+      },
+      {
+        "sprite": "grass-platform",
+        "pos": [0,32]
+      }
+    ]
+  }
 }
