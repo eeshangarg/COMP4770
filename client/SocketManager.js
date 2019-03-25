@@ -23,6 +23,7 @@ let loadingInterval = null;
 let loginInterval = null;
 let animIdMap = new Map();
 let textStrings = {};
+
 let mousePos = {
     x: Infinity,
     y: Infinity

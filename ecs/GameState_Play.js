@@ -15,6 +15,7 @@ const CAnimation = Components.CAnimation;
 const CBoundingBox = Components.CBoundingBox;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
+const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
 const { isOnScreen } = require('./Physics.js');
 
 class GameState_Play extends GameState {
@@ -50,9 +51,11 @@ class GameState_Play extends GameState {
     }
 
     loadLevel() {
+
         this.game.setBackground(this.background);
         this.spawnPlayer(this.playerSpawn);
-        let tiles = this.level.entites.tiles;
+
+        let tiles = this.level.entities.tiles;
         for (let i = 0; i < tiles.length; i++) {
             let tile = tiles[i];
             let newTile = this.entityManager.addEntity("tile");
@@ -62,23 +65,44 @@ class GameState_Play extends GameState {
         }
 
         // TO-DO adjust for NPC implementation. Boiler-plate.
-        let npcs = this.level.entites.npcs;
+        let npcs = this.level.entities.npcs;
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
-            let newNpc = this.entityManager.addEntity("npc");
-            newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
-            newNpc.addComponent(new CAnimation(npc.sprite, true));
-            newNpc.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+            if (npc.name === "cowman") {
+                let newNpc = this.entityManager.addEntity("npc");
+                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+            } else if (npc.name === "imp") {
+                let newNpc = this.entityManager.addEntity("npc");
+                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+            } else if (npc.name === "goblinc") {
+                let newNpc = this.entityManager.addEntity("npc");
+                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+            }
+
         }
 
         // TO-DO adjust for item implementation. Boiler-plate.
-        let items = this.level.entites.items;
+        let items = this.level.entities.items;
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             let newItem = this.entityManager.addEntity("item");
             newItem.addComponent(new CTransform(new Vec(item.pos[0],item.pos[1])));
             newItem.addComponent(new CAnimation(item.sprite, true));
             newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+        }
+
+        let decorations = this.level.entities.decs;
+        for (let i = 0; i < items.length; i++) {
+            let decoration = decorations[i];
+            let newDec = this.entityManager.addEntity('dec');
+            newDec.addComponent(new CTransform(new Vec(decoration.pos[0], decoration.pos[1])));
+            newDec.addComponent(new CAnimation(decoration.sprite, true));
         }
     }
 
@@ -158,7 +182,7 @@ class GameState_Play extends GameState {
             if (entity.hasComponent(CAnimation)){
                 let pos = entity.getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (isOnScreen(entity,playerPos,this.game.screenSize)) {
+                if (playerPos.distf(pos) < 360000) {
                     let dir = entity.getComponent(CTransform).facing;
                     let anim = entity.getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);

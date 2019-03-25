@@ -5,7 +5,7 @@
     "music": "someTrack",
     "playerSpawn": [50, 50],
     "levelObjective": [0, 0],
-    "entites": {
+    "entities": {
         "tiles": [{
                 "sprite": "grass-platform-corner-L",
                 "pos": [-16, 0]
@@ -38,6 +38,8 @@
         "npcs": [
         ],
         "items": [
+        ],
+        "decs": [
         ]
     }
 }

@@ -54,9 +54,11 @@ class GameState_LevelEditor extends GameState {
 
 
     loadLevel() {
+
         this.game.setBackground(this.background);
         this.spawnEditor(this.playerSpawn);
-        let tiles = this.level.entites.tiles;
+
+        let tiles = this.level.entities.tiles;
         for (let i = 0; i < tiles.length; i++) {
             let tile = tiles[i];
             let newTile = this.entityManager.addEntity("tile");
@@ -66,17 +68,30 @@ class GameState_LevelEditor extends GameState {
         }
 
         // TO-DO adjust for NPC implementation. Boiler-plate.
-        let npcs = this.level.entites.npcs;
+        let npcs = this.level.entities.npcs;
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
-            let newNpc = this.entityManager.addEntity("npc");
-            newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
-            newNpc.addComponent(new CAnimation(npc.sprite, true));
-            newNpc.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+            if (npc.name === "cowman") {
+                let newNpc = this.entityManager.addEntity("npc");
+                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+            } else if (npc.name === "imp") {
+                let newNpc = this.entityManager.addEntity("npc");
+                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+            } else if (npc.name === "goblinc") {
+                let newNpc = this.entityManager.addEntity("npc");
+                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+            }
+
         }
 
         // TO-DO adjust for item implementation. Boiler-plate.
-        let items = this.level.entites.items;
+        let items = this.level.entities.items;
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             let newItem = this.entityManager.addEntity("item");
@@ -85,12 +100,11 @@ class GameState_LevelEditor extends GameState {
             newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
         }
 
-        let decorations = this.level.entites.decs;
+        let decorations = this.level.entities.decs;
         for (let i = 0; i < items.length; i++) {
             let decoration = decorations[i];
             let newDec = this.entityManager.addEntity('dec');
-            newDec.addComponent(new CTransform(new Vec(decoration.pos[0],
-                                                       decoration.pos[1])));
+            newDec.addComponent(new CTransform(new Vec(decoration.pos[0], decoration.pos[1])));
             newDec.addComponent(new CAnimation(decoration.sprite, true));
         }
     }
@@ -103,7 +117,7 @@ class GameState_LevelEditor extends GameState {
             for (let i = 0; i < tiles.length; i++) {
                 let tile = tiles[i];
                 let pos = tile.getComponent(CTransform).pos;
-                let name = tile.getComponent(CAnimation).animation.spriteR;
+                let name = tile.getComponent(CAnimation).animation.name;
                 tileParse.push({pos:[pos.x,pos.y], sprite:name});
             }
         }
@@ -115,8 +129,16 @@ class GameState_LevelEditor extends GameState {
             for (let i = 0; i < npcs.length; i++) {
                 let npc = npcs[i];
                 let pos = npc.getComponent(CTransform).pos;
-                let name = npc.getComponent(CAnimation).animation.spriteR;
-                npcParse.push({pos:[pos.x,pos.y], sprite:name});
+                let name = npc.getComponent(CAnimation).animation.name;
+                if (name === "cowmanIdle"){
+                     npcParse.push({pos:[pos.x,pos.y], name:"cowman"});
+                }
+                else if (name === "impIdle") {
+                    npcParse.push({pos:[pos.x,pos.y], name:"imp"});
+                } else if (name === "goblinIdle"){
+                    npcParse.push({pos:[pos.x,pos.y], name:"goblin"});
+                }
+               
             }
         }
 
@@ -127,7 +149,7 @@ class GameState_LevelEditor extends GameState {
             for (let i = 0; i < items.length; i++) {
                 let item = items[i];
                 let pos = item.getComponent(CTransform).pos;
-                let name = item.getComponent(CAnimation).animation.spriteR;
+                let name = item.getComponent(CAnimation).animation.name;
                 itemParse.push({pos:[pos.x,pos.y], sprite:name});
             }
         }
@@ -138,7 +160,7 @@ class GameState_LevelEditor extends GameState {
             for (let i = 0; i < decs.length; i++) {
                 let dec = decs[i];
                 let pos = dec.getComponent(CTransform).pos;
-                let name = dec.getComponent(CAnimation).animation.spriteR;
+                let name = dec.getComponent(CAnimation).animation.name;
                 decParse.push({pos:[pos.x,pos.y], sprite:name});
             }
         }
@@ -150,7 +172,7 @@ class GameState_LevelEditor extends GameState {
             music: this.music,
             playerSpawn: [this.playerSpawn.x, this.playerSpawn.y],
             levelObjective: [this.levelObjective.x, this.levelObjective.y],
-            entites: {
+            entities: {
                 tiles: tileParse,
                 npcs: npcParse,
                 items: itemParse,
@@ -269,7 +291,7 @@ class GameState_LevelEditor extends GameState {
             if (entities[i].hasComponent(CAnimation)){
                 let pos = entities[i].getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (isOnScreen(entities[i],editorPos,this.game.screenSize)) {
+                if (editorPos.distf(pos) < 360000) {
                     let dir = entities[i].getComponent(CTransform).facing;
                     let anim = entities[i].getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
