@@ -78,7 +78,7 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
-            } else if (npc.name === "goblinc") {
+            } else if (npc.name === "goblin") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
