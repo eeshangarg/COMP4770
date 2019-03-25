@@ -45,6 +45,7 @@ class GameState_Menu extends GameState {
     init() {
         this.menuStrings = [];
         this.customLevels = [];
+        this.game.playSound('menu');
         this.game.drawFrame(new Vec(0, 0));
         this.menuStrings.push('Single Player');
         this.menuStrings.push('Level Editor');
@@ -134,6 +135,7 @@ class GameState_Menu extends GameState {
             this.mainMenuMode = true;
             this.game.pushState('single player', this.selectedSPIndex);
             this.game.clearText('all');
+            this.game.stopSound('menu');
         }
         if (inputMap.s && !inputMap.w) {
             inputMap.s = 0;
@@ -165,6 +167,7 @@ class GameState_Menu extends GameState {
                 inputMap.enter = 0;
                 this.game.pushState('level editor', this.selectedLEIndex);
                 this.game.clearText('all');
+                this.game.stopSound('menu');
             }
             if (inputMap.s && !inputMap.w) {
                 inputMap.s = 0;
@@ -197,6 +200,7 @@ class GameState_Menu extends GameState {
                 inputMap.enter = 0;
                 this.game.pushState('custom level', this.selectedCLIndex);
                 this.game.clearText('all');
+                this.game.stopSound('menu');
         }
 
         if (inputMap.s && !inputMap.w) {

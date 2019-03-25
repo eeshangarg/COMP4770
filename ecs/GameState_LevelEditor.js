@@ -19,7 +19,6 @@ const Vec = require('./Vec.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
 
 class GameState_LevelEditor extends GameState {
-
     game: GameEngine;
     entityManager: EntityManager;
     player: Entity;
@@ -409,8 +408,7 @@ class GameState_LevelEditor extends GameState {
 
             let draggable = entity.getComponent(CDraggable);
 
-            if (this.entityAtMousePos(entity))
-            {
+            if (this.entityAtMousePos(entity)) {
                 if (draggable.isBeingDragged && this.canDropEntity(entity)) {
                     draggable.isBeingDragged = false;
                 }

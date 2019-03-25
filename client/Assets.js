@@ -4,9 +4,9 @@ let filePath = "No File Path";
 let spriteCount = 0;
 let spitresLoaded = 0;
 const spriteMap = new Map();
-// let m_SoundCount = 0;
-// let m_SoundsLoaded = 0;
-// let m_SoundMap = new Map();
+let soundCount = 0;
+let soundsLoaded = 0;
+let soundMap = new Map();
 
 
 // Load the asstets from a given file name. (Assets.json)
@@ -23,15 +23,8 @@ export function loadFromFile(fileName) {
                 setSprite(content[i].SpriteName, content[i].ImageSource, content[i].FrameCount);
             }
             else if (content[i].Type === 'Sound') {
-                // Set Sound.
+                setSound(content[i].soundName,content[i].soundSource);
             }
-            else if (content[i].Type === 'Font') {
-                // Set Font.
-            }
-            else {
-                console.log("Badly fromatted Assets file : ", content[i]);
-            };
-
         }
     });
 }
@@ -61,6 +54,32 @@ export function allSpritesLoaded() {
     return false;
 }
 
+export function allSoundsLoaded() {
+    if (soundsLoaded == soundCount){return true;}
+    else {return false;}
+}
+
+export function getSound(soundName) {
+    return soundMap.get(soundName);
+}
+
+export function getSoundMap() {
+    return soundMap;
+}
+
+export function setSound(soundName, soundSource) {
+    soundCount++;
+    let newSound = new Audio();
+    let soundLoaded = function() {
+        console.log('Sound: ' + soundName + ' loaded.');
+        soundsLoaded++;
+    }
+    newSound.addEventListener('canplaythrough', soundLoaded, false);
+    newSound.src = soundSource;
+    soundMap.set(soundName, newSound);
+}
+
+
 // LOAD the JSON through a XML request.
 function loadJSON(callback) {
     let xobj = new XMLHttpRequest();
@@ -73,24 +92,3 @@ function loadJSON(callback) {
     };
     xobj.send(null);
 }
-
-
-// export function all_Sounds_Loaded() {
-//     if (m_SoundsLoaded == m_SoundCount){return true;}
-//     else {return false;}
-// }
-
-// export function get_Sound(sound_name) {
-//     return m_SoundMap.get(sound_name);
-// }
-
-// export function set_Sound(sound_name, sound_source) {
-//     m_SoundCount++;
-//     let sound = new Audio();
-//     sound.onload = function() {
-//         console.log(sound_name + ' Loaded');
-//          m_SoundMap.set(sound_name, sound);
-//          m_SoundsLoaded++;
-//     }
-//     sound.src = sound_source;
-// }

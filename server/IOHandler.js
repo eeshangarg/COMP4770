@@ -443,10 +443,40 @@ function updateInputData(data, map) {
     return map;
 }
 
+// The function to handle sending sound-playing messages;
+function playSound(ws, soundName) {
+    if (ws.readyState == 1) {
+        let message = {
+            t: 's',
+            s: soundName
+        }
+        let flatJson = flatstr(JSON.stringify(message));
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
+    }
+
+}
+
+// The functoin to hanlde stopping sounds.
+function stopSound(ws, soundName) {
+    if (ws.readyState == 1) {
+        let message = {
+            t: 'x',
+            s: soundName
+        }
+        let flatJson = flatstr(JSON.stringify(message));
+        let buf = new Buffer.from(flatJson, 'utf8');
+        ws.send(buf);
+    }
+
+}
+
 // Declare Exports.
 module.exports = {
     'initIO': initIO,
     'emitFrame': emitFrame,
+    'playSound': playSound,
+    'stopSound': stopSound,
     'setBackground': setBackground,
     'setBackgroundGradient': setBackgroundGradient,
     'drawText': drawText,

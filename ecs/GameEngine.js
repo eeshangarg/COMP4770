@@ -286,6 +286,16 @@ class GameEngine {
     clearText(key: string){
         io.clearText(this.socket, key);
     }
+
+    // The function to hanlde playing sounds.
+    playSound(soundName: String) {
+        io.playSound(this.socket, soundName);
+    }
+
+    // The fucntion to handle stopping sounds.
+    stopSound(soundName: String) {
+        io.stopSound(this.socket, soundName);
+    }
 }
 
 module.exports = GameEngine;

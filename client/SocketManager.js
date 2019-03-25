@@ -2,11 +2,14 @@
 import {
     loadFromFile,
     allSpritesLoaded,
+    allSoundsLoaded,
+    getSound,
+    getSoundMap,
     getSprite
 } from './Assets.js';
 
 
-const keys = [-2,-1,71,67,87,65,83,46,68,89,85,84,61,69,13,32,27,37,39,38,49,50,51,52,53,16,17,187,189,78,73,66]; // Keys.
+const keys = [-2,-1,71,67,87,65,83,46,68,89,85,84,61,69,13,32,27,37,39,38,49,50,51,52,53,16,17,187,189,78,73,66];
 const bgCanvas = document.getElementById('bgCanvas').getContext('2d') // The background Canvas.
 const gameCanvas = document.getElementById('gameCanvas').getContext('2d'); // The Game Canvas.
 const textCanvas = document.getElementById('textCanvas').getContext('2d'); // The Text Canvas.
@@ -23,7 +26,6 @@ let loadingInterval = null;
 let loginInterval = null;
 let animIdMap = new Map();
 let textStrings = {};
-
 let mousePos = {
     x: Infinity,
     y: Infinity
@@ -56,15 +58,17 @@ socket.onopen = function() {
     console.log('Socket Opened Sucessfully! Waiting for Assets...');
 
     loadingInterval = setInterval(function() {
-        if (allSpritesLoaded()) {
+        if (allSpritesLoaded() && allSoundsLoaded()) {
             let message = {
                 t: 'load'
             };
+
             // Message the server informing that all assets have been loaded.
             socket.send(JSON.stringify(message));
             // Clear the asset listening interval.
             clearInterval(loadingInterval);
             loginInterval = setInterval(loginListner(), 100);
+
         }
     }, 100);
 };
@@ -148,16 +152,24 @@ function SocketHandler() {
         else if (data.t == 't') {
             drawText(data.s, data.f, data.k, data.c, data.p[0], data.p[1]);
         }
+        // Type : 's' -> Play-sound message.
+        else if (data.t === 's') {
+            playSound(data.s);
+        }
         // Type: 'c' -> Clear Text-string message.
-        else if (data.t == 'c') {
+        else if (data.t === 'c') {
             clearText(data.k);
         }
         // Type: 'b' -> Background Image message. 
-        else if (data.t == 'b') {
+        else if (data.t === 'b') {
             setBackground(data.i);
         }
+        // Type 'x' -> Stop Sound message.
+        else if (data.t === 'x') {
+            stopSound(data.s);
+        }
         // Type: 'g' -> Background gradient message. 
-        else if (data.t == 'g') {
+        else if (data.t === 'g') {
             setGradient(data.c1, data.c2);
         }
         /*
@@ -223,6 +235,30 @@ function setBackground(spriteName) {
     bgCanvas.drawImage(sprite.image, 0, 0, 1024, 576, 0, 0, 1024, 576);
 }
 
+
+function playSound(soundName) {
+    let sound = getSound(soundName);
+    sound.play();
+}
+
+
+function stopSound(soundName) {
+    if (soundName === 'all'){
+        let soundmap = getSoundMap();
+        soundmap.forEach(function(sound){
+            if( sound != current ){
+                sound.pause();
+                sound.currentTime = 0;
+            }
+        });
+    }
+    else {
+        let sound = getSound(soundName);
+        sound.pause();
+        sound.currentTime = 0;
+    }
+
+}
 
 
 // The function which handles setting the background-gradient colors passed via message.
@@ -356,7 +392,6 @@ function newAccHandler() {
 
 // The function which handles 'cancle-creating new account' button clicks.
 function newCancleHandler() {
-    console.log('deet');
     document.getElementById('new_email').value = '';
     document.getElementById('new_username').value = '';
     document.getElementById('new_password').value = '';
