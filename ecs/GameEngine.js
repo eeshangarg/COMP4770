@@ -288,12 +288,12 @@ class GameEngine {
     }
 
     // The function to hanlde playing sounds.
-    playSound(soundName: String) {
+    playSound(soundName: string) {
         io.playSound(this.socket, soundName);
     }
 
     // The fucntion to handle stopping sounds.
-    stopSound(soundName: String) {
+    stopSound(soundName: string) {
         io.stopSound(this.socket, soundName);
     }
 }
