@@ -297,22 +297,36 @@ class GameState_LevelEditor extends GameState {
     }
 
     sRender() {
-        let editorPos = this.player.getComponent(CTransform).pos;
-        let entities = this.entityManager.getAllEntities();
+        let playerPos = this.player.getComponent(CTransform).pos;
+        this.renderEntitiesByTag('dec');
+        this.renderEntitiesByTag('tile');
+        this.renderEntitiesByTag('item');
+        this.renderEntitiesByTag('npc');
+        this.renderEntitiesByTag('player');
+        this.game.drawFrame(playerPos);
+    }
+
+    renderEntitiesByTag(tag: string) {
+        let playerPos = this.player.getComponent(CTransform).pos;
+        let entities = this.entityManager.getEntitiesByTag(tag);
+
+        if (entities === undefined) {
+            return;
+        }
+
         let len = entities.length;
         for (let i = 0; i < len; i++) {
             // Only draw entities with Animations.
             if (entities[i].hasComponent(CAnimation)){
                 let pos = entities[i].getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (editorPos.distf(pos) < 360000) {
+                if (playerPos.distf(pos) < 360000) {
                     let dir = entities[i].getComponent(CTransform).facing;
                     let anim = entities[i].getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
                 }
             }
         }
-        this.game.drawFrame(editorPos);
     }
 
     sDrag() {
