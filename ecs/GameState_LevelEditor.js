@@ -84,6 +84,15 @@ class GameState_LevelEditor extends GameState {
             newItem.addComponent(new CAnimation(item.sprite, true));
             newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
         }
+
+        let decorations = this.level.entites.decs;
+        for (let i = 0; i < items.length; i++) {
+            let decoration = decorations[i];
+            let newDec = this.entityManager.addEntity('dec');
+            newDec.addComponent(new CTransform(new Vec(decoration.pos[0],
+                                                       decoration.pos[1])));
+            newDec.addComponent(new CAnimation(decoration.sprite, true));
+        }
     }
 
     parseLevel() {
@@ -113,13 +122,24 @@ class GameState_LevelEditor extends GameState {
 
         // TO-DO adjust for Item implementation. Boiler-plate.
         let itemParse = [];
-        let items = this.entityManager.getEntitiesByTag("items");
+        let items = this.entityManager.getEntitiesByTag("item");
         if (items != null) {
             for (let i = 0; i < items.length; i++) {
-                let item = npcs[i];
+                let item = items[i];
                 let pos = item.getComponent(CTransform).pos;
                 let name = item.getComponent(CAnimation).animation.spriteR;
                 itemParse.push({pos:[pos.x,pos.y], sprite:name});
+            }
+        }
+
+        let decParse = [];
+        let decs = this.entityManager.getEntitiesByTag('dec');
+        if (decs != null) {
+            for (let i = 0; i < decs.length; i++) {
+                let dec = decs[i];
+                let pos = dec.getComponent(CTransform).pos;
+                let name = dec.getComponent(CAnimation).animation.spriteR;
+                decParse.push({pos:[pos.x,pos.y], sprite:name});
             }
         }
 
@@ -133,7 +153,8 @@ class GameState_LevelEditor extends GameState {
             entites: {
                 tiles: tileParse,
                 npcs: npcParse,
-                items: itemParse
+                items: itemParse,
+                decs: decParse
             }
         }
 
@@ -177,6 +198,10 @@ class GameState_LevelEditor extends GameState {
 
         if (inputMap.t) {
             this.insertTile();
+        }
+
+        if (inputMap.n) {
+            this.insertNPC();
         }
 
         if (inputMap.click) {
@@ -285,6 +310,14 @@ class GameState_LevelEditor extends GameState {
         // (Imp, Elf, etc) the user selects.
 
         // KEY: called when the user presses N.
+        let npc = this.entityManager.addEntity("npc");
+        npc.addComponent(new CTransform(this.getMousePosition()));
+        npc.addComponent(new CDraggable());
+        // $FlowFixMe
+        npc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
+        let animation = npc.getComponent(CAnimation);
+        let bounds = new Vec(animation.width, animation.height);
+        npc.addComponent(new CBoundingBox(bounds, true, true));
     }
 
     insertTile() {
