@@ -20,6 +20,7 @@ const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsB
 const { isOnScreen } = require('./Physics.js');
 
 class GameState_LevelEditor extends GameState {
+
     game: GameEngine;
     entityManager: EntityManager;
     player: Entity;

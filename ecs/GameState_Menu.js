@@ -195,7 +195,7 @@ class GameState_Menu extends GameState {
 
         if (inputMap.enter) {
                 inputMap.enter = 0;
-                this.game.pushState('custom level', this.selectedLEIndex);
+                this.game.pushState('custom level', this.selectedCLIndex);
                 this.game.clearText('all');
         }
 
