@@ -16,7 +16,6 @@ const CBoundingBox = Components.CBoundingBox;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
-const { isOnScreen } = require('./Physics.js');
 
 class GameState_Play extends GameState {
     game: GameEngine;
@@ -71,16 +70,19 @@ class GameState_Play extends GameState {
             if (npc.name === "cowman") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
             } else if (npc.name === "imp") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
             } else if (npc.name === "goblin") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
             }

@@ -17,7 +17,6 @@ const CDraggable = Components.CDraggable;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
-const { isOnScreen } = require('./Physics.js');
 
 class GameState_LevelEditor extends GameState {
 
@@ -56,7 +55,7 @@ class GameState_LevelEditor extends GameState {
     loadLevel() {
 
         this.game.setBackground(this.background);
-        this.spawnEditor(this.playerSpawn);
+        this.spawnPlayer(this.playerSpawn);
 
         let tiles = this.level.entities.tiles;
         for (let i = 0; i < tiles.length; i++) {
@@ -67,30 +66,30 @@ class GameState_LevelEditor extends GameState {
             newTile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
         }
 
-        // TO-DO adjust for NPC implementation. Boiler-plate.
         let npcs = this.level.entities.npcs;
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
             if (npc.name === "cowman") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
             } else if (npc.name === "imp") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
             } else if (npc.name === "goblin") {
                 let newNpc = this.entityManager.addEntity("npc");
                 newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+                // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
                 newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
             }
-
         }
 
-        // TO-DO adjust for item implementation. Boiler-plate.
         let items = this.level.entities.items;
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
@@ -110,7 +109,6 @@ class GameState_LevelEditor extends GameState {
     }
 
     parseLevel() {
-
         let tileParse = []
         let tiles = this.entityManager.getEntitiesByTag("tile");
         if (tiles != null) {
@@ -122,7 +120,6 @@ class GameState_LevelEditor extends GameState {
             }
         }
 
-        // TO-DO adjust for NPC implementation. Boiler-plate.
         let npcParse = [];
         let npcs = this.entityManager.getEntitiesByTag("npc");
         if (npcs != null) {
@@ -135,14 +132,14 @@ class GameState_LevelEditor extends GameState {
                 }
                 else if (name === "impIdle") {
                     npcParse.push({pos:[pos.x,pos.y], name:"imp"});
-                } else if (name === "goblinIdle"){
+                }
+                else if (name === "goblinIdle"){
                     npcParse.push({pos:[pos.x,pos.y], name:"goblin"});
                 }
                
             }
         }
 
-        // TO-DO adjust for Item implementation. Boiler-plate.
         let itemParse = [];
         let items = this.entityManager.getEntitiesByTag("item");
         if (items != null) {
@@ -181,12 +178,16 @@ class GameState_LevelEditor extends GameState {
         }
 
         this.game.saveLevel(levelParse);
-
     }
 
-    spawnEditor(pos: Vec) {
+    spawnPlayer(pos: Vec) {
         this.player.addComponent(new CTransform(pos));
         this.player.addComponent(new CInput());
+        // $FlowFixMe
+        this.player.addComponent(new CAnimation(getAnimationsByTag('player')[0], true));
+        let animation = this.player.getComponent(CAnimation).animation;
+        let bounds = new Vec(animation.width, animation.height);
+        this.player.addComponent(new CBoundingBox(bounds, true, true));
     }
 
     update() {
@@ -199,8 +200,6 @@ class GameState_LevelEditor extends GameState {
     }
 
     sUserInput() {
-
-        // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
 
@@ -218,12 +217,24 @@ class GameState_LevelEditor extends GameState {
         playerInput.down = inputMap.s;
         playerInput.right = inputMap.d;
 
-        if (inputMap.t) {
+        if (inputMap.t && this.canInsert()) {
             this.insertTile();
+            inputMap.t = 0;
         }
 
-        if (inputMap.n) {
+        if (inputMap.n && this.canInsert()) {
             this.insertNPC();
+            inputMap.n = 0;
+        }
+
+        if (inputMap.y && this.canInsert()) {
+            this.insertDecoration();
+            inputMap.y = 0;
+        }
+
+        if (inputMap.i && this.canInsert()) {
+            this.insertItem();
+            inputMap.i = 0;
         }
 
         if (inputMap.click) {
@@ -231,30 +242,35 @@ class GameState_LevelEditor extends GameState {
             inputMap.click = 0;
         }
 
-        if (inputMap.arrowLeft) {
+        if (inputMap.minus) {
             this.displayNextAnimationForSelectedEntity('left');
+            inputMap.minus = 0;
         }
 
-        if (inputMap.arrowRight) {
+        if (inputMap.plus) {
             this.displayNextAnimationForSelectedEntity('right');
+            inputMap.plus = 0;
         }
 
         if (inputMap.g) {
             this.gridMode = !this.gridMode;
+            inputMap.g = 0;
         }
 
         if (inputMap.del) {
             this.deleteSelectedEntity();
+            inputMap.del = 0;
+        }
+
+        if (inputMap.b) {
+            this.changeBackground();
+            inputMap.b = 0;
         }
     }
 
     sMovement() {
-        // TODO: Process the player's movement here.
-        // Note that the player should still be able to move around
-        // so that the user can navigate the level canvas.
         let playerInput = this.player.getComponent(CInput);
 
-        // Example
         if (playerInput.up) {
             this.player.getComponent(CTransform).pos.y += 3;
         }
@@ -272,7 +288,6 @@ class GameState_LevelEditor extends GameState {
     }
 
     sAnimation() {
-        // TODO: Handle all animation here.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             if (entities[i].hasComponent(CAnimation)){
@@ -282,7 +297,6 @@ class GameState_LevelEditor extends GameState {
     }
 
     sRender() {
-        // TODO: Handle all rendering here.
         let editorPos = this.player.getComponent(CTransform).pos;
         let entities = this.entityManager.getAllEntities();
         let len = entities.length;
@@ -302,7 +316,6 @@ class GameState_LevelEditor extends GameState {
     }
 
     sDrag() {
-        // TODO: Support dragging existing entities on the canvas
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i];
@@ -326,89 +339,115 @@ class GameState_LevelEditor extends GameState {
     }
 
     insertNPC() {
-        // TODO: Insert an NPC entity at the current cursor position.
-        // This funciton will take care of adding an entity and setting up the
-        // required components the entity should have depending on what animation
-        // (Imp, Elf, etc) the user selects.
-
-        // KEY: called when the user presses N.
         let npc = this.entityManager.addEntity("npc");
         npc.addComponent(new CTransform(this.getMousePosition()));
         npc.addComponent(new CDraggable());
+        npc.getComponent(CDraggable).isBeingDragged = true;
         // $FlowFixMe
         npc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
-        let animation = npc.getComponent(CAnimation);
+        let animation = npc.getComponent(CAnimation).animation;
         let bounds = new Vec(animation.width, animation.height);
         npc.addComponent(new CBoundingBox(bounds, true, true));
     }
 
     insertTile() {
-        // TODO: Insert a tile entity at the current cursor position.
-
-        // KEY: called when the user presses T.
         let tile = this.entityManager.addEntity("tile");
         tile.addComponent(new CTransform(this.getMousePosition()));
         tile.addComponent(new CDraggable());
+        tile.getComponent(CDraggable).isBeingDragged = true;
         // $FlowFixMe
         tile.addComponent(new CAnimation(getAnimationsByTag('tile')[0], true));
         tile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
     }
 
     insertDecoration() {
-        // TODO: Insert a decorative entity at the current cursor position.
-
-        // KEY: called when the user presses E, not ethat we can't use D,
-        // since it is used for movement.
+        let dec = this.entityManager.addEntity("dec");
+        dec.addComponent(new CTransform(this.getMousePosition()));
+        dec.addComponent(new CDraggable());
+        dec.getComponent(CDraggable).isBeingDragged = true;
+        // $FlowFixMe
+        dec.addComponent(new CAnimation(getAnimationsByTag('dec')[0], true));
+        let animation = dec.getComponent(CAnimation).animation;
+        let bounds = new Vec(animation.width, animation.height);
+        dec.addComponent(new CBoundingBox(bounds, false, false));
     }
 
     insertItem() {
-        // TODO: Insert an item at the current cursor position.
-
-        // KEY: called when the user presses I.
+        let item = this.entityManager.addEntity("item");
+        item.addComponent(new CTransform(this.getMousePosition()));
+        item.addComponent(new CDraggable());
+        item.getComponent(CDraggable).isBeingDragged = true;
+        // $FlowFixMe
+        item.addComponent(new CAnimation(getAnimationsByTag('item')[0], true));
+        let animation = item.getComponent(CAnimation).animation;
+        let bounds = new Vec(animation.width, animation.height);
+        item.addComponent(new CBoundingBox(bounds, false, false));
     }
 
     dragOrDropEntity() {
-        // TODO: This function should either pick up an entity that the cursor
-        // is resting on or drop an already selected one. This function should also
-        // take into account whether Snap To Grid mode is on.
-
-        // NOTE: This function may take in additional arguments.
-        let mousePos = this.getMousePosition();
+        // We loop backwards here so that the entities on top are picked up first
         let entities = this.entityManager.getAllEntities();
-        for (let i = 0; i < entities.length; i++) {
+        for (let i = entities.length-1; i >= 0; i--) {
             let entity = entities[i];
             if (!entity.hasComponent(CDraggable)) {
                 continue;
             }
 
-
-            let position = entity.getComponent(CTransform).pos;
-            let halfSize = entity.getComponent(CBoundingBox).halfSize;
             let draggable = entity.getComponent(CDraggable);
-            let x_high = position.x + halfSize.x;
-            let x_low = position.x - halfSize.x;
-            let y_high = position.y + halfSize.y;
-            let y_low = position.y - halfSize.y;
 
-
-            if ((mousePos.x > x_low && mousePos.x < x_high) &&
-                (mousePos.y > y_low && mousePos.y < y_high))
+            if (this.entityAtMousePos(entity))
             {
-                draggable.isBeingDragged = !draggable.isBeingDragged;
+                if (draggable.isBeingDragged && this.canDropEntity(entity)) {
+                    draggable.isBeingDragged = false;
+                }
+                else if (!draggable.isBeingDragged) {
+                    draggable.isBeingDragged = true;
+                }
+
+                break;
             }
         }
     }
 
+    entityAtMousePos(entity: Entity): boolean {
+        let mousePos = this.getMousePosition();
+        let position = entity.getComponent(CTransform).pos;
+        let halfSize = entity.getComponent(CBoundingBox).halfSize;
+        let x_high = position.x + halfSize.x;
+        let x_low = position.x - halfSize.x;
+        let y_high = position.y + halfSize.y;
+        let y_low = position.y - halfSize.y;
+        return (mousePos.x > x_low && mousePos.x < x_high) &&
+               (mousePos.y > y_low && mousePos.y < y_high);
+    }
+
+    canInsert(): boolean {
+        let entities = this.entityManager.getAllEntities();
+        for (let i = 0; i < entities.length; i++) {
+            let entity = entities[i];
+            if (this.entityAtMousePos(entity) && entity.tag != 'dec') {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    canDropEntity(toBeDropped: Entity): boolean {
+        let entities = this.entityManager.getAllEntities();
+        for (let i = 0; i < entities.length; i++) {
+            let entity = entities[i];
+            if (this.entityAtMousePos(entity) &&
+                (entity.id != toBeDropped.id) &&
+                (entity.tag != 'dec')) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     displayNextAnimationForSelectedEntity(direction: string) {
-        // TODO: This function should take the currently selected entity and
-        // depending on the tag of the entity, should toggle the next possible
-        // animation for this type of entity.
-
-        // KEY: arrow keys to cycle through entities.
-
-        // NOTE: This function may take in additional arguments. Also, we'll probably
-        // need some sort of mapping from tags to the possible animations they can have.
-        // Feel free to define maps at the top of this file.
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i];
@@ -444,10 +483,29 @@ class GameState_LevelEditor extends GameState {
         }
     }
 
-    deleteSelectedEntity() {
-        // TODO: Delete the entity that is currently being dragged around/is selected.
+    changeBackground() {
+        // $FlowFixMe
+        let backgrounds = getAnimationsByTag('background');
+        // $FlowFixMe
+        let index = backgrounds.indexOf(this.background) + 1;
 
-        // KEY: The Delete key.
+        if (index < 0) {
+            // $FlowFixMe
+            index = backgrounds.length - 1;
+        }
+
+        // $FlowFixMe
+        if (index >= backgrounds.length) {
+            index = 0;
+        }
+
+        // $FlowFixMe
+        this.game.setBackground(backgrounds[index]);
+        // $FlowFixMe
+        this.background = backgrounds[index];
+    }
+
+    deleteSelectedEntity() {
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i];
@@ -459,12 +517,6 @@ class GameState_LevelEditor extends GameState {
                 entity.destroy();
             }
         }
-    }
-
-    saveLevel() {
-        // TODO: Save the level to a JSON file or to the database (Mike)
-
-        // KEY: Ctrl + S ??
     }
 
     getMousePosition(): Vec {

@@ -15,7 +15,7 @@ const idMap =  [];
 
 /* istanbul ignore next */
 function loadAnimations(fileName: string) {
-    tagToAnimationNames.set("decoration", []);
+    tagToAnimationNames.set("dec", []);
     tagToAnimationNames.set("effect", []);
     tagToAnimationNames.set("player", []);
     tagToAnimationNames.set("npc", []);

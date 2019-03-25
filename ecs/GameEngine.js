@@ -69,6 +69,8 @@ class GameEngine {
             u: 0,
             y: 0,
             n: 0,
+            i: 0,
+            b: 0,
             del: 0,
             ctrl: 0,
             shift: 0,
