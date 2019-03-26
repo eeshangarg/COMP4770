@@ -54,25 +54,32 @@ export function allSpritesLoaded() {
     return false;
 }
 
+// The function which reports the status of sounds.
 export function allSoundsLoaded() {
     if (soundsLoaded == soundCount){return true;}
     else {return false;}
 }
 
+// The function which gets a sound through name.
 export function getSound(soundName) {
     return soundMap.get(soundName);
 }
 
+// The function to return the sound map.
 export function getSoundMap() {
     return soundMap;
 }
 
+//The function to handle setting a sound, to be passed a name and source.
 export function setSound(soundName, soundSource) {
     soundCount++;
-    let newSound = new Audio();
-    newSound.src = soundSource;
-    console.log('Sound: ' + soundName + ' loaded.');
-    soundsLoaded++;
+    let newSound = new Audio(soundSource);
+    let isLoaded = function() {
+        console.log('Sound: ' + soundName + ' loaded.');
+        soundsLoaded++;
+        newSound.removeEventListener('canplaythrough', isLoaded);
+    }
+    newSound.addEventListener('canplaythrough', isLoaded, false); 
     soundMap.set(soundName, newSound);
 }
 

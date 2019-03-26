@@ -214,8 +214,8 @@ class GameEngine {
         // TO-DO remove me:
         const fs = require('fs')
         let date = new Date();
-        let fileName = './' + level.name + '_'+ date.getTime() + '.json' 
-        let stringyboi = JSON.stringify(level)
+        let fileName = './' + level.name + '_'+ this.socket.userName + '_' + date.getTime() + '.json' 
+        let stringyboi = JSON.stringify(level,null, 4);
         fs.writeFileSync(fileName, stringyboi, 'utf-8');
 
     }

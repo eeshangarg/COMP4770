@@ -600,6 +600,12 @@
     "Type": "Sprite"
   },
   {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/msc/levelObjective.png",
+    "SpriteName": "objective",
+    "Type": "Sprite"
+  },
+  {
     "FrameCount": 1,
     "ImageSource": "/client/assets/images/decs/frozen-tree1.png",
     "SpriteName": "frozen-tree1",

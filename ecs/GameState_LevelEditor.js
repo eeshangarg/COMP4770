@@ -28,14 +28,12 @@ class GameState_LevelEditor extends GameState {
     background: string;
     playerSpawn: Vec;
     levelObjective: Vec;
-    music: String; //eslint-disable-line
 
 
     constructor(game: GameEngine, level: Object) {
         super();
         this.level = level;
         this.background = level.background;
-        this.music = level.music;
         this.playerSpawn = new Vec(level.playerSpawn[0], level.playerSpawn[1]);
         this.levelObjective = new Vec(level.levelObjective[0], level.levelObjective[1]);
         this.game = game;
@@ -48,6 +46,8 @@ class GameState_LevelEditor extends GameState {
 
     init() {
         this.loadLevel();
+        this.game.drawText("Pos:[" + this.playerSpawn.x + "," + this.playerSpawn.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
+        this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
     }
 
 
@@ -174,7 +174,6 @@ class GameState_LevelEditor extends GameState {
             username: this.level.username,
             name: this.level.name,
             background:  this.background,
-            music: this.music,
             playerSpawn: [playerPos.x, playerPos.y],
             levelObjective: [this.levelObjective.x, this.levelObjective.y],
             entities: {
@@ -213,6 +212,7 @@ class GameState_LevelEditor extends GameState {
 
         if (inputMap.escape){
             inputMap.escape = 0;
+            this.game.clearText('all');
             this.game.popState();
         }
 
@@ -220,6 +220,7 @@ class GameState_LevelEditor extends GameState {
             inputMap.enter = 0;
             inputMap.ctrl = 0;
             this.parseLevel();
+            this.game.clearText('all');
             this.game.popState();
         }
 
@@ -265,6 +266,12 @@ class GameState_LevelEditor extends GameState {
 
         if (inputMap.g) {
             this.gridMode = !this.gridMode;
+            if (this.gridMode) {
+                this.game.drawText("Grid Mode: ON", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
+            }
+            else {
+                this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
+            }
             inputMap.g = 0;
         }
 
@@ -296,6 +303,9 @@ class GameState_LevelEditor extends GameState {
             this.player.getComponent(CTransform).pos.x += 3;
             this.player.getComponent(CTransform).facing = 1;
         }
+
+        let pos = this.player.getComponent(CTransform).pos;
+        this.game.drawText("Pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
     }
 
     sAnimation() {

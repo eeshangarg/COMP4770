@@ -45,7 +45,6 @@ class GameState_Menu extends GameState {
     init() {
         this.menuStrings = [];
         this.customLevels = [];
-        this.game.playSound('menu');
         this.game.drawFrame(new Vec(0, 0));
         this.menuStrings.push('Single Player');
         this.menuStrings.push('Level Editor');
