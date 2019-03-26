@@ -80,12 +80,12 @@ class GameState_LevelEditor extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             } else if (npc.name === "imp") {
                 // $FlowFixMe
-                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             } else if (npc.name === "goblin") {
                 // $FlowFixMe
-                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
+                newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             }
