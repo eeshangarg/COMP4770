@@ -858,7 +858,7 @@
   },
   {
     "Type":"Sound",
-    "soundName":"desrt",
+    "soundName":"desert",
     "soundSource":"/client/assets/sounds/music/desert.mp3"
   },
   {
@@ -873,7 +873,12 @@
   },
   {
     "Type":"Sound",
-    "soundName":"chestOWpen",
+    "soundName":"cave",
+    "soundSource":"/client/assets/sounds/music/cave.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"chestOpen",
     "soundSource":"/client/assets/sounds/effects/chest_open.mp3"
   },
   {

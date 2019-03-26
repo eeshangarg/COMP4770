@@ -70,12 +70,9 @@ export function getSoundMap() {
 export function setSound(soundName, soundSource) {
     soundCount++;
     let newSound = new Audio();
-    let soundLoaded = function() {
-        console.log('Sound: ' + soundName + ' loaded.');
-        soundsLoaded++;
-    }
-    newSound.addEventListener('canplaythrough', soundLoaded, false);
     newSound.src = soundSource;
+    console.log('Sound: ' + soundName + ' loaded.');
+    soundsLoaded++;
     soundMap.set(soundName, newSound);
 }
 

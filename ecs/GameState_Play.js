@@ -27,7 +27,6 @@ class GameState_Play extends GameState {
     background: string;
     playerSpawn: Vec;
     levelObjective: Vec;
-    music: String; //eslint-disable-line
 
 
 
@@ -35,7 +34,6 @@ class GameState_Play extends GameState {
         super();
         this.level = level;
         this.background = level.background;
-        this.music = level.music;
         this.playerSpawn = new Vec(level.playerSpawn[0], level.playerSpawn[1]);
         this.levelObjective = new Vec(level.levelObjective[0], level.levelObjective[1]);
         this.game = game;
@@ -49,6 +47,7 @@ class GameState_Play extends GameState {
         this.loadLevel();
     }
 
+
     loadLevel() {
 
         this.game.setBackground(this.background);
@@ -58,55 +57,55 @@ class GameState_Play extends GameState {
         for (let i = 0; i < tiles.length; i++) {
             let tile = tiles[i];
             let newTile = this.entityManager.addEntity("tile");
-            newTile.addComponent(new CTransform(new Vec(tile.pos[0],tile.pos[1])));
+            newTile.addComponent(new CTransform(new Vec(tile.pos[0], tile.pos[1])));
             newTile.addComponent(new CAnimation(tile.sprite, true));
             newTile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
         }
 
-        // TO-DO adjust for NPC implementation. Boiler-plate.
         let npcs = this.level.entities.npcs;
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
+            let newNpc = this.entityManager.addEntity("npc");
+            newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
             if (npc.name === "cowman") {
-                let newNpc = this.entityManager.addEntity("npc");
-                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
-                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             } else if (npc.name === "imp") {
-                let newNpc = this.entityManager.addEntity("npc");
-                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
-                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             } else if (npc.name === "goblin") {
-                let newNpc = this.entityManager.addEntity("npc");
-                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
-                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             }
-
         }
 
-        // TO-DO adjust for item implementation. Boiler-plate.
         let items = this.level.entities.items;
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             let newItem = this.entityManager.addEntity("item");
-            newItem.addComponent(new CTransform(new Vec(item.pos[0],item.pos[1])));
+            newItem.addComponent(new CTransform(new Vec(item.pos[0], item.pos[1])));
             newItem.addComponent(new CAnimation(item.sprite, true));
             newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
         }
 
         let decorations = this.level.entities.decs;
-        for (let i = 0; i < items.length; i++) {
+        for (let i = 0; i < decorations.length; i++) {
             let decoration = decorations[i];
             let newDec = this.entityManager.addEntity('dec');
             newDec.addComponent(new CTransform(new Vec(decoration.pos[0], decoration.pos[1])));
             newDec.addComponent(new CAnimation(decoration.sprite, true));
+            let anim = newDec.getComponent(CAnimation).animation
+            newDec.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
         }
+
     }
+
 
     spawnPlayer(pos: Vec) {
         this.player.addComponent(new CTransform(pos));

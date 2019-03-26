@@ -51,6 +51,7 @@ class GameState_LevelEditor extends GameState {
     }
 
 
+    // $FlowFixMe
     loadLevel() {
 
         this.game.setBackground(this.background);
@@ -63,29 +64,30 @@ class GameState_LevelEditor extends GameState {
             newTile.addComponent(new CTransform(new Vec(tile.pos[0],tile.pos[1])));
             newTile.addComponent(new CAnimation(tile.sprite, true));
             newTile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+            newTile.addComponent(new CDraggable());
         }
 
         let npcs = this.level.entities.npcs;
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
+            let newNpc = this.entityManager.addEntity("npc");
+            newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
+            newNpc.addComponent(new CDraggable());
             if (npc.name === "cowman") {
-                let newNpc = this.entityManager.addEntity("npc");
-                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
-                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             } else if (npc.name === "imp") {
-                let newNpc = this.entityManager.addEntity("npc");
-                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
-                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             } else if (npc.name === "goblin") {
-                let newNpc = this.entityManager.addEntity("npc");
-                newNpc.addComponent(new CTransform(new Vec(npc.pos[0],npc.pos[1])));
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
-                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             }
         }
 
@@ -96,19 +98,26 @@ class GameState_LevelEditor extends GameState {
             newItem.addComponent(new CTransform(new Vec(item.pos[0],item.pos[1])));
             newItem.addComponent(new CAnimation(item.sprite, true));
             newItem.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
+            newItem.addComponent(new CDraggable());
         }
 
         let decorations = this.level.entities.decs;
-        for (let i = 0; i < items.length; i++) {
+        for (let i = 0; i < decorations.length; i++) {
             let decoration = decorations[i];
             let newDec = this.entityManager.addEntity('dec');
             newDec.addComponent(new CTransform(new Vec(decoration.pos[0], decoration.pos[1])));
             newDec.addComponent(new CAnimation(decoration.sprite, true));
+            let anim = newDec.getComponent(CAnimation).animation
+            newDec.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
+            newDec.addComponent(new CDraggable());
         }
     }
 
     parseLevel() {
+
         let tileParse = []
+        let playerPos = this.player.getComponent(CTransform).pos;
+
         let tiles = this.entityManager.getEntitiesByTag("tile");
         if (tiles != null) {
             for (let i = 0; i < tiles.length; i++) {
@@ -166,7 +175,7 @@ class GameState_LevelEditor extends GameState {
             name: this.level.name,
             background:  this.background,
             music: this.music,
-            playerSpawn: [this.playerSpawn.x, this.playerSpawn.y],
+            playerSpawn: [playerPos.x, playerPos.y],
             levelObjective: [this.levelObjective.x, this.levelObjective.y],
             entities: {
                 tiles: tileParse,
@@ -203,10 +212,13 @@ class GameState_LevelEditor extends GameState {
         let playerInput = this.player.getComponent(CInput);
 
         if (inputMap.escape){
+            inputMap.escape = 0;
             this.game.popState();
         }
 
         if (inputMap.ctrl && inputMap.enter) {
+            inputMap.enter = 0;
+            inputMap.ctrl = 0;
             this.parseLevel();
             this.game.popState();
         }

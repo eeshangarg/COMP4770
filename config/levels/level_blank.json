@@ -2,7 +2,6 @@
   "username": "default",
   "name": "level-blank",
   "background": "bg_cave",
-  "music": "someTrack",
   "playerSpawn": [
     50,
     50

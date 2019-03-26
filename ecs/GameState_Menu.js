@@ -84,6 +84,7 @@ class GameState_Menu extends GameState {
 
         let inputMap = this.game.getInputMap();
         if (inputMap.s && !inputMap.w) {
+            this.game.playSound('coin');
             inputMap.s = 0;
             this.selectedMenuIndex++;
             if (this.selectedMenuIndex >= this.menuItems) {
@@ -91,6 +92,8 @@ class GameState_Menu extends GameState {
             }
             this.drawMenuStrings();
         } else if (inputMap.w) {
+            this.game.playSound('coin');
+
             inputMap.w = 0;
             this.selectedMenuIndex--;
             if (this.selectedMenuIndex < 0) {
@@ -138,6 +141,7 @@ class GameState_Menu extends GameState {
             this.game.stopSound('menu');
         }
         if (inputMap.s && !inputMap.w) {
+            this.game.playSound('coin');
             inputMap.s = 0;
             this.selectedSPIndex++;
             if (this.selectedSPIndex > this.levelsCompleted) {
@@ -145,6 +149,7 @@ class GameState_Menu extends GameState {
             }
             this.drawSPlevels();
         } else if (inputMap.w) {
+            this.game.playSound('coin');
             inputMap.w = 0;
             this.selectedSPIndex--;
             if (this.selectedSPIndex < 0) {
@@ -170,6 +175,7 @@ class GameState_Menu extends GameState {
                 this.game.stopSound('menu');
             }
             if (inputMap.s && !inputMap.w) {
+                this.game.playSound('coin');
                 inputMap.s = 0;
                 this.selectedLEIndex++;
                 if (this.selectedLEIndex >= 5) {
@@ -177,6 +183,7 @@ class GameState_Menu extends GameState {
                 }
                 this.drawLevelEditor();
             } else if (inputMap.w) {
+                this.game.playSound('coin');
                 inputMap.w = 0;
                 this.selectedLEIndex--;
                 if (this.selectedLEIndex < 0) {
@@ -204,6 +211,7 @@ class GameState_Menu extends GameState {
         }
 
         if (inputMap.s && !inputMap.w) {
+            this.game.playSound('coin');
             inputMap.s = 0;
             this.selectedCLIndex++;
             if (this.selectedCLIndex >= 5) {
@@ -211,6 +219,7 @@ class GameState_Menu extends GameState {
             }
             this.drawCustomLevels();
         } else if (inputMap.w) {
+            this.game.playSound('coin');
             inputMap.w = 0;
             this.selectedCLIndex--;
             if (this.selectedCLIndex < 0) {

@@ -172,6 +172,11 @@ function SocketHandler() {
         else if (data.t === 'g') {
             setGradient(data.c1, data.c2);
         }
+        // Type: 'K' -> Save Levle message.
+        else if (data.t === 'k') {
+            alert(data.m);
+        }
+
         /*
             TODO add more message types here... Sounds, ect.
                i.e: 
@@ -230,20 +235,44 @@ function drawText(textString, font, key, color, dx, dy) {
 
 // the function to handle background image setting:
 function setBackground(spriteName) {
+    stopSound("bg");
     bgCanvas.clearRect(0, 0, 1024, 576);
     let sprite = getSprite(spriteName);
     bgCanvas.drawImage(sprite.image, 0, 0, 1024, 576, 0, 0, 1024, 576);
+    if (spriteName === "bg_menu") {
+        playSound("menu");
+    }
+    else if (spriteName === "bg_cave") {
+        playSound("cave");
+    }
+    else if (spriteName === "bg_desrt") {
+        playSound("desert");
+    }
+    else if (spriteName === "bg_green") {
+        playSound("green");
+    }
+    else if (spriteName === "bg_snow") {
+        playSound("frozen");
+    }
 }
 
 
 function playSound(soundName) {
     let sound = getSound(soundName);
-    sound.play();
+    if (typeof sound !== 'undefined') {
+        sound.pause();
+        sound.currentTime = 0;
+        sound.play();
+    } 
+    else {
+        console.log("Unknow sound : " + soundName);
+    }
+
 }
 
 
 function stopSound(soundName) {
-    if (soundName === 'all'){
+    if (soundName === 'all') {
         let soundmap = getSoundMap();
         soundmap.forEach(function(sound){
             if( sound != current ){
@@ -251,6 +280,23 @@ function stopSound(soundName) {
                 sound.currentTime = 0;
             }
         });
+    }
+    else if (soundName === 'bg') {
+        let sound = getSound("menu");
+        sound.pause();
+        sound.currentTime = 0;
+        sound = getSound("cave");
+        sound.pause();
+        sound.currentTime = 0;
+        sound = getSound("desert");
+        sound.pause();
+        sound.currentTime = 0;
+        sound = getSound("green");
+        sound.pause();
+        sound.currentTime = 0;
+        sound = getSound("frozen");
+        sound.pause();
+        sound.currentTime = 0;
     }
     else {
         let sound = getSound(soundName);

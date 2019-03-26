@@ -203,6 +203,21 @@ class GameEngine {
     saveLevel(level: Object) {
         let levelQuery = {username:this.socket.userName, name:level.name};
         this.db.collection(this.socket.userName + 'Levels').updateOne(levelQuery, { $set:level }, { upsert: true } );
+        let message = {
+            t: 'k',
+            m: level.name + " saved!"
+        }
+        let json = JSON.stringify(message);
+        let buf = new Buffer.from(json, 'utf8');
+        this.socket.send(buf);
+
+        // TO-DO remove me:
+        const fs = require('fs')
+        let date = new Date();
+        let fileName = './' + level.name + '_'+ date.getTime() + '.json' 
+        let stringyboi = JSON.stringify(level)
+        fs.writeFileSync(fileName, stringyboi, 'utf-8');
+
     }
 
     // Queue up a state to be popped. (always top state.)

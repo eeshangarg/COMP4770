@@ -3,7 +3,6 @@
     "username": "default",
     "name": "level 4",
     "background": "bg_snow",
-    "music": "someTrack",
     "playerSpawn": [50, 50],
     "levelObjective": [0, 0],
     "entities": {
