@@ -277,7 +277,7 @@
         "frameCount": 1,
         "fps": 30,
         "x": 16,
-        "y": 16
+        "y": 32
     },
     {
         "tag": "dec",
@@ -336,8 +336,8 @@
         "SpriteName": "desert-stone1",
         "frameCount": 1,
         "fps": 30,
-        "x": 16,
-        "y": 16
+        "x": 32,
+        "y": 32
     },
     {
         "tag": "dec",
@@ -456,7 +456,7 @@
         "SpriteName": "ice-stone",
         "frameCount": 1,
         "fps": 30,
-        "x": 16,
+        "x": 48,
         "y": 16
     },
     {
@@ -616,8 +616,8 @@
         "SpriteName": "tree1",
         "frameCount": 1,
         "fps": 30,
-        "x": 16,
-        "y": 16
+        "x": 64,
+        "y": 80
     },
     {
         "tag": "dec",
@@ -626,8 +626,8 @@
         "SpriteName": "tree2",
         "frameCount": 1,
         "fps": 30,
-        "x": 16,
-        "y": 16
+        "x": 48,
+        "y": 80
     },
     {
         "tag": "tile",
@@ -817,8 +817,8 @@
         "SpriteNameL": "playerAtkL",
         "frameCount": 13,
         "fps": 20,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -828,8 +828,8 @@
         "SpriteNameL": "playerDeathL",
         "frameCount": 15,
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -839,8 +839,8 @@
         "SpriteNameL": "playerRunL",
         "frameCount": 6,
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -861,8 +861,8 @@
         "SpriteNameL": "playerJumpL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -872,8 +872,8 @@
         "SpriteNameL": "playerReactionL",
         "frameCount": 5, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -883,8 +883,8 @@
         "SpriteNameL": "playerIdleL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
@@ -894,8 +894,8 @@
         "SpriteNameL": "cowmanAtk1L",
         "frameCount": 9, 
         "fps": 20,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -905,8 +905,8 @@
         "SpriteNameL": "cowmanAtk2L",
         "frameCount": 10, 
         "fps": 20,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -916,8 +916,8 @@
         "SpriteNameL": "cowmanDeathL",
         "frameCount": 8, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -927,8 +927,8 @@
         "SpriteNameL": "cowmanFallL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -938,8 +938,8 @@
         "SpriteNameL": "cowmanHurtL",
         "frameCount": 4, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -949,8 +949,8 @@
         "SpriteNameL": "cowmanIdleL",
         "frameCount": 5, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -960,8 +960,8 @@
         "SpriteNameL": "cowmanJumpL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -971,8 +971,8 @@
         "SpriteNameL": "cowmanJumpRdyL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -982,8 +982,8 @@
         "SpriteNameL": "cowmanRunL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 80,
+        "y": 77
     },
     {
         "tag": "npc",
@@ -993,8 +993,8 @@
         "SpriteNameL": "goblinAtkL",
         "frameCount": 5, 
         "fps": 20,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1004,8 +1004,8 @@
         "SpriteNameL": "goblinDeathL",
         "frameCount": 9, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1015,8 +1015,8 @@
         "SpriteNameL": "goblinFallL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1026,8 +1026,8 @@
         "SpriteNameL": "goblinHurtL",
         "frameCount": 4, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1037,8 +1037,8 @@
         "SpriteNameL": "goblinIdleL",
         "frameCount": 4, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1048,8 +1048,8 @@
         "SpriteNameL": "goblinJumpL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1059,8 +1059,8 @@
         "SpriteNameL": "goblinJumpRdyL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1070,8 +1070,8 @@
         "SpriteNameL": "goblinRunL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 55,
+        "y": 35
     },
     {
         "tag": "npc",
@@ -1081,8 +1081,8 @@
         "SpriteNameL": "impAtkL",
         "frameCount": 10, 
         "fps": 20,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
@@ -1092,8 +1092,8 @@
         "SpriteNameL": "impDeathL",
         "frameCount": 10, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
@@ -1103,8 +1103,8 @@
         "SpriteNameL": "impHurtL",
         "frameCount": 3, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
@@ -1114,8 +1114,8 @@
         "SpriteNameL": "impIdleL",
         "frameCount": 5, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
@@ -1125,8 +1125,8 @@
         "SpriteNameL": "impMoveL",
         "frameCount": 3, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
@@ -1136,8 +1136,8 @@
         "SpriteNameL": "impProjectileL",
         "frameCount": 3, 
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 25,
+        "y": 10
     },
     {
         "tag": "effect",
@@ -1158,6 +1158,16 @@
         "SpriteNameL": "blood_small",
         "frameCount": 13, 
         "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "tag": "misc",
+        "type": "static",
+        "AnimationName": "objective",
+        "SpriteName": "objective",
+        "frameCount": 4, 
+        "fps": 10,
         "x": 64,
         "y": 64
     }

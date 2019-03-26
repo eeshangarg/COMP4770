@@ -331,7 +331,7 @@
   },
   {
     "FrameCount": 5,
-    "ImageSource": "/client/assets/images/npc/imp/imp_idle_L.png",
+    "ImageSource": "/client/assets/images/npc/imp/imp_idle_R.png",
     "SpriteName": "impIdleR",
     "Type": "Sprite"
   },
@@ -600,7 +600,7 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 5,
+    "FrameCount": 4,
     "ImageSource": "/client/assets/images/msc/levelObjective.png",
     "SpriteName": "objective",
     "Type": "Sprite"
@@ -747,12 +747,6 @@
     "FrameCount": 1,
     "ImageSource": "/client/assets/images/tiles/cave-platform-corner-R.png",
     "SpriteName": "cave-platform-corner-R",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
-    "ImageSource": "/client/assets/images/tiles/cave-platform.png",
-    "SpriteName": "cave-platform",
     "Type": "Sprite"
   },
   {

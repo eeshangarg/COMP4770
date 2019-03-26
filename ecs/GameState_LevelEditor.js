@@ -26,27 +26,44 @@ class GameState_LevelEditor extends GameState {
     gridMode: boolean;
     level: Object;
     background: string;
-    playerSpawn: Vec;
-    levelObjective: Vec;
+    playerSpawn: Entity;
+    levelObjective: Entity;
+    dragging: boolean;
 
 
     constructor(game: GameEngine, level: Object) {
         super();
+        this.game = game;
+        this.entityManager = new EntityManager();
         this.level = level;
         this.background = level.background;
-        this.playerSpawn = new Vec(level.playerSpawn[0], level.playerSpawn[1]);
-        this.levelObjective = new Vec(level.levelObjective[0], level.levelObjective[1]);
-        this.game = game;
         this.level = level;
-        this.entityManager = new EntityManager();
-        this.player = this.entityManager.addEntity("player");
+        this.dragging = false;
         this.gridMode = false;
+        this.player = this.entityManager.addEntity("player");
+        this.playerSpawn = this.entityManager.addEntity("playerSpawn");
+        this.levelObjective = this.entityManager.addEntity("levelObjective");
         this.init();
     }
 
     init() {
+
         this.loadLevel();
-        this.game.drawText("Pos:[" + this.playerSpawn.x + "," + this.playerSpawn.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
+
+        let playerPos = new Vec(this.level.playerSpawn[0], this.level.playerSpawn[1]);
+        this.spawnPlayer(playerPos);
+        this.playerSpawn.addComponent(new CTransform(playerPos));
+        this.playerSpawn.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+        this.playerSpawn.addComponent(new CAnimation("playerIdle", true));
+        this.playerSpawn.addComponent(new CDraggable());
+
+        let levelPos = new Vec(this.level.levelObjective[0], this.level.levelObjective[1]);
+        this.levelObjective.addComponent(new CTransform(levelPos));
+        this.levelObjective.addComponent(new CBoundingBox(new Vec(64, 64), true, true));
+        this.levelObjective.addComponent(new CAnimation("objective", true));
+        this.levelObjective.addComponent(new CDraggable());
+
+        this.game.drawText("Pos:[" + playerPos.x + "," + playerPos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
         this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
     }
 
@@ -55,7 +72,6 @@ class GameState_LevelEditor extends GameState {
     loadLevel() {
 
         this.game.setBackground(this.background);
-        this.spawnPlayer(this.playerSpawn);
 
         let tiles = this.level.entities.tiles;
         for (let i = 0; i < tiles.length; i++) {
@@ -116,7 +132,8 @@ class GameState_LevelEditor extends GameState {
     parseLevel() {
 
         let tileParse = []
-        let playerPos = this.player.getComponent(CTransform).pos;
+        let playerPos = this.playerSpawn.getComponent(CTransform).pos;
+        let objectivePos = this.levelObjective.getComponent(CTransform).pos;
 
         let tiles = this.entityManager.getEntitiesByTag("tile");
         if (tiles != null) {
@@ -175,7 +192,7 @@ class GameState_LevelEditor extends GameState {
             name: this.level.name,
             background:  this.background,
             playerSpawn: [playerPos.x, playerPos.y],
-            levelObjective: [this.levelObjective.x, this.levelObjective.y],
+            levelObjective: [objectivePos.x, objectivePos.y],
             entities: {
                 tiles: tileParse,
                 npcs: npcParse,
@@ -188,13 +205,9 @@ class GameState_LevelEditor extends GameState {
     }
 
     spawnPlayer(pos: Vec) {
-        this.player.addComponent(new CTransform(pos));
+        this.player.addComponent(new CTransform(new Vec(pos.x, pos.y)));
         this.player.addComponent(new CInput());
-        // $FlowFixMe
-        this.player.addComponent(new CAnimation(getAnimationsByTag('player')[0], true));
-        let animation = this.player.getComponent(CAnimation).animation;
-        let bounds = new Vec(animation.width, animation.height);
-        this.player.addComponent(new CBoundingBox(bounds, true, true));
+        this.player.addComponent(new CBoundingBox(new Vec(0,0), true, true));
     }
 
     update() {
@@ -267,7 +280,7 @@ class GameState_LevelEditor extends GameState {
         if (inputMap.g) {
             this.gridMode = !this.gridMode;
             if (this.gridMode) {
-                this.game.drawText("Grid Mode: ON", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
+                this.game.drawText("Grid Mode: ON", 'gridText','16px PS2P', '#00FF00', 20, 22);
             }
             else {
                 this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
@@ -305,6 +318,7 @@ class GameState_LevelEditor extends GameState {
         }
 
         let pos = this.player.getComponent(CTransform).pos;
+
         this.game.drawText("Pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
     }
 
@@ -323,7 +337,8 @@ class GameState_LevelEditor extends GameState {
         this.renderEntitiesByTag('tile');
         this.renderEntitiesByTag('item');
         this.renderEntitiesByTag('npc');
-        this.renderEntitiesByTag('player');
+        this.renderEntitiesByTag('playerSpawn');
+        this.renderEntitiesByTag('levelObjective');
         this.game.drawFrame(playerPos);
     }
 
@@ -433,9 +448,11 @@ class GameState_LevelEditor extends GameState {
             if (this.entityAtMousePos(entity)) {
                 if (draggable.isBeingDragged && this.canDropEntity(entity)) {
                     draggable.isBeingDragged = false;
+                    this.dragging = false;
                 }
-                else if (!draggable.isBeingDragged) {
+                else if (!draggable.isBeingDragged && !this.dragging) {
                     draggable.isBeingDragged = true;
+                    this.dragging = true;
                 }
 
                 break;
@@ -543,7 +560,7 @@ class GameState_LevelEditor extends GameState {
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i];
-            if (!entity.hasComponent(CDraggable)) {
+            if (!entity.hasComponent(CDraggable) || entity.tag === 'levelObjective' || entity.tag === 'playerSpawn') {
                 continue;
             }
 

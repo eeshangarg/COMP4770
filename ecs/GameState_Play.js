@@ -26,24 +26,28 @@ class GameState_Play extends GameState {
     level: Object;
     background: string;
     playerSpawn: Vec;
-    levelObjective: Vec;
+    levelObjective: Entity;
 
 
 
     constructor(game: GameEngine, level: Object) { 
         super();
+        this.game = game;
+        this.entityManager = new EntityManager();
         this.level = level;
         this.background = level.background;
         this.playerSpawn = new Vec(level.playerSpawn[0], level.playerSpawn[1]);
-        this.levelObjective = new Vec(level.levelObjective[0], level.levelObjective[1]);
-        this.game = game;
-        this.entityManager = new EntityManager();
         this.paused = false;
         this.player = this.entityManager.addEntity("player");
+        this.levelObjective = this.entityManager.addEntity("levelObjective");
         this.init();
     }
 
     init() {
+        let levelPos = new Vec(this.level.levelObjective[0], this.level.levelObjective[1]);
+        this.levelObjective.addComponent(new CTransform(levelPos));
+        this.levelObjective.addComponent(new CBoundingBox(new Vec(64, 64), true, true));
+        this.levelObjective.addComponent(new CAnimation("objective", true));
         this.loadLevel();
     }
 
@@ -110,6 +114,7 @@ class GameState_Play extends GameState {
     spawnPlayer(pos: Vec) {
         this.player.addComponent(new CTransform(pos));
         this.player.addComponent(new CAnimation("playerRun", true));
+        this.player.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
         this.player.addComponent(new CInput());
     }
 

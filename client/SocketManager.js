@@ -333,13 +333,21 @@ function renderFrame(data, playerPos) {
     // Draw all streamed animations from server.
     for (let i = 0; i < data.length; i++) {
         let sprite = getSprite(animIdMap.get(data[i][0]));
-        if (data[i].length == 4) {
-            // Draw all Dynamic-sprites corrected against the players Pos.
-            sprite.draw(data[i][1] - playerPos[0], data[i][2] + playerPos[1], data[i][3]);
-        } else {
-            // Draw all static-sprites corrected against the players Pos.
+        if (typeof sprite !== "undefined") {
+            if (data[i].length == 4) {
+                // Draw all Dynamic-sprites corrected against the players Pos.
+                sprite.draw(data[i][1] - playerPos[0], data[i][2] + playerPos[1], data[i][3]);
+            } else {
+                // Draw all static-sprites corrected against the players Pos.
+                sprite.draw(data[i][1] - playerPos[0], data[i][2] + playerPos[1], 0);
+            }
+        }
+        else {
+            console.log("Cannot find Sprite:" + data[i][0]);
+            let sprite = getSprite('error');
             sprite.draw(data[i][1] - playerPos[0], data[i][2] + playerPos[1], 0);
         }
+
     }
 }
 
