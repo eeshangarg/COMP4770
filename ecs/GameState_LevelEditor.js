@@ -21,7 +21,7 @@ const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsB
 class GameState_LevelEditor extends GameState {
     game: GameEngine;
     entityManager: EntityManager;
-    player: Entity;
+    editor: Entity;
     update: void => void;
     gridMode: boolean;
     level: Object;
@@ -40,7 +40,7 @@ class GameState_LevelEditor extends GameState {
         this.level = level;
         this.dragging = false;
         this.gridMode = false;
-        this.player = this.entityManager.addEntity("player");
+        this.editor = this.entityManager.addEntity("editor");
         this.playerSpawn = this.entityManager.addEntity("playerSpawn");
         this.levelObjective = this.entityManager.addEntity("levelObjective");
         this.init();
@@ -50,9 +50,9 @@ class GameState_LevelEditor extends GameState {
 
         this.loadLevel();
 
-        let playerPos = new Vec(this.level.playerSpawn[0], this.level.playerSpawn[1]);
-        this.spawnPlayer(playerPos);
-        this.playerSpawn.addComponent(new CTransform(playerPos));
+        let editorPos = new Vec(this.level.playerSpawn[0], this.level.playerSpawn[1]);
+        this.spawnPlayer(editorPos);
+        this.playerSpawn.addComponent(new CTransform(editorPos));
         this.playerSpawn.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
         this.playerSpawn.addComponent(new CAnimation("playerIdle", true));
         this.playerSpawn.addComponent(new CDraggable());
@@ -63,7 +63,7 @@ class GameState_LevelEditor extends GameState {
         this.levelObjective.addComponent(new CAnimation("objective", true));
         this.levelObjective.addComponent(new CDraggable());
 
-        this.game.drawText("Pos:[" + playerPos.x + "," + playerPos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
+        this.game.drawText("Camera pos:[" + editorPos.x + "," + editorPos.y + "]", 'posText','16px PS2P', '#F9F9F9', 700, 22);
         this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
     }
 
@@ -205,9 +205,9 @@ class GameState_LevelEditor extends GameState {
     }
 
     spawnPlayer(pos: Vec) {
-        this.player.addComponent(new CTransform(new Vec(pos.x, pos.y)));
-        this.player.addComponent(new CInput());
-        this.player.addComponent(new CBoundingBox(new Vec(0,0), true, true));
+        this.editor.addComponent(new CTransform(new Vec(pos.x, pos.y)));
+        this.editor.addComponent(new CInput());
+        this.editor.addComponent(new CBoundingBox(new Vec(0,0), true, true));
     }
 
     update() {
@@ -221,7 +221,7 @@ class GameState_LevelEditor extends GameState {
 
     sUserInput() {
         let inputMap = this.game.getInputMap();
-        let playerInput = this.player.getComponent(CInput);
+        let editorInput = this.editor.getComponent(CInput);
 
         if (inputMap.escape){
             inputMap.escape = 0;
@@ -237,10 +237,10 @@ class GameState_LevelEditor extends GameState {
             this.game.popState();
         }
 
-        playerInput.up = inputMap.w;
-        playerInput.left = inputMap.a;
-        playerInput.down = inputMap.s;
-        playerInput.right = inputMap.d;
+        editorInput.up = inputMap.w;
+        editorInput.left = inputMap.a;
+        editorInput.down = inputMap.s;
+        editorInput.right = inputMap.d;
 
         if (inputMap.t && this.canInsert()) {
             this.insertTile();
@@ -300,26 +300,26 @@ class GameState_LevelEditor extends GameState {
     }
 
     sMovement() {
-        let playerInput = this.player.getComponent(CInput);
+        let editorInput = this.editor.getComponent(CInput);
 
-        if (playerInput.up) {
-            this.player.getComponent(CTransform).pos.y += 3;
+        if (editorInput.up) {
+            this.editor.getComponent(CTransform).pos.y += 3;
         }
-        else if (playerInput.down) {
-            this.player.getComponent(CTransform).pos.y -= 3;
-        }
-
-        if (playerInput.left) {
-            this.player.getComponent(CTransform).pos.x -= 3;
-            this.player.getComponent(CTransform).facing = -1;
-        } else if (playerInput.right) {
-            this.player.getComponent(CTransform).pos.x += 3;
-            this.player.getComponent(CTransform).facing = 1;
+        else if (editorInput.down) {
+            this.editor.getComponent(CTransform).pos.y -= 3;
         }
 
-        let pos = this.player.getComponent(CTransform).pos;
+        if (editorInput.left) {
+            this.editor.getComponent(CTransform).pos.x -= 3;
+            this.editor.getComponent(CTransform).facing = -1;
+        } else if (editorInput.right) {
+            this.editor.getComponent(CTransform).pos.x += 3;
+            this.editor.getComponent(CTransform).facing = 1;
+        }
 
-        this.game.drawText("Pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
+        let pos = this.editor.getComponent(CTransform).pos;
+
+        this.game.drawText("Camera pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
     }
 
     sAnimation() {
@@ -332,18 +332,18 @@ class GameState_LevelEditor extends GameState {
     }
 
     sRender() {
-        let playerPos = this.player.getComponent(CTransform).pos;
+        let editorInput = this.editor.getComponent(CTransform).pos;
         this.renderEntitiesByTag('dec');
         this.renderEntitiesByTag('tile');
         this.renderEntitiesByTag('item');
         this.renderEntitiesByTag('npc');
         this.renderEntitiesByTag('playerSpawn');
         this.renderEntitiesByTag('levelObjective');
-        this.game.drawFrame(playerPos);
+        this.game.drawFrame(editorInput);
     }
 
     renderEntitiesByTag(tag: string) {
-        let playerPos = this.player.getComponent(CTransform).pos;
+        let editorPos = this.editor.getComponent(CTransform).pos;
         let entities = this.entityManager.getEntitiesByTag(tag);
 
         if (entities === undefined) {
@@ -356,7 +356,7 @@ class GameState_LevelEditor extends GameState {
             if (entities[i].hasComponent(CAnimation)){
                 let pos = entities[i].getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (playerPos.distf(pos) < 360000) {
+                if (editorPos.distf(pos) < 360000) {
                     let dir = entities[i].getComponent(CTransform).facing;
                     let anim = entities[i].getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
@@ -508,6 +508,12 @@ class GameState_LevelEditor extends GameState {
 
             if (entity.getComponent(CDraggable).isBeingDragged) {
                 let animationNames = getAnimationsByTag(entity.tag);
+
+
+                if (entity.tag === 'levelObjective' || entity.tag === 'playerSpawn') {
+                    continue;
+                }
+
                 let draggable = entity.getComponent(CDraggable);
 
                 if (direction === 'left') {
@@ -572,9 +578,9 @@ class GameState_LevelEditor extends GameState {
 
     getMousePosition(): Vec {
         let inputMap = this.game.getInputMap();
-        let playerPos = this.player.getComponent(CTransform).pos;
-        let px = playerPos.x - 512;
-        let py = playerPos.y - 288;
+        let editorPos = this.editor.getComponent(CTransform).pos;
+        let px = editorPos.x - 512;
+        let py = editorPos.y - 288;
         return new Vec(inputMap.mousePos[0] + px,
                        inputMap.mousePos[1] + py);
     }
