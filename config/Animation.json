@@ -817,8 +817,8 @@
         "SpriteNameL": "playerAtkL",
         "frameCount": 13,
         "fps": 20,
-        "x": 50,
-        "y": 50
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "player",
@@ -828,8 +828,8 @@
         "SpriteNameL": "playerDeathL",
         "frameCount": 15,
         "fps": 15,
-        "x": 50,
-        "y": 50
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "player",
@@ -839,8 +839,8 @@
         "SpriteNameL": "playerRunL",
         "frameCount": 6,
         "fps": 15,
-        "x": 50,
-        "y": 50
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "player",
@@ -850,8 +850,8 @@
         "SpriteNameL": "playerDefenseL",
         "frameCount": 8,
         "fps": 15,
-        "x": 64,
-        "y": 64
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "player",
@@ -861,8 +861,8 @@
         "SpriteNameL": "playerJumpL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 50,
-        "y": 50
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "player",
@@ -872,8 +872,8 @@
         "SpriteNameL": "playerReactionL",
         "frameCount": 5, 
         "fps": 15,
-        "x": 50,
-        "y": 50
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "player",
@@ -883,8 +883,8 @@
         "SpriteNameL": "playerIdleL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 50,
-        "y": 50
+        "x": 45,
+        "y": 45
     },
     {
         "tag": "npc",

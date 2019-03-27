@@ -115,7 +115,7 @@ class GameState_Play extends GameState {
     spawnPlayer(pos: Vec) {
         this.player.addComponent(new CTransform(pos));
         this.player.addComponent(new CAnimation("playerRun", true));
-        this.player.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+        this.player.addComponent(new CBoundingBox(new Vec(45, 45), true, true));
         this.player.addComponent(new CInput());
     }
 
@@ -154,7 +154,7 @@ class GameState_Play extends GameState {
         let playerInput = this.player.getComponent(CInput);
 
         let playerTransform = this.player.getComponent(CTransform);
-        playerTransform.prevPos = playerTransform.pos;
+        playerTransform.prevPos = new Vec(playerTransform.pos.x, playerTransform.pos.y);
 
         // Example
         if (playerInput.up) {
@@ -215,32 +215,28 @@ class GameState_Play extends GameState {
             let prevFrameOverlap = Physics.getPreviousOverlap(a, b);
             let bPos = bTransform.pos;
             let aPos = aTransform.pos;
+            let aPrevPos = aTransform.prevPos;
 
             // Collision from the right
-            if (prevFrameOverlap.y > 3.0 && aPos.x > bPos.x)
-            {
+            if (prevFrameOverlap.y > 0 && aPrevPos.x > bPos.x) {
                 aPos.x += currentFrameOverlap.x;
-                aTransform.speed.x = 0.0;
+                aTransform.speed.x = 0;
             }
             // Collision from the left
-            if (prevFrameOverlap.y > 3.0 && aPos.x < bPos.x)
-            {
+            if (prevFrameOverlap.y > 0 && aPrevPos.x < bPos.x) {
                 aPos.x -= currentFrameOverlap.x;
-                aTransform.speed.x = 0.0;
+                aTransform.speed.x = 0;
             }
             // Collision from the bottom
-            if (prevFrameOverlap.x > 3.0 && aPos.y < bPos.y)
-            {
+            if (prevFrameOverlap.x > 0 && aPrevPos.y < bPos.y) {
                 aPos.y -= currentFrameOverlap.y;
                 aTransform.speed.y = 0.0;
             }
             // Collision from the top
-            if (prevFrameOverlap.x > 3.0 && aPos.y > bPos.y)
-            {
+            if (prevFrameOverlap.x > 0 && aPrevPos.y > bPos.y) {
                 aPos.y += currentFrameOverlap.y;
                 aTransform.speed.y = 0.0;
             }
-            aTransform.pos = aPos;
         }
     }
 
