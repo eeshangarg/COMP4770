@@ -217,25 +217,25 @@ class GameState_Play extends GameState {
             let aPos = aTransform.pos;
 
             // Collision from the right
-            if (prevFrameOverlap.y > 0.0 && aPos.x > bPos.x)
+            if (prevFrameOverlap.y > 3.0 && aPos.x > bPos.x)
             {
                 aPos.x += currentFrameOverlap.x;
                 aTransform.speed.x = 0.0;
             }
             // Collision from the left
-            if (prevFrameOverlap.y > 0.0 && aPos.x < bPos.x)
+            if (prevFrameOverlap.y > 3.0 && aPos.x < bPos.x)
             {
                 aPos.x -= currentFrameOverlap.x;
                 aTransform.speed.x = 0.0;
             }
             // Collision from the bottom
-            if (prevFrameOverlap.x > 0.0 && aPos.y < bPos.y)
+            if (prevFrameOverlap.x > 3.0 && aPos.y < bPos.y)
             {
                 aPos.y -= currentFrameOverlap.y;
                 aTransform.speed.y = 0.0;
             }
             // Collision from the top
-            if (prevFrameOverlap.x > 0.0 && aPos.y > bPos.y)
+            if (prevFrameOverlap.x > 3.0 && aPos.y > bPos.y)
             {
                 aPos.y += currentFrameOverlap.y;
                 aTransform.speed.y = 0.0;
