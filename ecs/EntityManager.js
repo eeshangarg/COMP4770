@@ -13,7 +13,13 @@ class EntityManager {
     constructor() {
         this.entities = [];
         this.entitiesToAdd = [];
-        this.entityMap = {};
+        this.entityMap = {
+            'npc': [],
+            'player': [],
+            'tile': [],
+            'item': [],
+            'dec': []
+        };
         this.totalEntities = 0;
     }
 

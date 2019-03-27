@@ -15,6 +15,7 @@ const CAnimation = Components.CAnimation;
 const CBoundingBox = Components.CBoundingBox;
 const CInput = Components.CInput;
 const Vec = require('./Vec.js');
+const Physics = require('./Physics.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
 
 class GameState_Play extends GameState {
@@ -152,6 +153,9 @@ class GameState_Play extends GameState {
 
         let playerInput = this.player.getComponent(CInput);
 
+        let playerTransform = this.player.getComponent(CTransform);
+        playerTransform.prevPos = playerTransform.pos;
+
         // Example
         if (playerInput.up) {
             this.player.getComponent(CTransform).pos.y += 3;
@@ -163,7 +167,8 @@ class GameState_Play extends GameState {
         if (playerInput.left) {
             this.player.getComponent(CTransform).pos.x -= 3;
             this.player.getComponent(CTransform).facing = -1;
-        } else if (playerInput.right) {
+        }
+        else if (playerInput.right) {
             this.player.getComponent(CTransform).pos.x += 3;
             this.player.getComponent(CTransform).facing = 1;
         }
@@ -202,8 +207,67 @@ class GameState_Play extends GameState {
         // TODO: Implement Follow and Patrol behavior
     }
 
+    handleRectangularCollisions(a: Entity, b: Entity) {
+        let currentFrameOverlap = Physics.getOverlap(a, b);
+        if (currentFrameOverlap.x > 0.0 && currentFrameOverlap.y > 0.0) {
+            let bTransform = b.getComponent(CTransform);
+            let aTransform = a.getComponent(CTransform);
+            let prevFrameOverlap = Physics.getPreviousOverlap(a, b);
+            let bPos = bTransform.pos;
+            let aPos = aTransform.pos;
+
+            // Collision from the right
+            if (prevFrameOverlap.y > 0.0 && aPos.x > bPos.x)
+            {
+                aPos.x += currentFrameOverlap.x;
+                aTransform.speed.x = 0.0;
+            }
+            // Collision from the left
+            if (prevFrameOverlap.y > 0.0 && aPos.x < bPos.x)
+            {
+                aPos.x -= currentFrameOverlap.x;
+                aTransform.speed.x = 0.0;
+            }
+            // Collision from the bottom
+            if (prevFrameOverlap.x > 0.0 && aPos.y < bPos.y)
+            {
+                aPos.y -= currentFrameOverlap.y;
+                aTransform.speed.y = 0.0;
+            }
+            // Collision from the top
+            if (prevFrameOverlap.x > 0.0 && aPos.y > bPos.y)
+            {
+                aPos.y += currentFrameOverlap.y;
+                aTransform.speed.y = 0.0;
+            }
+            aTransform.pos = aPos;
+        }
+    }
+
     sCollision() {
         // TODO: Implement collisions and physics
+        let tiles = this.entityManager.getEntitiesByTag("tile");
+
+        for (let i = 0; i < tiles.length; i++){
+            let tile = tiles[i];
+
+            if (!tile.getComponent(CBoundingBox).blockMove) {
+                continue;
+            }
+
+            this.handleRectangularCollisions(this.player, tile);
+
+            let npcs = this.entityManager.getEntitiesByTag("npc");
+            for (let j = 0; j < npcs.length; j++) {
+                let npc = npcs[i];
+
+                if (!npc.hasComponent(CBoundingBox)) {
+                    continue;
+                }
+
+                this.handleRectangularCollisions(npc, tile);
+            }
+        }
     }
 
     sLifespan() {

@@ -26,7 +26,7 @@ class CTransform extends Component {
     constructor(p: Vec) {
         super();
         this.pos = p;
-        this.prevPos = new Vec(0.0, 0.0);
+        this.prevPos = p;
         this.facing = 1;
         this.speed = new Vec(0.0, 0.0);
         this.angle = 0.0;
