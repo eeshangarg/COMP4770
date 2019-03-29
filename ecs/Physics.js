@@ -10,25 +10,31 @@ const CBoundingBox = Components.CBoundingBox;
 
 
 /* istanbul ignore next */
-function isOnScreen (e: Entity, playerPos: Vec, screenSize: Vec): boolean {
-    let pos: Vec = e.getComponent(CTransform).pos;
-    let delta: Vec = new Vec(Math.abs(pos.x - playerPos.x), Math.abs(pos.y - playerPos.y));
-    if (e.hasComponent(CBoundingBox)) {
-        let halfSize: Vec = e.getComponent(CBoundingBox).halfSize;
-        let sum: Vec = halfSize.add(screenSize);
-        sum.subtracti(delta);
-        if (sum.x >0 && sum.y > 0) { return true } 
-        else {return false;}
-    }
-    else {
-        let halfSize: Vec = new Vec(0,0);
-        let sum: Vec = halfSize.add(screenSize);
-        sum.subtracti(delta);
-        if (sum.x >0 && sum.y > 0) { return true } 
-        else {return false;}
-    }
+// function isOnScreen (e: Entity, playerPos: Vec, screenSize: Vec): boolean {
+//     if (e.hasComponent(CBoundingBox)) {
+//         let pos: Vec = e.getComponent(CTransform).pos;
+//         let delta: Vec = new Vec(Math.abs(pos.x - playerPos.x), Math.abs(pos.y - playerPos.y));
+//         if (e.hasComponent(CBoundingBox)) {
+//             let halfSize: Vec = e.getComponent(CBoundingBox).halfSize;
+//             let sum: Vec = halfSize.add(screenSize);
+//             sum.subtracti(delta);
+//         if (sum.x >0 && sum.y > 0) { return true } 
+//         else {return false;}
+//     }
+//     else {
+//         let halfSize: Vec = new Vec(0,0);
+//         let sum: Vec = halfSize.add(screenSize);
+//         sum.subtracti(delta);
+//         if (sum.x >0 && sum.y > 0) { return true } 
+//         else {return false;}
+//     }
 
-}
+//     }
+//     else {
+        
+//     }
+
+// }
 
 function getOverlap(a: Entity, b: Entity): Vec {
     let aPos: Vec = a.getComponent(CTransform).pos;
@@ -100,7 +106,6 @@ function isOverlapping(pos: Vec, halfSize: Vec, e: Entity): boolean {
 }
 
 module.exports = {
-    'isOnScreen': isOnScreen,
     'getOverlap': getOverlap,
     'getPreviousOverlap': getPreviousOverlap,
     'lineIntersect': lineIntersect,

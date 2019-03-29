@@ -92,7 +92,7 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(100));
-                newNpc.addComponent(new CMeele(25, new Vec(20, 15), 2000, 5, 8));
+                newNpc.addComponent(new CMeele(25, new Vec(20, 15), 2000, 75, 5, 8));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 20, 1000, 3));
             }
             // Create a imp NPC, assign all components.
@@ -100,7 +100,7 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height * 0.85), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.0));
                 newNpc.addComponent(new CHealth(50));
@@ -116,7 +116,7 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(50));
-                newNpc.addComponent(new CMeele(5, new Vec(8, 5), 1000, 1, 4));
+                newNpc.addComponent(new CMeele(5, new Vec(8, 5), 1000, 50, 1, 4));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 10, 500, 2.5));
             }
         }
@@ -152,7 +152,7 @@ class GameState_Play extends GameState {
         this.player.addComponent(new CGravity(0.3));
         this.player.addComponent(new CState('idle'));
         this.player.addComponent(new CInput());
-        this.player.addComponent(new CMeele(25, new Vec(20, 20), 0, 5, 12));
+        this.player.addComponent(new CMeele(25, new Vec(35, 15), 0, 0, 6, 11));
         this.player.addComponent(new CHealth(100));
         this.currentHP = 100;
     }
@@ -201,17 +201,21 @@ class GameState_Play extends GameState {
 
     sPlayerMeele() {
         if (this.player.getComponent(CState).state === 'attacking') {
-            let transform = this.player.getComponent(CTransform);
             let meele = this.player.getComponent(CMeele);
-            let npcs = this.entityManager.getEntitiesByTag("npc");
-            for (let i = 0; i < npcs.length; i++) {
-                let npc = npcs[i];
-                if (transform.pos.distf(npc.getComponent(CTransform).pos) < 5625) {
-                    if (Physics.isOverlapping(transform.pos, meele.halfSize, npc)) {
-                        let state = npc.getComponent(CState).state;
-                        if (state !== 'hurt' && state !== 'dying') {
-                            npc.getComponent(CHealth).health -= meele.damage;
-                            npc.getComponent(CState).state = 'hurt';
+            let currentFrame = this.player.getComponent(CAnimation).animation.animationFrame;
+            if (currentFrame > meele.frameStart && currentFrame < meele.frameEnd ) {
+                let transform = this.player.getComponent(CTransform);
+                let npcs = this.entityManager.getEntitiesByTag("npc");
+
+                for (let i = 0; i < npcs.length; i++) {
+                    let npc = npcs[i];
+                    if (transform.pos.distf(npc.getComponent(CTransform).pos) < 5625) {
+                        if (Physics.isOverlapping(transform.pos, meele.halfSize, npc)) {
+                            let state = npc.getComponent(CState).state;
+                            if (state !== 'hurt' && state !== 'dying') {
+                                npc.getComponent(CHealth).health -= meele.damage;
+                                npc.getComponent(CState).state = 'hurt';
+                            }
                         }
                     }
                 }
@@ -308,16 +312,22 @@ class GameState_Play extends GameState {
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i];
             if (entity.hasComponent(CAnimation)) {
-                if (entity.hasComponent(CState) && entity.hasComponent(CAnimation)) {
-                    this.handleStateAnimation(entity);
+                let anim = entity.getComponent(CAnimation);
+                if (!anim.repeated && anim.animation.hasEnded) {
+                    entity.destroy();
                 }
-                entity.getComponent(CAnimation).animation.update();
-
+                else {
+                    if (entity.hasComponent(CState) && entity.hasComponent(CAnimation)) {
+                        this.handleStateAnimation(entity);
+                    }
+                        anim.animation.update();
+                }
             }
         }
     }
 
     handleStateAnimation(e: Entity) {
+
 
         let state = e.getComponent(CState).state;
         let grounded = e.getComponent(CState).grounded;
@@ -337,11 +347,13 @@ class GameState_Play extends GameState {
             startsWith = 'player';
         }
 
+
+
         // If the current state is 'attacking'.
         if (state === 'attacking') {
             // Start playing the "Atk" animation if it is not started.
             if (animationName !== startsWith + 'Atk') {
-                this.game.playSound('sword_metal_hit');
+                this.game.playSound(startsWith + 'Atk');
                 e.addComponent(new CAnimation(startsWith + 'Atk', true));
             } else if (hasEnded) {
                 e.getComponent(CState).state = 'idle';
@@ -350,7 +362,7 @@ class GameState_Play extends GameState {
         }
 
         // If the current state is falling And is not 'dying'.
-        else if (!grounded && state !== 'dying') {
+        else if (!grounded && state !== 'dying' && state !== 'hurt') {
             if (animationName !== startsWith + 'Fall') {
                 e.addComponent(new CAnimation(startsWith + 'Fall', true));
             }
@@ -370,20 +382,32 @@ class GameState_Play extends GameState {
         else if (state === 'hurt') {
             // Play the "pain" animation if it is not playing.
             if (animationName !== startsWith + 'Hurt') {
+                let blood = this.entityManager.addEntity("effect");
+                blood.addComponent(new CAnimation('blood_small', false));
+                let pos = e.getComponent(CTransform).pos;
+                blood.addComponent(new CTransform(pos));
                 this.game.playSound(startsWith + 'Pain');
+                this.game.playSound('goreSplat');
                 e.addComponent(new CAnimation(startsWith + 'Hurt', true));
             }
+
             // If the pain animations is over, set the entity to idle.
             else if (hasEnded) {
                 e.getComponent(CState).state = 'idle';
                 e.addComponent(new CAnimation(startsWith + 'Idle', true));
             }
+
         }
 
         // If the current state is 'Dying'.
         else if (state === 'dying') {
             // If we are not playing the death animation, start it.
             if (animationName !== startsWith + 'Death') {
+                let blood = this.entityManager.addEntity("effect");
+                blood.addComponent(new CAnimation('blood_big', false));
+                let pos = e.getComponent(CTransform).pos;
+                blood.addComponent(new CTransform(pos));
+                this.game.playSound('goreSplat');
                 this.game.playSound(startsWith + 'Death');
                 e.addComponent(new CAnimation(startsWith + 'Death', true));
             }
@@ -409,6 +433,7 @@ class GameState_Play extends GameState {
         this.renderEntitiesByTag('npc');
         this.renderEntitiesByTag('player');
         this.renderEntitiesByTag('levelObjective');
+        this.renderEntitiesByTag('effect');
         this.game.drawFrame(playerPos);
     }
 
@@ -450,6 +475,7 @@ class GameState_Play extends GameState {
             if (npc.hasComponent(CFollow)) {
                 this.handleFollow(npc)
             }
+            /* CPatrol ? */
         }
 
     }
@@ -460,14 +486,65 @@ class GameState_Play extends GameState {
     }
 
     handleMeele(e: Entity) {
-        e.hasComponent(CTransform);
-        //*********** TO-DO STUB *************
+            let state = e.getComponent(CState).state;
+            if (state !== 'hurt' && state !== 'dying') {
+                let meele = e.getComponent(CMeele);
+                let playerPos = this.player.getComponent(CTransform).pos;
+                let entityPos = e.getComponent(CTransform).pos;
+
+                if (playerPos.distf(entityPos) < meele.range) {
+                    e.getComponent(CState).state = 'attacking';
+                    if (playerPos.x > entityPos.x) {
+                        e.getComponent(CTransform).facing = 1;
+                    } else {
+                        e.getComponent(CTransform).facing = -1;
+                    }
+                }
+            }
     }
 
     handleFollow(e: Entity) {
-        e.hasComponent(CTransform);
-        //*********** TO-DO STUB *************
+            let state = e.getComponent(CState).state;
+            if (state !== 'hurt' && state !== 'dying' && state !== 'attacking') {
+                let follow = e.getComponent(CFollow);
+                let playerPos = this.player.getComponent(CTransform).pos;
+                let entityPos = e.getComponent(CTransform).pos;
+                let dist = playerPos.distf(entityPos);
+
+                if (dist > follow.approachDistance && dist < follow.visionDistance) {
+                    let tiles = this.entityManager.getEntitiesByTag("tile");
+                    let vision = true;
+                    for (let i = 0; i < tiles.length; i++) {
+                        if (Physics.entityIntersect(playerPos, entityPos,tiles[i])) {
+                            vision = false;
+                        }
+                    }
+                    if (vision) {
+                        e.getComponent(CState).state = 'running';
+                        let entityTransform = e.getComponent(CTransform);
+                        let diff = playerPos.subtract(entityPos);
+                        let norm = diff.norm()
+                        norm.muli(follow.speed);
+                        entityTransform.prevPos = new Vec (entityTransform.pos.x, entityTransform.pos.y);
+                        entityTransform.pos.x += norm.x;
+                        if (playerPos.x > entityPos.x) {
+                            e.getComponent(CTransform).facing = 1;
+                        } else {
+                            e.getComponent(CTransform).facing = -1;
+                        }
+                    }
+                    else {
+                        e.getComponent(CState).state = 'idle';
+                    }
+                }
+
+            }
     }
+
+
+    // createProjectile(staringPos: Vec, target: Vec, speed: number) {
+        
+    // }
 
     handleRectangularCollisions(a: Entity, b: Entity) {
 
@@ -512,20 +589,10 @@ class GameState_Play extends GameState {
     }
 
     sCollision() {
-
-        // Calculate all player tiles cols.
+        let npcs = this.entityManager.getEntitiesByTag("npc");
         let tiles = this.entityManager.getEntitiesByTag("tile");
-        this.player.getComponent(CState).grounded = false;
-        for (let i = 0; i < tiles.length; i++) {
-            let tile = tiles[i];
-            if (!tile.getComponent(CBoundingBox).blockMove) {
-                continue;
-            }
-            this.handleRectangularCollisions(this.player, tile);
-        }
 
         // Calculate all NPC tile / player cols.
-        let npcs = this.entityManager.getEntitiesByTag("npc");
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
             npc.getComponent(CState).grounded = false;
@@ -536,6 +603,21 @@ class GameState_Play extends GameState {
             for (let j = 0; j < tiles.length; j++) {
                 this.handleRectangularCollisions(npc, tiles[j]);
             }
+        }
+
+        // Calculate all player tiles cols.        
+        this.player.getComponent(CState).grounded = false;
+        for (let i = 0; i < tiles.length; i++) {
+            let tile = tiles[i];
+            if (!tile.getComponent(CBoundingBox).blockMove) {
+                continue;
+            }
+            this.handleRectangularCollisions(this.player, tile);
+        }
+
+        let objectiveOverlap = Physics.getOverlap(this.player, this.levelObjective);
+        if (objectiveOverlap.x > 0 && objectiveOverlap.y > 0) {
+            this.game.popState();
         }
     }
 

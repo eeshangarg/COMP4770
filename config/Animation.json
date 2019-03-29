@@ -816,7 +816,7 @@
         "SpriteNameR": "playerAtkR",
         "SpriteNameL": "playerAtkL",
         "frameCount": 13,
-        "fps": 20,
+        "fps": 25,
         "x": 50,
         "y": 50
     },
@@ -893,7 +893,7 @@
         "SpriteNameR": "cowmanAtkR",
         "SpriteNameL": "cowmanAtkL",
         "frameCount": 9, 
-        "fps": 20,
+        "fps": 12,
         "x": 80,
         "y": 77
     },
@@ -1010,33 +1010,11 @@
     {
         "tag": "npc",
         "type": "dynamic",
-        "AnimationName": "goblinJump",
-        "SpriteNameR": "goblinJumpR",
-        "SpriteNameL": "goblinJumpL",
-        "frameCount": 2, 
-        "fps": 15,
-        "x": 55,
-        "y": 35
-    },
-    {
-        "tag": "npc",
-        "type": "dynamic",
-        "AnimationName": "goblinJumpRdy",
-        "SpriteNameR": "goblinJumpRdyR",
-        "SpriteNameL": "goblinJumpRdyL",
-        "frameCount": 2, 
-        "fps": 15,
-        "x": 55,
-        "y": 35
-    },
-    {
-        "tag": "npc",
-        "type": "dynamic",
         "AnimationName": "goblinRun",
         "SpriteNameR": "goblinRunR",
         "SpriteNameL": "goblinRunL",
         "frameCount": 6, 
-        "fps": 15,
+        "fps": 12,
         "x": 55,
         "y": 35
     },
@@ -1047,7 +1025,7 @@
         "SpriteNameR": "impAtkR",
         "SpriteNameL": "impAtkL",
         "frameCount": 10, 
-        "fps": 20,
+        "fps": 10,
         "x": 50,
         "y": 50
     },
@@ -1069,7 +1047,7 @@
         "SpriteNameR": "impHurtR",
         "SpriteNameL": "impHurtL",
         "frameCount": 3, 
-        "fps": 3,
+        "fps": 5,
         "x": 50,
         "y": 50
     },
