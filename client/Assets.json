@@ -843,7 +843,7 @@
   },
   {
     "Type":"Sound",
-    "soundName":"sword_metal_hit",
+    "soundName":"playerAtk",
     "soundSource":"/client/assets/sounds/effects/sword_metal_hit.mp3"
   },
   {
@@ -910,5 +910,20 @@
     "Type":"Sound",
     "soundName":"impProjectile",
     "soundSource":"/client/assets/sounds/npc/imp/imp_projectile.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"impAtk",
+    "soundSource":"/client/assets/sounds/npc/imp/impAtk.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"goblinAtk",
+    "soundSource":"/client/assets/sounds/npc/goblin/goblinAtk.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"cowmanAtk",
+    "soundSource":"/client/assets/sounds/npc/cowman/cowmanAtk.mp3"
   }
 ]
