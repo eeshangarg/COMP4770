@@ -569,7 +569,7 @@ class GameState_LevelEditor extends GameState {
             if (!entity.hasComponent(CDraggable) || entity.tag === 'levelObjective' || entity.tag === 'playerSpawn') {
                 continue;
             }
-
+            this.dragging = false;
             if (entity.getComponent(CDraggable).isBeingDragged) {
                 entity.destroy();
             }

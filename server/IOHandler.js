@@ -81,6 +81,9 @@ function initIO(wss, db) {
 
         ws.on('close', function close() {
             console.log('socket closed, ID: ', ws.id, " Client Count: ", wss.clients.size);
+            if (typeof ws.GameEngine  != "undefined") {
+                ws.GameEngine.running = false;
+            }
             socketMap.delete(ws.id);
         });
 

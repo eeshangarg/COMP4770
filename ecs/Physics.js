@@ -86,10 +86,24 @@ function entityIntersect(a: Vec, b: Vec, e: Entity): boolean {
 
 }
 
+/* istanbul ignore next */
+function isOverlapping(pos: Vec, halfSize: Vec, e: Entity): boolean {
+    let ePos: Vec = e.getComponent(CTransform).pos;
+    let eHalfSize: Vec = e.getComponent(CBoundingBox).halfSize;
+    let delta: Vec = new Vec(Math.abs(pos.x - ePos.x), Math.abs(pos.y - ePos.y));
+    let sum: Vec = halfSize.add(eHalfSize);
+    let overlap: Vec = sum.subtract(delta);
+    if (overlap.x >= 0 && overlap.y >= 0 ) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     'isOnScreen': isOnScreen,
     'getOverlap': getOverlap,
     'getPreviousOverlap': getPreviousOverlap,
     'lineIntersect': lineIntersect,
+    'isOverlapping': isOverlapping,
     'entityIntersect': entityIntersect
 };

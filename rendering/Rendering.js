@@ -67,13 +67,16 @@ function loadAnimations(fileName: string) {
 
 function getAnimation(AnimationName: string): Animation {
     let x = animationMap.get(AnimationName);
+    /* istanbul ignore next */
     if (typeof x !== 'undefined') {
         let copy = new Animation(x.name, x.spriteR, x.spriteL,
                                  x.rid, x.lid, x.frameCount + 1,
                                  60 / x.fps, x.width, x.height);
         return copy;
     } else {
+        /* istanbul ignore next */
         let copy = new Animation('error', 'error', 'error', 0, 0, 1, 1, 1, 1);
+        /* istanbul ignore next */
         return copy;
     }
 }
