@@ -817,8 +817,8 @@
         "SpriteNameL": "playerAtkL",
         "frameCount": 13,
         "fps": 20,
-        "x": 45,
-        "y": 45
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -828,8 +828,8 @@
         "SpriteNameL": "playerDeathL",
         "frameCount": 15,
         "fps": 15,
-        "x": 45,
-        "y": 45
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -839,8 +839,8 @@
         "SpriteNameL": "playerRunL",
         "frameCount": 6,
         "fps": 15,
-        "x": 45,
-        "y": 45
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -850,19 +850,19 @@
         "SpriteNameL": "playerDefenseL",
         "frameCount": 8,
         "fps": 15,
-        "x": 45,
-        "y": 45
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
         "type": "dynamic",
-        "AnimationName": "playerJump",
+        "AnimationName": "playerFall",
         "SpriteNameR": "playerJumpR",
         "SpriteNameL": "playerJumpL",
-        "frameCount": 6, 
-        "fps": 15,
-        "x": 45,
-        "y": 45
+        "frameCount": 1, 
+        "fps": 30,
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -872,8 +872,8 @@
         "SpriteNameL": "playerReactionL",
         "frameCount": 5, 
         "fps": 15,
-        "x": 45,
-        "y": 45
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "player",
@@ -883,27 +883,16 @@
         "SpriteNameL": "playerIdleL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 45,
-        "y": 45
+        "x": 50,
+        "y": 50
     },
     {
         "tag": "npc",
         "type": "dynamic",
-        "AnimationName": "cowmanAtk1",
-        "SpriteNameR": "cowmanAtk1R",
-        "SpriteNameL": "cowmanAtk1L",
+        "AnimationName": "cowmanAtk",
+        "SpriteNameR": "cowmanAtkR",
+        "SpriteNameL": "cowmanAtkL",
         "frameCount": 9, 
-        "fps": 20,
-        "x": 80,
-        "y": 77
-    },
-    {
-        "tag": "npc",
-        "type": "dynamic",
-        "AnimationName": "cowmanAtk2",
-        "SpriteNameR": "cowmanAtk2R",
-        "SpriteNameL": "cowmanAtk2L",
-        "frameCount": 10, 
         "fps": 20,
         "x": 80,
         "y": 77
@@ -915,9 +904,9 @@
         "SpriteNameR": "cowmanDeathR",
         "SpriteNameL": "cowmanDeathL",
         "frameCount": 8, 
-        "fps": 15,
-        "x": 80,
-        "y": 77
+        "fps": 10,
+        "x": 60,
+        "y": 60
     },
     {
         "tag": "npc",
@@ -927,8 +916,8 @@
         "SpriteNameL": "cowmanFallL",
         "frameCount": 2, 
         "fps": 15,
-        "x": 80,
-        "y": 77
+        "x": 60,
+        "y": 60
     },
     {
         "tag": "npc",
@@ -937,9 +926,9 @@
         "SpriteNameR": "cowmanHurtR",
         "SpriteNameL": "cowmanHurtL",
         "frameCount": 4, 
-        "fps": 15,
-        "x": 80,
-        "y": 77
+        "fps": 5,
+        "x": 60,
+        "y": 60
     },
     {
         "tag": "npc",
@@ -949,30 +938,8 @@
         "SpriteNameL": "cowmanIdleL",
         "frameCount": 5, 
         "fps": 15,
-        "x": 80,
-        "y": 77
-    },
-    {
-        "tag": "npc",
-        "type": "dynamic",
-        "AnimationName": "cowmanJump",
-        "SpriteNameR": "cowmanJumpR",
-        "SpriteNameL": "cowmanJumpL",
-        "frameCount": 2, 
-        "fps": 15,
-        "x": 80,
-        "y": 77
-    },
-    {
-        "tag": "npc",
-        "type": "dynamic",
-        "AnimationName": "cowmanJumpRdy",
-        "SpriteNameR": "cowmanJumpRdyR",
-        "SpriteNameL": "cowmanJumpRdyL",
-        "frameCount": 2, 
-        "fps": 15,
-        "x": 80,
-        "y": 77
+        "x": 60,
+        "y": 60
     },
     {
         "tag": "npc",
@@ -982,8 +949,8 @@
         "SpriteNameL": "cowmanRunL",
         "frameCount": 6, 
         "fps": 15,
-        "x": 80,
-        "y": 77
+        "x": 60,
+        "y": 60
     },
     {
         "tag": "npc",
@@ -1003,7 +970,7 @@
         "SpriteNameR": "goblinDeathR",
         "SpriteNameL": "goblinDeathL",
         "frameCount": 9, 
-        "fps": 15,
+        "fps": 10,
         "x": 55,
         "y": 35
     },
@@ -1025,7 +992,7 @@
         "SpriteNameR": "goblinHurtR",
         "SpriteNameL": "goblinHurtL",
         "frameCount": 4, 
-        "fps": 15,
+        "fps": 5,
         "x": 55,
         "y": 35
     },
@@ -1091,7 +1058,7 @@
         "SpriteNameR": "impDeathR",
         "SpriteNameL": "impDeathL",
         "frameCount": 10, 
-        "fps": 15,
+        "fps": 10,
         "x": 50,
         "y": 50
     },
@@ -1102,7 +1069,7 @@
         "SpriteNameR": "impHurtR",
         "SpriteNameL": "impHurtL",
         "frameCount": 3, 
-        "fps": 15,
+        "fps": 3,
         "x": 50,
         "y": 50
     },
@@ -1120,7 +1087,18 @@
     {
         "tag": "npc",
         "type": "dynamic",
-        "AnimationName": "impMove",
+        "AnimationName": "impFall",
+        "SpriteNameR": "impIdleR",
+        "SpriteNameL": "impIdleL",
+        "frameCount": 5, 
+        "fps": 15,
+        "x": 50,
+        "y": 50
+    },
+    {
+        "tag": "npc",
+        "type": "dynamic",
+        "AnimationName": "impRun",
         "SpriteNameR": "impMoveR",
         "SpriteNameL": "impMoveL",
         "frameCount": 3, 

@@ -5,7 +5,9 @@
 const Vec = require('./Vec.js');
 const Animation = require('./../rendering/Animation.js');
 const getAnimation = require('./../rendering/Rendering.js').getAnimation;
-const MAX_COMPONENTS = 20;
+// $FlowFixMe
+const Clock = require('@gamestdio/clock');
+const MAX_COMPONENTS = 15;
 
 // Think of this as an abstract base class
 class Component {
@@ -42,7 +44,6 @@ class CInput extends Component {
     left: boolean;
     right: boolean;
     shoot: boolean;
-    canShoot: boolean;
 
     constructor() {
         super();
@@ -51,7 +52,6 @@ class CInput extends Component {
         this.left = false;
         this.right = false;
         this.shoot = false;
-        this.canShoot = true;
     }
 }
 CInput.INDEX = 1;
@@ -91,9 +91,9 @@ class CHealth extends Component {
 
     health: number;
 
-    constructor() {
+    constructor(hp: number) {
         super();
-        this.health = 100;
+        this.health = hp;
     }
 }
 CHealth.INDEX = 4;
@@ -102,10 +102,12 @@ class CState extends Component {
     static INDEX: number;
 
     state: string;
+    grounded: boolean;
 
     constructor(s: string) {
         super();
         this.state = s;
+        this.grounded = true;
     }
 }
 CState.INDEX = 5;
@@ -124,17 +126,22 @@ class CDraggable extends Component {
 }
 CDraggable.INDEX = 6;
 
+/* istanbul ignore next */
 class CFollow extends Component {
     static INDEX: number;
 
-    home: Vec;
-    speed: number;
+    home: Vec;                  // The "home" location of the entity.
+    approachDistance: number;   // The approach-distance for the follow behavior.
+    visionDistance: number;     // The vision-distance for the follow behavior. 
+    speed: number;              // The speed the entity will follow at. 
 
-    constructor(h: Vec, s: number) {
+    constructor(h: Vec, ad: number, vd: number, s: number) {
         super();
-        this.home = h;
+        this.approachDistance = ad * ad; // Use with distf() ! 
+        this.visionDistance =  vd * vd;  // Use distf() !
         this.speed = s;
     }
+
 }
 CFollow.INDEX = 7;
 
@@ -153,6 +160,7 @@ class CPatrol extends Component {
 }
 CPatrol.INDEX = 8;
 
+/* istanbul ignore next */
 class CAnimation extends Component {
     static INDEX: number;
 
@@ -168,7 +176,81 @@ class CAnimation extends Component {
 CAnimation.INDEX = 9;
 
 
+/* istanbul ignore next */
+class CMeele extends Component {
+    static INDEX: number;
 
+    damage: number;             // The damage of the meele attack.
+    range: number;              // The range of the meele attack.
+    halfSize: Vec;              // The "halfSize" of the hurt-box.
+    frameStart: number;         // The first frame of the attack animation.
+    frameEnd: number;          // The last frame of the attack animation.
+    cooldown: number;           // The time until the entity can attack again.
+    clock: Clock;               // The clock to mesure the cooldown.
+
+
+    constructor(d: number, hs: Vec, c: number, fs: number, fe: number) {
+        super();
+        this.damage = d; 
+        this.halfSize = hs;
+        this.frameStart = fs;
+        this.frameEnd = fe;
+        this.cooldown = c;
+        this.clock = new Clock();
+        this.range = hs.x * hs.x    // Use me with distf()!
+    }
+}
+CMeele.INDEX = 10;
+
+
+/* istanbul ignore next */
+class CRanged extends Component {
+    static INDEX: number;
+
+    range: number;          // The minimum attack range.
+    cooldown: number;       // The cooldown time after an attack (in ms)/
+    clock: Clock;           // The clock to manage the cooldown.
+
+    constructor(r: number, c: number) {
+        super();
+        this.range = r*r;        // Use me with distf()!
+        this.cooldown = c;
+        this.clock = new Clock();
+
+    }
+}
+CRanged.INDEX = 11;
+
+
+/* istanbul ignore next */
+class CProjectile extends Component {
+    static INDEX: number;
+
+    damage: number;            // The damgage the projectile deals.
+
+    constructor(d: number) {
+        super();
+        this.damage = d;
+    }
+}
+CProjectile.INDEX = 12;
+
+
+/* istanbul ignore next */
+class CLifespan extends Component {
+    static INDEX: number;
+
+    duration: number;
+    clock: Clock;
+
+    constructor(d: number) {
+        super();
+        this.duration = d;
+        this.clock = new Clock(true);
+
+    }
+}
+CLifespan.INDEX = 13;
 
 module.exports = {
     'Component': Component,
@@ -182,5 +264,9 @@ module.exports = {
     'CFollow': CFollow,
     'CPatrol': CPatrol,
     'CAnimation': CAnimation,
+    'CMeele': CMeele,
+    'CRanged': CRanged,
+    'CProjectile': CProjectile,
+    'CLifespan': CLifespan,
     'MAX_COMPONENTS': MAX_COMPONENTS
 };

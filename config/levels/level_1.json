@@ -3,7 +3,7 @@
     "name": "level 1",
     "background": "bg_cave",
     "playerSpawn": [50, 50],
-    "levelObjective": [0, 0],
+    "levelObjective": [250, 50],
     "entities": {
         "tiles": [{
                 "sprite": "grass-platform-corner-L",

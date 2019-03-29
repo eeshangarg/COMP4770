@@ -27,7 +27,7 @@ test('Components', () => {
     var gravity = new CGravity(2.0);
     expect(CGravity.INDEX).toBe(3);
 
-    var health = new CHealth();
+    var health = new CHealth(100);
     expect(health.health).toBe(100);
     expect(CHealth.INDEX).toBe(4);
 

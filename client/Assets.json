@@ -60,13 +60,13 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 6,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/player/Knight_jump_L.png",
     "SpriteName": "playerJumpL",
     "Type": "Sprite"
   },
   {
-    "FrameCount": 6,
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/player/Knight_jump_R.png",
     "SpriteName": "playerJumpR",
     "Type": "Sprite"
@@ -85,26 +85,14 @@
   },
   {
     "FrameCount": 9,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk1_L.png",
-    "SpriteName": "cowmanAtk1L",
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk_L.png",
+    "SpriteName": "cowmanAtkL",
     "Type": "Sprite"
   },
   {
     "FrameCount": 9,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk1_R.png",
-    "SpriteName": "cowmanAtk1R",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 10,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk2_L.png",
-    "SpriteName": "cowmanAtk2L",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 10,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk2_R.png",
-    "SpriteName": "cowmanAtk2R",
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_atk_R.png",
+    "SpriteName": "cowmanAtkR",
     "Type": "Sprite"
   },
   {
@@ -151,32 +139,8 @@
   },
   {
     "FrameCount": 5,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_idel_R.png",
+    "ImageSource": "/client/assets/images/npc/cowman/minotaur_idle_R.png",
     "SpriteName": "cowmanIdleR",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_L.png",
-    "SpriteName": "cowmanJumpL",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_R.png",
-    "SpriteName": "cowmanJumpR",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_rdy_L.png",
-    "SpriteName": "cowmanJumpRdyL",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/cowman/minotaur_jump_rdy_R.png",
-    "SpriteName": "cowmanJumpRdyR",
     "Type": "Sprite"
   },
   {
@@ -249,30 +213,6 @@
     "FrameCount": 4,
     "ImageSource": "/client/assets/images/npc/goblin/goblin_idel_R.png",
     "SpriteName": "goblinIdleR",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_L.png",
-    "SpriteName": "goblinJumpL",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_R.png",
-    "SpriteName": "goblinJumpR",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_rdy_L.png",
-    "SpriteName": "goblinJumpRdyL",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 2,
-    "ImageSource": "/client/assets/images/npc/goblin/goblin_jump_rdy_R.png",
-    "SpriteName": "goblinJumpRdyR",
     "Type": "Sprite"
   },
   {
@@ -908,7 +848,7 @@
   },
   {
     "Type":"Sound",
-    "soundName":"playerDie",
+    "soundName":"playerDeath",
     "soundSource":"/client/assets/sounds/player/player_die.mp3"
   },
   {
@@ -933,7 +873,7 @@
   },
   {
     "Type":"Sound",
-    "soundName":"playerPain",
+    "soundName":"playerWalk",
     "soundSource":"/client/assets/sounds/player/player_walk.mp3"
   },
   {
@@ -948,12 +888,27 @@
   },
   {
     "Type":"Sound",
-    "soundName":"goblinDie",
+    "soundName":"goblinDeath",
     "soundSource":"/client/assets/sounds/npc/goblin/goblin_die.mp3"
   },
   {
     "Type":"Sound",
     "soundName":"goblinPain",
     "soundSource":"/client/assets/sounds/npc/goblin/goblin_hurt.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"impPain",
+    "soundSource":"/client/assets/sounds/npc/imp/imp_pain.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"impDeath",
+    "soundSource":"/client/assets/sounds/npc/imp/imp_death.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"impProjectile",
+    "soundSource":"/client/assets/sounds/npc/imp/imp_projectile.mp3"
   }
 ]

@@ -14,6 +14,7 @@ class Animation {
     fps: number;
     width: number;
     height: number;
+    hasEnded: boolean;
     update: void => void;
 
     constructor(name: string, spriteR: string, spriteL: string,
@@ -31,6 +32,8 @@ class Animation {
         this.fps = 60 / fps;
         this.width = width;
         this.height = height;
+        this.hasEnded = false;
+
         this.update = function() {
             // If the Animation is more then 1 frame long.
             if (this.frameCount > 0) {
@@ -41,6 +44,9 @@ class Animation {
                     this.currentFrame = 0;
                     this.animationFrame++;
                     // Reset animation if over.
+                    if (!this.hasEnded && this.animationFrame === this.frameCount) {
+                        this.hasEnded = true;
+                    }
                     if (this.animationFrame > this.frameCount) {
                         this.animationFrame = 0;
                     }
