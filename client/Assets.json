@@ -211,7 +211,7 @@
   },
   {
     "FrameCount": 4,
-    "ImageSource": "/client/assets/images/npc/goblin/goblin_idel_R.png",
+    "ImageSource": "/client/assets/images/npc/goblin/goblin_idle_R.png",
     "SpriteName": "goblinIdleR",
     "Type": "Sprite"
   },
@@ -792,6 +792,150 @@
     "Type": "Sprite"
   },
   {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/exe/exe_atk_L.png",
+    "SpriteName":"exeAtkL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/exe/exe_atk_R.png",
+    "SpriteName":"exeAtkR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/exe/exe_die_L.png",
+    "SpriteName":"exeDeathL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/exe/exe_die_R.png",
+    "SpriteName":"exeDeathR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/exe/exe_fall_L.png",
+    "SpriteName":"exeFallL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/exe/exe_fall_R.png",
+    "SpriteName":"exeFallR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/exe/exe_hurt_L.png",
+    "SpriteName":"exeHurtL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/exe/exe_hurt_R.png",
+    "SpriteName":"exeHurtR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/exe/exe_idle_L.png",
+    "SpriteName":"exeIdleL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/exe/exe_idle_R.png",
+    "SpriteName":"exeIdleR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/exe/exe_run_L.png",
+    "SpriteName":"exeRunL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/exe/exe_run_R.png",
+    "SpriteName":"exeRunR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 7,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_atk_L.png",
+    "SpriteName":"icemanAtkL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 7,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_atk_R.png",
+    "SpriteName":"icemanAtkR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_die_L.png",
+    "SpriteName":"icemanDeathL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 9,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_die_L.png",
+    "SpriteName":"icemanDeathR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_fall_L.png",
+    "SpriteName":"icemanFallL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 2,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_fall_R.png",
+    "SpriteName":"icemanFallR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_hurt_L.png",
+    "SpriteName":"icemanHurtL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 3,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_hurt_R.png",
+    "SpriteName":"icemanHurtR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_idle_L.png",
+    "SpriteName":"icemanIdleL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 5,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_idle_R.png",
+    "SpriteName":"icemanIdleR",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_run_L.png",
+    "SpriteName":"icemanRunL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/iceman/iceman_run_R.png",
+    "SpriteName":"icemanRunR",
+    "Type": "Sprite"
+  },
+  {
     "Type":"Sound",
     "soundName":"menu",
     "soundSource":"/client/assets/sounds/music/menu.mp3"
@@ -925,5 +1069,35 @@
     "Type":"Sound",
     "soundName":"cowmanAtk",
     "soundSource":"/client/assets/sounds/npc/cowman/cowmanAtk.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"exeAtk",
+    "soundSource": "/client/assets/sounds/npc/exe/exeAtk.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"exePain",
+    "soundSource": "/client/assets/sounds/npc/exe/exePain.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"exeDeath",
+    "soundSource": "/client/assets/sounds/npc/exe/exeDie.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"icemanAtk",
+    "soundSource": "/client/assets/sounds/npc/iceman/icemanAtk.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"icemanPain",
+    "soundSource": "/client/assets/sounds/npc/iceman/icemanPain.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"icemanDeath",
+    "soundSource": "/client/assets/sounds/npc/iceman/icemanDie.mp3"
   }
 ]
