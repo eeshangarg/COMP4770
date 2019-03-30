@@ -641,6 +641,21 @@ class GameState_Play extends GameState {
                             e.getComponent(CTransform).facing = -1;
                         }
                     }
+                    else if (follow.returnHome && follow.home.distf(entityPos) > ((follow.speed + 8 ) * (follow.speed + 8))) {
+                        let norm = follow.home.subtract(entityPos).norm();
+                        norm.muli(follow.speed);
+                        e.getComponent(CTransform).pos.x += norm.x;
+                        e.getComponent(CState).state = "running";
+                        if (entityPos.x < follow.home.x ) {
+                            e.getComponent(CTransform).facing = 1;
+                        } else {
+                            e.getComponent(CTransform).facing = -1;
+                        }
+
+                    }
+                    else {
+                        e.getComponent(CState).state = "idle";
+                    }
                 }
 
             }

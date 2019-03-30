@@ -141,6 +141,7 @@ class CFollow extends Component {
         this.visionDistance =  vd * vd;  // Use distf() !
         this.speed = s;
         this.returnHome = g;
+        this.home = h;
     }
 
 }
