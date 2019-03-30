@@ -183,20 +183,21 @@ class CMeele extends Component {
 
     damage: number;             // The damage of the meele attack.
     range: number;              // The range of the meele attack.
+    offset: number;             // The hit box offset.
     halfSize: Vec;              // The "halfSize" of the hurt-box.
     frameStart: number;         // The first frame of the attack animation.
     frameEnd: number;           // The last frame of the attack animation.
     cooldown: number;           // The time until the entity can attack again.
     clock: Clock;               // The clock to mesure the cooldown.
 
-
-    constructor(d: number, hs: Vec, c: number, r: number, fs: number, fe: number) {
+    constructor(d: number, hs: Vec, c: number, r: number, o: number,fs: number, fe: number) {
         super();
         this.damage = d; 
         this.halfSize = hs;
         this.frameStart = fs;
         this.frameEnd = fe;
         this.cooldown = c;
+        this.offset = o;
         this.clock = new Clock();
         this.range = r * r;           // Use me with distf()!
     }
