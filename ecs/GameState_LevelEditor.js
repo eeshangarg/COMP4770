@@ -105,6 +105,16 @@ class GameState_LevelEditor extends GameState {
                 let anim = newNpc.getComponent(CAnimation).animation;
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             }
+            else if (npc.name === "iceman") {
+                newNpc.addComponent(new CAnimation("icemanIdle", true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
+            }
+            else if (npc.name === "exe") {
+                newNpc.addComponent(new CAnimation("exeIdle", true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
+            }
         }
 
         let items = this.level.entities.items;
@@ -160,6 +170,12 @@ class GameState_LevelEditor extends GameState {
                 }
                 else if (name === "goblinIdle"){
                     npcParse.push({pos:[pos.x,pos.y], name:"goblin"});
+                } 
+                else if (name === "icemanIdle") {
+                    npcParse.push({pos:[pos.x,pos.y], name:"iceman"});
+                }
+                else if (name === "exeIdle") {
+                    npcParse.push({pos:[pos.x,pos.y], name:"exe"});
                 }
                
             }

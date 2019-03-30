@@ -1126,5 +1126,137 @@
         "fps": 20,
         "x": 64,
         "y": 64
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"icemanIdle",
+        "SpriteNameR":"icemanIdleR",
+        "SpriteNameL":"icemanIdleL",
+        "frameCount": 5,
+        "fps": 15,
+        "x": 72,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"icemanAtk",
+        "SpriteNameR":"icemanAtkR",
+        "SpriteNameL":"icemanAtkL",
+        "frameCount": 7,
+        "fps": 15,
+        "x": 72,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"icemanDeath",
+        "SpriteNameR":"icemanDeathR",
+        "SpriteNameL":"icemanDeathL",
+        "frameCount": 9,
+        "fps": 15,
+        "x": 72,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"icemanFall",
+        "SpriteNameR":"icemanFallR",
+        "SpriteNameL":"icemanFallL",
+        "frameCount": 2,
+        "fps": 15,
+        "x": 72,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"icemanHurt",
+        "SpriteNameR":"icemanHurtR",
+        "SpriteNameL":"icemanHurtL",
+        "frameCount": 3,
+        "fps": 5,
+        "x": 72,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"icemanRun",
+        "SpriteNameR":"icemanRunR",
+        "SpriteNameL":"icemanRunL",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 72,
+        "y": 58
+    },  
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"exeIdle",
+        "SpriteNameR":"exeIdleR",
+        "SpriteNameL":"exeIdleL",
+        "frameCount": 4,
+        "fps": 15,
+        "x": 65,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"exeHurt",
+        "SpriteNameR":"exeHurtR",
+        "SpriteNameL":"exeHurtL",
+        "frameCount": 3,
+        "fps": 5,
+        "x": 65,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"exeAtk",
+        "SpriteNameR":"exeAtkR",
+        "SpriteNameL":"exeAtkL",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 65,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"exeFall",
+        "SpriteNameR":"exeFallR",
+        "SpriteNameL":"exeFallL",
+        "frameCount": 2,
+        "fps": 15,
+        "x": 65,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"exeDeath",
+        "SpriteNameR":"exeDeathR",
+        "SpriteNameL":"exeDeathL",
+        "frameCount": 9,
+        "fps": 15,
+        "x": 65,
+        "y": 58
+    },
+    {
+        "tag":"npc",
+        "type":"dynamic",
+        "AnimationName":"exeRun",
+        "SpriteNameR":"exeRunR",
+        "SpriteNameL":"exeRunL",
+        "frameCount": 6,
+        "fps": 15,
+        "x": 65,
+        "y": 58
     }
 ]

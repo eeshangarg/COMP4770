@@ -88,12 +88,12 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height*0.85), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(100));
-                newNpc.addComponent(new CMeele(25, new Vec(20, 15), 2000, 75, 5, 8));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 20, 1000, 3));
+                newNpc.addComponent(new CMeele(20, new Vec(20, 15), 2500, 75, 5, 8));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 3, true));
             }
             // Create a imp NPC, assign all components.
             else if (npc.name === "imp") {
@@ -105,20 +105,44 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CGravity(0.0));
                 newNpc.addComponent(new CHealth(50));
                 newNpc.addComponent(new CRanged(500, 2000));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 200, 1000, 2));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 150, 750, 2, false));
             }
             // Create a goblin NPC, assign all components.
             else if (npc.name === "goblin") {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(40, anim.height), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height*0.9), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(50));
-                newNpc.addComponent(new CMeele(5, new Vec(8, 5), 1000, 50, 1, 4));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 10, 500, 2.5));
+                newNpc.addComponent(new CMeele(5, new Vec(8, 5), 1000, 40, 1, 4));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 10, 350, 2.5, true));
             }
+            // Create a iceman, assign all of its need components.
+            else if (npc.name === "iceman") {
+                // $FlowFixMe
+                newNpc.addComponent(new CAnimation("icemanIdle", true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height ), true, true));
+                newNpc.addComponent(new CState('idle'));
+                newNpc.addComponent(new CGravity(0.3));
+                newNpc.addComponent(new CHealth(200));
+                newNpc.addComponent(new CMeele(30, new Vec(8, 5), 3000, 75, 1, 4));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 1, false));
+            }
+            // Create a executioner, assign all of its need components.
+            else if (npc.name === "exe") {
+                newNpc.addComponent(new CAnimation("exeIdle", true));
+                let anim = newNpc.getComponent(CAnimation).animation;
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height * 0.8), true, true));
+                newNpc.addComponent(new CState('idle'));
+                newNpc.addComponent(new CGravity(0.3));
+                newNpc.addComponent(new CHealth(150));
+                newNpc.addComponent(new CMeele(25, new Vec(8, 5), 2500, 75, 1, 4));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 1.5, true));
+            }
+
         }
 
         // Parse in all item from level file.
@@ -142,6 +166,8 @@ class GameState_Play extends GameState {
             newDec.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
         }
 
+        this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
+
     }
 
 
@@ -152,7 +178,7 @@ class GameState_Play extends GameState {
         this.player.addComponent(new CGravity(0.3));
         this.player.addComponent(new CState('idle'));
         this.player.addComponent(new CInput());
-        this.player.addComponent(new CMeele(25, new Vec(35, 15), 0, 0, 6, 11));
+        this.player.addComponent(new CMeele(25, new Vec(30, 22), 0, 0, 6, 11));
         this.player.addComponent(new CHealth(100));
         this.currentHP = 100;
     }
@@ -182,6 +208,7 @@ class GameState_Play extends GameState {
         if (inputMap.escape) {
             inputMap.escape = 0;
             this.game.setNextLevel();
+            this.game.clearText('hp');
             this.game.popState();
         }
 
@@ -232,7 +259,7 @@ class GameState_Play extends GameState {
         playerTransform.prevPos = new Vec(playerTransform.pos.x, playerTransform.pos.y);
 
         // Check to see if player has fallen off the map.
-        if (playerTransform.pos.y < 0) {
+        if (playerTransform.pos.y < -999) {
             this.player.getComponent(CHealth).health = 0;
             this.player.getComponent(CState).state = 'dying';
         }
@@ -299,7 +326,7 @@ class GameState_Play extends GameState {
             }
 
             // If the NPC fell off the map, set state dying.
-            if (transform.pos.y < 0) {
+            if (transform.pos.y < -999) {
                 npc.getComponent(CHealth).health = 0;
                 npc.getComponent(CState).state = 'dying';
             }
@@ -339,15 +366,22 @@ class GameState_Play extends GameState {
         // Find the start of the Animation name.
         if (animationName.startsWith('cowman')) {
             startsWith = 'cowman';
-        } else if (animationName.startsWith('imp')) {
+        } 
+        else if (animationName.startsWith('imp')) {
             startsWith = 'imp'
-        } else if (animationName.startsWith('goblin')) {
+        } 
+        else if (animationName.startsWith('goblin')) {
             startsWith = 'goblin'
-        } else if (animationName.startsWith('player')) {
+        } 
+        else if (animationName.startsWith('player')) {
             startsWith = 'player';
         }
-
-
+        else if (animationName.startsWith('iceman')) {
+            startsWith = 'iceman';
+        }
+        else if (animationName.startsWith('exe')) {
+            startsWith = 'exe';
+        }
 
         // If the current state is 'attacking'.
         if (state === 'attacking') {
@@ -416,6 +450,7 @@ class GameState_Play extends GameState {
                 e.destroy();
                 // If the player is dead, got back to the menu.
                 if (startsWith === 'player') {
+                    this.game.clearText('hp');
                     this.game.popState();
                 }
             }
@@ -489,16 +524,17 @@ class GameState_Play extends GameState {
             let state = e.getComponent(CState).state;
             if (state !== 'hurt' && state !== 'dying') {
                 let meele = e.getComponent(CMeele);
+                if (meele.clock.elapsedTime > meele.cooldown) {
+                    meele.clock.stop();
+                    meele.clock.elapsedTime = 0;
+                }
+
                 let playerPos = this.player.getComponent(CTransform).pos;
                 let entityPos = e.getComponent(CTransform).pos;
 
-                if (playerPos.distf(entityPos) < meele.range) {
+                if (playerPos.distf(entityPos) < meele.range && meele.clock.elapsedTime === 0) {
                     e.getComponent(CState).state = 'attacking';
-                    if (playerPos.x > entityPos.x) {
-                        e.getComponent(CTransform).facing = 1;
-                    } else {
-                        e.getComponent(CTransform).facing = -1;
-                    }
+                    meele.clock.start(true);
                 }
             }
     }
@@ -510,31 +546,36 @@ class GameState_Play extends GameState {
                 let playerPos = this.player.getComponent(CTransform).pos;
                 let entityPos = e.getComponent(CTransform).pos;
                 let dist = playerPos.distf(entityPos);
+                e.getComponent(CState).state = 'idle';
 
-                if (dist > follow.approachDistance && dist < follow.visionDistance) {
+                if (dist < follow.visionDistance) {
                     let tiles = this.entityManager.getEntitiesByTag("tile");
                     let vision = true;
                     for (let i = 0; i < tiles.length; i++) {
                         if (Physics.entityIntersect(playerPos, entityPos,tiles[i])) {
                             vision = false;
+                            break;
                         }
                     }
                     if (vision) {
-                        e.getComponent(CState).state = 'running';
-                        let entityTransform = e.getComponent(CTransform);
-                        let diff = playerPos.subtract(entityPos);
-                        let norm = diff.norm()
-                        norm.muli(follow.speed);
-                        entityTransform.prevPos = new Vec (entityTransform.pos.x, entityTransform.pos.y);
-                        entityTransform.pos.x += norm.x;
+                        if (dist > follow.approachDistance) {
+                            e.getComponent(CState).state = 'running';
+                            let entityTransform = e.getComponent(CTransform);
+                            let diff = playerPos.subtract(entityPos);
+                            let norm = diff.norm()
+                            norm.muli(follow.speed);
+                            entityTransform.prevPos = new Vec (entityTransform.pos.x, entityTransform.pos.y);
+                            entityTransform.pos.x += norm.x;
+                        }
+                        else {
+                            e.getComponent(CState).state = 'idle';
+                        }
+
                         if (playerPos.x > entityPos.x) {
                             e.getComponent(CTransform).facing = 1;
                         } else {
                             e.getComponent(CTransform).facing = -1;
                         }
-                    }
-                    else {
-                        e.getComponent(CState).state = 'idle';
                     }
                 }
 
@@ -605,7 +646,7 @@ class GameState_Play extends GameState {
             }
         }
 
-        // Calculate all player tiles cols.        
+        // Calculate all player tiles cols.
         this.player.getComponent(CState).grounded = false;
         for (let i = 0; i < tiles.length; i++) {
             let tile = tiles[i];
@@ -622,9 +663,14 @@ class GameState_Play extends GameState {
     }
 
     sHealth() {
-
-        if (this.player.getComponent(CHealth).health <= 0) {
+        let health = this.player.getComponent(CHealth).health;
+        if (health <= 0) {
             this.player.getComponent(CState).state = 'dying';
+        }
+
+        if (this.currentHP !== health) {
+            this.currentHP = health;
+            this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
         }
 
         let npcs = this.entityManager.getEntitiesByTag("npc");

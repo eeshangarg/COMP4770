@@ -132,11 +132,11 @@ class GameState_Menu extends GameState {
             this.drawMenuStrings();
         }
         if (inputMap.enter) {
+            this.game.clearText('all');
             inputMap.enter = 0;
             this.spLevelMode = false;
             this.mainMenuMode = true;
             this.game.pushState('single player', this.selectedSPIndex);
-            this.game.clearText('all');
             this.game.stopSound('menu');
         }
         if (inputMap.s && !inputMap.w) {

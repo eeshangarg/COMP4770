@@ -134,12 +134,13 @@ class CFollow extends Component {
     approachDistance: number;   // The approach-distance for the follow behavior.
     visionDistance: number;     // The vision-distance for the follow behavior. 
     speed: number;              // The speed the entity will follow at. 
-
-    constructor(h: Vec, ad: number, vd: number, s: number) {
+    returnHome: boolean;        // The bool to decide if the enity should go home on no-vision.
+    constructor(h: Vec, ad: number, vd: number, s: number, g: boolean) {
         super();
         this.approachDistance = ad * ad; // Use with distf() ! 
         this.visionDistance =  vd * vd;  // Use distf() !
         this.speed = s;
+        this.returnHome = g;
     }
 
 }
