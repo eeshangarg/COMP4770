@@ -172,8 +172,8 @@
     {
         "tag": "background",
         "type": "static",
-        "AnimationName": "bg_menu",
-        "SpriteName": "bg_menu",
+        "AnimationName": "bg_forest",
+        "SpriteName": "bg_forest",
         "frameCount": 1,
         "fps": 30,
         "x": 16,
@@ -816,7 +816,7 @@
         "SpriteNameR": "playerAtkR",
         "SpriteNameL": "playerAtkL",
         "frameCount": 13,
-        "fps": 25,
+        "fps": 30,
         "x": 50,
         "y": 50
     },
@@ -867,11 +867,11 @@
     {
         "tag": "player",
         "type": "dynamic",
-        "AnimationName": "playerReaction",
+        "AnimationName": "playerHurt",
         "SpriteNameR": "playerReactionR",
         "SpriteNameL": "playerReactionL",
         "frameCount": 5, 
-        "fps": 15,
+        "fps": 5,
         "x": 50,
         "y": 50
     },
@@ -893,7 +893,7 @@
         "SpriteNameR": "cowmanAtkR",
         "SpriteNameL": "cowmanAtkL",
         "frameCount": 9, 
-        "fps": 12,
+        "fps": 15,
         "x": 80,
         "y": 77
     },
@@ -1118,6 +1118,50 @@
         "y": 64
     },
     {
+        "tag": "effect",
+        "type": "dynamic",
+        "AnimationName": "blood_big_green",
+        "SpriteNameR": "blood_big_green",
+        "SpriteNameL": "blood_big_green",
+        "frameCount": 15, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "tag": "effect",
+        "type": "dynamic",
+        "AnimationName": "blood_small_green",
+        "SpriteNameR": "blood_small_green",
+        "SpriteNameL": "blood_small_green",
+        "frameCount": 13, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "tag": "effect",
+        "type": "dynamic",
+        "AnimationName": "blood_big_blue",
+        "SpriteNameR": "blood_big_blue",
+        "SpriteNameL": "blood_big_blue",
+        "frameCount": 15, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
+        "tag": "effect",
+        "type": "dynamic",
+        "AnimationName": "blood_small_blue",
+        "SpriteNameR": "blood_small_blue",
+        "SpriteNameL": "blood_small_blue",
+        "frameCount": 13, 
+        "fps": 15,
+        "x": 64,
+        "y": 64
+    },
+    {
         "tag": "misc",
         "type": "static",
         "AnimationName": "objective",
@@ -1145,7 +1189,7 @@
         "SpriteNameR":"icemanAtkR",
         "SpriteNameL":"icemanAtkL",
         "frameCount": 7,
-        "fps": 15,
+        "fps": 12,
         "x": 72,
         "y": 58
     },
@@ -1222,7 +1266,7 @@
         "SpriteNameR":"exeAtkR",
         "SpriteNameL":"exeAtkL",
         "frameCount": 6,
-        "fps": 15,
+        "fps": 20,
         "x": 65,
         "y": 58
     },

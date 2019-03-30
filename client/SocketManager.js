@@ -9,7 +9,7 @@ import {
 } from './Assets.js';
 
 
-const keys = [-2,-1,71,67,87,65,83,46,68,89,85,84,61,69,13,32,27,37,39,38,49,50,51,52,53,16,17,187,189,78,73,66];
+const keys = [-2,-1,71,67,87,65,83,46,81,68,89,85,84,61,69,13,32,27,37,39,38,49,50,51,52,53,16,17,187,189,78,73,66];
 const bgCanvas = document.getElementById('bgCanvas').getContext('2d') // The background Canvas.
 const gameCanvas = document.getElementById('gameCanvas').getContext('2d'); // The Game Canvas.
 const textCanvas = document.getElementById('textCanvas').getContext('2d'); // The Text Canvas.
@@ -254,6 +254,9 @@ function setBackground(spriteName) {
     else if (spriteName === "bg_snow") {
         playSound("frozen");
     }
+    else if (spriteName === "bg_forest") {
+        playSound("forest");
+    }
 }
 
 
@@ -295,6 +298,9 @@ function stopSound(soundName) {
         sound.pause();
         sound.currentTime = 0;
         sound = getSound("frozen");
+        sound.pause();
+        sound.currentTime = 0;
+        sound = getSound("forest");
         sound.pause();
         sound.currentTime = 0;
     }

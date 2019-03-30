@@ -63,7 +63,7 @@ class GameState_LevelEditor extends GameState {
         this.levelObjective.addComponent(new CAnimation("objective", true));
         this.levelObjective.addComponent(new CDraggable());
 
-        this.game.drawText("Camera pos:[" + editorPos.x + "," + editorPos.y + "]", 'posText','16px PS2P', '#F9F9F9', 700, 22);
+        this.game.drawText("Camera pos:[" + editorPos.x + "," + editorPos.y + "]", 'posText','16px PS2P', '#F9F9F9', 650, 22);
         this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
     }
 
@@ -335,7 +335,7 @@ class GameState_LevelEditor extends GameState {
 
         let pos = this.editor.getComponent(CTransform).pos;
 
-        this.game.drawText("Camera pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 735, 22);
+        this.game.drawText("Camera pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 650, 22);
     }
 
     sAnimation() {

@@ -88,19 +88,19 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[0], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height*0.85), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(100));
-                newNpc.addComponent(new CMeele(20, new Vec(20, 15), 2500, 75, 5, 8));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 3, true));
+                newNpc.addComponent(new CMeele(20, new Vec(33, 38), 1500, 75, 20, 4, 7));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 2.5, true));
             }
             // Create a imp NPC, assign all components.
             else if (npc.name === "imp") {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[2], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height * 0.85), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.0));
                 newNpc.addComponent(new CHealth(50));
@@ -112,35 +112,35 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height*0.9), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width * 0.85, anim.height * 0.9), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(50));
-                newNpc.addComponent(new CMeele(5, new Vec(8, 5), 1000, 40, 1, 4));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 10, 350, 2.5, true));
+                newNpc.addComponent(new CMeele(5, new Vec(25, 10), 1000, 60, 10, 1, 3));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 30, 350, 2, true));
             }
             // Create a iceman, assign all of its need components.
             else if (npc.name === "iceman") {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation("icemanIdle", true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height ), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height*0.95), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(200));
-                newNpc.addComponent(new CMeele(30, new Vec(8, 5), 3000, 75, 1, 4));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 1, false));
+                newNpc.addComponent(new CMeele(25, new Vec(25, 40), 2000, 75, 20, 3, 5));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 0.75, false));
             }
             // Create a executioner, assign all of its need components.
             else if (npc.name === "exe") {
                 newNpc.addComponent(new CAnimation("exeIdle", true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height * 0.8), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height* 0.95), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(150));
-                newNpc.addComponent(new CMeele(25, new Vec(8, 5), 2500, 75, 1, 4));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 1.5, true));
+                newNpc.addComponent(new CMeele(25, new Vec(25, 60), 1800, 75, 25, 2, 4));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 65, 500, 1.5, true));
             }
 
         }
@@ -178,7 +178,7 @@ class GameState_Play extends GameState {
         this.player.addComponent(new CGravity(0.3));
         this.player.addComponent(new CState('idle'));
         this.player.addComponent(new CInput());
-        this.player.addComponent(new CMeele(25, new Vec(30, 22), 0, 0, 6, 11));
+        this.player.addComponent(new CMeele(25, new Vec(20, 30), 0, 0, 15, 6, 11));
         this.player.addComponent(new CHealth(100));
         this.currentHP = 100;
     }
@@ -205,6 +205,7 @@ class GameState_Play extends GameState {
         // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
+
         if (inputMap.escape) {
             inputMap.escape = 0;
             this.game.setNextLevel();
@@ -220,35 +221,55 @@ class GameState_Play extends GameState {
             }
         }
 
+        if (inputMap.q) {
+            inputMap.q = 0;
+            let state = this.player.getComponent(CState).state;
+            if (state !== 'dying' || state != 'hurt') {
+                this.handlePotion();
+            }
+        }
+
         playerInput.up = inputMap.w;
         playerInput.down = inputMap.s;
         playerInput.left = inputMap.a;
         playerInput.right = inputMap.d;
     }
 
+
+    //##### TODO STUB ####
+    handlePotion() {
+        this.game.playSound("playerPotion");
+        this.player.getComponent(CHealth).health += 25;
+    }
+
+
+    // A helper system to hanlde player meele-attack.
     sPlayerMeele() {
+
+        // Only execute this system if the player is currently attacking.
         if (this.player.getComponent(CState).state === 'attacking') {
             let meele = this.player.getComponent(CMeele);
             let currentFrame = this.player.getComponent(CAnimation).animation.animationFrame;
-            if (currentFrame > meele.frameStart && currentFrame < meele.frameEnd ) {
-                let transform = this.player.getComponent(CTransform);
-                let npcs = this.entityManager.getEntitiesByTag("npc");
 
+            // If the current frame of the animations is with the "Hit" frames.
+            if (currentFrame > meele.frameStart && currentFrame < meele.frameEnd) {
+
+                let playerPos = this.player.getComponent(CTransform).pos;
+
+                // Check every NPC for a meele col.
+                let npcs = this.entityManager.getEntitiesByTag("npc");
                 for (let i = 0; i < npcs.length; i++) {
                     let npc = npcs[i];
-                    if (transform.pos.distf(npc.getComponent(CTransform).pos) < 5625) {
-                        if (Physics.isOverlapping(transform.pos, meele.halfSize, npc)) {
-                            let state = npc.getComponent(CState).state;
-                            if (state !== 'hurt' && state !== 'dying') {
-                                npc.getComponent(CHealth).health -= meele.damage;
-                                npc.getComponent(CState).state = 'hurt';
-                            }
-                        }
+                    let state = npc.getComponent(CState).state;
+                    let facing = this.player.getComponent(CTransform).facing;
+                    let offSetPos = new Vec(playerPos.x + (meele.offset * facing), playerPos.y);
+                    if (Physics.isOverlapping(offSetPos, meele.halfSize, npc) && state !== 'hurt' && state !== 'dying') {
+                        npc.getComponent(CHealth).health -= meele.damage;
+                        npc.getComponent(CState).state = 'hurt';
                     }
                 }
             }
         }
-
     }
 
     sMovement() {
@@ -416,10 +437,21 @@ class GameState_Play extends GameState {
         else if (state === 'hurt') {
             // Play the "pain" animation if it is not playing.
             if (animationName !== startsWith + 'Hurt') {
+
+                // Spawn the correct blood color for the NPC type.
                 let blood = this.entityManager.addEntity("effect");
-                blood.addComponent(new CAnimation('blood_small', false));
                 let pos = e.getComponent(CTransform).pos;
                 blood.addComponent(new CTransform(pos));
+                if (startsWith === "goblin" || startsWith === "exe") {
+                    blood.addComponent(new CAnimation('blood_small_green', false));
+                } 
+                else if (startsWith === "iceman") {
+                    blood.addComponent(new CAnimation('blood_small_blue', false));
+                } 
+                else {
+                    blood.addComponent(new CAnimation('blood_small', false));
+                }
+
                 this.game.playSound(startsWith + 'Pain');
                 this.game.playSound('goreSplat');
                 e.addComponent(new CAnimation(startsWith + 'Hurt', true));
@@ -437,10 +469,21 @@ class GameState_Play extends GameState {
         else if (state === 'dying') {
             // If we are not playing the death animation, start it.
             if (animationName !== startsWith + 'Death') {
+
+                // Spawn the correct blood color for the NPC type.
                 let blood = this.entityManager.addEntity("effect");
-                blood.addComponent(new CAnimation('blood_big', false));
                 let pos = e.getComponent(CTransform).pos;
                 blood.addComponent(new CTransform(pos));
+                if (startsWith === "goblin" || startsWith === "exe") {
+                    blood.addComponent(new CAnimation('blood_big_green', false));
+                }
+                else if (startsWith === "iceman") {
+                    blood.addComponent(new CAnimation('blood_big_blue', false));
+                } 
+                else {
+                    blood.addComponent(new CAnimation('blood_big', false));
+                }
+
                 this.game.playSound('goreSplat');
                 this.game.playSound(startsWith + 'Death');
                 e.addComponent(new CAnimation(startsWith + 'Death', true));
@@ -463,12 +506,12 @@ class GameState_Play extends GameState {
     sRender() {
         let playerPos = this.player.getComponent(CTransform).pos;
         this.renderEntitiesByTag('dec');
-        this.renderEntitiesByTag('tile');
-        this.renderEntitiesByTag('item');
-        this.renderEntitiesByTag('npc');
         this.renderEntitiesByTag('player');
-        this.renderEntitiesByTag('levelObjective');
+        this.renderEntitiesByTag('npc');
         this.renderEntitiesByTag('effect');
+        this.renderEntitiesByTag('item');
+        this.renderEntitiesByTag('tile');
+        this.renderEntitiesByTag('levelObjective');
         this.game.drawFrame(playerPos);
     }
 
@@ -520,25 +563,46 @@ class GameState_Play extends GameState {
         //*********** TO-DO STUB *************
     }
 
-    handleMeele(e: Entity) {
-            let state = e.getComponent(CState).state;
-            if (state !== 'hurt' && state !== 'dying') {
-                let meele = e.getComponent(CMeele);
-                if (meele.clock.elapsedTime > meele.cooldown) {
-                    meele.clock.stop();
-                    meele.clock.elapsedTime = 0;
-                }
+    // createProjectile(staringPos: Vec, target: Vec, speed: number) {
+        
+    // }
 
+    // The helper-function which handles executing the "CMeele" behaviour.
+    handleMeele(e: Entity) {
+        let state = e.getComponent(CState).state;
+        if (state !== 'hurt' && state !== 'dying') {
+            let meele = e.getComponent(CMeele);
+            if (meele.clock.elapsedTime > meele.cooldown) {
+                meele.clock.stop();
+                meele.clock.elapsedTime = 0;
+            }
+
+            if (state === 'attacking') {
+                let meele = e.getComponent(CMeele);
+                let playerState = this.player.getComponent(CState).state;
+                let pos = e.getComponent(CTransform).pos;
+                let facing = e.getComponent(CTransform).facing;
+                let offsetPos = new Vec (pos.x + (meele.offset * facing), pos.y);
+                if (playerState !== 'dying' && playerState !== 'hurt') {
+                    let currentFrame = e.getComponent(CAnimation).animation.animationFrame;
+                    if (currentFrame > meele.frameStart && currentFrame < meele.frameEnd &&
+                        Physics.isOverlapping(offsetPos, meele.halfSize, this.player)) {
+                        this.player.getComponent(CState).state = 'hurt';
+                        this.player.getComponent(CHealth).health -= meele.damage;
+                    }
+                }
+            } else {
                 let playerPos = this.player.getComponent(CTransform).pos;
                 let entityPos = e.getComponent(CTransform).pos;
-
                 if (playerPos.distf(entityPos) < meele.range && meele.clock.elapsedTime === 0) {
                     e.getComponent(CState).state = 'attacking';
                     meele.clock.start(true);
                 }
             }
+        }
     }
 
+    // The helper-function which handles executing the "CFollow" behaviour.
     handleFollow(e: Entity) {
             let state = e.getComponent(CState).state;
             if (state !== 'hurt' && state !== 'dying' && state !== 'attacking') {
@@ -582,10 +646,6 @@ class GameState_Play extends GameState {
             }
     }
 
-
-    // createProjectile(staringPos: Vec, target: Vec, speed: number) {
-        
-    // }
 
     handleRectangularCollisions(a: Entity, b: Entity) {
 
@@ -684,7 +744,7 @@ class GameState_Play extends GameState {
     }
 
     sLifespan() {
-        // TODO: Support entity lifespans
+        
     }
 }
 

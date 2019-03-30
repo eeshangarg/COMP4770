@@ -409,6 +409,12 @@
   },
   {
     "FrameCount": 1,
+    "ImageSource": "/client/assets/images/background/bg_forest.png",
+    "SpriteName": "bg_forest",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_cave.png",
     "SpriteName": "bg_cave",
     "Type": "Sprite"
@@ -786,6 +792,30 @@
     "Type": "Sprite"
   },
   {
+    "FrameCount": 15,
+    "ImageSource": "/client/assets/images/effects/blood_big_green.png",
+    "SpriteName": "blood_big_green",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 13,
+    "ImageSource": "/client/assets/images/effects/blood_small_green.png",
+    "SpriteName": "blood_small_green",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 15,
+    "ImageSource": "/client/assets/images/effects/blood_big_blue.png",
+    "SpriteName": "blood_big_blue",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 13,
+    "ImageSource": "/client/assets/images/effects/blood_small_blue.png",
+    "SpriteName": "blood_small_blue",
+    "Type": "Sprite"
+  },
+  {
     "FrameCount": 1,
     "ImageSource": "/client/assets/images/msc/error.png",
     "SpriteName": "error",
@@ -939,6 +969,11 @@
     "Type":"Sound",
     "soundName":"menu",
     "soundSource":"/client/assets/sounds/music/menu.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"forest",
+    "soundSource":"/client/assets/sounds/music/forest.mp3"
   },
   {
     "Type":"Sound",
