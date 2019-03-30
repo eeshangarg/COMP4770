@@ -43,6 +43,7 @@ class GameState_Menu extends GameState {
     }
 
     init() {
+        this.game.clearText('all');
         this.menuStrings = [];
         this.customLevels = [];
         this.game.drawFrame(new Vec(0, 0));
