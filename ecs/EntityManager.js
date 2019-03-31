@@ -18,7 +18,8 @@ class EntityManager {
             'player': [],
             'tile': [],
             'item': [],
-            'dec': []
+            'dec': [],
+            'projectile': [],
         };
         this.totalEntities = 0;
     }

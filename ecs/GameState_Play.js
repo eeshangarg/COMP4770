@@ -352,10 +352,16 @@ class GameState_Play extends GameState {
                 npc.getComponent(CState).state = 'dying';
             }
         }
+
+        let projectiles = this.entityManager.getEntitiesByTag('projectile');
+        for (let j = 0; j < projectiles.length; j++) {
+            let projectile = projectiles[j];
+            let transform = projectile.getComponent(CTransform);
+            transform.pos.addi(transform.speed);
+        }
     }
 
     sAnimation() {
-
         let entities = this.entityManager.getAllEntities();
         for (let i = 0; i < entities.length; i++) {
             let entity = entities[i];
@@ -375,8 +381,6 @@ class GameState_Play extends GameState {
     }
 
     handleStateAnimation(e: Entity) {
-
-
         let state = e.getComponent(CState).state;
         let grounded = e.getComponent(CState).grounded;
         let animationName = e.getComponent(CAnimation).animation.name;
@@ -498,7 +502,6 @@ class GameState_Play extends GameState {
                 }
             }
         }
-
     }
 
 
@@ -512,6 +515,7 @@ class GameState_Play extends GameState {
         this.renderEntitiesByTag('item');
         this.renderEntitiesByTag('tile');
         this.renderEntitiesByTag('levelObjective');
+        this.renderEntitiesByTag('projectile');
         this.game.drawFrame(playerPos);
     }
 
@@ -559,13 +563,47 @@ class GameState_Play extends GameState {
     }
 
     handleRanged(e: Entity) {
-        e.hasComponent(CTransform);
-        //*********** TO-DO STUB *************
+        let state = e.getComponent(CState).state;
+        if (state !== 'hurt' && state !== 'dying') {
+            let ranged = e.getComponent(CRanged);
+            if (ranged.clock.elapsedTime > ranged.cooldown) {
+                ranged.clock.stop();
+                ranged.clock.elapsedTime = 0;
+            }
+
+            if (state === 'attacking') {
+                let currentFrame = e.getComponent(CAnimation).animation.animationFrame;
+                if (currentFrame === 4) {
+                    this.lobProjectileAtPlayer(e, 4);
+                    e.getComponent(CState).state = 'idle';
+                }
+            }
+            else {
+                let playerPos = this.player.getComponent(CTransform).pos;
+                let entityPos = e.getComponent(CTransform).pos;
+                if (playerPos.distf(entityPos) < ranged.range && ranged.clock.elapsedTime === 0) {
+                    e.getComponent(CState).state = 'attacking';
+                    ranged.clock.start(true);
+                }
+            }
+        }
     }
 
-    // createProjectile(staringPos: Vec, target: Vec, speed: number) {
-        
-    // }
+    lobProjectileAtPlayer(entity: Entity, speed: number) {
+        let entityPos = entity.getComponent(CTransform).pos;
+        let target = this.player.getComponent(CTransform).pos;
+        let D = target.subtract(entityPos);
+        let theta = Math.atan2(D.y, D.x);
+        let speedVec = new Vec(speed * Math.cos(theta), speed * Math.sin(theta));
+
+        let projectile = this.entityManager.addEntity('projectile');
+        projectile.addComponent(new CTransform(new Vec(entityPos.x, entityPos.y)));
+        projectile.getComponent(CTransform).speed = new Vec(speedVec.x, speedVec.y);
+        projectile.addComponent(new CAnimation('impProjectile', true));
+        let animation = projectile.getComponent(CAnimation).animation;
+        let bounds = new Vec(animation.width, animation.height);
+        projectile.addComponent(new CBoundingBox(bounds, true, true));
+    }
 
     // The helper-function which handles executing the "CMeele" behaviour.
     handleMeele(e: Entity) {
@@ -663,7 +701,6 @@ class GameState_Play extends GameState {
 
 
     handleRectangularCollisions(a: Entity, b: Entity) {
-
         let currentFrameOverlap = Physics.getOverlap(a, b);
         if (currentFrameOverlap.x > 0.0 && currentFrameOverlap.y >= 0.0) {
 
@@ -718,6 +755,28 @@ class GameState_Play extends GameState {
             this.handleRectangularCollisions(this.player, npc);
             for (let j = 0; j < tiles.length; j++) {
                 this.handleRectangularCollisions(npc, tiles[j]);
+            }
+        }
+
+        // Calculate all tile / projectile collisions.
+        let projectiles = this.entityManager.getEntitiesByTag('projectile');
+        for (let i = 0; i < projectiles.length; i++) {
+            let projectile = projectiles[i];
+
+            for (let j = 0; j < tiles.length; j++) {
+                let tile = tiles[j];
+                let overlap = Physics.getOverlap(projectile, tile);
+                if (overlap.x > 0.0 && overlap.y >= 0.0) {
+                    projectile.destroy();
+                }
+            }
+
+            // Also, incur damage if a projectile collides with the player
+            let overlap = Physics.getOverlap(projectile, this.player);
+            if (overlap.x > 0.0 && overlap.y >= 0.0) {
+                this.player.getComponent(CState).state = 'hurt';
+                this.player.getComponent(CHealth).health -= 5;
+                projectile.destroy();
             }
         }
 
