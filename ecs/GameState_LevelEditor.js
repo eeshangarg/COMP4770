@@ -30,7 +30,7 @@ class GameState_LevelEditor extends GameState {
     levelObjective: Entity;
     dragging: boolean;
     lastHeldTile: string;
-
+    tileIndex: number;
 
     constructor(game: GameEngine, level: Object) {
         super();

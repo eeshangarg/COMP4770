@@ -179,14 +179,14 @@ class GameState_Play extends GameState {
             newDec.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
         }
 
-        this.spawnPlayer(this.playerSpawn);
+        this.spawnPlayer();
         this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
         this.game.drawText("MP: " + this.currentMP  , 'mp','16px PS2P', '#0D09E3', 20, 44);
         this.game.drawText("Score: " + this.score  , 's','16px PS2P', '#00FF00', 800, 20);
     }
 
 
-    spawnPlayer(pos: Vec) {
+    spawnPlayer() {
         this.player = this.entityManager.addEntity("player");
         this.player.addComponent(new CTransform(new Vec(this.level.playerSpawn[0], this.level.playerSpawn[1])));
         this.player.addComponent(new CAnimation('playerIdle', true));
