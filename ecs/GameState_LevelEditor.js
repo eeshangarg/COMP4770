@@ -29,6 +29,7 @@ class GameState_LevelEditor extends GameState {
     playerSpawn: Entity;
     levelObjective: Entity;
     dragging: boolean;
+    lastHeldTile: string;
 
 
     constructor(game: GameEngine, level: Object) {
@@ -40,6 +41,8 @@ class GameState_LevelEditor extends GameState {
         this.level = level;
         this.dragging = false;
         this.gridMode = false;
+        this.tileIndex = 0;
+        this.lastHeldTile = "cave-platform";
         this.editor = this.entityManager.addEntity("editor");
         this.playerSpawn = this.entityManager.addEntity("playerSpawn");
         this.levelObjective = this.entityManager.addEntity("levelObjective");
@@ -421,8 +424,7 @@ class GameState_LevelEditor extends GameState {
         tile.addComponent(new CTransform(this.getMousePosition()));
         tile.addComponent(new CDraggable());
         tile.getComponent(CDraggable).isBeingDragged = true;
-        // $FlowFixMe
-        tile.addComponent(new CAnimation(getAnimationsByTag('tile')[0], true));
+        tile.addComponent(new CAnimation(this.lastHeldTile, true));
         tile.addComponent(new CBoundingBox(new Vec(16, 16), true, true));
     }
 
@@ -469,6 +471,9 @@ class GameState_LevelEditor extends GameState {
                 else if (!draggable.isBeingDragged && !this.dragging) {
                     draggable.isBeingDragged = true;
                     this.dragging = true;
+                    if (entity.tag === "tile") {
+                        this.lastHeldTile = entity.getComponent(CAnimation).animation.name;
+                    }
                 }
 
                 break;
@@ -552,6 +557,10 @@ class GameState_LevelEditor extends GameState {
                 // $FlowFixMe
                 let newAnimation = new CAnimation(animationNames[draggable.animationIndex], true);
                 entity.addComponent(newAnimation);
+
+                if (entity.tag === "tile") {
+                    this.lastHeldTile = entity.getComponent(CAnimation).animation.name;
+                }
             }
         }
     }

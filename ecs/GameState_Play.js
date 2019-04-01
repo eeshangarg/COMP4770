@@ -40,6 +40,8 @@ class GameState_Play extends GameState {
     levelObjective: Entity;
     currentHP: number;
     currentMP: number;
+    score: number;
+    prevScore: number;
 
 
 
@@ -51,6 +53,8 @@ class GameState_Play extends GameState {
         this.background = level.background;
         this.playerSpawn = new Vec(level.playerSpawn[0], level.playerSpawn[1]);
         this.paused = false;
+        this.score = 0;
+        this.prevScore = 0;
         this.player = this.entityManager.addEntity("player");
         this.levelObjective = this.entityManager.addEntity("levelObjective");
         this.init();
@@ -172,7 +176,7 @@ class GameState_Play extends GameState {
 
         this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
         this.game.drawText("MP: " + this.currentMP  , 'mp','16px PS2P', '#0D09E3', 20, 44);
-
+        this.game.drawText("Score: " + this.score  , 's','16px PS2P', '#00FF00', 800, 20);
     }
 
 
@@ -216,8 +220,7 @@ class GameState_Play extends GameState {
 
         if (inputMap.escape) {
             inputMap.escape = 0;
-            this.game.setNextLevel();
-            this.game.clearText('hp');
+            this.game.clearText('all');
             this.game.popState();
         }
 
@@ -331,7 +334,6 @@ class GameState_Play extends GameState {
         } else if (playerInput.right) {
             playerTransform.speed.x += 3;
             playerTransform.facing = 1;
-
         }
 
         // If the player is in state running or Idle, update state based off speed.
@@ -461,7 +463,7 @@ class GameState_Play extends GameState {
 
         // If the current state is falling And is not 'dying'.
         else if (!grounded && state !== 'dying' && state !== 'hurt') {
-            if (animationName !== startsWith + 'Fall') {
+            if (animationName !== startsWith + 'Fall' && startsWith !== "imp") {
                 e.addComponent(new CAnimation(startsWith + 'Fall', true));
             }
         }
@@ -540,6 +542,9 @@ class GameState_Play extends GameState {
                     this.game.clearText('hp');
                     this.game.popState();
                 }
+                else {
+                    this.score += 100;
+                }
             }
         }
     }
@@ -549,12 +554,13 @@ class GameState_Play extends GameState {
     sRender() {
         let playerPos = this.player.getComponent(CTransform).pos;
         this.renderEntitiesByTag('dec');
+        this.renderEntitiesByTag('levelObjective');
         this.renderEntitiesByTag('player');
         this.renderEntitiesByTag('npc');
         this.renderEntitiesByTag('effect');
         this.renderEntitiesByTag('item');
         this.renderEntitiesByTag('tile');
-        this.renderEntitiesByTag('levelObjective');
+        
         this.renderEntitiesByTag('projectile');
         this.game.drawFrame(playerPos);
     }
@@ -805,6 +811,10 @@ class GameState_Play extends GameState {
                     if (overlap.x > 0.0 && overlap.y >= 0.0) {
                         npc.getComponent(CState).state = 'hurt';
                         npc.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
+                        let explode  = this.entityManager.addEntity("effect");
+                        explode.addComponent(new CTransform(npc.getComponent(CTransform).pos));
+                        explode.addComponent(new CAnimation("explode", false));
+                        this.game.playSound("explode");
                         projectile.destroy();
                     }
                 }
@@ -846,6 +856,8 @@ class GameState_Play extends GameState {
 
         let objectiveOverlap = Physics.getOverlap(this.player, this.levelObjective);
         if (objectiveOverlap.x > 0 && objectiveOverlap.y > 0) {
+            this.game.setScore(this.score, this.level.name);
+            this.game.setNextLevel(this.level.name);
             this.game.popState();
         }
     }
@@ -865,6 +877,11 @@ class GameState_Play extends GameState {
         if (this.currentMP != mp) {
             this.currentMP = mp;
             this.game.drawText("MP: " + this.currentMP  , 'mp','16px PS2P', '#0D09E3', 20, 44);
+        }
+
+        if (this.score != this.prevScore) {
+            this.game.drawText("Score: " + this.score  , 's','16px PS2P', '#00FF00', 800, 20);
+            this.prevScore = this.score;
         }
 
         let npcs = this.entityManager.getEntitiesByTag("npc");

@@ -184,7 +184,8 @@ function newAccHanlder(ws, data, db) {
                     if (err) throw err;
                     let blankProgress = {
                         levelCompleted: 0,
-                        coins: 0
+                        coins: 0,
+                        score: [0,0,0,0,0]
                     };
                     db.collection(data.username + 'Progress').insertOne(blankProgress, function(err, result) {
                         if (err) throw err;
@@ -202,6 +203,12 @@ function newAccHanlder(ws, data, db) {
                         levelBlank.name = "My level " + i;
                         levelBlank.username = data.username;
                         levels.push(Object.assign({}, levelBlank));
+                    }
+
+                    for (let i = 0; i < spLevels.length; i++) {
+                        spLevels[i].name = "SP Level " + (i+1);
+                        spLevels[i].username = data.username;
+                        levels.push(Object.assign({},spLevels[i]));
                     }
 
                     db.collection(data.username + 'Levels').insertMany(levels, function(err, result) {

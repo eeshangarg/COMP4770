@@ -1,18 +1,4419 @@
-
 {
     "username": "default",
     "name": "level 4",
-    "background": "bg_snow",
-    "playerSpawn": [50, 50],
-    "levelObjective": [0, 0],
+    "background": "bg_forest",
+    "playerSpawn": [
+        50,
+        50
+    ],
+    "levelObjective": [
+        4624,
+        320
+    ],
     "entities": {
         "tiles": [
+            {
+                "pos": [
+                    472,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    40,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    8,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    24,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    56,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    72,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    88,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    104,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    120,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    136,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    152,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    616,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    232,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    248,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    264,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    280,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    296,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    312,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1064,
+                    88
+                ],
+                "sprite": "grass-single-platform"
+            },
+            {
+                "pos": [
+                    680,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    664,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    408,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    424,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    440,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    456,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    472,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    488,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    712,
+                    56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    712,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    568,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    584,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    600,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    616,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    632,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    744,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    824,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    728,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    840,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    952,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    760,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    776,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    792,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    808,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    792,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    840,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    856,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    920,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    872,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    952,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    824,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    968,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1000,
+                    72
+                ],
+                "sprite": "grass-platform-corner-L"
+            },
+            {
+                "pos": [
+                    1016,
+                    72
+                ],
+                "sprite": "grass-platform-corner-R"
+            },
+            {
+                "pos": [
+                    904,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    888,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1096,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1112,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1128,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1144,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1160,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1176,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1192,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1208,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1224,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1240,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1224,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1256,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1272,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1288,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1304,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1320,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1336,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1352,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1368,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1384,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1400,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1416,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1432,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1448,
+                    -216
+                ],
+                "sprite": "grass-platform-corner-L"
+            },
+            {
+                "pos": [
+                    1464,
+                    -216
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1480,
+                    -216
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1496,
+                    -216
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1512,
+                    -216
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1528,
+                    -216
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1544,
+                    -216
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    1224,
+                    -200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1208,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1560,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1576,
+                    -216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1784,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1592,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1608,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1784,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1800,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1816,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1832,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1848,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1864,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1880,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1896,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1800,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1816,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1992,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2008,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2040,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2120,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2136,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2472,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2488,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2504,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2520,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2536,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2552,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2136,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2120,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2040,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2008,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -168
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -136
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2568,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -248
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -232
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -216
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2600,
+                    -200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -184
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2600,
+                    -168
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -136
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2616,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2632,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2648,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2648,
+                    56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    136
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    168
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2616,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2632,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2648,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2648,
+                    216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    296
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    312
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    328
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    344
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    376
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    408
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    424
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2616,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2472,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2488,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2504,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2520,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2536,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2552,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2568,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    -120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2616,
+                    -184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2136,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2120,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2040,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2008,
+                    -40
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    1992,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    -40
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2024,
+                    56
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    2024,
+                    72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2008,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1992,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    136
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    232
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    248
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2008,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1992,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1944,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    1960,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    376
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    408
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    424
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2568,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2552,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2536,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2520,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2504,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2488,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2472,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2040,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2120,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2136,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2472,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2488,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2504,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2520,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2536,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2552,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2568,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2040,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2120,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2136,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    392
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    2968,
+                    392
+                ],
+                "sprite": "grass-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2824,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2808,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2792,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2776,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    472
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2568,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2552,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2536,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2632,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2616,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2648,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2664,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2680,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2840,
+                    392
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -296
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -312
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -328
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -344
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -360
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -376
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -408
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -440
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -424
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -472
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3080,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3096,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3112,
+                    392
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3128,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3208,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3192,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3272,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3288,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3400,
+                    392
+                ],
+                "sprite": "grass-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3464,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3512,
+                    392
+                ],
+                "sprite": "grass-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3528,
+                    392
+                ],
+                "sprite": "grass-single-platform"
+            },
+            {
+                "pos": [
+                    3544,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3560,
+                    392
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    3656,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3672,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3688,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3704,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3784,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3800,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3816,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3832,
+                    392
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3848,
+                    296
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    472
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2040,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    488
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3720,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3752,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3768,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3784,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3800,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3816,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3832,
+                    -456
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3992,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3848,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3864,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3880,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3896,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3912,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3928,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3944,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3960,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3976,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4008,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4024,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4040,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4056,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4072,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4088,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4104,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4120,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4136,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4152,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4168,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4184,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4200,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4216,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4232,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4248,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4264,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4280,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4296,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4312,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4504,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4520,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4536,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4552,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4568,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4584,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4600,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4616,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4632,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4328,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4344,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    4392,
+                    280
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    4408,
+                    280
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    4456,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    920,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    936,
+                    72
+                ],
+                "sprite": "grass-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    120
+                ],
+                "sprite": "cave-platform"
+            }
         ],
         "npcs": [
+            {
+                "pos": [
+                    1774,
+                    -114
+                ],
+                "name": "cowman"
+            },
+            {
+                "pos": [
+                    2025,
+                    313
+                ],
+                "name": "imp"
+            },
+            {
+                "pos": [
+                    2027.5,
+                    145.5
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    2558,
+                    -82
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    2441,
+                    393
+                ],
+                "name": "imp"
+            },
+            {
+                "pos": [
+                    2494,
+                    -226
+                ],
+                "name": "cowman"
+            },
+            {
+                "pos": [
+                    2633,
+                    425
+                ],
+                "name": "imp"
+            },
+            {
+                "pos": [
+                    2427.5,
+                    465.5
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    2043.5,
+                    513.5
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    3817,
+                    425
+                ],
+                "name": "imp"
+            },
+            {
+                "pos": [
+                    3886,
+                    318
+                ],
+                "name": "cowman"
+            },
+            {
+                "pos": [
+                    4254,
+                    318
+                ],
+                "name": "cowman"
+            },
+            {
+                "pos": [
+                    2603.5,
+                    65.5
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    2603.5,
+                    225.5
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    2027.5,
+                    -14.5
+                ],
+                "name": "goblin"
+            }
         ],
         "items": [
+            {
+                "pos": [
+                    1624,
+                    -248
+                ],
+                "sprite": "apple"
+            },
+            {
+                "pos": [
+                    2568,
+                    216
+                ],
+                "sprite": "green_potion"
+            },
+            {
+                "pos": [
+                    2056,
+                    -24
+                ],
+                "sprite": "blue_potion"
+            },
+            {
+                "pos": [
+                    2568,
+                    -248
+                ],
+                "sprite": "apple"
+            },
+            {
+                "pos": [
+                    1336,
+                    -56
+                ],
+                "sprite": "coin"
+            },
+            {
+                "pos": [
+                    1320,
+                    -24
+                ],
+                "sprite": "coin"
+            },
+            {
+                "pos": [
+                    1304,
+                    8
+                ],
+                "sprite": "coin"
+            },
+            {
+                "pos": [
+                    1352,
+                    -88
+                ],
+                "sprite": "coin"
+            },
+            {
+                "pos": [
+                    1288,
+                    40
+                ],
+                "sprite": "coin"
+            },
+            {
+                "pos": [
+                    952,
+                    90
+                ],
+                "sprite": "green_potion"
+            }
         ],
         "decs": [
+            {
+                "pos": [
+                    1240,
+                    -200
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    1256,
+                    -200
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    1240,
+                    -184
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    1224,
+                    -184
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    1304,
+                    -200
+                ],
+                "sprite": "flower-red"
+            },
+            {
+                "pos": [
+                    1288,
+                    -200
+                ],
+                "sprite": "bush2"
+            },
+            {
+                "pos": [
+                    1304,
+                    -200
+                ],
+                "sprite": "bush3"
+            },
+            {
+                "pos": [
+                    1320,
+                    -200
+                ],
+                "sprite": "bush3"
+            },
+            {
+                "pos": [
+                    1336,
+                    -200
+                ],
+                "sprite": "bush1"
+            },
+            {
+                "pos": [
+                    1496,
+                    -168
+                ],
+                "sprite": "tree1"
+            },
+            {
+                "pos": [
+                    1336,
+                    -200
+                ],
+                "sprite": "flower-red"
+            },
+            {
+                "pos": [
+                    1320,
+                    -200
+                ],
+                "sprite": "flower-red"
+            },
+            {
+                "pos": [
+                    1352,
+                    -200
+                ],
+                "sprite": "bush1"
+            },
+            {
+                "pos": [
+                    920,
+                    120
+                ],
+                "sprite": "tree2"
+            },
+            {
+                "pos": [
+                    728,
+                    56
+                ],
+                "sprite": "bush5"
+            },
+            {
+                "pos": [
+                    744,
+                    56
+                ],
+                "sprite": "bush1"
+            },
+            {
+                "pos": [
+                    760,
+                    56
+                ],
+                "sprite": "bush3"
+            },
+            {
+                "pos": [
+                    776,
+                    56
+                ],
+                "sprite": "bush4"
+            },
+            {
+                "pos": [
+                    728,
+                    56
+                ],
+                "sprite": "mushroom2"
+            },
+            {
+                "pos": [
+                    2616,
+                    -168
+                ],
+                "sprite": "desert-grass1"
+            },
+            {
+                "pos": [
+                    2616,
+                    -40
+                ],
+                "sprite": "desert-grass1"
+            },
+            {
+                "pos": [
+                    1960,
+                    296
+                ],
+                "sprite": "frozen-tree1"
+            },
+            {
+                "pos": [
+                    2008,
+                    -168
+                ],
+                "sprite": "desert-grass1"
+            },
+            {
+                "pos": [
+                    3384,
+                    440
+                ],
+                "sprite": "tree1"
+            }
         ]
     }
 }

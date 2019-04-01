@@ -50,7 +50,7 @@ class GameState_Menu extends GameState {
         this.menuStrings.push('Single Player');
         this.menuStrings.push('Level Editor');
         this.menuStrings.push('Custom Levels');
-        this.menuStrings.push('Items');
+        this.menuStrings.push('Cheats');
         this.menuStrings.push('Settings');
         this.game.setBackground('bg_menu');
         this.selectedMenuIndex = 0;
@@ -163,6 +163,7 @@ class GameState_Menu extends GameState {
     levelEditor() {
             let inputMap = this.game.getInputMap();
             if (inputMap.escape) {
+                this.game.clearText('all');
                 inputMap.escape = 0;
                 this.levelEditorMode = false;
                 this.mainMenuMode = true;
@@ -178,7 +179,7 @@ class GameState_Menu extends GameState {
                 this.game.playSound('coin');
                 inputMap.s = 0;
                 this.selectedLEIndex++;
-                if (this.selectedLEIndex >= 5) {
+                if (this.selectedLEIndex >= 10) {
                     this.selectedLEIndex = 0;
                 }
                 this.drawLevelEditor();
@@ -187,7 +188,7 @@ class GameState_Menu extends GameState {
                 inputMap.w = 0;
                 this.selectedLEIndex--;
                 if (this.selectedLEIndex < 0) {
-                    this.selectedLEIndex = 4;
+                    this.selectedLEIndex = 9;
                 }
                 this.drawLevelEditor();
             }
@@ -197,6 +198,7 @@ class GameState_Menu extends GameState {
 
         let inputMap = this.game.getInputMap();
         if (inputMap.escape) {
+            this.game.clearText('all');
             inputMap.escape = 0;
             this.customLevelMode = false;
             this.mainMenuMode = true;
@@ -214,7 +216,7 @@ class GameState_Menu extends GameState {
             this.game.playSound('coin');
             inputMap.s = 0;
             this.selectedCLIndex++;
-            if (this.selectedCLIndex >= 5) {
+            if (this.selectedCLIndex >= 10) {
                 this.selectedCLIndex = 0;
             }
             this.drawCustomLevels();
@@ -223,7 +225,7 @@ class GameState_Menu extends GameState {
             inputMap.w = 0;
             this.selectedCLIndex--;
             if (this.selectedCLIndex < 0) {
-                this.selectedCLIndex = 4;
+                this.selectedCLIndex = 9;
             }
             this.drawCustomLevels();
         }
@@ -237,10 +239,10 @@ class GameState_Menu extends GameState {
         // $FlowFixMe
         let callback = this.game.getCustomLevels(function(customLevels, game) {
             for (let i = 0; i < customLevels.length; i++) {
-                self.game.drawText(customLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
+                self.game.drawText(customLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 200 + i * 34);
             }
             let i = self.selectedLEIndex;
-            self.game.drawText('Edit: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
+            self.game.drawText('Edit: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 200+ i * 34);
         });
     }
 
@@ -251,10 +253,10 @@ class GameState_Menu extends GameState {
         // $FlowFixMe
         let callback = this.game.getCustomLevels(function(customLevels, game) {
             for (let i = 0; i < customLevels.length; i++) {
-                self.game.drawText(customLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
+                self.game.drawText(customLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 200 + i * 34);
             }
             let i = self.selectedCLIndex;
-            self.game.drawText('Play: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
+            self.game.drawText('Play: ' + customLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 200 + i * 34);
         });
     }
 
@@ -266,7 +268,7 @@ class GameState_Menu extends GameState {
             
             for (let i = 0; i < self.spLevels.length; i++) {
                 if (i <= progress.levelCompleted){
-                    self.game.drawText(self.spLevels[i].name, i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
+                    self.game.drawText(self.spLevels[i].name + " score: " + progress.score[i], i.toString(), '20px PS2P', '#FDFEFE', 400, 235 + i * 48);
                 }
                 else {
                     self.game.drawText('Locked: ' + self.spLevels[i].name, i.toString(), '20px PS2P', '#AFAFAF', 400, 235 + i * 48);
@@ -275,7 +277,7 @@ class GameState_Menu extends GameState {
             }
 
             let i = self.selectedSPIndex;
-            self.game.drawText('Play: ' + self.spLevels[i].name, i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
+            self.game.drawText('Play: ' + self.spLevels[i].name  +  " score: "  + progress.score[i], i.toString(), '20px PS2P', '#FFFF00', 278, 235 + i * 48);
 
         });
 

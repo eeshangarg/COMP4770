@@ -35,7 +35,7 @@
         "AnimationName": "coin",
         "SpriteName": "coin",
         "frameCount": 6,
-        "fps": 30,
+        "fps": 5,
         "x": 16,
         "y": 16
     },
@@ -46,6 +46,16 @@
         "SpriteName": "blue_potion",
         "frameCount": 1,
         "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
+        "tag": "misc",
+        "type": "static",
+        "AnimationName": "explode",
+        "SpriteName": "explode",
+        "frameCount": 10,
+        "fps": 15,
         "x": 16,
         "y": 16
     },
@@ -1079,7 +1089,7 @@
         "AnimationName": "impFall",
         "SpriteNameR": "impIdleR",
         "SpriteNameL": "impIdleL",
-        "frameCount": 5, 
+        "frameCount": 1, 
         "fps": 15,
         "x": 50,
         "y": 50
@@ -1090,7 +1100,7 @@
         "AnimationName": "impRun",
         "SpriteNameR": "impMoveR",
         "SpriteNameL": "impMoveL",
-        "frameCount": 3, 
+        "frameCount": 5, 
         "fps": 15,
         "x": 50,
         "y": 50

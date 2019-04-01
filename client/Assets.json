@@ -288,13 +288,13 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 3,
+    "FrameCount": 5,
     "ImageSource": "/client/assets/images/npc/imp/imp_move_L.png",
     "SpriteName": "impMoveL",
     "Type": "Sprite"
   },
   {
-    "FrameCount": 3,
+    "FrameCount": 5,
     "ImageSource": "/client/assets/images/npc/imp/imp_move_R.png",
     "SpriteName": "impMoveR",
     "Type": "Sprite"
@@ -966,10 +966,21 @@
     "Type": "Sprite"
   },
   {
+    "FrameCount": 10,
+    "ImageSource": "/client/assets/images/effects/explode.png",
+    "SpriteName":"explode",
+    "Type": "Sprite"
+  },
+  {
     "FrameCount": 6,
     "ImageSource": "/client/assets/images/npc/iceman/iceman_run_R.png",
     "SpriteName":"icemanRunR",
     "Type": "Sprite"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"explode",
+    "soundSource":"/client/assets/sounds/effects/explode.mp3"
   },
   {
     "Type":"Sound",

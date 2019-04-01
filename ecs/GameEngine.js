@@ -161,13 +161,36 @@ class GameEngine {
 
 
     // The function to handle setting the users leve-progress.
-    setNextLevel() {
+    setNextLevel(levelName: string) {
         let self = this;
-        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
-            if(progress.levelCompleted < 4){
-                let data = {levelCompleted:progress.levelCompleted+1};
-                self.db.collection(self.socket.userName + 'Progress').updateOne({}, { $set:data }, { upsert: true } );
+        let index = -1;
+        if (levelName === "level 1") {
+            index = 1;
+        } else if (levelName === "level 2") {
+            index = 2;
+        } else if (levelName === "level 3") {
+            index = 3;
+        } else if (levelName === "level 4") {
+            index = 4;
+        }
+        // $FlowFixMe
+        let callback = function(levelCompleted) {
+
+            if (index > levelCompleted){
+                self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
+                    $set: {
+                        "levelCompleted": index
+                    }
+                }, {
+                    upsert: true
+                });
+
             }
+
+        }
+
+        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+            callback(progress.levelCompleted);
         });
 
     }
@@ -182,6 +205,7 @@ class GameEngine {
             self.db.collection(self.socket.userName + 'Progress').updateOne({}, { $set:data }, { upsert: true } );
         });
     }
+
     // The function to handle getting the users progress.
     // $FlowFixMe
     getProgress(callback): Object {
@@ -268,6 +292,51 @@ class GameEngine {
             this.queueAnimation(id, anim.animationFrame, pos.x, pos.y);
         }
     }
+
+
+
+    setScore(currentScore: number, levelName: string) {
+        let index = -1;
+        if (levelName === "level 1") {
+            index = 0;
+        } else if (levelName === "level 2") {
+            index = 1;
+        } else if (levelName === "level 3") {
+            index = 2;
+        } else if (levelName === "level 4") {
+            index = 3;
+        } else if (levelName === "level 5") {
+            index = 4;
+        }
+        if (index !== -1) {
+            let self = this;
+            // $FlowFixMe
+            let callback = function(newScore) {
+
+                if (newScore[index] <= currentScore) {
+                    let newScoreArray = newScore;
+                    newScoreArray[index] = currentScore;
+                    self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
+                        $set: {
+                            "score": newScoreArray
+                        }
+                    }, {
+                        upsert: true
+                    });
+                }
+
+            }
+
+            this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+                callback(progress.score);
+            });
+
+        }
+
+    }
+
+
+
 
     /*The function which handles drawing a frame in "Viewport" mode.
       This should be passed the center postions of the screen.
