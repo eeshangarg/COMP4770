@@ -15,7 +15,7 @@ class Sprite {
             self.halfWidth = self.width/2;
             self.halfHeight = self.height/2;
             spriteLoaded();
-            console.log(spriteName + ' Loaded');
+            console.log("Sprite:" + spriteName + ' Loaded');
         }
         this.image.src = imgSrc;
     }

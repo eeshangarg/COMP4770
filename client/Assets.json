@@ -42,6 +42,18 @@
     "Type": "Sprite"
   },
   {
+    "FrameCount": 8,
+    "ImageSource": "/client/assets/images/player/playerFireball_L.png",
+    "SpriteName": "playerFireballL",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 8,
+    "ImageSource": "/client/assets/images/player/playerFireball_R.png",
+    "SpriteName": "playerFireballR",
+    "Type": "Sprite"
+  },
+  {
     "FrameCount": 6,
     "ImageSource": "/client/assets/images/player/Knight_idel_L.png",
     "SpriteName": "playerIdleL",
@@ -288,15 +300,9 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 3,
-    "ImageSource": "/client/assets/images/npc/imp/imp_projectile_L.png",
-    "SpriteName": "impProjectileL",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 3,
-    "ImageSource": "/client/assets/images/npc/imp/imp_projectile_R.png",
-    "SpriteName": "impProjectileR",
+    "FrameCount": 4,
+    "ImageSource": "/client/assets/images/npc/imp/imp_projectile.png",
+    "SpriteName": "impProjectile",
     "Type": "Sprite"
   },
   {
@@ -312,7 +318,7 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 1,
+    "FrameCount": 6,
     "ImageSource": "/client/assets/images/items/coin.png",
     "SpriteName": "coin",
     "Type": "Sprite"
@@ -546,7 +552,7 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 4,
+    "FrameCount": 48,
     "ImageSource": "/client/assets/images/msc/levelObjective.png",
     "SpriteName": "objective",
     "Type": "Sprite"
@@ -1057,6 +1063,11 @@
   },
   {
     "Type":"Sound",
+    "soundName":"playerFireball",
+    "soundSource":"/client/assets/sounds/player/player_Fireball.mp3"
+  },
+  {
+    "Type":"Sound",
     "soundName":"cowmanDeath",
     "soundSource":"/client/assets/sounds/npc/cowman/minotaur_death.mp3"
   },
@@ -1084,11 +1095,6 @@
     "Type":"Sound",
     "soundName":"impDeath",
     "soundSource":"/client/assets/sounds/npc/imp/imp_death.mp3"
-  },
-  {
-    "Type":"Sound",
-    "soundName":"impProjectile",
-    "soundSource":"/client/assets/sounds/npc/imp/imp_projectile.mp3"
   },
   {
     "Type":"Sound",

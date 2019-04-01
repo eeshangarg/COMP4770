@@ -22,7 +22,10 @@ const {
     CMeele,
     CFollow,
     CHealth,
-    CRanged
+    CMagic,
+    CRanged,
+    CLifespan,
+    CProjectile
 } = require('./Components.js');
 
 class GameState_Play extends GameState {
@@ -36,6 +39,7 @@ class GameState_Play extends GameState {
     playerSpawn: Vec;
     levelObjective: Entity;
     currentHP: number;
+    currentMP: number;
 
 
 
@@ -92,7 +96,7 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(100));
-                newNpc.addComponent(new CMeele(20, new Vec(33, 38), 1500, 75, 20, 4, 7));
+                newNpc.addComponent(new CMeele(20, new Vec(35, 42), 1500, 75, 20, 4, 7));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 2.5, true));
             }
             // Create a imp NPC, assign all components.
@@ -167,6 +171,7 @@ class GameState_Play extends GameState {
         }
 
         this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
+        this.game.drawText("MP: " + this.currentMP  , 'mp','16px PS2P', '#0D09E3', 20, 44);
 
     }
 
@@ -180,7 +185,9 @@ class GameState_Play extends GameState {
         this.player.addComponent(new CInput());
         this.player.addComponent(new CMeele(25, new Vec(20, 30), 0, 0, 15, 6, 11));
         this.player.addComponent(new CHealth(100));
+        this.player.addComponent(new CMagic(100));
         this.currentHP = 100;
+        this.currentMP = 100;
     }
 
     update() {
@@ -194,6 +201,7 @@ class GameState_Play extends GameState {
             this.sCollision();
             this.sPlayerMeele();
             this.sHealth();
+            this.sMagic();
             this.sAnimation();
         }
 
@@ -229,12 +237,43 @@ class GameState_Play extends GameState {
             }
         }
 
+        if (inputMap.e) {
+            inputMap.e = 0; 
+            let state = this.player.getComponent(CState).state;
+            if (state !== 'dying' || state != 'hurt') {
+                this.playerFireball();
+            }
+        }
+
         playerInput.up = inputMap.w;
         playerInput.down = inputMap.s;
         playerInput.left = inputMap.a;
         playerInput.right = inputMap.d;
     }
 
+
+
+    //##### TODO STUB ####
+    playerFireball() {
+        let canMagic = this.player.getComponent(CMagic).canMagic;
+        if (canMagic && this.player.getComponent(CMagic).mp >= 10) {
+            this.player.getComponent(CMagic).canMagic = false;
+            this.player.getComponent(CMagic).clock.start(true);
+            let facing = this.player.getComponent(CTransform).facing;
+            let fireball = this.entityManager.addEntity('projectile');
+            let playerPos = this.player.getComponent(CTransform).pos;
+            let fireballPos = new Vec(playerPos.x + 10 * facing, playerPos.y + 10);
+            fireball.addComponent(new CTransform(fireballPos));
+            fireball.addComponent(new CProjectile(25, true));
+            fireball.addComponent(new CBoundingBox(new Vec(25, 25), false, false));
+            fireball.addComponent(new CAnimation("playerFireball",true));
+            fireball.addComponent(new CLifespan(2000));
+            fireball.getComponent(CTransform).speed.x = 6 * facing;
+            fireball.getComponent(CTransform).facing = facing;
+            this.game.playSound("playerFireball");
+            this.player.getComponent(CMagic).mp -= 10;
+        }
+    }
 
     //##### TODO STUB ####
     handlePotion() {
@@ -485,6 +524,7 @@ class GameState_Play extends GameState {
                     blood.addComponent(new CAnimation('blood_big_blue', false));
                 } 
                 else {
+                    e.getComponent(CGravity).gravity = 0.3;
                     blood.addComponent(new CAnimation('blood_big', false));
                 }
 
@@ -564,7 +604,8 @@ class GameState_Play extends GameState {
 
     handleRanged(e: Entity) {
         let state = e.getComponent(CState).state;
-        if (state !== 'hurt' && state !== 'dying') {
+        let vision = e.getComponent(CFollow).hasVision;
+        if (state !== 'hurt' && state !== 'dying' && vision) {
             let ranged = e.getComponent(CRanged);
             if (ranged.clock.elapsedTime > ranged.cooldown) {
                 ranged.clock.stop();
@@ -595,11 +636,12 @@ class GameState_Play extends GameState {
         let D = target.subtract(entityPos);
         let theta = Math.atan2(D.y, D.x);
         let speedVec = new Vec(speed * Math.cos(theta), speed * Math.sin(theta));
-
         let projectile = this.entityManager.addEntity('projectile');
         projectile.addComponent(new CTransform(new Vec(entityPos.x, entityPos.y)));
         projectile.getComponent(CTransform).speed = new Vec(speedVec.x, speedVec.y);
         projectile.addComponent(new CAnimation('impProjectile', true));
+        projectile.addComponent(new CLifespan(2000));
+        projectile.addComponent(new CProjectile(10, false));
         let animation = projectile.getComponent(CAnimation).animation;
         let bounds = new Vec(animation.width, animation.height);
         projectile.addComponent(new CBoundingBox(bounds, true, true));
@@ -649,17 +691,17 @@ class GameState_Play extends GameState {
                 let entityPos = e.getComponent(CTransform).pos;
                 let dist = playerPos.distf(entityPos);
                 e.getComponent(CState).state = 'idle';
-
                 if (dist < follow.visionDistance) {
                     let tiles = this.entityManager.getEntitiesByTag("tile");
-                    let vision = true;
+                    follow.hasVision = true;
                     for (let i = 0; i < tiles.length; i++) {
                         if (Physics.entityIntersect(playerPos, entityPos,tiles[i])) {
-                            vision = false;
+                            follow.hasVision = false;
                             break;
                         }
                     }
-                    if (vision) {
+                    if (follow.hasVision) {
+
                         if (dist > follow.approachDistance) {
                             e.getComponent(CState).state = 'running';
                             let entityTransform = e.getComponent(CTransform);
@@ -679,7 +721,7 @@ class GameState_Play extends GameState {
                             e.getComponent(CTransform).facing = -1;
                         }
                     }
-                    else if (follow.returnHome && follow.home.distf(entityPos) > ((follow.speed + 8 ) * (follow.speed + 8))) {
+                    else if (follow.returnHome &&  Math.abs(follow.home.x - entityPos.x) > (follow.speed + 4)) {
                         let norm = follow.home.subtract(entityPos).norm();
                         norm.muli(follow.speed);
                         e.getComponent(CTransform).pos.x += norm.x;
@@ -689,7 +731,6 @@ class GameState_Play extends GameState {
                         } else {
                             e.getComponent(CTransform).facing = -1;
                         }
-
                     }
                     else {
                         e.getComponent(CState).state = "idle";
@@ -744,7 +785,7 @@ class GameState_Play extends GameState {
     sCollision() {
         let npcs = this.entityManager.getEntitiesByTag("npc");
         let tiles = this.entityManager.getEntitiesByTag("tile");
-
+        let projectiles = this.entityManager.getEntitiesByTag('projectile');
         // Calculate all NPC tile / player cols.
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
@@ -756,10 +797,21 @@ class GameState_Play extends GameState {
             for (let j = 0; j < tiles.length; j++) {
                 this.handleRectangularCollisions(npc, tiles[j]);
             }
+
+            for (let j = 0; j < projectiles.length; j++) {
+                let projectile = projectiles[j];
+                if (projectile.getComponent(CProjectile).friendly) {
+                    let overlap = Physics.getOverlap(projectile, npc);
+                    if (overlap.x > 0.0 && overlap.y >= 0.0) {
+                        npc.getComponent(CState).state = 'hurt';
+                        npc.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
+                        projectile.destroy();
+                    }
+                }
+            }
         }
 
         // Calculate all tile / projectile collisions.
-        let projectiles = this.entityManager.getEntitiesByTag('projectile');
         for (let i = 0; i < projectiles.length; i++) {
             let projectile = projectiles[i];
 
@@ -771,12 +823,14 @@ class GameState_Play extends GameState {
                 }
             }
 
-            // Also, incur damage if a projectile collides with the player
-            let overlap = Physics.getOverlap(projectile, this.player);
-            if (overlap.x > 0.0 && overlap.y >= 0.0) {
-                this.player.getComponent(CState).state = 'hurt';
-                this.player.getComponent(CHealth).health -= 5;
-                projectile.destroy();
+            // Also, incur damage if a projectile collides with the player if not friendly.
+            if (!projectile.getComponent(CProjectile).friendly) {
+                let overlap = Physics.getOverlap(projectile, this.player);
+                if (overlap.x > 0.0 && overlap.y >= 0.0) {
+                    this.player.getComponent(CState).state = 'hurt';
+                    this.player.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
+                    projectile.destroy();
+                }
             }
         }
 
@@ -798,13 +852,19 @@ class GameState_Play extends GameState {
 
     sHealth() {
         let health = this.player.getComponent(CHealth).health;
+        let mp = this.player.getComponent(CMagic).mp;
         if (health <= 0) {
             this.player.getComponent(CState).state = 'dying';
         }
 
         if (this.currentHP !== health) {
             this.currentHP = health;
-            this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
+            this.game.drawText("Health: " + this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
+        }
+
+        if (this.currentMP != mp) {
+            this.currentMP = mp;
+            this.game.drawText("MP: " + this.currentMP  , 'mp','16px PS2P', '#0D09E3', 20, 44);
         }
 
         let npcs = this.entityManager.getEntitiesByTag("npc");
@@ -817,8 +877,26 @@ class GameState_Play extends GameState {
 
     }
 
+    sMagic() {
+        let magic = this.player.getComponent(CMagic);
+        if (magic.clock.elapsedTime > magic.cooldown) {
+            magic.clock.stop();
+            magic.clock.elapsedTime = 0;
+            magic.canMagic = true;
+        }
+    }
+
+
     sLifespan() {
-        
+        let projectiles = this.entityManager.getEntitiesByTag("projectile");
+        for (let i = 0; i < projectiles.length; i++) {
+            let projectile = projectiles[i]
+            let lifeSpan = projectile.getComponent(CLifespan).duration;
+            let clock = projectile.getComponent(CLifespan).clock;
+            if (clock.elapsedTime > lifeSpan) {
+                projectile.destroy();
+            }
+        }
     }
 }
 

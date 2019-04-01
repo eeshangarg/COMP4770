@@ -130,6 +130,7 @@ CDraggable.INDEX = 6;
 class CFollow extends Component {
     static INDEX: number;
 
+    hasVision: boolean;         // The boolean to keep track of weather the entity has vison.
     home: Vec;                  // The "home" location of the entity.
     approachDistance: number;   // The approach-distance for the follow behavior.
     visionDistance: number;     // The vision-distance for the follow behavior. 
@@ -142,6 +143,7 @@ class CFollow extends Component {
         this.speed = s;
         this.returnHome = g;
         this.home = h;
+        this.hasVision = false;
     }
 
 }
@@ -219,7 +221,6 @@ class CRanged extends Component {
         this.range = r*r;        // Use me with distf()!
         this.cooldown = c;
         this.clock = new Clock();
-
     }
 }
 CRanged.INDEX = 11;
@@ -230,10 +231,11 @@ class CProjectile extends Component {
     static INDEX: number;
 
     damage: number;            // The damgage the projectile deals.
-
-    constructor(d: number) {
+    friendly: boolean;         // Does this projectile hurt players?
+    constructor(d: number, f: boolean) {
         super();
         this.damage = d;
+        this.friendly = f;
     }
 }
 CProjectile.INDEX = 12;
@@ -250,10 +252,29 @@ class CLifespan extends Component {
         super();
         this.duration = d;
         this.clock = new Clock(true);
-
     }
 }
 CLifespan.INDEX = 13;
+
+
+/* istanbul ignore next */
+class CMagic extends Component {
+    static INDEX: number;
+    mp: number;
+    canMagic: boolean;
+    cooldown: number;
+    clock: Clock;
+
+    constructor(mp: number) {
+        super();
+        this.mp = mp;
+        this.cooldown = 1000;
+        this.canMagic = true;
+        this.clock = new Clock();
+    }
+}
+CLifespan.INDEX = 14;
+
 
 module.exports = {
     'Component': Component,
@@ -271,5 +292,6 @@ module.exports = {
     'CRanged': CRanged,
     'CProjectile': CProjectile,
     'CLifespan': CLifespan,
+    'CMagic': CMagic,
     'MAX_COMPONENTS': MAX_COMPONENTS
 };

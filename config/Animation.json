@@ -34,7 +34,7 @@
         "type": "static",
         "AnimationName": "coin",
         "SpriteName": "coin",
-        "frameCount": 1,
+        "frameCount": 6,
         "fps": 30,
         "x": 16,
         "y": 16
@@ -821,6 +821,17 @@
         "y": 50
     },
     {
+        "tag": "misc",
+        "type": "dynamic",
+        "AnimationName": "playerFireball",
+        "SpriteNameR": "playerFireballR",
+        "SpriteNameL": "playerFireballL",
+        "frameCount": 8,
+        "fps": 30,
+        "x": 25,
+        "y": 25
+    },
+    {
         "tag": "player",
         "type": "dynamic",
         "AnimationName": "playerDeath",
@@ -1086,14 +1097,13 @@
     },
     {
         "tag": "npc",
-        "type": "dynamic",
+        "type": "static",
         "AnimationName": "impProjectile",
-        "SpriteNameR": "impProjectileR",
-        "SpriteNameL": "impProjectileL",
-        "frameCount": 3, 
-        "fps": 15,
-        "x": 25,
-        "y": 10
+        "SpriteName":"impProjectile",
+        "frameCount": 4, 
+        "fps": 10,
+        "x": 20,
+        "y": 20
     },
     {
         "tag": "effect",
@@ -1166,9 +1176,9 @@
         "type": "static",
         "AnimationName": "objective",
         "SpriteName": "objective",
-        "frameCount": 4, 
-        "fps": 20,
-        "x": 64,
+        "frameCount": 48, 
+        "fps": 60,
+        "x": 100,
         "y": 64
     },
     {
