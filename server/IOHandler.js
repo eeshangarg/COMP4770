@@ -397,6 +397,9 @@ function updateInputData(data, map) {
             case 66: // 66 -> "B"
                 map.b = data[i].s;
                 break;
+            case 82: // 82 -> "R"
+                map.r = data[i].s;
+                break;
             case 13: // 13 -> "Enter"
                 map.enter = data[i].s;
                 break;

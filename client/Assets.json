@@ -552,7 +552,7 @@
     "Type": "Sprite"
   },
   {
-    "FrameCount": 48,
+    "FrameCount": 24,
     "ImageSource": "/client/assets/images/msc/levelObjective.png",
     "SpriteName": "objective",
     "Type": "Sprite"

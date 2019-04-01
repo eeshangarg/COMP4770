@@ -42,7 +42,7 @@ class GameState_Play extends GameState {
     currentMP: number;
     score: number;
     prevScore: number;
-
+    gameOver: boolean;
 
 
     constructor(game: GameEngine, level: Object) {
@@ -61,6 +61,12 @@ class GameState_Play extends GameState {
     }
 
     init() {
+        this.entityManager = new EntityManager();
+        this.levelObjective = this.entityManager.addEntity("levelObjective");
+        this.game.clearText("all");
+        this.gameOver = false;
+        this.score = 0;
+        this.prevScore = 0;
         let levelPos = new Vec(this.level.levelObjective[0], this.level.levelObjective[1]);
         this.levelObjective.addComponent(new CTransform(levelPos));
         this.levelObjective.addComponent(new CBoundingBox(new Vec(64, 64), true, true));
@@ -72,7 +78,6 @@ class GameState_Play extends GameState {
     loadLevel() {
 
         this.game.setBackground(this.background);
-        this.spawnPlayer(this.playerSpawn);
 
         // Parse in all Tiles from level file. 
         let tiles = this.level.entities.tiles;
@@ -120,7 +125,7 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width * 0.85, anim.height * 0.9), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(50));
@@ -132,7 +137,7 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation("icemanIdle", true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height*0.95), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(200));
@@ -143,7 +148,7 @@ class GameState_Play extends GameState {
             else if (npc.name === "exe") {
                 newNpc.addComponent(new CAnimation("exeIdle", true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(anim.width*0.85, anim.height* 0.95), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(150));
@@ -174,6 +179,7 @@ class GameState_Play extends GameState {
             newDec.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
         }
 
+        this.spawnPlayer(this.playerSpawn);
         this.game.drawText("Health: "+ this.currentHP  , 'hp','16px PS2P', '#FF0909', 20, 22);
         this.game.drawText("MP: " + this.currentMP  , 'mp','16px PS2P', '#0D09E3', 20, 44);
         this.game.drawText("Score: " + this.score  , 's','16px PS2P', '#00FF00', 800, 20);
@@ -181,7 +187,8 @@ class GameState_Play extends GameState {
 
 
     spawnPlayer(pos: Vec) {
-        this.player.addComponent(new CTransform(pos));
+        this.player = this.entityManager.addEntity("player");
+        this.player.addComponent(new CTransform(new Vec(this.level.playerSpawn[0], this.level.playerSpawn[1])));
         this.player.addComponent(new CAnimation('playerIdle', true));
         this.player.addComponent(new CBoundingBox(new Vec(35, 45), true, true));
         this.player.addComponent(new CGravity(0.3));
@@ -198,7 +205,7 @@ class GameState_Play extends GameState {
         this.entityManager.update();
         this.sUserInput();
 
-        if (!this.paused) {
+        if (!this.gameOver) {
             this.sAI();
             this.sMovement();
             this.sLifespan();
@@ -206,6 +213,10 @@ class GameState_Play extends GameState {
             this.sPlayerMeele();
             this.sHealth();
             this.sMagic();
+            this.sAnimation();
+        }
+        else {
+            this.sLifespan();
             this.sAnimation();
         }
 
@@ -248,6 +259,11 @@ class GameState_Play extends GameState {
             }
         }
 
+        if (inputMap.r && this.gameOver) {
+            inputMap.r =0;
+            this.init();
+        }
+
         playerInput.up = inputMap.w;
         playerInput.down = inputMap.s;
         playerInput.left = inputMap.a;
@@ -271,7 +287,7 @@ class GameState_Play extends GameState {
             fireball.addComponent(new CBoundingBox(new Vec(25, 25), false, false));
             fireball.addComponent(new CAnimation("playerFireball",true));
             fireball.addComponent(new CLifespan(2000));
-            fireball.getComponent(CTransform).speed.x = 6 * facing;
+            fireball.getComponent(CTransform).speed.x = 7 * facing;
             fireball.getComponent(CTransform).facing = facing;
             this.game.playSound("playerFireball");
             this.player.getComponent(CMagic).mp -= 10;
@@ -537,10 +553,11 @@ class GameState_Play extends GameState {
             // If the death animation is over, kill the entity.
             else if (hasEnded) {
                 e.destroy();
-                // If the player is dead, got back to the menu.
+                // If the player is dead, got back to the menu.fc
                 if (startsWith === 'player') {
-                    this.game.clearText('hp');
-                    this.game.popState();
+                    this.gameOver = true;
+                    this.game.drawText("Game Over", 'go','68px Seagram', '#FF0909', 360,  250);
+                    this.game.drawText("Press ESC to leave or R to retry...", 'got','20px Seagram', '#FF0909', 360,  370);
                 }
                 else {
                     this.score += 100;
@@ -611,8 +628,11 @@ class GameState_Play extends GameState {
     handleRanged(e: Entity) {
         let state = e.getComponent(CState).state;
         let vision = e.getComponent(CFollow).hasVision;
-        if (state !== 'hurt' && state !== 'dying' && vision) {
-            let ranged = e.getComponent(CRanged);
+        let dist = e.getComponent(CTransform).pos.distf(this.player.getComponent(CTransform).pos);
+        let ranged = e.getComponent(CRanged);
+
+        if (state !== 'hurt' && state !== 'dying' && vision && dist <  ranged.range) {
+            
             if (ranged.clock.elapsedTime > ranged.cooldown) {
                 ranged.clock.stop();
                 ranged.clock.elapsedTime = 0;
@@ -858,7 +878,9 @@ class GameState_Play extends GameState {
         if (objectiveOverlap.x > 0 && objectiveOverlap.y > 0) {
             this.game.setScore(this.score, this.level.name);
             this.game.setNextLevel(this.level.name);
-            this.game.popState();
+            this.gameOver = true;
+            this.game.drawText("Victory!", 'go','68px Seagram', '#00FF00', 375,  250);
+            this.game.drawText("Press ESC to leave or R to retry...", 'got','20px Seagram', '#00FF00', 360,  370);
         }
     }
 
@@ -902,7 +924,6 @@ class GameState_Play extends GameState {
             magic.canMagic = true;
         }
     }
-
 
     sLifespan() {
         let projectiles = this.entityManager.getEntitiesByTag("projectile");

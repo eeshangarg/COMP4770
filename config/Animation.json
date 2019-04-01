@@ -1186,8 +1186,8 @@
         "type": "static",
         "AnimationName": "objective",
         "SpriteName": "objective",
-        "frameCount": 48, 
-        "fps": 60,
+        "frameCount": 24, 
+        "fps": 30,
         "x": 100,
         "y": 64
     },

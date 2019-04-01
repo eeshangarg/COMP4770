@@ -1,44 +1,4909 @@
 {
     "username": "default",
     "name": "level 1",
-    "background": "bg_cave",
-    "playerSpawn": [50, 50],
-    "levelObjective": [250, 50],
+    "background": "bg_desrt",
+    "playerSpawn": [
+        150,
+        43
+    ],
+    "levelObjective": [
+        3712,
+        64
+    ],
     "entities": {
-        "tiles": [{
-                "sprite": "grass-platform-corner-L",
-                "pos": [-16, 0]
+        "tiles": [
+            {
+                "pos": [
+                    24,
+                    8
+                ],
+                "sprite": "soil-platorm-corner-L"
             },
             {
-                "sprite": "grass-platform",
-                "pos": [0, 0]
+                "pos": [
+                    72,
+                    8
+                ],
+                "sprite": "soil-platorm-corner-R"
             },
             {
-                "sprite": "grass-platform",
-                "pos": [16, 0]
+                "pos": [
+                    40,
+                    8
+                ],
+                "sprite": "soil-platform"
             },
             {
-                "sprite": "grass-platform",
-                "pos": [32, 0]
+                "pos": [
+                    56,
+                    8
+                ],
+                "sprite": "soil-platform"
             },
             {
-                "sprite": "grass-platform",
-                "pos": [48, 0]
+                "pos": [
+                    88,
+                    8
+                ],
+                "sprite": "soil-platform"
             },
             {
-                "sprite": "grass-platform",
-                "pos": [60, 0]
+                "pos": [
+                    104,
+                    8
+                ],
+                "sprite": "soil-platform"
             },
             {
-                "sprite": "grass-platform-corner-R",
-                "pos": [72, 0]
+                "pos": [
+                    120,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    136,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    152,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    168,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    184,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    216,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    200,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    232,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    248,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    264,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    280,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    296,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    312,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    328,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    344,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    360,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    376,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    392,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    408,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    424,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    440,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    456,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    472,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    488,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    504,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    520,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    536,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    552,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    568,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    584,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    600,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    616,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    632,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    648,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    664,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    680,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    696,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    712,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    728,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    248,
+                    24
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    264,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    280,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    312,
+                    24
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    296,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    280,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    296,
+                    40
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    280,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    744,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    760,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    776,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    792,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    808,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    824,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    840,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    856,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    872,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    888,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    904,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    920,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    936,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    952,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    968,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    984,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1000,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1016,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1032,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1048,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1064,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1080,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1096,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1112,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1128,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1144,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1160,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1176,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1192,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1208,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1224,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1240,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1256,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1272,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1288,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1304,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1320,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1336,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1352,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1368,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1384,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1400,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1416,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1432,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1448,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1464,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1480,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1496,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1512,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1528,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1544,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1560,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1592,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1576,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1608,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1784,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1800,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1816,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1832,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1848,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1864,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1880,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1896,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1928,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1944,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1976,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2024,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2008,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2056,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2072,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2088,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2312,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2376,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2408,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2472,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    56
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    2248,
+                    88
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    2328,
+                    120
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    2184,
+                    56
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    2344,
+                    120
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    2296,
+                    88
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    2168,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2280,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2632,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2664,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2696,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2728,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2744,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2760,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2776,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2792,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2808,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2824,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2840,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    824,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    840,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    856,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    872,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    888,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    904,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    920,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    936,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    952,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    840,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    856,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    872,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    888,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    904,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    920,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    936,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    856,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    872,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    888,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    904,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    920,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    872,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    888,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1560,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1576,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1592,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1608,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1784,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1800,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1816,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1576,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1592,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1608,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1784,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1608,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1800,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1592,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1784,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1608,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1768,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1752,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1624,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1640,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1736,
+                    104
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1656,
+                    120
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    120
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    120
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    120
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1720,
+                    120
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1672,
+                    136
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    136
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1704,
+                    136
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1688,
+                    152
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    1832,
+                    24
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1688,
+                    168
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2856,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2872,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2888,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    88
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2872,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2888,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    -24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2984,
+                    -24
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2968,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    72
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2888,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2872,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2856,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2840,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    40
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    24
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    56
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2856,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2872,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2888,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2888,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2824,
+                    -8
+                ],
+                "sprite": "water"
+            },
+            {
+                "pos": [
+                    2808,
+                    -8
+                ],
+                "sprite": "water"
+            },
+            {
+                "pos": [
+                    2792,
+                    -8
+                ],
+                "sprite": "water"
+            },
+            {
+                "pos": [
+                    2776,
+                    -8
+                ],
+                "sprite": "water"
+            },
+            {
+                "pos": [
+                    2760,
+                    -8
+                ],
+                "sprite": "water"
+            },
+            {
+                "pos": [
+                    2744,
+                    -8
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2888,
+                    56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2872,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2856,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2840,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    264,
+                    40
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1816,
+                    40
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1800,
+                    56
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1784,
+                    72
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1768,
+                    88
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1752,
+                    104
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1736,
+                    120
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1720,
+                    136
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1704,
+                    152
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    1544,
+                    24
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1560,
+                    40
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1576,
+                    56
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1592,
+                    72
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1608,
+                    88
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1624,
+                    104
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1640,
+                    120
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1656,
+                    136
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    1672,
+                    152
+                ],
+                "sprite": "soil-platorm-corner-L"
+            },
+            {
+                "pos": [
+                    2408,
+                    152
+                ],
+                "sprite": "desert-single-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    216
+                ],
+                "sprite": "desert-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2552,
+                    216
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    2568,
+                    216
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    216
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2680,
+                    232
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2696,
+                    232
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2712,
+                    232
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2792,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2808,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2840,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2824,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2872,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2856,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    168
+                ],
+                "sprite": "desert-single-platform"
+            },
+            {
+                "pos": [
+                    2520,
+                    200
+                ],
+                "sprite": "desert-single-platform"
+            },
+            {
+                "pos": [
+                    2664,
+                    232
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    2776,
+                    264
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    2728,
+                    232
+                ],
+                "sprite": "desert-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2888,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2904,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2920,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2952,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2936,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2984,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3016,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3000,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3032,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3048,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3064,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3080,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3096,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3112,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3128,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3160,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3144,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3176,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3192,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3224,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3208,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2712,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2680,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2648,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2616,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2568,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2600,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2584,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2504,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2488,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2520,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2536,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2552,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2440,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2424,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2456,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2392,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2344,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2360,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2328,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2296,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2248,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2264,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2216,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2152,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2104,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2120,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2136,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2168,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2184,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2200,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2232,
+                    -24
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3240,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3256,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3272,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3288,
+                    328
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3304,
+                    344
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    360
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    376
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    392
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    1992,
+                    8
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    1960,
+                    8
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    1912,
+                    8
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2040,
+                    8
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    2984,
+                    -8
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    24
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    8
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    56
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    40
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    88
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2984,
+                    72
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    2968,
+                    72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    2968,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3272,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3288,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3304,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    376
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    360
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    328
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    344
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    328
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    360
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    344
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    344
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3288,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3272,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3288,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3304,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3304,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3304,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    328
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    328
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3240,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3256,
+                    264
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3256,
+                    280
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3272,
+                    296
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3288,
+                    312
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3304,
+                    328
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3320,
+                    344
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    360
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    376
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3224,
+                    280
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3240,
+                    296
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3256,
+                    312
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3272,
+                    328
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3288,
+                    344
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3304,
+                    360
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3320,
+                    376
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3336,
+                    392
+                ],
+                "sprite": "desert-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3352,
+                    392
+                ],
+                "sprite": "desert-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3400,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3416,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3432,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3464,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3448,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    296
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    280
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3400,
+                    296
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3496,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3480,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3512,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3528,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    264
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    3400,
+                    280
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    3416,
+                    296
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    3560,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3544,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3576,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3592,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3608,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3624,
+                    312
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    344
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    3400,
+                    328
+                ],
+                "sprite": "soil-platorm-corner-R"
+            },
+            {
+                "pos": [
+                    3384,
+                    328
+                ],
+                "sprite": "soil-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    312
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    296
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    280
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    248
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    264
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    232
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3672,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3704,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3720,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3688,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3656,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3608,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3624,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3640,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3576,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3592,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3544,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3560,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3496,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3528,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3512,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3448,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3480,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3464,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3432,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    248
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    232
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    200
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    216
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    184
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    152
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    168
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    136
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    104
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    120
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    88
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3384,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3416,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3400,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3448,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3432,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3464,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3480,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3512,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3496,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3528,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3544,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3592,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3560,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3576,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3608,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3672,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3640,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3624,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3656,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3688,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3704,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3720,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3736,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3752,
+                    -8
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3144,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3128,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3112,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3240,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3224,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3256,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3336,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3352,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3368,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3432,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3448,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3464,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3528,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3544,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3560,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3640,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3656,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3672,
+                    -184
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3784,
+                    -168
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3800,
+                    -168
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3816,
+                    -168
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3880,
+                    -136
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3896,
+                    -136
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3912,
+                    -136
+                ],
+                "sprite": "cave-single-platform"
+            },
+            {
+                "pos": [
+                    3768,
+                    -8
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3784,
+                    -24
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3800,
+                    -40
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3816,
+                    -56
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3832,
+                    -72
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3736,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3752,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3768,
+                    -24
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3784,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3752,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3768,
+                    -40
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3784,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3768,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3800,
+                    -56
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3816,
+                    -72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3784,
+                    -72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3800,
+                    -72
+                ],
+                "sprite": "cave-platform"
+            },
+            {
+                "pos": [
+                    3720,
+                    -24
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3736,
+                    -40
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3752,
+                    -56
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3768,
+                    -72
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3752,
+                    312
+                ],
+                "sprite": "cave-platform-corner-R"
+            },
+            {
+                "pos": [
+                    3320,
+                    168
+                ],
+                "sprite": "cave-platform-corner-L"
+            },
+            {
+                "pos": [
+                    3320,
+                    24
+                ],
+                "sprite": "cave-platform-corner-L"
             }
         ],
         "npcs": [
+            {
+                "pos": [
+                    616,
+                    40
+                ],
+                "name": "imp"
+            },
+            {
+                "pos": [
+                    2570,
+                    17
+                ],
+                "name": "exe"
+            },
+            {
+                "pos": [
+                    1248.5,
+                    45
+                ],
+                "name": "exe"
+            },
+            {
+                "pos": [
+                    2346,
+                    11
+                ],
+                "name": "exe"
+            },
+            {
+                "pos": [
+                    1861,
+                    152
+                ],
+                "name": "imp"
+            },
+            {
+                "pos": [
+                    879,
+                    95
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    2804,
+                    32
+                ],
+                "name": "cowman"
+            },
+            {
+                "pos": [
+                    2935,
+                    99
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    3042,
+                    302
+                ],
+                "name": "cowman"
+            },
+            {
+                "pos": [
+                    3367,
+                    415
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    3470,
+                    222
+                ],
+                "name": "exe"
+            },
+            {
+                "pos": [
+                    3622,
+                    339
+                ],
+                "name": "goblin"
+            },
+            {
+                "pos": [
+                    3675,
+                    -55
+                ],
+                "name": "imp"
+            }
         ],
         "items": [
+            {
+                "pos": [
+                    1688,
+                    184
+                ],
+                "sprite": "heart"
+            },
+            {
+                "pos": [
+                    2952,
+                    88
+                ],
+                "sprite": "chest"
+            },
+            {
+                "pos": [
+                    2907,
+                    86
+                ],
+                "sprite": "chest"
+            },
+            {
+                "pos": [
+                    2972,
+                    105
+                ],
+                "sprite": "heart"
+            }
         ],
         "decs": [
+            {
+                "pos": [
+                    376,
+                    24
+                ],
+                "sprite": "frozen-plant"
+            },
+            {
+                "pos": [
+                    761,
+                    31
+                ],
+                "sprite": "desert-stone1"
+            },
+            {
+                "pos": [
+                    919,
+                    73
+                ],
+                "sprite": "desert-stone2"
+            },
+            {
+                "pos": [
+                    1190,
+                    32
+                ],
+                "sprite": "desert-stone3"
+            },
+            {
+                "pos": [
+                    1272,
+                    28
+                ],
+                "sprite": "desert-stone1"
+            },
+            {
+                "pos": [
+                    1071,
+                    25
+                ],
+                "sprite": "dead-plant"
+            },
+            {
+                "pos": [
+                    1400,
+                    24
+                ],
+                "sprite": "desert-stone2"
+            },
+            {
+                "pos": [
+                    1480,
+                    24
+                ],
+                "sprite": "desert-stone1"
+            },
+            {
+                "pos": [
+                    1336,
+                    24
+                ],
+                "sprite": "sign-right"
+            },
+            {
+                "pos": [
+                    1880,
+                    24
+                ],
+                "sprite": "dead-plant"
+            },
+            {
+                "pos": [
+                    2024,
+                    24
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    2473,
+                    -8
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    2473,
+                    6
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    2456,
+                    -8
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    2280,
+                    -8
+                ],
+                "sprite": "dead-plant"
+            },
+            {
+                "pos": [
+                    2376,
+                    -8
+                ],
+                "sprite": "torch"
+            },
+            {
+                "pos": [
+                    2376,
+                    8
+                ],
+                "sprite": "sun"
+            },
+            {
+                "pos": [
+                    1028,
+                    32
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    1434,
+                    30
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    2203,
+                    -5
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    483,
+                    30
+                ],
+                "sprite": "desert-stone3"
+            },
+            {
+                "pos": [
+                    37,
+                    25
+                ],
+                "sprite": "stone1"
+            },
+            {
+                "pos": [
+                    225,
+                    25
+                ],
+                "sprite": "stone2"
+            },
+            {
+                "pos": [
+                    277,
+                    71
+                ],
+                "sprite": "sign-right"
+            },
+            {
+                "pos": [
+                    66,
+                    25
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    82,
+                    25
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    75,
+                    39
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    2337,
+                    137
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    2792,
+                    280
+                ],
+                "sprite": "stone2"
+            },
+            {
+                "pos": [
+                    2680,
+                    248
+                ],
+                "sprite": "sign-right"
+            },
+            {
+                "pos": [
+                    2920,
+                    280
+                ],
+                "sprite": "stone1"
+            },
+            {
+                "pos": [
+                    2567,
+                    240
+                ],
+                "sprite": "frozen-tree1"
+            },
+            {
+                "pos": [
+                    2610,
+                    -1
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    2521,
+                    215
+                ],
+                "sprite": "dead-plant"
+            },
+            {
+                "pos": [
+                    2268,
+                    102
+                ],
+                "sprite": "stone2"
+            },
+            {
+                "pos": [
+                    3451,
+                    333
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    3138,
+                    280
+                ],
+                "sprite": "stump"
+            },
+            {
+                "pos": [
+                    3586,
+                    332
+                ],
+                "sprite": "cactus"
+            },
+            {
+                "pos": [
+                    3514,
+                    329
+                ],
+                "sprite": "stone1"
+            },
+            {
+                "pos": [
+                    3240,
+                    -168
+                ],
+                "sprite": "dead-plant"
+            },
+            {
+                "pos": [
+                    3576,
+                    200
+                ],
+                "sprite": "stone1"
+            },
+            {
+                "pos": [
+                    3464,
+                    8
+                ],
+                "sprite": "stone2"
+            },
+            {
+                "pos": [
+                    3384,
+                    8
+                ],
+                "sprite": "sign-right"
+            },
+            {
+                "pos": [
+                    3512,
+                    200
+                ],
+                "sprite": "mushroom2"
+            },
+            {
+                "pos": [
+                    3640,
+                    -168
+                ],
+                "sprite": "mushroom2"
+            },
+            {
+                "pos": [
+                    3528,
+                    8
+                ],
+                "sprite": "mushroom1"
+            },
+            {
+                "pos": [
+                    3576,
+                    8
+                ],
+                "sprite": "crate"
+            },
+            {
+                "pos": [
+                    2954,
+                    290
+                ],
+                "sprite": "frozen-tree1"
+            }
         ]
     }
 }

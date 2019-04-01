@@ -71,6 +71,7 @@ class GameEngine {
             n: 0,
             i: 0,
             b: 0,
+            r: 0,
             del: 0,
             ctrl: 0,
             shift: 0,
