@@ -82,38 +82,8 @@
     {
         "tag": "item",
         "type": "static",
-        "AnimationName": "green_potion",
-        "SpriteName": "green_potion",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
         "AnimationName": "heart",
         "SpriteName": "heart",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
-        "AnimationName": "key_gold",
-        "SpriteName": "key_gold",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
-        "AnimationName": "key",
-        "SpriteName": "key",
         "frameCount": 1,
         "fps": 30,
         "x": 16,
@@ -132,48 +102,8 @@
     {
         "tag": "item",
         "type": "static",
-        "AnimationName": "purple_potion",
-        "SpriteName": "purple_potion",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
         "AnimationName": "red_potion",
         "SpriteName": "red_potion",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
-        "AnimationName": "spell_blue",
-        "SpriteName": "spell_blue",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
-        "AnimationName": "spell_red",
-        "SpriteName": "spell_red",
-        "frameCount": 1,
-        "fps": 30,
-        "x": 16,
-        "y": 16
-    },
-    {
-        "tag": "item",
-        "type": "static",
-        "AnimationName": "yellow_potion",
-        "SpriteName": "yellow_potion",
         "frameCount": 1,
         "fps": 30,
         "x": 16,
@@ -892,7 +822,7 @@
         "SpriteNameR": "playerReactionR",
         "SpriteNameL": "playerReactionL",
         "frameCount": 5, 
-        "fps": 5,
+        "fps": 10,
         "x": 50,
         "y": 50
     },

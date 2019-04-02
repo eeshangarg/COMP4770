@@ -7,7 +7,8 @@ const Animation = require('./../rendering/Animation.js');
 const getAnimation = require('./../rendering/Rendering.js').getAnimation;
 // $FlowFixMe
 const Clock = require('@gamestdio/clock');
-const MAX_COMPONENTS = 15;
+
+const MAX_COMPONENTS = 17;
 
 // Think of this as an abstract base class
 class Component {
@@ -276,6 +277,53 @@ class CMagic extends Component {
 CLifespan.INDEX = 14;
 
 
+/* istanbul ignore next */
+class CItem extends Component {
+    static INDEX: number;
+
+    type: string;
+    amount: number;
+
+    constructor(t: string, a: number) {
+        super();
+        this.type = t;
+        this.amount = a;
+    }
+}
+CItem.INDEX = 15;
+
+
+/* istanbul ignore next */
+class CInventory extends Component {
+    static INDEX: number;
+
+    redPotions: number;
+    bluePotions: number;
+
+    constructor() {
+        super();
+        this.redPotions = 0;
+        this.bluePotions = 0;
+    }
+}
+CInventory.INDEX = 16;
+
+
+/* istanbul ignore next */
+class CScore extends Component {
+    static INDEX: number;
+
+    score: number;
+
+    constructor(score: number) {
+        super();
+        this.score = score;
+    }
+}
+CScore.INDEX = 17;
+
+
+
 module.exports = {
     'Component': Component,
     'CTransform': CTransform,
@@ -293,5 +341,8 @@ module.exports = {
     'CProjectile': CProjectile,
     'CLifespan': CLifespan,
     'CMagic': CMagic,
+    'CItem': CItem,
+    'CInventory': CInventory,
+    'CScore': CScore,
     'MAX_COMPONENTS': MAX_COMPONENTS
 };

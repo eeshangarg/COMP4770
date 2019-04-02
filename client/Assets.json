@@ -343,26 +343,8 @@
   },
   {
     "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/green_potion.png",
-    "SpriteName": "green_potion",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/heart.png",
     "SpriteName": "heart",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/key_gold.png",
-    "SpriteName": "key_gold",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/key.png",
-    "SpriteName": "key",
     "Type": "Sprite"
   },
   {
@@ -373,32 +355,8 @@
   },
   {
     "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/purple_potion.png",
-    "SpriteName": "purple_potion",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
     "ImageSource": "/client/assets/images/items/red_potion.png",
     "SpriteName": "red_potion",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/spell_blue.png",
-    "SpriteName": "spell_blue",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/spell_red.png",
-    "SpriteName": "spell_red",
-    "Type": "Sprite"
-  },
-  {
-    "FrameCount": 1,
-    "ImageSource": "/client/assets/images/items/yellow_potion.png",
-    "SpriteName": "yellow_potion",
     "Type": "Sprite"
   },
   {

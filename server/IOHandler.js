@@ -206,9 +206,10 @@ function newAccHanlder(ws, data, db) {
                     }
 
                     for (let i = 0; i < spLevels.length; i++) {
-                        spLevels[i].name = "SP Level " + (i+1);
-                        spLevels[i].username = data.username;
-                        levels.push(Object.assign({},spLevels[i]));
+                        let copy = Object.assign({},spLevels[i]);
+                        copy.name = "SP Level " + (i+1);
+                        copy.username = data.username;
+                        levels.push(copy);
                     }
 
                     db.collection(data.username + 'Levels').insertMany(levels, function(err, result) {

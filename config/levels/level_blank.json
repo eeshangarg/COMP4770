@@ -3,12 +3,12 @@
   "name": "level-blank",
   "background": "bg_cave",
   "playerSpawn": [
-    50,
-    50
-  ],
-  "levelObjective": [
     0,
     0
+  ],
+  "levelObjective": [
+    150,
+    150
   ],
     "entities": {
         "tiles": [
