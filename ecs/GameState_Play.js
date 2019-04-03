@@ -135,7 +135,7 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.75), Math.round(anim.height * 0.85)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(75));
@@ -151,7 +151,7 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(225));
+                newNpc.addComponent(new CHealth(200));
                 newNpc.addComponent(new CMeele(25, new Vec(25, 40), 2200, 75, 20, 3, 5));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 0.75, false));
                 newNpc.addComponent(new CScore(3500));
@@ -309,7 +309,7 @@ class GameState_Play extends GameState {
         if (inputMap.one) {
             this.player.addComponent(new CAnimation('playerIdle', true));
             this.player.addComponent(new CBoundingBox(new Vec(35, 45), true, true));
-            this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 6, 11));
+            this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 4, 9));
         }
         if (inputMap.two) {
             this.player.addComponent(new CAnimation('icemanIdle', true));
@@ -353,13 +353,13 @@ class GameState_Play extends GameState {
             let facing = this.player.getComponent(CTransform).facing;
             let fireball = this.entityManager.addEntity('projectile');
             let playerPos = this.player.getComponent(CTransform).pos;
-            let fireballPos = new Vec(playerPos.x + 5 * facing, playerPos.y + 4);
+            let fireballPos = new Vec(playerPos.x + 3 * facing, playerPos.y + 4);
             fireball.addComponent(new CTransform(fireballPos));
             fireball.addComponent(new CProjectile(75, true));
-            fireball.addComponent(new CBoundingBox(new Vec(20, 15), false, false));
+            fireball.addComponent(new CBoundingBox(new Vec(23, 18), false, false));
             fireball.addComponent(new CAnimation("playerFireball", true));
-            fireball.addComponent(new CLifespan(2000));
-            fireball.getComponent(CTransform).speed.x = 8 * facing;
+            fireball.addComponent(new CLifespan(1500));
+            fireball.getComponent(CTransform).speed.x = 7 * facing;
             fireball.getComponent(CTransform).facing = facing;
             this.game.playSound("playerFireball");
             this.player.getComponent(CMagic).mp -= 20;
@@ -430,7 +430,7 @@ class GameState_Play extends GameState {
         let playerTransform = this.player.getComponent(CTransform);
         playerTransform.prevPos = new Vec(playerTransform.pos.x, playerTransform.pos.y);
 
-        if (playerInput.jumpClock.elapsedTime > 220 ) {
+        if (playerInput.jumpClock.elapsedTime > 300) {
             playerInput.jumpClock.stop();
             playerInput.jumpClock.elapsedTime = 0;
             playerInput.canJump = true;
@@ -768,7 +768,7 @@ class GameState_Play extends GameState {
         projectile.addComponent(new CTransform(new Vec(entityPos.x, entityPos.y)));
         projectile.getComponent(CTransform).speed = new Vec(speedVec.x, speedVec.y);
         projectile.addComponent(new CAnimation('impProjectile', true));
-        projectile.addComponent(new CLifespan(2000));
+        projectile.addComponent(new CLifespan(1600));
         projectile.addComponent(new CProjectile(10, false));
         let animation = projectile.getComponent(CAnimation).animation;
         let bounds = new Vec(animation.width, animation.height);
@@ -939,26 +939,30 @@ class GameState_Play extends GameState {
         // Calculate all NPC tile / player cols.
         for (let i = 0; i < npcs.length; i++) {
             let npc = npcs[i];
-            npc.getComponent(CState).grounded = false;
+            let npcState = npc.getComponent(CState);
+            npcState.grounded = false;
             if (!npc.hasComponent(CBoundingBox)) {
                 continue;
             }
-            this.handleRectangularCollisions(this.player, npc);
-            for (let j = 0; j < tiles.length; j++) {
-                this.handleRectangularCollisions(npc, tiles[j]);
-            }
 
-            for (let j = 0; j < projectiles.length; j++) {
-                let projectile = projectiles[j];
-                if (projectile.getComponent(CProjectile).friendly) {
-                    let overlap = Physics.getOverlap(projectile, npc);
-                    if (overlap.x > 0.0 && overlap.y >= 0.0) {
-                        npc.getComponent(CState).state = 'hurt';
-                        npc.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
-                        this.spawnExplosion(projectile);
-                        projectile.destroy();
+            if (npcState.state !== "dying") {
+                this.handleRectangularCollisions(this.player, npc);
+                for (let j = 0; j < projectiles.length; j++) {
+                    let projectile = projectiles[j];
+                    if (projectile.getComponent(CProjectile).friendly) {
+                        let overlap = Physics.getOverlap(projectile, npc);
+                        if (overlap.x > 0.0 && overlap.y >= 0.0) {
+                            npc.getComponent(CState).state = 'hurt';
+                            npc.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
+                            this.spawnExplosion(projectile);
+                            projectile.destroy();
+                        }
                     }
                 }
+            }
+
+            for (let j = 0; j < tiles.length; j++) {
+                this.handleRectangularCollisions(npc, tiles[j]);
             }
         }
 
@@ -1011,8 +1015,8 @@ class GameState_Play extends GameState {
             this.game.setScore(this.score, this.level.name);
             this.game.setNextLevel(this.level.name);
             this.gameOver = true;
-            this.game.drawText("Victory!", 'go','68px Seagram', '#00FF00', 375,  250);
-            this.game.drawText("Press ESC to leave or Enter to retry...", 'got','20px Seagram', '#00FF00', 360,  370);
+            this.game.drawText("Victory!", 'go','68px Seagram', '#ffd700', 375,  250);
+            this.game.drawText("Press ESC to leave or Enter to retry...", 'got','20px Seagram', '#ffd700', 360,  370);
         }
     }
 
