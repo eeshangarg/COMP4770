@@ -18,8 +18,6 @@ const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 socket.binaryType = "arraybuffer";
 
-
-let inputQueue = [];
 let inputEmitInterval = null;
 let loadingInterval = null;
 let loginInterval = null;
@@ -119,13 +117,11 @@ function SocketHandler() {
 
     document.onkeydown = function(event) {
         queueInput(event.keyCode, 1);
-        emitInput();
     }
 
     // key down event, que a input with state and key.
     document.onkeyup = function(event) {
         queueInput(event.keyCode, 0);
-        emitInput();
     }
 
     document.onmouseup = function(event) {
@@ -359,10 +355,7 @@ function renderFrame(data, playerPos) {
 // A function to handle Updating the mouse pos.
 function updateMousePos(evt) {
     let pos = getMousePos(evt);
-    if (pos != mousePos) {
-        mousePos = pos;
-        queueInput(-1, [Math.round(pos.x), 576 - Math.round(pos.y)]);
-    }
+    queueInput(-1, [Math.round(pos.x), 576 - Math.round(pos.y)]);
 }
 
 
@@ -377,23 +370,15 @@ function getMousePos(evt) {
 }
 
 
-// Send the inputs to server from Input Queue.
-function emitInput() {
-    let message = {
-        t: 'i',
-        d: inputQueue
-    };
-    socket.send(JSON.stringify(message));
-    inputQueue = [];
-}
-
 // Push a input message into the queue.
 function queueInput(key, state) {
     if (keys.includes(key)){
-        inputQueue.push({
+        let message = {
+            t: 'i',
             k: key,
             s: state
-        });
+        };
+        socket.send(JSON.stringify(message));
     }
 }
 

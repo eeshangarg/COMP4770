@@ -112,9 +112,9 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(100));
-                newNpc.addComponent(new CMeele(20, new Vec(35, 42), 1500, 75, 20, 4, 7));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 2.5, true));
+                newNpc.addComponent(new CHealth(150));
+                newNpc.addComponent(new CMeele(20, new Vec(35, 40), 1800, 75, 20, 4, 7));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 2, true));
                 newNpc.addComponent(new CScore(2500));
             }
             // Create a imp NPC, assign all components.
@@ -127,7 +127,7 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CGravity(0.0));
                 newNpc.addComponent(new CHealth(50));
                 newNpc.addComponent(new CRanged(500, 2000));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 150, 750, 2, false));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 150, 750, 1.5, false));
                 newNpc.addComponent(new CScore(1500));
             }
             // Create a goblin NPC, assign all components.
@@ -138,9 +138,9 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(50));
-                newNpc.addComponent(new CMeele(5, new Vec(25, 10), 1000, 60, 10, 1, 3));
-                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 70, 350, 2, true));
+                newNpc.addComponent(new CHealth(75));
+                newNpc.addComponent(new CMeele(5, new Vec(20, 15), 1000, 60, 10, 1, 3));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 70, 350, 1.75, true));
                 newNpc.addComponent(new CScore(1000));
             }
             // Create a iceman, assign all of its need components.
@@ -151,8 +151,8 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(200));
-                newNpc.addComponent(new CMeele(25, new Vec(25, 40), 2000, 75, 20, 3, 5));
+                newNpc.addComponent(new CHealth(225));
+                newNpc.addComponent(new CMeele(25, new Vec(25, 40), 2200, 75, 20, 3, 5));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 0.75, false));
                 newNpc.addComponent(new CScore(3500));
             }
@@ -163,8 +163,8 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(150));
-                newNpc.addComponent(new CMeele(25, new Vec(25, 60), 1800, 75, 25, 2, 4));
+                newNpc.addComponent(new CHealth(200));
+                newNpc.addComponent(new CMeele(20, new Vec(23, 55), 2000, 75, 25, 2, 4));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 65, 500, 1.5, true));
                 newNpc.addComponent(new CScore(3000));
             }
@@ -225,7 +225,7 @@ class GameState_Play extends GameState {
         this.player.addComponent(new CGravity(0.3));
         this.player.addComponent(new CState('idle'));
         this.player.addComponent(new CInput());
-        this.player.addComponent(new CMeele(25, new Vec(20, 30), 0, 0, 15, 6, 11));
+        this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 4, 9));
         this.player.addComponent(new CHealth(100));
         this.player.addComponent(new CMagic(100));
         this.player.addComponent(new CInventory());
@@ -309,32 +309,32 @@ class GameState_Play extends GameState {
         if (inputMap.one) {
             this.player.addComponent(new CAnimation('playerIdle', true));
             this.player.addComponent(new CBoundingBox(new Vec(35, 45), true, true));
-            this.player.addComponent(new CMeele(25, new Vec(20, 30), 0, 0, 15, 6, 11));
+            this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 6, 11));
         }
         if (inputMap.two) {
             this.player.addComponent(new CAnimation('icemanIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(25, new Vec(25, 40), 2000, 75, 20, 3, 5));
+            this.player.addComponent(new CMeele(100, new Vec(25, 40), 2000, 75, 20, 3, 5));
         }
         if (inputMap.three) {
             this.player.addComponent(new CAnimation('exeIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(25, new Vec(25, 60), 1800, 75, 25, 2, 4));
+            this.player.addComponent(new CMeele(50, new Vec(25, 60), 1800, 75, 25, 2, 4));
         }
         if (inputMap.four) {
             this.player.addComponent(new CAnimation('cowmanIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(20, new Vec(35, 42), 1500, 75, 20, 4, 7));
+            this.player.addComponent(new CMeele(50, new Vec(35, 42), 1500, 75, 20, 4, 7));
 
         }
         if (inputMap.five) {
             this.player.addComponent(new CAnimation('goblinIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(5, new Vec(25, 10), 1000, 60, 10, 1, 3));
+            this.player.addComponent(new CMeele(20, new Vec(25, 10), 1000, 60, 10, 1, 3));
         }
 
         playerInput.up = inputMap.w;
@@ -347,7 +347,7 @@ class GameState_Play extends GameState {
 
     playerFireball() {
         let canMagic = this.player.getComponent(CMagic).canMagic;
-        if (canMagic && this.player.getComponent(CMagic).mp >= 10) {
+        if (canMagic && this.player.getComponent(CMagic).mp >= 20) {
             this.player.getComponent(CMagic).canMagic = false;
             this.player.getComponent(CMagic).clock.start(true);
             let facing = this.player.getComponent(CTransform).facing;
@@ -355,14 +355,14 @@ class GameState_Play extends GameState {
             let playerPos = this.player.getComponent(CTransform).pos;
             let fireballPos = new Vec(playerPos.x + 5 * facing, playerPos.y + 4);
             fireball.addComponent(new CTransform(fireballPos));
-            fireball.addComponent(new CProjectile(50, true));
+            fireball.addComponent(new CProjectile(75, true));
             fireball.addComponent(new CBoundingBox(new Vec(20, 15), false, false));
             fireball.addComponent(new CAnimation("playerFireball", true));
             fireball.addComponent(new CLifespan(2000));
             fireball.getComponent(CTransform).speed.x = 8 * facing;
             fireball.getComponent(CTransform).facing = facing;
             this.game.playSound("playerFireball");
-            this.player.getComponent(CMagic).mp -= 10;
+            this.player.getComponent(CMagic).mp -= 20;
         }
     }
 
@@ -430,6 +430,12 @@ class GameState_Play extends GameState {
         let playerTransform = this.player.getComponent(CTransform);
         playerTransform.prevPos = new Vec(playerTransform.pos.x, playerTransform.pos.y);
 
+        if (playerInput.jumpClock.elapsedTime > 220 ) {
+            playerInput.jumpClock.stop();
+            playerInput.jumpClock.elapsedTime = 0;
+            playerInput.canJump = true;
+        }
+
         // Check to see if player has fallen off the map.
         if (playerTransform.pos.y < -999) {
             this.player.getComponent(CHealth).health = 0;
@@ -455,8 +461,10 @@ class GameState_Play extends GameState {
         }
 
         // only allow the player to jump if they are grounded.
-        if (playerInput.up && playerState.grounded) {
+        if (playerInput.up && playerState.grounded && playerInput.canJump) {
             this.game.playSound('playerJump');
+            playerInput.canJump = false;
+            playerInput.jumpClock.start(true);
             playerState.grounded = false;
             playerInput.up = 0;
             playerTransform.speed.y += 7.5;
@@ -904,11 +912,20 @@ class GameState_Play extends GameState {
     }
 
 
-    spawnExplosion(pos: Vec) {
+    spawnExplosion(e: Entity) {
+        let pos = e.getComponent(CTransform).pos;
         let explode  = this.entityManager.addEntity("effect");
         explode.addComponent(new CTransform(pos));
-        explode.addComponent(new CAnimation("explode", false));
-        this.game.playSound("explode");
+        if (e.getComponent(CAnimation).animation.name === "playerFireball") {
+            explode.addComponent(new CAnimation("explode", false));
+            this.game.playSound("explode");
+        }
+        else {
+            explode.addComponent(new CAnimation("impExp", false));
+            this.game.playSound("impExp");
+        }
+        
+        
     }
 
 
@@ -938,7 +955,7 @@ class GameState_Play extends GameState {
                     if (overlap.x > 0.0 && overlap.y >= 0.0) {
                         npc.getComponent(CState).state = 'hurt';
                         npc.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
-                        this.spawnExplosion(npc.getComponent(CTransform).pos);
+                        this.spawnExplosion(projectile);
                         projectile.destroy();
                     }
                 }
@@ -953,7 +970,7 @@ class GameState_Play extends GameState {
                 let tile = tiles[j];
                 let overlap = Physics.getOverlap(projectile, tile);
                 if (overlap.x > 0.0 && overlap.y >= 0.0) {
-                    this.spawnExplosion(projectile.getComponent(CTransform).pos);
+                    this.spawnExplosion(projectile);
                     projectile.destroy();
                 }
             }
@@ -964,7 +981,7 @@ class GameState_Play extends GameState {
                 if (overlap.x > 0.0 && overlap.y >= 0.0) {
                     this.player.getComponent(CState).state = 'hurt';
                     this.player.getComponent(CHealth).health -= projectile.getComponent(CProjectile).damage;
-                    this.spawnExplosion(this.player.getComponent(CTransform).pos);
+                    this.spawnExplosion(projectile);
                     projectile.destroy();
                 }
             }
@@ -1082,6 +1099,7 @@ class GameState_Play extends GameState {
             let lifeSpan = projectile.getComponent(CLifespan).duration;
             let clock = projectile.getComponent(CLifespan).clock;
             if (clock.elapsedTime > lifeSpan) {
+                this.spawnExplosion(projectile);
                 projectile.destroy();
             }
         }
