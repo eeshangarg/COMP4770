@@ -99,14 +99,12 @@ class GameEngine {
 
     // The man "Run" loop of the game engine. Hold the run-interval.
     run() {
-        let self = this.self;
-        this.runInterval = setInterval(function(self: GameEngine) {
-            if (self.running) {
-                self.update();
-            } else {
-                clearInterval(this)
-            }
-        }, 16, self);
+        if (this.running) {
+            let start = process.hrtime()
+            this.update();
+            let end = process.hrtime(start)
+            setTimeout(this.run.bind(this), 16.666 - end[1] / 1000000);
+        }
     }
 
     // The key-update loop of the engine. 
@@ -335,7 +333,6 @@ class GameEngine {
         }
 
     }
-
 
 
 
