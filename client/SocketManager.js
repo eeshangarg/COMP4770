@@ -19,7 +19,6 @@ const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 socket.binaryType = "arraybuffer";
 
 
-
 let inputQueue = [];
 let inputEmitInterval = null;
 let loadingInterval = null;
@@ -117,16 +116,16 @@ function SocketHandler() {
     // Add the event handler for mouse , movement.
     window.addEventListener('mousemove', updateMousePos, false);
     // key up event, que a input with state and key.
-    
-    inputEmitInterval = setInterval(emitInput, 16);
 
     document.onkeydown = function(event) {
         queueInput(event.keyCode, 1);
+        emitInput();
     }
 
     // key down event, que a input with state and key.
     document.onkeyup = function(event) {
         queueInput(event.keyCode, 0);
+        emitInput();
     }
 
     document.onmouseup = function(event) {
@@ -380,16 +379,13 @@ function getMousePos(evt) {
 
 // Send the inputs to server from Input Queue.
 function emitInput() {
-    if (inputQueue.length != 0) {
-        let message = {
-            t: 'i',
-            d: inputQueue
-        };
-        socket.send(JSON.stringify(message));
-        inputQueue = [];
-    }
+    let message = {
+        t: 'i',
+        d: inputQueue
+    };
+    socket.send(JSON.stringify(message));
+    inputQueue = [];
 }
-
 
 // Push a input message into the queue.
 function queueInput(key, state) {
