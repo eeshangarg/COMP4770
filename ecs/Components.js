@@ -46,7 +46,7 @@ class CInput extends Component {
     right: boolean;
     shoot: boolean;
     canJump: boolean;
-    Clock: jumpClock;
+    jumpClock: Clock;
 
     constructor() {
         super();
