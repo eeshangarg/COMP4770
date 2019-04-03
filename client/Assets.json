@@ -1,12 +1,12 @@
 [
   {
-    "FrameCount": 13,
+    "FrameCount": 11,
     "ImageSource": "/client/assets/images/player/Knight_attack_L.png",
     "SpriteName": "playerAtkL",
     "Type": "Sprite"
   },
   {
-    "FrameCount": 13,
+    "FrameCount": 11,
     "ImageSource": "/client/assets/images/player/Knight_attack_R.png",
     "SpriteName": "playerAtkR",
     "Type": "Sprite"
@@ -919,6 +919,12 @@
   },
   {
     "FrameCount": 6,
+    "ImageSource": "/client/assets/images/npc/imp/imp_explosion.png",
+    "SpriteName":"impExp",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 6,
     "ImageSource": "/client/assets/images/npc/iceman/iceman_run_L.png",
     "SpriteName":"icemanRunL",
     "Type": "Sprite"
@@ -939,6 +945,11 @@
     "Type":"Sound",
     "soundName":"explode",
     "soundSource":"/client/assets/sounds/effects/explode.mp3"
+  },
+  {
+    "Type":"Sound",
+    "soundName":"impExp",
+    "soundSource":"/client/assets/sounds/npc/imp/imp_exp.mp3"
   },
   {
     "Type":"Sound",

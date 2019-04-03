@@ -243,8 +243,6 @@ function newAccHanlder(ws, data, db) {
 function IOHandler(ws, db) {
     // Clear the file loading listener.
     ws.removeAllListeners('message');
-    // Create a instance of a fakeGameEngine passed the socket.
-
     let game = new GameEngine(ws, db, spLevels);
     game.init();
 
@@ -256,17 +254,9 @@ function IOHandler(ws, db) {
         // Data.t, Type: 'i' -> Input. 
         if (data.t === 'i') {
             let map = ws.GameEngine.getInputMap();
-            let inputMap = updateInputData(data.d, map);
+            let inputMap = updateInputData(data, map);
             ws.GameEngine.setInputMap(inputMap);
         }
-        /* 
-        TODO add more message types here... Sounds, ect.
-            i.e: 
-                else if (data.t === 'l') {
-                    saveLevel(data.d);
-                } ... 
-        */
-
     });
 }
 
@@ -350,109 +340,107 @@ function setBackgroundGradient(ws, c1, c2) {
 
 // The function to handle inputData, Sets inputs to Map then returns the map.
 function updateInputData(data, map) {
-    for (let i = 0; i < data.length; i++) {
-        let key = data[i].k;
-        switch (key) {
-            case -2: // -1 -> click
-                map.click = data[i].s;
-                break;
-            case -1: // 0 -> MousePos
-                map.mousePos = data[i].s;
-                break;
-            case 87: // 87 -> "W"
-                map.w = data[i].s;
-                break;
-            case 65: // 65 -> "A"
-                map.a = data[i].s;
-                break;
-            case 83: // 83 -> "S"
-                map.s = data[i].s;
-                break;
-            case 68: // 68 -> "D"
-                map.d = data[i].s;
-                break;
-            case 71: // 71 -> "G"
-                map.g = data[i].s;
-                break;
-            case 84: // 84 -> "T"
-                map.t = data[i].s;
-                break;
-            case 81: // 81 -> "Q"
-                map.q = data[i].s;
-                break;
-            case 69: // 69 -> "E"
-                map.e = data[i].s;
-                break;
-            case 89: // 89 -> "Y"
-                map.y = data[i].s;
-                break;
-            case 78: // 78 -> "N"
-                map.n = data[i].s;
-                break;
-            case 85: // 85 -> "U"
-                map.u = data[i].s;
-                break;
-            case 73: // 73 -> "I"
-                map.i = data[i].s;
-                break;
-            case 66: // 66 -> "B"
-                map.b = data[i].s;
-                break;
-            case 82: // 82 -> "R"
-                map.r = data[i].s;
-                break;
-            case 13: // 13 -> "Enter"
-                map.enter = data[i].s;
-                break;
-            case 32: // 32 -> "Space"
-                map.space = data[i].s;
-                break;
-            case 27: // 27 -> "Escape"
-                map.escape = data[i].s;
-                break;
-            case 37: // 37 -> ArrowKeyLeft
-                map.arrowLeft = data[i].s;
-                break;
-            case 38: // 38 -> ArrowKeyUp
-                map.arrowUp = data[i].s;
-                break;
-            case 39: // 39 -> ArrowKeyRight
-                map.arrowRight = data[i].s;
-                break;
-            case 40: // 39 -> ArrowKeyRight
-                map.arrowDown = data[i].s;
-                break;
-            case 46: // 46 -> ArrowKeyRight
-                map.del = data[i].s;
-                break;
-            case 49: // 49 -> 1
-                map.one = data[i].s;
-                break;
-            case 50: // 50 -> 2
-                map.two = data[i].s;
-                break;
-            case 51: // 51 -> 3
-                map.three = data[i].s;
-                break;
-            case 52: // 52 -> 4
-                map.four = data[i].s;
-                break;
-            case 53: // 53 -> 5
-                map.five = data[i].s;
-                break;
-            case 16: // 16 -> shift
-                map.shift = data[i].s;
-                break;
-            case 17: // 17 -> control
-                map.ctrl = data[i].s;
-                break;
-            case 187: // 187 -> +
-                map.plus = data[i].s;
-                break;
-            case 189: // 189 -> -
-                map.minus = data[i].s;
-                break;
-        }
+    let key = data.k;
+    switch (key) {
+        case -2: // -1 -> click
+            map.click = data.s;
+            break;
+        case -1: // 0 -> MousePos
+            map.mousePos = data.s;
+            break;
+        case 87: // 87 -> "W"
+            map.w = data.s;
+            break;
+        case 65: // 65 -> "A"
+            map.a = data.s;
+            break;
+        case 83: // 83 -> "S"
+            map.s = data.s;
+            break;
+        case 68: // 68 -> "D"
+            map.d = data.s;
+            break;
+        case 71: // 71 -> "G"
+            map.g = data.s;
+            break;
+        case 84: // 84 -> "T"
+            map.t = data.s;
+            break;
+        case 81: // 81 -> "Q"
+            map.q = data.s;
+            break;
+        case 69: // 69 -> "E"
+            map.e = data.s;
+            break;
+        case 89: // 89 -> "Y"
+            map.y = data.s;
+            break;
+        case 78: // 78 -> "N"
+            map.n = data.s;
+            break;
+        case 85: // 85 -> "U"
+            map.u = data.s;
+            break;
+        case 73: // 73 -> "I"
+            map.i = data.s;
+            break;
+        case 66: // 66 -> "B"
+            map.b = data.s;
+            break;
+        case 82: // 82 -> "R"
+            map.r = data.s;
+            break;
+        case 13: // 13 -> "Enter"
+            map.enter = data.s;
+            break;
+        case 32: // 32 -> "Space"
+            map.space = data.s;
+            break;
+        case 27: // 27 -> "Escape"
+            map.escape = data.s;
+            break;
+        case 37: // 37 -> ArrowKeyLeft
+            map.arrowLeft = data.s;
+            break;
+        case 38: // 38 -> ArrowKeyUp
+            map.arrowUp = data.s;
+            break;
+        case 39: // 39 -> ArrowKeyRight
+            map.arrowRight = data.s;
+            break;
+        case 40: // 39 -> ArrowKeyRight
+            map.arrowDown = data.s;
+            break;
+        case 46: // 46 -> ArrowKeyRight
+            map.del = data.s;
+            break;
+        case 49: // 49 -> 1
+            map.one = data.s;
+            break;
+        case 50: // 50 -> 2
+            map.two = data.s;
+            break;
+        case 51: // 51 -> 3
+            map.three = data.s;
+            break;
+        case 52: // 52 -> 4
+            map.four = data.s;
+            break;
+        case 53: // 53 -> 5
+            map.five = data.s;
+            break;
+        case 16: // 16 -> shift
+            map.shift = data.s;
+            break;
+        case 17: // 17 -> control
+            map.ctrl = data.s;
+            break;
+        case 187: // 187 -> +
+            map.plus = data.s;
+            break;
+        case 189: // 189 -> -
+            map.minus = data.s;
+            break;
     }
     return map;
 }
