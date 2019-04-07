@@ -373,6 +373,12 @@
   },
   {
     "FrameCount": 1,
+    "ImageSource": "/client/assets/images/background/story.png",
+    "SpriteName": "bg_story",
+    "Type": "Sprite"
+  },
+  {
+    "FrameCount": 1,
     "ImageSource": "/client/assets/images/background/bg_forest.png",
     "SpriteName": "bg_forest",
     "Type": "Sprite"

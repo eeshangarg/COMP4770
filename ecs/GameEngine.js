@@ -19,11 +19,13 @@ class GameEngine {
     spLevels: Array<Object>                // The single-player levels array.
     db: Object;                            // The data-base object.
     screenSize: Vec;                       // The screen size.
+    diff: number;                          // The difficulty value of the game.
     socket: Object;                        // The GameEngine's main socket.
     states: Array<GameState>;              // The current game state-stack.
     statesToPush: Array<GameState>;        // The Gamestates to be pushed into the stack.
     popStates: number;                     // The number of states to-be popped off the stack.
     running: boolean;                      // The running bool.
+    soundOn : boolean;                     // The boolean to toggle game-sound.
     inputMap: Object;                      // The socket-driven inputMap.
     renderQueue: Array<Object>;            // The queue which holds all elements to-be rendered next frame.
     quit: void => void;                    // The helper function to quit the game engine.
@@ -38,13 +40,12 @@ class GameEngine {
     drawFrame: Vec => void;                // The function which handles drawing a frame at a given pos.
     getCustomLevels: void => Array<Object>;// This function returns all of the current-user's custom levels.
     saveLevel: Object => void;             // This function saves the given level to the DB.
+    cheats: Object                         // The JSON object which holds the status of cheats.
     pushState: (state: string, key: number) => void;
     draw: (anim: Animation, dir: number, pos: Vec) => void;
     queueAnimation: (id: number, frame: number, dx: number, dy: number) => void;
     drawText: (textString: string, key: string, font: string, color: string, dx: number, dy: number) => void;
-
-    setBackground: string => void;
-    
+    setBackground: string => void;    
     clearText: string => void;
 
     constructor(socket: Object, database: Object, levels: Object) {
@@ -58,6 +59,7 @@ class GameEngine {
         this.popStates = 0;
         this.running = true;
         this.screenSize = new Vec(512,288);
+        this.diff = 1;
         this.inputMap = {
             w: 0,
             a: 0,
@@ -88,6 +90,17 @@ class GameEngine {
             five: 0,
             mousePos: [0,0]
         };
+
+        this.cheats = {
+            playAsNPCs: false,
+            superSpeed: false,
+            lowGravity: false,
+            godMode: false,
+            pvp: false
+        }
+
+        this.soundOn = true;
+
         io = require('./../server/IOHandler.js');
     }
 
@@ -99,6 +112,7 @@ class GameEngine {
 
     // The man "Run" loop of the game engine. Hold the run-interval.
     run() {
+        // Offset for last frame running time. (Frame-pacing.)
         if (this.running) {
             let start = process.hrtime()
             this.update();
@@ -161,48 +175,42 @@ class GameEngine {
 
     // The function to handle setting the users leve-progress.
     setNextLevel(levelName: string) {
-        let self = this;
-        let index = -1;
-        if (levelName === "level 1") {
-            index = 1;
-        } else if (levelName === "level 2") {
-            index = 2;
-        } else if (levelName === "level 3") {
-            index = 3;
-        } else if (levelName === "level 4") {
-            index = 4;
-        }
-        // $FlowFixMe
-        let callback = function(levelCompleted) {
+            let notCheating = Object.values(this.cheats).every(function(cheat) {
+                return !cheat;
+            })
 
-            if (index > levelCompleted){
-                self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
-                    $set: {
-                        "levelCompleted": index
+            if (notCheating) {
+
+                let self = this;
+                let index = -1;
+                if (levelName === "level 1") {
+                    index = 1;
+                } else if (levelName === "level 2") {
+                    index = 2;
+                } else if (levelName === "level 3") {
+                    index = 3;
+                } else if (levelName === "level 4") {
+                    index = 4;
+                }
+
+
+                // $FlowFixMe
+                let callback = function(levelCompleted) {
+
+                    if (index > levelCompleted) {
+                        self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
+                            $set: {
+                                "levelCompleted": index
+                            }
+                        }, {
+                            upsert: true
+                        });
                     }
-                }, {
-                    upsert: true
+                }
+                this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+                    callback(progress.levelCompleted);
                 });
-
             }
-
-        }
-
-        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
-            callback(progress.levelCompleted);
-        });
-
-    }
-
-    // The function to handle updating the users coins.
-    // $FlowFixMe
-    setCoinProgress(coinCount: number){
-        let self = this;
-        // $FlowFixMe
-        this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
-            let data = {levelCompleted:progress.coins+coinCount};
-            self.db.collection(self.socket.userName + 'Progress').updateOne({}, { $set:data }, { upsert: true } );
-        });
     }
 
     // The function to handle getting the users progress.
@@ -292,48 +300,57 @@ class GameEngine {
         }
     }
 
+    muteMusic() {
+        let message = {
+            t: 'm'
+        }
+        let json = JSON.stringify(message);
+        let buf = new Buffer.from(json, 'utf8');
+        this.socket.send(buf);
+    }
 
 
     setScore(currentScore: number, levelName: string) {
-        let index = -1;
-        if (levelName === "level 1") {
-            index = 0;
-        } else if (levelName === "level 2") {
-            index = 1;
-        } else if (levelName === "level 3") {
-            index = 2;
-        } else if (levelName === "level 4") {
-            index = 3;
-        } else if (levelName === "level 5") {
-            index = 4;
-        }
-        if (index !== -1) {
-            let self = this;
-            // $FlowFixMe
-            let callback = function(newScore) {
+        let notCheating = Object.values(this.cheats).every(function(cheat) {
+            return !cheat;
+        })
 
-                if (newScore[index] <= currentScore) {
-                    let newScoreArray = newScore;
-                    newScoreArray[index] = currentScore;
-                    self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
-                        $set: {
-                            "score": newScoreArray
-                        }
-                    }, {
-                        upsert: true
-                    });
-                }
-
+        if (notCheating) {
+            let index = -1;
+            if (levelName === "level 1") {
+                index = 0;
+            } else if (levelName === "level 2") {
+                index = 1;
+            } else if (levelName === "level 3") {
+                index = 2;
+            } else if (levelName === "level 4") {
+                index = 3;
+            } else if (levelName === "level 5") {
+                index = 4;
             }
+            if (index !== -1) {
+                let self = this;
+                // $FlowFixMe
+                let callback = function(newScore) {
 
-            this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
-                callback(progress.score);
-            });
-
+                    if (newScore[index] <= currentScore) {
+                        let newScoreArray = newScore;
+                        newScoreArray[index] = currentScore;
+                        self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
+                            $set: {
+                                "score": newScoreArray
+                            }
+                        }, {
+                            upsert: true
+                        });
+                    }
+                }
+                this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+                    callback(progress.score);
+                });
+            }
         }
-
     }
-
 
 
     /*The function which handles drawing a frame in "Viewport" mode.
@@ -371,7 +388,9 @@ class GameEngine {
 
     // The function to hanlde playing sounds.
     playSound(soundName: string) {
-        io.playSound(this.socket, soundName);
+        if (this.soundOn) {
+            io.playSound(this.socket, soundName);
+        }
     }
 
     // The fucntion to handle stopping sounds.

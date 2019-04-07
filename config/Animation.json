@@ -120,6 +120,16 @@
         "y": 16
     },
     {
+        "tag": "misc",
+        "type": "static",
+        "AnimationName": "bg_story",
+        "SpriteName": "bg_story",
+        "frameCount": 1,
+        "fps": 30,
+        "x": 16,
+        "y": 16
+    },
+    {
         "tag": "background",
         "type": "static",
         "AnimationName": "bg_cave",
