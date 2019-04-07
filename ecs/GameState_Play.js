@@ -66,7 +66,7 @@ class GameState_Play extends GameState {
         this.cheats = this.game.cheats;
         this.player = this.entityManager.addEntity("player");
         this.levelObjective = this.entityManager.addEntity("levelObjective");
-        this.playerSpeed = 3;
+        this.playerSpeed = 4;
         this.init();
     }
 
@@ -75,7 +75,7 @@ class GameState_Play extends GameState {
             this.playerSpeed = 7;
         }
         else {
-            this.playerSpeed = 3;
+            this.playerSpeed = 4;
         }
         this.entityManager = new EntityManager();
         this.levelObjective = this.entityManager.addEntity("levelObjective");
@@ -183,7 +183,7 @@ class GameState_Play extends GameState {
             else if (npc.name === "exe") {
                 newNpc.addComponent(new CAnimation("exeIdle", true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.75), Math.round(anim.height * 0.85)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(diff*200));
@@ -835,7 +835,7 @@ class GameState_Play extends GameState {
                     if (currentFrame > meele.frameStart && currentFrame < meele.frameEnd &&
                         Physics.isOverlapping(offsetPos, meele.halfSize, this.player)) {
                         playerCState.state = 'hurt';
-                        this.player.getComponent(CHealth).health -= meele.damage;
+                        this.player.getComponent(CHealth).health -= Math.round(meele.damage);
                     }
                 }
             } else {
