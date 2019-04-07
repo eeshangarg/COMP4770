@@ -10,7 +10,7 @@ import {
 
 
 const keys = [-2,-1,71,67,87,65,83,46,81,68,82,89,85,84,61,69,13,32,27,37,39,38,49,50,51,52,53,16,17,187,189,78,73,66];
-const bgCanvas = document.getElementById('bgCanvas').getContext('2d') // The background Canvas.
+const bgCanvas = document.getElementById('bgCanvas').getContext('2d', {alpha:false}) // The background Canvas.
 const gameCanvas = document.getElementById('gameCanvas').getContext('2d'); // The Game Canvas.
 const textCanvas = document.getElementById('textCanvas').getContext('2d'); // The Text Canvas.
 const rect = document.getElementById('gameCanvas').getBoundingClientRect();
@@ -96,6 +96,12 @@ function loginListner() {
                 document.getElementById('div_login').style.visibility = 'hidden';
                 document.getElementById('div_new_acc').style.visibility = 'hidden';
                 document.getElementById('div_game_div').style.visibility = 'visible';
+                document.getElementById("loginBtn").removeEventListener("click", loginHandler);
+                document.getElementById("cancelBtn").removeEventListener("click", cancleHandler);
+                document.getElementById("forgotPwdBtn").removeEventListener("click", forgotMyPwdHanlder);
+                document.getElementById("createAccountBtn").removeEventListener("click", newAccHandler);
+                document.getElementById("newAcceptBtn").removeEventListener("click", newAcceptHandler);
+                document.getElementById("newCancelBtn").removeEventListener("click", newCancleHandler);
                 SocketHandler()
             } else {
                 alert("Invalid Username / Password.");
