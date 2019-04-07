@@ -28,6 +28,7 @@ class GameEngine {
     soundOn : boolean;                     // The boolean to toggle game-sound.
     inputMap: Object;                      // The socket-driven inputMap.
     renderQueue: Array<Object>;            // The queue which holds all elements to-be rendered next frame.
+    soundQueue: Array<Object>;             // The queue which holds all sounds to be played.
     quit: void => void;                    // The helper function to quit the game engine.
     run: void => void;                     // The handler for stopping/running the update loop.
     runInterval: Object;                   // The main run interval of the GameEngine.
@@ -175,42 +176,40 @@ class GameEngine {
 
     // The function to handle setting the users leve-progress.
     setNextLevel(levelName: string) {
-            let notCheating = Object.values(this.cheats).every(function(cheat) {
-                return !cheat;
-            })
+        let notCheating = Object.values(this.cheats).every(function(cheat) {
+            return !cheat;
+        })
 
-            if (notCheating) {
+        if (notCheating) {
 
-                let self = this;
-                let index = -1;
-                if (levelName === "level 1") {
-                    index = 1;
-                } else if (levelName === "level 2") {
-                    index = 2;
-                } else if (levelName === "level 3") {
-                    index = 3;
-                } else if (levelName === "level 4") {
-                    index = 4;
-                }
-
-
-                // $FlowFixMe
-                let callback = function(levelCompleted) {
-
-                    if (index > levelCompleted) {
-                        self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
-                            $set: {
-                                "levelCompleted": index
-                            }
-                        }, {
-                            upsert: true
-                        });
-                    }
-                }
-                this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
-                    callback(progress.levelCompleted);
-                });
+            let self = this;
+            let index = -1;
+            if (levelName === "level 1") {
+                index = 1;
+            } else if (levelName === "level 2") {
+                index = 2;
+            } else if (levelName === "level 3") {
+                index = 3;
+            } else if (levelName === "level 4") {
+                index = 4;
             }
+
+            // $FlowFixMe
+            let callback = function(levelCompleted) {
+                if (index > levelCompleted) {
+                    self.db.collection(self.socket.userName + 'Progress').updateOne({}, {
+                        $set: {
+                            "levelCompleted": index
+                        }
+                    }, {
+                        upsert: true
+                    });
+                }
+            }
+            this.db.collection(this.socket.userName + 'Progress').findOne({}, function(err, progress) {
+                callback(progress.levelCompleted);
+            });
+        }
     }
 
     // The function to handle getting the users progress.
@@ -358,8 +357,9 @@ class GameEngine {
       I.e, PlayerPos, edtiorWindow Pos, ect.
     */
     drawFrame(pPos: Vec){
-        io.emitFrame(this.socket, this.renderQueue, pPos.x, pPos.y);
+        io.emitFrame(this.socket, this.renderQueue, this.soundQueue,pPos.x, pPos.y);
         this.renderQueue = [];
+        this.soundQueue = [];
     }
 
     // The function to handle setting the backgrounds based off spriteNames.
@@ -387,9 +387,9 @@ class GameEngine {
     }
 
     // The function to hanlde playing sounds.
-    playSound(soundName: string) {
+    playSound(sound: string) {
         if (this.soundOn) {
-            io.playSound(this.socket, soundName);
+            this.soundQueue.push(sound);
         }
     }
 

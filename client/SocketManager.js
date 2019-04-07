@@ -137,12 +137,12 @@ function SocketHandler() {
     socket.onmessage = function(message) {
         let str = new TextDecoder('utf-8').decode(message.data);
         let data = JSON.parse(str);
-
         // The value of Data.t denotes the type of message.
 
         // Type: 'd' -> Game canvas draw message.
         if (data.t === 'd') {
             renderFrame(data.d, data.p);
+            playSoundQueue(data.s);
         }
         // Type: 't' -> Draw Text-string message.
         else if (data.t == 't') {
@@ -209,6 +209,15 @@ function clearText(key) {
     }
 }
 
+
+function playSoundQueue(soundQueue) {
+    if (typeof soundQueue !== 'undefined') {
+        let len = soundQueue.length;
+        for (let i = 0; i < len; i++) {
+            playSound(soundQueue[i]);
+        }
+    }
+}
 
 // The function which handles drawing text-strings associtated with a given key.
 function drawText(textString, font, key, color, dx, dy) {
