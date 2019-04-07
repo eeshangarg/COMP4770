@@ -15,6 +15,7 @@ const CAnimation = Components.CAnimation;
 const CBoundingBox = Components.CBoundingBox;
 const CDraggable = Components.CDraggable;
 const CInput = Components.CInput;
+const Physics = require('./Physics.js');
 const Vec = require('./Vec.js');
 const getAnimationsByTag = require('./../rendering/Rendering.js').getAnimationsByTag;
 
@@ -66,7 +67,7 @@ class GameState_LevelEditor extends GameState {
         this.levelObjective.addComponent(new CAnimation("objective", true));
         this.levelObjective.addComponent(new CDraggable());
 
-        this.game.drawText("Camera pos:[" + editorPos.x + "," + editorPos.y + "]", 'posText','16px PS2P', '#F9F9F9', 650, 22);
+        this.game.drawText("Camera pos:[" + editorPos.x + "," + editorPos.y + "]", 'p','16px PS2P', '#F9F9F9', 650, 22);
         this.game.drawText("Grid Mode: OFF", 'gridText','16px PS2P', '#F9F9F9', 20, 22);
     }
 
@@ -338,7 +339,7 @@ class GameState_LevelEditor extends GameState {
 
         let pos = this.editor.getComponent(CTransform).pos;
 
-        this.game.drawText("Camera pos:[" + pos.x + "," + pos.y + "]", 'posText','16px PS2P', '#F9F9F9', 650, 22);
+        this.game.drawText("Camera pos:[" + pos.x + "," + pos.y + "]", 'p','16px PS2P', '#F9F9F9', 650, 22);
     }
 
     sAnimation() {
@@ -371,13 +372,14 @@ class GameState_LevelEditor extends GameState {
 
         let len = entities.length;
         for (let i = 0; i < len; i++) {
+            let entity = entities[i];
             // Only draw entities with Animations.
             if (entities[i].hasComponent(CAnimation)){
-                let pos = entities[i].getComponent(CTransform).pos;
+                let pos = entity.getComponent(CTransform).pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (editorPos.distf(pos) < 360000) {
-                    let dir = entities[i].getComponent(CTransform).facing;
-                    let anim = entities[i].getComponent(CAnimation).animation;
+                if (Physics.isOnScreen(entity, editorPos, this.game.screenSize)) {
+                    let dir = entity.getComponent(CTransform).facing;
+                    let anim = entity.getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
                 }
             }
