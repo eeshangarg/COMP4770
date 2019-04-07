@@ -46,8 +46,10 @@ class GameState_Play extends GameState {
     score: number;
     prevScore: number;
     gameOver: boolean;
+    playerSpeed: number;
     prevRP: number;
     prevBP: number;
+    cheats: Object;
 
     constructor(game: GameEngine, level: Object) {
         super();
@@ -61,12 +63,20 @@ class GameState_Play extends GameState {
         this.prevScore = 0;
         this.prevRP = 0;
         this.prevBP = 0;
+        this.cheats = this.game.cheats;
         this.player = this.entityManager.addEntity("player");
         this.levelObjective = this.entityManager.addEntity("levelObjective");
+        this.playerSpeed = 3;
         this.init();
     }
 
     init() {
+        if (this.cheats.superSpeed) {
+            this.playerSpeed = 7;
+        }
+        else {
+            this.playerSpeed = 3;
+        }
         this.entityManager = new EntityManager();
         this.levelObjective = this.entityManager.addEntity("levelObjective");
         this.game.clearText("all");
@@ -84,6 +94,8 @@ class GameState_Play extends GameState {
 
 
     loadLevel() {
+
+        let diff = this.game.diff;
 
         this.game.setBackground(this.background);
 
@@ -104,6 +116,17 @@ class GameState_Play extends GameState {
             let newNpc = this.entityManager.addEntity("npc");
             newNpc.addComponent(new CTransform(new Vec(npc.pos[0], npc.pos[1])));
 
+            if (this.cheats.pvp) {
+                newNpc.addComponent(new CAnimation("playerIdle", true));
+                newNpc.addComponent(new CBoundingBox(new Vec(50, 50), true, true));
+                newNpc.addComponent(new CGravity(0.3));
+                newNpc.addComponent(new CHealth(150));
+                newNpc.addComponent(new CScore(2500));
+                newNpc.addComponent(new CState('idle'));
+                newNpc.addComponent(new CMeele(diff*20, new Vec(25, 30), 1500, 75, 15, 4, 9));
+                newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 2, true));
+                continue;
+            }
             // Create a goblin Cowman, assign all components.
             if (npc.name === "cowman") {
                 // $FlowFixMe
@@ -112,10 +135,10 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(150));
-                newNpc.addComponent(new CMeele(20, new Vec(35, 40), 1800, 75, 20, 4, 7));
+                newNpc.addComponent(new CHealth(diff*150));
+                newNpc.addComponent(new CMeele(diff*20, new Vec(35, 40), 1800, 75, 20, 4, 7));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 2, true));
-                newNpc.addComponent(new CScore(2500));
+                newNpc.addComponent(new CScore(diff*2500));
             }
             // Create a imp NPC, assign all components.
             else if (npc.name === "imp") {
@@ -125,10 +148,10 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.0));
-                newNpc.addComponent(new CHealth(50));
+                newNpc.addComponent(new CHealth(diff*50));
                 newNpc.addComponent(new CRanged(500, 2000));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 150, 750, 1.5, false));
-                newNpc.addComponent(new CScore(1500));
+                newNpc.addComponent(new CScore(diff*1500));
             }
             // Create a goblin NPC, assign all components.
             else if (npc.name === "goblin") {
@@ -138,10 +161,10 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.75), Math.round(anim.height * 0.85)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(75));
-                newNpc.addComponent(new CMeele(5, new Vec(20, 15), 1000, 60, 10, 1, 3));
+                newNpc.addComponent(new CHealth(diff*75));
+                newNpc.addComponent(new CMeele(diff*5, new Vec(20, 15), 1000, 60, 10, 1, 3));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 70, 350, 1.75, true));
-                newNpc.addComponent(new CScore(1000));
+                newNpc.addComponent(new CScore(diff*1000));
             }
             // Create a iceman, assign all of its need components.
             else if (npc.name === "iceman") {
@@ -151,10 +174,10 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(200));
-                newNpc.addComponent(new CMeele(25, new Vec(25, 40), 2200, 75, 20, 3, 5));
+                newNpc.addComponent(new CHealth(diff*200));
+                newNpc.addComponent(new CMeele(diff*25, new Vec(25, 40), 2200, 75, 20, 3, 5));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 50, 500, 0.75, false));
-                newNpc.addComponent(new CScore(3500));
+                newNpc.addComponent(new CScore(diff*3500));
             }
             // Create a executioner, assign all of its need components.
             else if (npc.name === "exe") {
@@ -163,10 +186,10 @@ class GameState_Play extends GameState {
                 newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.85), Math.round(anim.height * 0.9)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
-                newNpc.addComponent(new CHealth(200));
-                newNpc.addComponent(new CMeele(20, new Vec(23, 55), 2000, 75, 25, 2, 4));
+                newNpc.addComponent(new CHealth(diff*200));
+                newNpc.addComponent(new CMeele(diff*20, new Vec(23, 55), 2000, 75, 25, 2, 4));
                 newNpc.addComponent(new CFollow(new Vec(npc.pos[0], npc.pos[1]), 65, 500, 1.5, true));
-                newNpc.addComponent(new CScore(3000));
+                newNpc.addComponent(new CScore(diff*3000));
             }
 
         }
@@ -208,11 +231,11 @@ class GameState_Play extends GameState {
         }
 
         this.spawnPlayer();
-        this.game.drawText("HP: "+ this.currentHP  , 'hp','18px PS2P', '#FF0909', 20, 25);
-        this.game.drawText("Red potions: " + 0, 'rp', '12px PS2P', '#FF0909', 155, 25);
-        this.game.drawText("MP: " + this.currentMP  , 'mp','18px PS2P', '#0D09E3', 20, 46);
-        this.game.drawText("Blue potions: " + 0, 'bp', '12px PS2P', '#0D09E3', 155, 46);
-        this.game.drawText("Score: " + this.score  , 's','18px PS2P', '#00FF00', 800, 25);
+        this.game.drawText("HP:" + this.currentHP  , 'hp','18px PS2P', '#FF0909', 20, 25);
+        this.game.drawText("Red potions:" + 0, 'rp', '12px PS2P', '#FF0909', 155, 25);
+        this.game.drawText("MP:" + this.currentMP  , 'mp','18px PS2P', '#0D09E3', 20, 46);
+        this.game.drawText("Blue potions:" + 0, 'bp', '12px PS2P', '#0D09E3', 155, 46);
+        this.game.drawText("Score:" + this.score  , 's','18px PS2P', '#00FF00', 800, 25);
 
     }
 
@@ -222,12 +245,24 @@ class GameState_Play extends GameState {
         this.player.addComponent(new CTransform(new Vec(this.level.playerSpawn[0], this.level.playerSpawn[1])));
         this.player.addComponent(new CAnimation('playerIdle', true));
         this.player.addComponent(new CBoundingBox(new Vec(35, 45), true, true));
-        this.player.addComponent(new CGravity(0.3));
+        if (this.cheats.lowGravity) {
+            this.player.addComponent(new CGravity(0.15));
+        }
+        else {
+            this.player.addComponent(new CGravity(0.3));
+        }
         this.player.addComponent(new CState('idle'));
         this.player.addComponent(new CInput());
         this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 4, 9));
-        this.player.addComponent(new CHealth(100));
-        this.player.addComponent(new CMagic(100));
+        if (this.cheats.godMode) {
+            this.player.addComponent(new CHealth(9999));
+            this.player.addComponent(new CMagic(9999, 50));
+        }
+        else {
+            this.player.addComponent(new CHealth(100));
+            this.player.addComponent(new CMagic(100, 800));
+        }
+
         this.player.addComponent(new CInventory());
         this.player.addComponent(new CScore(0));
         this.currentHP = 100;
@@ -306,31 +341,31 @@ class GameState_Play extends GameState {
             this.init();
         }
 
-        if (inputMap.one) {
+        if (inputMap.one && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('playerIdle', true));
             this.player.addComponent(new CBoundingBox(new Vec(35, 45), true, true));
             this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 4, 9));
         }
-        if (inputMap.two) {
+        if (inputMap.two && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('icemanIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             this.player.addComponent(new CMeele(100, new Vec(25, 40), 2000, 75, 20, 3, 5));
         }
-        if (inputMap.three) {
+        if (inputMap.three && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('exeIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             this.player.addComponent(new CMeele(50, new Vec(25, 60), 1800, 75, 25, 2, 4));
         }
-        if (inputMap.four) {
+        if (inputMap.four && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('cowmanIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
             this.player.addComponent(new CMeele(50, new Vec(35, 42), 1500, 75, 20, 4, 7));
 
         }
-        if (inputMap.five) {
+        if (inputMap.five && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('goblinIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
@@ -444,10 +479,10 @@ class GameState_Play extends GameState {
 
         // Handle the L/R input of the player.
         if (playerInput.left) {
-            playerTransform.speed.x -= 3;
+            playerTransform.speed.x -= this.playerSpeed;
             playerTransform.facing = -1;
         } else if (playerInput.right) {
-            playerTransform.speed.x += 3;
+            playerTransform.speed.x += this.playerSpeed;
             playerTransform.facing = 1;
         }
 
@@ -461,13 +496,13 @@ class GameState_Play extends GameState {
         }
 
         // only allow the player to jump if they are grounded.
-        if (playerInput.up && playerState.grounded && playerInput.canJump) {
+        if (playerInput.up && (playerState.grounded || this.cheats.godMode) && playerInput.canJump) {
             this.game.playSound('playerJump');
             playerInput.canJump = false;
             playerInput.jumpClock.start(true);
             playerState.grounded = false;
             playerInput.up = 0;
-            playerTransform.speed.y += 7.5;
+            playerTransform.speed.y = 7.5;
         }
 
         // Cap the players Y speed to +/- 10
@@ -657,7 +692,7 @@ class GameState_Play extends GameState {
             else if (hasEnded) {
                 e.destroy();
                 // If the player is dead, got back to the menu.fc
-                if (startsWith === 'player') {
+                if (e.tag === 'player') {
                     this.gameOver = true;
                     this.game.drawText("Game Over", 'go','68px Seagram', '#FF0909', 360,  250);
                     this.game.drawText("Press ESC to leave or Enter to retry...", 'got','20px Seagram', '#FF0909', 360,  370);
@@ -1054,27 +1089,27 @@ class GameState_Play extends GameState {
 
         if (this.currentHP !== health) {
             this.currentHP = health;
-            this.game.drawText("HP: " + this.currentHP  , 'hp','18px PS2P', '#FF0909', 20, 25);
+            this.game.drawText("HP:" + this.currentHP  , 'hp','18px PS2P', '#FF0909', 20, 25);
         }
 
         if (this.currentMP !== mp) {
             this.currentMP = mp;
-            this.game.drawText("MP: " + this.currentMP  , 'mp','18px PS2P', '#0D09E3', 20, 46);
+            this.game.drawText("MP:" + this.currentMP  , 'mp','18px PS2P', '#0D09E3', 20, 46);
         }
 
 
         if (this.score != this.prevScore) {
-            this.game.drawText("Score: " + this.score  , 's','16px PS2P', '#00FF00', 800, 25);
+            this.game.drawText("Score:" + this.score  , 's','16px PS2P', '#00FF00', 800, 25);
             this.prevScore = this.score;
         }
 
         if (this.prevRP !== inventory.redPotions) {
-            this.game.drawText("Red potions: " + inventory.redPotions, 'rp', '12px PS2P', '#FF0909', 155, 25);
+            this.game.drawText("Red potions:" + inventory.redPotions, 'rp', '12px PS2P', '#FF0909', 155, 25);
             this.prevRP = inventory.redPotions;
         }
 
         if (this.prevBP !== inventory.bluePotions) {
-            this.game.drawText("Blue potions: " + inventory.bluePotions, 'bp', '12px PS2P', '#0D09E3', 155, 46);
+            this.game.drawText("Blue potions:" + inventory.bluePotions, 'bp', '12px PS2P', '#0D09E3', 155, 46);
             this.prevBP = inventory.bluePotions;
         }
 

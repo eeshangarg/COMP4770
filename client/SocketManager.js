@@ -18,6 +18,7 @@ const socket = new WebSocket('ws://localhost:3000'); // A localHost socket.
 //const socket = new WebSocket('ws://149.248.56.80:3000'); // A socket to the VPS.
 socket.binaryType = "arraybuffer";
 
+let musicOn = true;
 let inputEmitInterval = null;
 let loadingInterval = null;
 let loginInterval = null;
@@ -171,6 +172,9 @@ function SocketHandler() {
         else if (data.t === 'k') {
             alert(data.m);
         }
+        else if (data.t === 'm') {
+            musicOn = !musicOn;
+        }
 
         /*
             TODO add more message types here... Sounds, ect.
@@ -230,27 +234,30 @@ function drawText(textString, font, key, color, dx, dy) {
 
 // the function to handle background image setting:
 function setBackground(spriteName) {
-    stopSound("bg");
+    
     bgCanvas.clearRect(0, 0, 1024, 576);
     let sprite = getSprite(spriteName);
     bgCanvas.drawImage(sprite.image, 0, 0, 1024, 576, 0, 0, 1024, 576);
-    if (spriteName === "bg_menu") {
-        playSound("menu");
-    }
-    else if (spriteName === "bg_cave") {
-        playSound("cave");
-    }
-    else if (spriteName === "bg_desrt") {
-        playSound("desert");
-    }
-    else if (spriteName === "bg_green") {
-        playSound("green");
-    }
-    else if (spriteName === "bg_snow") {
-        playSound("frozen");
-    }
-    else if (spriteName === "bg_forest") {
-        playSound("forest");
+    if (musicOn) {
+        if (spriteName === "bg_menu") {
+            stopSound("bg");
+            playSound("menu");
+        } else if (spriteName === "bg_cave") {
+            stopSound("bg");
+            playSound("cave");
+        } else if (spriteName === "bg_desrt") {
+            stopSound("bg");
+            playSound("desert");
+        } else if (spriteName === "bg_green") {
+            stopSound("bg");
+            playSound("green");
+        } else if (spriteName === "bg_snow") {
+            stopSound("bg");
+            playSound("frozen");
+        } else if (spriteName === "bg_forest") {
+            stopSound("bg");
+            playSound("forest");
+        }
     }
 }
 

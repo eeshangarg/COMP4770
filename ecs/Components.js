@@ -270,10 +270,10 @@ class CMagic extends Component {
     cooldown: number;
     clock: Clock;
 
-    constructor(mp: number) {
+    constructor(mp: number, c: number) {
         super();
         this.mp = mp;
-        this.cooldown = 1000;
+        this.cooldown = c;
         this.canMagic = true;
         this.clock = new Clock();
     }
