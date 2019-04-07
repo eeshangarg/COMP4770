@@ -736,7 +736,7 @@ class GameState_Play extends GameState {
                 let transform = entity.getComponent(CTransform);
                 let pos = transform.pos;
                 // Use culling to rapidly remove non-onscreen entites.
-                if (playerPos.distf(pos) < 360000) {
+                if (Physics.isOnScreen(entity, playerPos,this.game.screenSize)) {
                     let dir = transform.facing;
                     let anim = entity.getComponent(CAnimation).animation;
                     this.game.draw(anim, dir, pos);
@@ -1061,7 +1061,7 @@ class GameState_Play extends GameState {
             if (itemComponent.type === "food") {
                 let hp = this.player.getComponent(CHealth);
                 hp.health += itemComponent.amount;
-                if (hp.health  > 100) {
+                if (hp.health  > 100 && !this.game.cheats.godMode) {
                     hp.health = 100;
                 }
                 this.game.playSound("playerEat");
