@@ -8,26 +8,28 @@ const Components = require('./Components.js');
 const CTransform = Components.CTransform;
 const CBoundingBox = Components.CBoundingBox;
 
-
 /* istanbul ignore next */
-function isOnScreen (e: Entity, playerPos: Vec, screenSize: Vec): boolean {
+function isOnScreen(e: Entity, playerPos: Vec, screenSize: Vec): boolean {
     let pos: Vec = e.getComponent(CTransform).pos;
+    let bb = e.getComponent(CBoundingBox);
     let delta: Vec = new Vec(Math.abs(pos.x - playerPos.x), Math.abs(pos.y - playerPos.y));
-    if (e.hasComponent(CBoundingBox)) {
-        let halfSize: Vec = e.getComponent(CBoundingBox).halfSize;
-        let sum: Vec = halfSize.add(screenSize);
+    if (bb !== null) {
+        let sum: Vec = bb.halfSize.add(screenSize);
         sum.subtracti(delta);
-        if (sum.x >0 && sum.y > 0) { return true } 
-        else {return false;}
+        if (sum.x > 0 && sum.y > 0) {
+            return true
+        } else {
+            return false;
+        }
     }
     else {
-        let halfSize: Vec = new Vec(0,0);
-        let sum: Vec = halfSize.add(screenSize);
-        sum.subtracti(delta);
-        if (sum.x >0 && sum.y > 0) { return true } 
-        else {return false;}
+        let sum = screenSize.subtract(delta);
+        if (sum.x > 0 && sum.y > 0) {
+            return true
+        } else {
+            return false;
+        }
     }
-
 }
 
 function getOverlap(a: Entity, b: Entity): Vec {
@@ -58,14 +60,16 @@ function lineIntersect(a: Vec, b: Vec, c: Vec, d: Vec): boolean {
     let s: Vec = d.subtract(c);
     let rxs: number = r.cross(s);
     let t: number = cma.cross(s) / rxs;
-    if (t >= 0.0 && t <= 1.0) {
+    if (t >= 0 && t <= 1) {
         let u: number = cma.cross(r) / rxs;
-        if (u >= 0.0 && u <= 1.0) {
+        if (u >= 0 && u <= 1) {
             return true;
-        } else {
+        }
+        else {
             return false;
         }
-    } else {
+    }
+    else {
         return false;
     }
 }
@@ -80,7 +84,8 @@ function entityIntersect(a: Vec, b: Vec, e: Entity): boolean {
     if ( lineIntersect(a, b, x, y) || lineIntersect(a, b, y, z) ||
          lineIntersect(a, b, z, w) || lineIntersect(a, b, w, x)) {
         return true;
-    } else {
+    }
+    else {
         return false;
     }
 
@@ -92,8 +97,8 @@ function isOverlapping(pos: Vec, halfSize: Vec, e: Entity): boolean {
     let eHalfSize: Vec = e.getComponent(CBoundingBox).halfSize;
     let delta: Vec = new Vec(Math.abs(pos.x - ePos.x), Math.abs(pos.y - ePos.y));
     let sum: Vec = halfSize.add(eHalfSize);
-    let overlap: Vec = sum.subtract(delta);
-    if (overlap.x >= 0 && overlap.y >= 0 ) {
+    sum.subtracti(delta);
+    if (sum.x >= 0 && sum.y >= 0) {
         return true;
     }
     return false;

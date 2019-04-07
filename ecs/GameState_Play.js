@@ -66,7 +66,7 @@ class GameState_Play extends GameState {
         this.cheats = this.game.cheats;
         this.player = this.entityManager.addEntity("player");
         this.levelObjective = this.entityManager.addEntity("levelObjective");
-        this.playerSpeed = 4;
+        this.playerSpeed = 3.5;
         this.init();
     }
 
@@ -75,7 +75,7 @@ class GameState_Play extends GameState {
             this.playerSpeed = 7;
         }
         else {
-            this.playerSpeed = 4;
+            this.playerSpeed = 3.5;
         }
         this.entityManager = new EntityManager();
         this.levelObjective = this.entityManager.addEntity("levelObjective");
@@ -158,7 +158,7 @@ class GameState_Play extends GameState {
                 // $FlowFixMe
                 newNpc.addComponent(new CAnimation(getAnimationsByTag('npc')[1], true));
                 let anim = newNpc.getComponent(CAnimation).animation;
-                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.75), Math.round(anim.height * 0.85)), true, true));
+                newNpc.addComponent(new CBoundingBox(new Vec(Math.round(anim.width * 0.60), Math.round(anim.height * 0.85)), true, true));
                 newNpc.addComponent(new CState('idle'));
                 newNpc.addComponent(new CGravity(0.3));
                 newNpc.addComponent(new CHealth(diff*75));
@@ -253,7 +253,7 @@ class GameState_Play extends GameState {
         }
         this.player.addComponent(new CState('idle'));
         this.player.addComponent(new CInput());
-        this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 4, 9));
+        this.player.addComponent(new CMeele(50, new Vec(25, 30), 0, 0, 15, 4, 9));
         if (this.cheats.godMode) {
             this.player.addComponent(new CHealth(9999));
             this.player.addComponent(new CMagic(9999, 50));
@@ -292,8 +292,8 @@ class GameState_Play extends GameState {
 
     }
 
+    // The system to handle user inputs.
     sUserInput() {
-        // TODO: Process all user input here
         let inputMap = this.game.getInputMap();
         let playerInput = this.player.getComponent(CInput);
 
@@ -344,32 +344,32 @@ class GameState_Play extends GameState {
         if (inputMap.one && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('playerIdle', true));
             this.player.addComponent(new CBoundingBox(new Vec(35, 45), true, true));
-            this.player.addComponent(new CMeele(50, new Vec(20, 30), 0, 0, 15, 4, 9));
+            this.player.addComponent(new CMeele(50, new Vec(25, 30), 0, 0, 15, 4, 9));
         }
         if (inputMap.two && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('icemanIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(100, new Vec(25, 40), 2000, 75, 20, 3, 5));
+            this.player.addComponent(new CMeele(100, new Vec(35, 40), 2000, 75, 20, 3, 5));
         }
         if (inputMap.three && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('exeIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(50, new Vec(25, 60), 1800, 75, 25, 2, 4));
+            this.player.addComponent(new CMeele(50, new Vec(35, 60), 1800, 75, 25, 2, 4));
         }
         if (inputMap.four && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('cowmanIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(50, new Vec(35, 42), 1500, 75, 20, 4, 7));
+            this.player.addComponent(new CMeele(50, new Vec(40, 42), 1500, 75, 20, 4, 7));
 
         }
         if (inputMap.five && this.cheats.playAsNPCs) {
             this.player.addComponent(new CAnimation('goblinIdle', true));
             let anim = this.player.getComponent(CAnimation).animation;
             this.player.addComponent(new CBoundingBox(new Vec(anim.width, anim.height), true, true));
-            this.player.addComponent(new CMeele(20, new Vec(25, 10), 1000, 60, 10, 1, 3));
+            this.player.addComponent(new CMeele(20, new Vec(30, 10), 1000, 60, 10, 1, 3));
         }
 
         playerInput.up = inputMap.w;
@@ -474,7 +474,7 @@ class GameState_Play extends GameState {
         // Check to see if player has fallen off the map.
         if (playerTransform.pos.y < -999) {
             this.player.getComponent(CHealth).health = 0;
-            this.player.getComponent(CState).state = 'dying';
+            playerState.state = 'dying';
         }
 
         // Handle the L/R input of the player.
@@ -562,17 +562,15 @@ class GameState_Play extends GameState {
                 let anim = entity.getComponent(CAnimation);
                 if (!anim.repeated && anim.animation.hasEnded) {
                     entity.destroy();
-                }
-                else {
+                } else {
                     if (entity.hasComponent(CState) && entity.hasComponent(CAnimation)) {
                         this.handleStateAnimation(entity);
                     }
-                        anim.animation.update();
+                    anim.animation.update();
                 }
             }
         }
     }
-
     handleStateAnimation(e: Entity) {
         let cstate = e.getComponent(CState);
         let state = cstate.state;
@@ -704,22 +702,21 @@ class GameState_Play extends GameState {
         }
     }
 
-
-
+    // The key rendering system.
     sRender() {
         let playerPos = this.player.getComponent(CTransform).pos;
         this.renderEntitiesByTag('dec');
         this.renderEntitiesByTag('levelObjective');
         this.renderEntitiesByTag('player');
+        this.renderEntitiesByTag('item');
         this.renderEntitiesByTag('npc');
         this.renderEntitiesByTag('effect');
-        this.renderEntitiesByTag('item');
         this.renderEntitiesByTag('tile');
-        
         this.renderEntitiesByTag('projectile');
         this.game.drawFrame(playerPos);
     }
 
+    // A helper function for "sRender" to render entities of a given tag.
     renderEntitiesByTag(tag: string) {
         let playerPos = this.player.getComponent(CTransform).pos;
         let entities = this.entityManager.getEntitiesByTag(tag);
@@ -732,19 +729,19 @@ class GameState_Play extends GameState {
         for (let i = 0; i < len; i++) {
             let entity = entities[i];
             // Only draw entities with Animations.
-            if (entity.hasComponent(CAnimation)) {
+            let anim = entity.getComponent(CAnimation);
+            if (anim !== null) {
                 let transform = entity.getComponent(CTransform);
                 let pos = transform.pos;
                 // Use culling to rapidly remove non-onscreen entites.
                 if (Physics.isOnScreen(entity, playerPos,this.game.screenSize)) {
-                    let dir = transform.facing;
-                    let anim = entity.getComponent(CAnimation).animation;
-                    this.game.draw(anim, dir, pos);
+                    this.game.draw(anim.animation, transform.facing, pos);
                 }
             }
         }
     }
 
+    // The key AI system responsible for envoking AI behaviours.
     sAI() {
         let npcs = this.entityManager.getEntitiesByTag("npc");
         let len = npcs.length;
@@ -753,7 +750,7 @@ class GameState_Play extends GameState {
             if (npc.hasComponent(CMeele)) {
                 this.handleMeele(npc);
             }
-            if (npc.hasComponent(CRanged)) {
+            else if (npc.hasComponent(CRanged)) {
                 this.handleRanged(npc);
             }
             if (npc.hasComponent(CFollow)) {
@@ -762,14 +759,16 @@ class GameState_Play extends GameState {
         }
     }
 
+    // A helper function to handle "CRanged" behaviours.
     handleRanged(e: Entity) {
         let state = e.getComponent(CState).state;
         let vision = e.getComponent(CFollow).hasVision;
-        let dist = e.getComponent(CTransform).pos.distf(this.player.getComponent(CTransform).pos);
+        let entityTransform = e.getComponent(CTransform);
+        let playerTransform = this.player.getComponent(CTransform);
         let ranged = e.getComponent(CRanged);
 
-        if (vision && dist <  ranged.range) {
-            
+        if (vision && entityTransform.pos.distf(playerTransform.pos) < ranged.range) {
+
             if (ranged.clock.elapsedTime > ranged.cooldown) {
                 ranged.clock.stop();
                 ranged.clock.elapsedTime = 0;
@@ -781,18 +780,14 @@ class GameState_Play extends GameState {
                     this.lobProjectileAtPlayer(e, 4);
                     e.getComponent(CState).state = 'idle';
                 }
-            }
-            else {
-                let playerPos = this.player.getComponent(CTransform).pos;
-                let entityPos = e.getComponent(CTransform).pos;
-                if (playerPos.distf(entityPos) < ranged.range && ranged.clock.elapsedTime === 0) {
-                    e.getComponent(CState).state = 'attacking';
-                    ranged.clock.start(true);
-                }
+            } else if (ranged.clock.elapsedTime === 0) {
+                e.getComponent(CState).state = 'attacking';
+                ranged.clock.start(true);
             }
         }
     }
 
+    // A helper function to create a projectile headed towards the player.
     lobProjectileAtPlayer(entity: Entity, speed: number) {
         let entityPos = entity.getComponent(CTransform).pos;
         let target = this.player.getComponent(CTransform).pos;
@@ -904,7 +899,7 @@ class GameState_Play extends GameState {
             }
     }
 
-
+    // A helper fucntion for AABB cols.
     handleRectangularCollisions(a: Entity, b: Entity) {
         let currentFrameOverlap = Physics.getOverlap(a, b);
         if (currentFrameOverlap.x > 0.0 && currentFrameOverlap.y >= 0.0) {
@@ -946,7 +941,7 @@ class GameState_Play extends GameState {
         }
     }
 
-
+    // A helper function to spawn explosions on projectile death.
     spawnExplosion(e: Entity) {
         let pos = e.getComponent(CTransform).pos;
         let explode  = this.entityManager.addEntity("effect");
@@ -963,9 +958,8 @@ class GameState_Play extends GameState {
         
     }
 
-
+    // The key collision system.
     sCollision() {
-
         let npcs = this.entityManager.getEntitiesByTag("npc");
         let tiles = this.entityManager.getEntitiesByTag("tile");
         let projectiles = this.entityManager.getEntitiesByTag('projectile');
@@ -1055,6 +1049,7 @@ class GameState_Play extends GameState {
         }
     }
 
+    // A helper function for item collisions.
     handleItem(item: Entity) {
         let itemComponent = item.getComponent(CItem);
         if (itemComponent !== null) {
@@ -1079,6 +1074,7 @@ class GameState_Play extends GameState {
         }
     }
 
+    // The system which manges entites health.
     sHealth() {
         let inventory = this.player.getComponent(CInventory);
         let health = this.player.getComponent(CHealth).health;
@@ -1087,27 +1083,31 @@ class GameState_Play extends GameState {
             this.player.getComponent(CState).state = 'dying';
         }
 
+        // Update the GUI hp text.
         if (this.currentHP !== health) {
             this.currentHP = health;
             this.game.drawText("HP:" + this.currentHP  , 'hp','18px PS2P', '#FF0909', 20, 25);
         }
 
+        // Update the GUI MP text.
         if (this.currentMP !== mp) {
             this.currentMP = mp;
             this.game.drawText("MP:" + this.currentMP  , 'mp','18px PS2P', '#0D09E3', 20, 46);
         }
 
-
+        // Update the GUI score text.
         if (this.score != this.prevScore) {
             this.game.drawText("Score:" + this.score  , 's','16px PS2P', '#00FF00', 800, 25);
             this.prevScore = this.score;
         }
 
+        // Update the GUI red-potion count.
         if (this.prevRP !== inventory.redPotions) {
             this.game.drawText("Red potions:" + inventory.redPotions, 'rp', '12px PS2P', '#FF0909', 155, 25);
             this.prevRP = inventory.redPotions;
         }
 
+        // Update the GUI blue-potion count.
         if (this.prevBP !== inventory.bluePotions) {
             this.game.drawText("Blue potions:" + inventory.bluePotions, 'bp', '12px PS2P', '#0D09E3', 155, 46);
             this.prevBP = inventory.bluePotions;
@@ -1122,6 +1122,7 @@ class GameState_Play extends GameState {
         }
     }
 
+    // A helper system for player magic.
     sMagic() {
         let magic = this.player.getComponent(CMagic);
         if (magic.clock.elapsedTime > magic.cooldown) {
@@ -1131,6 +1132,7 @@ class GameState_Play extends GameState {
         }
     }
 
+    // A helper system for clock-based life spans.
     sLifespan() {
         let projectiles = this.entityManager.getEntitiesByTag("projectile");
         for (let i = 0; i < projectiles.length; i++) {
