@@ -29,6 +29,7 @@ class GameState_Menu extends GameState {
     cheatsMode: boolean;
     storyMode: boolean;
     mainMenuMode: boolean;
+    zeros: Vec;
 
     constructor(game: GameEngine) {
         super();
@@ -49,6 +50,7 @@ class GameState_Menu extends GameState {
         this.mainMenuMode = true;
         this.menuStrings = [];
         this.customLevels = [];
+        this.zeros = new Vec(0,0);
         this.init();
     }
 
@@ -104,6 +106,8 @@ class GameState_Menu extends GameState {
         else if (this.settingsMode) {
             this.settings();
         }
+
+        this.game.drawFrame(this.zeros);
     }
 
 
