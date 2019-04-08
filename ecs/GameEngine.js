@@ -240,14 +240,6 @@ class GameEngine {
         let json = JSON.stringify(message);
         let buf = new Buffer.from(json, 'utf8');
         this.socket.send(buf);
-
-        // TO-DO remove me:
-        const fs = require('fs')
-        let date = new Date();
-        let fileName = './' + level.name + '_'+ this.socket.userName + '_' + date.getTime() + '.json' 
-        let stringyboi = JSON.stringify(level,null, 4);
-        fs.writeFileSync(fileName, stringyboi, 'utf-8');
-
     }
 
     // Queue up a state to be popped. (always top state.)
@@ -293,9 +285,9 @@ class GameEngine {
         }
 
         if (anim.frameCount === 0) {
-            this.queueAnimation(id, -1, pos.x, pos.y);
+            this.queueAnimation(id, -1, Math.round(pos.x), Math.round(pos.y));
         } else {
-            this.queueAnimation(id, anim.animationFrame, pos.x, pos.y);
+            this.queueAnimation(id, anim.animationFrame, Math.round(pos.x), Math.round(pos.y));
         }
     }
 
@@ -357,7 +349,7 @@ class GameEngine {
       I.e, PlayerPos, edtiorWindow Pos, ect.
     */
     drawFrame(pPos: Vec){
-        io.emitFrame(this.socket, this.renderQueue, this.soundQueue,pPos.x, pPos.y);
+        io.emitFrame(this.socket, this.renderQueue, this.soundQueue, Math.round(pPos.x), Math.round(pPos.y));
         this.renderQueue = [];
         this.soundQueue = [];
     }
