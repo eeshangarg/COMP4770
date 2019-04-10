@@ -1,67 +1,44 @@
 [![Build Status](https://travis-ci.com/eeshangarg/COMP4770.svg?token=QShBcTiKKJroZPan48rz&branch=master)](https://travis-ci.com/eeshangarg/COMP4770)
 
-# COMP-4770
-COMP 4770 Team Project
+# COMP-4770 - The Knight Before
 
-## Setting up a development environment
+[![The Knight Before Trailer](https://img.youtube.com/vi/fNjz7TfDcRA/0.jpg)](https://www.youtube.com/watch?v=fNjz7TfDcRA)
 
-1. Make sure you have `node`, `npm`, and `git` installed.
+## Installation
 
-1. Fork the Git repository for this project. Clone your fork:
+1. Make sure you have Node (and `npm`), MongoDB and Git installed:
+    * [Node installation instructions](https://nodejs.org/en/download/package-manager/).
+      We used [these instructions](https://github.com/nodesource/distributions/blob/master/README.md#debian-and-ubuntu-based-distributions).
+      for Ubuntu.
+    * [MongoDB installation instructions](https://docs.mongodb.com/manual/installation/).
+      We used [these instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+      for Ubuntu.
+    * [Git installation instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+      We used [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git#_installing_on_linux)
+      for Ubuntu.
 
-    `git clone https://github.com/<your_username>/COMP4770`
+1. Clone the repo:
 
-    Make sure you replace `<your_username>` with your GitHub username.
+    `git clone https://github.com/eeshangarg/COMP4770`
 
 1. Type: `cd COMP4770/`.
 
-1. Add the original repo as the `upstream` repository:
-
-    `git remote add upstream https://github.com/eeshangarg/COMP4770`
-
-1. Make sure your local repo is in sync with `upstream`:
-
-    ```
-    git fetch upstream
-    git rebase upstream/master
-    git push origin master
-    ```
-
-    You can run these commands every time you want to make sure that
-    your local repo is in sync with the upstream repo. It is recommended
-    that you run these commands as often as possible to stay up to date
-    with all changes in the project.
-
-1. Finally, set up the development environement by running:
+1. Install all `npm` dependencies by running:
 
     `npm install .`
 
-1. To test the environment, run all tests by running:
+    **Note** that you if you already had `npm` installed, you might have
+    to run `npm install -g npm` to upgrade to the latest `npm` version.
 
-    `./tools/test-all`
-
-    In the future, no changes that break `./tools/test-all` will be merged.
-
-1. You can start the test server by running:
+1. You can start the game server by running:
 
     `npm run server`
 
-    Navigate to `localhost:2000` to test the game.
+    Navigate to localhost:2000 to play the game.
 
-### Running test processes separately
+## Running tests
 
-To run linting, use `npm run lint`.
+1. You can run Flow, ESLint and all unit tests by running:
 
-To run the tests and produce coverage stats, use `npm run test`.
+    `./tools/test-all`
 
-To run the Flow JS static type-checker, use `npm run flow`.
-
-To translate/build the Flow type-checked files, use `npm run build`. The
-translated files are exported under `lib/`.
-
-To run the main game server, use `npm run server`.
-
-## Relevant Documentation
-
-* [Flow Type Annotations](https://flow.org/en/docs/types/)
-* [JEST Getting Started](https://jestjs.io/docs/en/getting-started.html)
