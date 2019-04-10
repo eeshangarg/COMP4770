@@ -8,7 +8,7 @@
 
 1. Make sure you have Node (and `npm`), MongoDB and Git installed:
     * [Node installation instructions](https://nodejs.org/en/download/package-manager/).
-      We used [these instructions](https://github.com/nodesource/distributions/blob/master/README.md#debian-and-ubuntu-based-distributions).
+      We used [these instructions](https://github.com/nodesource/distributions/blob/master/README.md#debian-and-ubuntu-based-distributions)
       for Ubuntu.
     * [MongoDB installation instructions](https://docs.mongodb.com/manual/installation/).
       We used [these instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
