@@ -15,13 +15,30 @@ A non-local/live version of the game is hosted at http://149.248.56.80/
 1. Make sure you have Node (and `npm`), MongoDB and Git installed:
     * [Node installation instructions](https://nodejs.org/en/download/package-manager/).
       We used [these instructions](https://github.com/nodesource/distributions/blob/master/README.md#debian-and-ubuntu-based-distributions)
-      for Ubuntu.
+      for Ubuntu:
+      
+      ``` bash
+      # Using Ubuntu
+      curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+      sudo apt-get install -y nodejs
+      ```
     * [MongoDB installation instructions](https://docs.mongodb.com/manual/installation/).
       We used [these instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
-      for Ubuntu.
+      for Ubuntu (these might change based on whether you're using Bionic or Xenial):
+      
+      ``` bash
+      sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+      echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+      sudo apt-get update
+      sudo apt-get install -y mongodb-org
+      ```
     * [Git installation instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
       We used [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git#_installing_on_linux)
-      for Ubuntu.
+      for Ubuntu:
+      
+      ``` bash
+      sudo apt install git-all
+      ```
 
 1. Clone the repo:
 
