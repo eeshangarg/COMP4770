@@ -2,6 +2,12 @@
 
 # COMP-4770 - The Knight Before
 
+## Play the non-local version
+
+A non-local/live version of the game is hosted at http://149.248.56.80/
+
+## Trailer
+
 [![The Knight Before Trailer](https://img.youtube.com/vi/fNjz7TfDcRA/0.jpg)](https://www.youtube.com/watch?v=fNjz7TfDcRA)
 
 ## Installation
